@@ -35,6 +35,9 @@ jobs:
         run: |
           echo "ANDROID_HOME=$ANDROID_SDK_ROOT" >> $GITHUB_ENV
           yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses > /dev/null || true
+          # Bubblewrap attend l'ancien dossier "tools" : on le recrée en raccourci
+          [ -e "$ANDROID_SDK_ROOT/tools" ] || sudo ln -s "$ANDROID_SDK_ROOT/cmdline-tools/latest" "$ANDROID_SDK_ROOT/tools"
+          ls "$ANDROID_SDK_ROOT"; ls "$ANDROID_SDK_ROOT/build-tools" | tail -3
 
       - uses: actions/setup-node@v4
         with:
