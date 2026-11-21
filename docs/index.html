@@ -761,7 +761,7 @@ function mergeDb(docs){
     const sources=(Array.isArray(v.sources)?v.sources:[]).slice(0,6).map(s=>[esc(s.nom||'Source'),TIER[s.niveau]?s.niveau:'moyen',okUrl(s.url)]);
     if(!sources.length)return;
     const p={cat:v.cat,date:esc(v.date||''),title:esc(v.title),body:md(v.body||''),verdict:md(v.verdict||''),sources,ts:+v.ts||0,i:1000+n,m:['info',''],auto:true};
-    p.art=(sources.find(s=>s[1]!=='leaker')||sources[0])[2];
+    p.art=((sources.find(s=>s[1]!=='leaker')||sources[0])||[])[2]||'';
     extra.push(p)});
   extra.sort((a,b)=>b.ts-a.ts);
   ALL=extra.concat(POSTS); extra.forEach(p=>BYI[p.i]=p);
@@ -814,7 +814,7 @@ function renderFeed(){
         ${(()=>{const k='p'+p.i,s=voteStats(k),cs=comsFor(k);return `<button class="vote up ${s.mine===1?'on':''}" data-k="${k}" data-v="1" aria-label="J'aime">${ic('up')}${s.up}</button><button class="vote down ${s.mine===-1?'on':''}" data-k="${k}" data-v="-1" aria-label="J'aime pas">${ic('down')}${s.down}</button><button class="vote cm ${OPEN.has(k)?'on':''}" data-k="${k}" aria-label="Commentaires">${ic('chat')}${cs.length}</button>`})()}
         <button class="share" data-i="${p.i}" aria-label="Partager cette info">${ic('send')}<span>Partager</span></button>
         <button class="report" data-i="${p.i}" aria-label="Signaler cette info">${ic('flag')}<span>Signaler</span></button>
-        <a class="art" href="${p.art}" target="_blank" rel="noopener">${ic('article')}Voir l'article</a>
+        ${p.art?`<a class="art" href="${p.art}" target="_blank" rel="noopener">${ic('article')}Voir l'article</a>`:''}
       </div>
       ${OPEN.has('p'+p.i)?renderComs('p'+p.i):''}
       ${assetsApi?`<div class="photo">${PHOTOS[p.i]?`<button class="rmph" data-i="${p.i}">${ic('trash')}Retirer ma capture</button>`:`<label>${ic('camera')}Ajouter ma capture du jeu<input type="file" accept="image/*" data-i="${p.i}"></label>`}</div>`:''}
