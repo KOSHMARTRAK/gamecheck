@@ -1,0 +1,60 @@
+[
+    {
+        "id":  "cyberleek-build-complete-23-nov",
+        "data":  {
+                     "body":  "Le groupe Cyberleek affirme diffuser une build Xbox d\u0027environ **209 Go** et promet le fichier principal pour le **23 novembre**, ou plus tôt si sa crypto atteint 15 M$ de capitalisation. Rien ne prouve que ce soit authentique ; le groupe a déjà utilisé des leaks pour promouvoir un schéma crypto.",
+                     "cat":  "alerte",
+                     "date":  "20 nov. 2026",
+                     "n":  2,
+                     "sources":  [
+                                     {
+                                         "niveau":  "moyen",
+                                         "nom":  "Journal du Geek",
+                                         "url":  "https://journaldugeek.com/2026/11/20/gta-6-apres-jason-et-lucia-tout-nus-cyberleek-promet-la-version-piratee-du-jeu-complet-pour-le-23-novembre"
+                                     },
+                                     {
+                                         "niveau":  "fiable",
+                                         "nom":  "PC Gamer",
+                                         "url":  "https://www.pcgamer.com/games/grand-theft-auto/cyberleek-drops-what-they-claim-is-a-near-complete-gta-6-xbox-build-online/"
+                                     },
+                                     {
+                                         "niveau":  "moyen",
+                                         "nom":  "KeenGamer",
+                                         "url":  "https://www.keengamer.com/articles/news/gta-6-xbox-build-allegedly-leaked-by-cyberleek-209gb-files-surface-online/"
+                                     }
+                                 ],
+                     "title":  "Cyberleek promet le jeu complet piraté le 23 nov. : piège crypto probable",
+                     "ts":  1795273901846,
+                     "verdict":  "**Non vérifié.** Ne téléchargez rien : les faux installeurs « GTA 6 » servent souvent à installer des voleurs de mots de passe, et ne misez pas sur la crypto liée au groupe."
+                 }
+    },
+    {
+        "id":  "metacritic-note-joueurs-54",
+        "data":  {
+                     "body":  "Sur Metacritic, GTA 6 affiche **99** côté presse mais une note joueurs autour de **5,4/10** sur PS5, avec des chiffres qui bougent d\u0027heure en heure. Une partie des notes est du « review bombing », mais certains joueurs critiquent aussi le 30 fps et des bugs.",
+                     "cat":  "vrai",
+                     "date":  "21 nov. 2026",
+                     "n":  1,
+                     "sources":  [
+                                     {
+                                         "niveau":  "fiable",
+                                         "nom":  "OpenCritic",
+                                         "url":  "https://opencritic.com/news/40063/gta-6-is-getting-review-bombed-on-metacritic-despite-its-99-100-critic-score"
+                                     },
+                                     {
+                                         "niveau":  "fiable",
+                                         "nom":  "GGRecon",
+                                         "url":  "https://www.ggrecon.com/articles/gta-6-metacritic-user-score-review-bombed/"
+                                     },
+                                     {
+                                         "niveau":  "fiable",
+                                         "nom":  "Dexerto",
+                                         "url":  "https://www.dexerto.com/gaming/gta-6-and-ocarina-of-time-remake-caught-in-metacritic-review-bomb-war-3430280/"
+                                     }
+                                 ],
+                     "title":  "Metacritic : 99 chez les critiques, environ 5,4 chez les joueurs",
+                     "ts":  1795273901846,
+                     "verdict":  "Confirmé par plusieurs médias : l\u0027écart est réel, mais la note joueurs est volatile et en partie polluée par des zéros de campagne. Ne vous fiez pas à un seul chiffre."
+                 }
+    }
+]

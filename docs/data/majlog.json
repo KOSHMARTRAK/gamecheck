@@ -1,0 +1,36 @@
+[
+    {
+        "id":  "r-1795273583000",
+        "data":  {
+                     "added":  0,
+                     "at":  1795273583000,
+                     "label":  "21 nov. 2026 à 16:06",
+                     "titles":  [
+
+                                ]
+                 }
+    },
+    {
+        "id":  "r-1795273743000",
+        "data":  {
+                     "added":  0,
+                     "at":  1795273743000,
+                     "label":  "21 nov. 2026 à 16:09",
+                     "titles":  [
+
+                                ]
+                 }
+    },
+    {
+        "id":  "r-1795273901846",
+        "data":  {
+                     "added":  2,
+                     "at":  1795273901846,
+                     "label":  "21 nov. 2026 à 16:11",
+                     "titles":  [
+                                    "Metacritic : 99 chez les critiques, environ 5,4 chez les joueurs",
+                                    "Cyberleek promet le jeu complet piraté le 23 nov. : piège crypto probable"
+                                ]
+                 }
+    }
+]

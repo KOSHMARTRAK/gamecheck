@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GameCheck</title>
+<meta name="description" content="Rumeurs, fausses infos et arnaques GTA 6 vérifiées, mises à jour toutes les 3 heures.">
+<meta name="theme-color" content="#ff2d95">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="img/icon-192.png">
+<link rel="apple-touch-icon" href="img/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="GameCheck">
+<meta property="og:title" content="GameCheck – le vrai du faux sur GTA 6">
+<meta property="og:description" content="Rumeurs, fausses infos et arnaques GTA 6 vérifiées, mises à jour toutes les 3 heures.">
+<meta property="og:image" content="img/icon-512.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --card:#ffffff;--line:rgba(60,20,80,.10);--txt:#14101c;--mute:#6d6478;--soft:#f6f1f8;
+  --vrai:#059669;--vrai-bg:#e9fbf4;--vrai-g:linear-gradient(135deg,#00e0a4,#00a8e8);
+  --rumeur:#d97706;--rumeur-bg:#fff6e5;--rumeur-g:linear-gradient(135deg,#ffc233,#ff7a00);
+  --faux:#e11d48;--faux-bg:#fff0f3;--faux-g:linear-gradient(135deg,#ff4d6d,#ff2d95);
+  --alerte:#7c3aed;--alerte-bg:#f4eeff;--alerte-g:linear-gradient(135deg,#8b5cf6,#e040fb);
+  --info:#2563eb;--info-bg:#eef3ff;--info-g:linear-gradient(135deg,#38bdf8,#6366f1);
+  --vice-g:linear-gradient(135deg,#ff2d95 0%,#ff6a3d 55%,#ffb347 100%);
+  --disp:'Bebas Neue',Impact,'Arial Narrow',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#fff4ee}
+body{color:var(--txt);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;
+  background:
+   radial-gradient(120% 60% at 100% 0%,rgba(255,45,149,.16),transparent 60%),
+   radial-gradient(120% 60% at 0% 10%,rgba(255,154,61,.18),transparent 55%),
+   radial-gradient(100% 50% at 50% 100%,rgba(124,58,237,.12),transparent 60%),
+   linear-gradient(180deg,#fff6f0 0%,#fff1f6 50%,#f6f0ff 100%);background-attachment:fixed}
+.palms{position:fixed;inset:auto 0 0 0;height:300px;pointer-events:none;z-index:0;opacity:.09}
+.palms svg{width:100%;height:100%}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+a{color:inherit}
+svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
+.app{max-width:520px;margin:0 auto;min-height:100vh;padding-bottom:92px;position:relative;z-index:1}
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line);padding:11px 16px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px}
+.logo .mk{width:36px;height:36px;border-radius:11px;overflow:hidden;box-shadow:0 6px 16px rgba(255,45,149,.35)}
+.logo .mk svg{width:100%;height:100%;display:block}
+.logo .wd{font-family:var(--disp);font-size:27px;letter-spacing:.8px;line-height:1;background:var(--vice-g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo .wd small{font-size:17px;color:var(--mute);-webkit-text-fill-color:var(--mute);margin-left:3px}
+.upd{font-size:11px;color:var(--mute);text-align:right;line-height:1.35}
+.upd b{color:var(--vrai);font-weight:600}
+/* badges & tiles */
+.tile{display:grid;place-items:center;border-radius:12px;color:#fff;flex:0 0 auto;position:relative;overflow:hidden}
+.tile::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 55%);pointer-events:none}
+.tile svg.i{stroke-width:2.1;position:relative;z-index:1}
+.badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--disp);font-size:15px;letter-spacing:1px;padding:4px 11px 3px 8px;border-radius:999px;color:#fff;white-space:nowrap;line-height:1.1;position:relative;overflow:hidden}
+.badge::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.35),transparent 60%)}
+.badge svg.i{width:14px;height:14px;stroke-width:2.6;position:relative;z-index:1}
+.badge span{position:relative;z-index:1}
+/* stories bar */
+.stories{display:flex;gap:14px;overflow-x:auto;padding:16px 16px 6px;scrollbar-width:none}
+.stories::-webkit-scrollbar{display:none}
+.story{display:flex;flex-direction:column;align-items:center;gap:6px;flex:0 0 auto;font-size:11.5px;color:var(--txt);font-weight:600}
+.ring{width:68px;height:68px;border-radius:50%;padding:2.5px;background:conic-gradient(from 200deg,#ff2d95,#ff9a3d,#ffd166,#ff2d95)}
+.story.seen .ring{background:#d9cfe0}
+.ring>div{width:100%;height:100%;border-radius:50%;border:3px solid #fff;overflow:hidden;position:relative}
+.ring>div svg.sc{width:100%;height:100%;display:block}
+.ring .mini{position:absolute;inset:0;display:grid;place-items:center;color:#fff}
+.ring .mini svg.i{width:24px;height:24px;stroke-width:2.2;filter:drop-shadow(0 0 6px rgba(0,0,0,.4))}
+.count{font-size:10px;color:var(--mute);font-weight:500;margin-top:-3px}
+.filters{display:flex;gap:8px;overflow-x:auto;padding:8px 16px 4px;scrollbar-width:none}
+.filters::-webkit-scrollbar{display:none}
+.filters button{flex:0 0 auto;font-size:13px;font-weight:600;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid var(--line);color:#4a4055}
+.filters button.on{background:var(--txt);color:#fff;border-color:var(--txt)}
+/* post */
+.post{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:12px 0;box-shadow:0 10px 30px -18px rgba(90,20,90,.35)}
+@media(min-width:540px){.post{border:1px solid var(--line);border-radius:22px;margin:14px 12px}}
+.phead{display:flex;align-items:center;gap:10px;padding:12px 14px}
+.av{width:36px;height:36px;border-radius:50%;overflow:hidden;flex:0 0 auto;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #ff5fa2}
+.av svg{width:100%;height:100%;display:block}
+.pmeta{flex:1;min-width:0}
+.pname{font-weight:700;font-size:14px;display:flex;align-items:center;gap:4px}
+.pname svg.i{width:15px;height:15px;color:#ff2d95;stroke-width:2.3}
+.pdate{font-size:12px;color:var(--mute)}
+.ptitle{font-family:var(--disp);font-size:30px;line-height:1;letter-spacing:.5px;margin:2px 14px 10px;padding-left:12px;border-left:5px solid}
+.frame{margin:0 12px 6px;border-radius:22px;padding:3px;background:conic-gradient(from 210deg,#ff2d95,#ff9a3d,#ffd166,#a855f7,#ff2d95);display:block;width:calc(100% - 24px)}
+.frame .in{border-radius:19px;overflow:hidden;position:relative;aspect-ratio:4/3;background:#1a0b2e}
+.frame .in>svg.sc,.frame .in>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.bars{position:absolute;top:10px;left:10px;right:10px;display:flex;gap:4px;z-index:2}
+.bars i{flex:1;height:2.5px;border-radius:2px;background:rgba(255,255,255,.4);overflow:hidden;position:relative}
+.bars i.full{background:#fff}
+.bars i b{position:absolute;inset:0;background:#fff;transform-origin:left;transform:scaleX(0)}
+.bars i.run b{animation:fill var(--dur,7s) linear forwards}
+@keyframes fill{to{transform:scaleX(1)}}
+.ftop{position:absolute;top:20px;left:12px;right:12px;display:flex;align-items:center;gap:8px;z-index:2;color:#fff;font-size:12.5px;font-weight:600;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.ftop .tag{margin-left:auto;display:inline-flex;align-items:center;gap:4px;background:rgba(0,0,0,.35);backdrop-filter:blur(6px);padding:4px 8px;border-radius:999px;font-size:11px}
+.ftop .tag svg.i{width:13px;height:13px}
+.fbot{position:absolute;left:0;right:0;bottom:0;padding:70px 16px 16px;background:linear-gradient(180deg,transparent,rgba(16,5,30,.55) 35%,rgba(16,5,30,.92));z-index:2;color:#fff}
+.fbot h2{font-family:var(--disp);font-size:34px;line-height:.98;letter-spacing:.6px;margin-top:10px;text-shadow:0 2px 14px rgba(255,45,149,.35)}
+.fbot .tap{display:inline-flex;align-items:center;gap:5px;font-size:12px;opacity:.85;margin-top:10px;font-weight:500}
+.fbot .tap svg.i{width:14px;height:14px}
+.actions{display:flex;align-items:center;gap:18px;padding:12px 14px 2px}
+.actions button,.actions a{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--mute);font-weight:600;text-decoration:none}
+.actions svg.i{width:22px;height:22px;color:var(--txt)}
+.actions .art{margin-left:auto;color:#fff;background:var(--vice-g);padding:7px 12px;border-radius:999px;box-shadow:0 6px 14px -6px rgba(255,45,149,.6)}
+.actions .art svg.i{width:16px;height:16px;color:#fff;stroke-width:2.2}
+.like.liked svg.i{fill:#ff2d95;stroke:#ff2d95;animation:pop .3s}
+@keyframes pop{50%{transform:scale(1.3)}}
+.body{padding:8px 14px 4px;font-size:14.5px;line-height:1.55;color:#2a2233}
+.verdict{margin:10px 14px 0;padding:11px 12px;border-radius:14px;font-size:13.5px;line-height:1.5;display:flex;gap:10px;color:#2a2233}
+.verdict .tile{width:26px;height:26px;border-radius:8px}
+.verdict .tile svg.i{width:15px;height:15px}
+.srcs{padding:8px 14px 14px}
+.srcs summary{display:inline-flex;align-items:center;gap:6px;font-size:13px;color:var(--mute);cursor:pointer;list-style:none;padding:4px 0;font-weight:600}
+.srcs summary svg.i{width:16px;height:16px}
+.srcs summary::-webkit-details-marker{display:none}
+.srcbox{margin-top:6px;border:1px solid var(--line);border-radius:14px;padding:2px 12px}
+.src{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-top:1px solid var(--line);text-decoration:none;font-size:13.5px}
+.src:first-child{border-top:0}
+.src .nm{display:flex;align-items:center;gap:6px;min-width:0}
+.src .nm svg.i{width:14px;height:14px;color:var(--mute)}
+.tier{font-size:10px;font-weight:800;padding:3px 7px;border-radius:6px;white-space:nowrap;letter-spacing:.4px}
+.t-officiel{background:var(--vrai-bg);color:var(--vrai)}
+.t-fiable{background:var(--info-bg);color:var(--info)}
+.t-moyen{background:var(--rumeur-bg);color:var(--rumeur)}
+.t-leaker{background:var(--faux-bg);color:var(--faux)}
+.photo{display:flex;align-items:center;gap:8px;margin:2px 14px 0;font-size:12.5px;color:var(--mute)}
+.photo label,.photo button{display:inline-flex;align-items:center;gap:5px;cursor:pointer;font-weight:600;color:#7a3d8f;font-size:12.5px}
+.photo svg.i{width:15px;height:15px}
+.photo input{display:none}
+/* nav */
+nav.tabs{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(16px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:20}
+nav.tabs>div{display:flex;width:100%;max-width:520px}
+nav.tabs button{flex:1;padding:9px 0 16px;font-size:10.5px;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:600}
+nav.tabs svg.i{width:23px;height:23px}
+nav.tabs button.on{color:#ff2d95}
+nav.tabs button.on svg.i{stroke-width:2.3}
+.view{display:none}.view.on{display:block}
+.panel{padding:20px 16px}
+.h1{font-family:var(--disp);font-size:40px;letter-spacing:.6px;line-height:1;margin-bottom:8px}
+.lead{color:var(--mute);font-size:14px;line-height:1.55;margin-bottom:16px}
+.sec{font-family:var(--disp);font-size:22px;letter-spacing:.8px;color:var(--txt);margin:28px 2px 12px;display:flex;align-items:center;gap:9px}
+.sec .tile{width:28px;height:28px;border-radius:9px}
+.sec .tile svg.i{width:16px;height:16px}
+.card{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 30px -20px rgba(90,20,90,.35)}
+textarea{width:100%;min-height:120px;background:#fff;border:1px solid var(--line);border-radius:18px;color:var(--txt);padding:14px;font:inherit;font-size:15px;resize:vertical}
+textarea:focus{outline:2px solid #ff2d95;border-color:transparent}
+.btn{width:100%;margin-top:12px;padding:15px;border-radius:16px;font-weight:700;font-size:15px;background:var(--vice-g);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 24px -10px rgba(255,45,149,.6)}
+.btn:disabled{opacity:.5}
+.ex{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ex button{font-size:12.5px;padding:7px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);color:#4a4055;text-align:left}
+.result{margin-top:18px;padding:16px;display:none}
+.result.on{display:block}
+.result .rv{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.result .rv .tile{width:36px;height:36px}
+.result .rv b{font-family:var(--disp);font-size:28px;letter-spacing:.6px}
+.result p{font-size:14.5px;line-height:1.55;margin-bottom:10px}
+.result ul{padding-left:18px;font-size:14px;line-height:1.55;margin-bottom:10px;color:#3a3045}
+.result .tip{font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:10px;display:flex;gap:7px}
+.result .tip svg.i{width:16px;height:16px;margin-top:1px}
+.note{font-size:12px;color:var(--mute);line-height:1.55;margin-top:14px;display:flex;gap:7px}
+.note svg.i{width:15px;height:15px;margin-top:1px}
+.tierrow{display:flex;gap:12px;align-items:flex-start;padding:14px;border-top:1px solid var(--line)}
+.tierrow:first-child{border-top:0}
+.tierrow .tier{margin-top:2px}
+.tierrow h3{font-size:15px;margin-bottom:3px}
+.tierrow p{font-size:13.5px;color:var(--mute);line-height:1.45}
+.rule{display:flex;gap:11px;padding:13px 14px;border-top:1px solid var(--line);font-size:14px;line-height:1.5}
+.rule:first-child{border-top:0}
+.rule .n{width:26px;height:26px;border-radius:8px;background:var(--vice-g);color:#fff;display:grid;place-items:center;font-family:var(--disp);font-size:16px;flex:0 0 auto}
+/* game */
+.hero .in{background:linear-gradient(160deg,#1a0633 0%,#4a1470 40%,#d6337f 80%,#ff7a45 100%)}
+.hero .ov{position:relative!important;padding:26px 18px 22px!important;background:none!important}
+.hero{border-radius:24px;overflow:hidden;position:relative;padding:3px;background:conic-gradient(from 210deg,#ff2d95,#ff9a3d,#ffd166,#a855f7,#ff2d95);box-shadow:0 20px 40px -20px rgba(255,45,149,.55)}
+.hero .in{position:relative;width:100%;height:100%;border-radius:21px;overflow:hidden}
+.hero svg.sc{position:absolute;inset:0;width:100%;height:100%}
+.hero .ov{position:absolute;inset:auto 0 0 0;padding:80px 18px 18px;background:linear-gradient(180deg,transparent,rgba(16,5,30,.9));color:#fff}
+.hero .ov .badge{background:var(--vice-g)}
+.hero h1{font-family:var(--disp);font-size:56px;line-height:.88;letter-spacing:1px;margin:10px 0 8px;text-shadow:0 4px 24px rgba(255,45,149,.5)}
+.hero p{font-size:13.5px;line-height:1.5;opacity:.92}
+.score{display:flex;gap:10px;margin-top:12px}
+.score div{flex:1;background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:16px;padding:10px 12px}
+.score b{display:block;font-family:var(--disp);font-size:30px;letter-spacing:.5px;line-height:1;background:var(--vice-g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.score span{font-size:11.5px;color:var(--mute)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.fact{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:18px;padding:14px}
+.fact .tile{width:38px;height:38px;margin-bottom:10px}
+.fact .tile svg.i{width:19px;height:19px}
+.fact .k{font-size:11.5px;color:var(--mute);font-weight:600;margin-bottom:2px;text-transform:uppercase;letter-spacing:.4px}
+.fact .v{font-size:14.5px;font-weight:800;line-height:1.3}
+.fact .s{font-size:11.5px;color:var(--mute);margin-top:4px;line-height:1.4}
+.mech{display:flex;gap:12px;padding:14px;border-top:1px solid var(--line)}
+.mech:first-child{border-top:0}
+.mech .tile{width:40px;height:40px}
+.mech h3{font-size:15px;margin-bottom:3px}
+.mech p{font-size:13.5px;color:#4a4055;line-height:1.5}
+.mech a{display:inline-flex;align-items:center;gap:4px;font-size:12px;color:var(--mute);text-decoration:none;margin-top:6px;font-weight:500}
+.mech a svg.i{width:12px;height:12px}
+.disc{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:20px;margin-bottom:12px;overflow:hidden;box-shadow:0 10px 30px -22px rgba(90,20,90,.4)}
+.disc .img{position:relative;aspect-ratio:16/8;overflow:hidden}
+.disc .img svg.sc{position:absolute;inset:0;width:100%;height:100%}
+.disc .img .chipw{position:absolute;left:12px;bottom:12px}
+.disc .pad{padding:14px}
+.disc h3{font-size:16px;line-height:1.3;margin-bottom:6px}
+.disc p{font-size:14px;color:#3a3045;line-height:1.55}
+.disc .foot{display:flex;align-items:center;justify-content:flex-end;margin-top:10px}
+.disc .foot a{display:inline-flex;align-items:center;gap:5px;font-size:12.5px;color:#7a3d8f;text-decoration:none;font-weight:600}
+.disc .foot a svg.i{width:13px;height:13px}
+.legend{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px}
+.empty{text-align:center;color:var(--mute);padding:40px 20px;font-size:14px}
+.spin{display:inline-block;width:15px;height:15px;border:2px solid #fff;border-top-color:transparent;border-radius:50%;animation:sp .7s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+/* story viewer */
+.sv{position:fixed;inset:0;background:#0b0412;z-index:100;display:none;align-items:center;justify-content:center}
+.sv.on{display:flex}
+.sv .fr{position:relative;width:min(100vw,56.25vh);height:min(100vh,177.78vw);overflow:hidden;background:#1a0b2e}
+@media(min-width:600px){.sv .fr{border-radius:18px;height:min(94vh,177.78vw);width:min(100vw,52.9vh)}}
+.sv .fr>svg.sc,.sv .fr>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sv .bars{top:12px}
+.sv .hd{position:absolute;top:24px;left:12px;right:12px;display:flex;align-items:center;gap:9px;z-index:3;color:#fff}
+.sv .hd .av{width:32px;height:32px}
+.sv .hd .nm{font-size:13px;font-weight:700;text-shadow:0 1px 4px rgba(0,0,0,.4)}
+.sv .hd .dt{font-size:11.5px;opacity:.8}
+.sv .x{margin-left:auto;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:rgba(0,0,0,.3);backdrop-filter:blur(6px)}
+.sv .x svg.i{width:20px;height:20px;stroke-width:2.2}
+.sv .zone{position:absolute;top:70px;bottom:150px;z-index:2}
+.sv .zl{left:0;width:35%}.sv .zr{right:0;width:65%}
+.sv .ft{position:absolute;left:0;right:0;bottom:0;padding:110px 18px 22px;background:linear-gradient(180deg,transparent,rgba(16,5,30,.7) 30%,rgba(16,5,30,.96));color:#fff;z-index:3}
+.sv .ft h2{font-family:var(--disp);font-size:40px;line-height:.95;letter-spacing:.6px;margin:12px 0 10px;text-shadow:0 2px 16px rgba(255,45,149,.4)}
+.sv .ft p{font-size:14px;line-height:1.5;opacity:.93}
+.sv .ft .row{display:flex;gap:8px;margin-top:14px}
+.sv .ft a,.sv .ft button.gh{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:12px;border-radius:14px;font-weight:700;font-size:14px;text-decoration:none}
+.sv .ft a{background:var(--vice-g);color:#fff}
+.sv .ft button.gh{background:rgba(255,255,255,.14);color:#fff;backdrop-filter:blur(6px)}
+.sv .ft svg.i{width:17px;height:17px;stroke-width:2.2}
+/* icône : le chien KOSHMAR qui inspecte à la loupe */
+.logo .mk{width:48px;height:48px;border-radius:15px;position:relative;overflow:visible;box-shadow:none}
+.logo .mk{margin:4px}
+.dogtile{display:block;width:100%;height:100%;overflow:hidden;background:radial-gradient(circle at 50% 78%,#ffd166 0%,#ff7a45 32%,#ff2d95 62%,#7c3aed 100%)}
+.dogtile img{width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;transform:scale(1.12);transform-origin:50% 35%}
+.uc .sb{position:absolute;top:8px;left:8px;min-width:32px;height:32px;padding:0 6px;border-radius:50%;display:grid;place-items:center;font-family:var(--disp);font-size:17px;letter-spacing:.5px;box-shadow:0 0 0 2.5px var(--ring,#ff2d95),0 0 0 4px #fff}
+.dogtile.logo0{background:#fff}
+.dogtile.logo0 img{object-fit:cover;object-position:50% 50%;transform:scale(1.3)}
+.logo .mk .dog{border-radius:15px;box-shadow:0 0 0 2.5px #fff,0 0 0 5.5px #ff2d95,0 0 0 7px #14101c,0 8px 18px rgba(255,45,149,.45)}
+.logo .mk img.lp{position:absolute;width:34px;height:34px;left:10px;top:12px;transform-origin:78% 82%;animation:lpscan 3.4s ease-in-out infinite;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35));pointer-events:none}
+@keyframes lpscan{0%,100%{transform:translate(-9px,2px) rotate(-10deg)}25%{transform:translate(-3px,-7px) rotate(-2deg)}50%{transform:translate(7px,-6px) rotate(8deg)}65%{transform:translate(7px,-6px) rotate(8deg)}80%{transform:translate(0,0) rotate(0deg)}}
+@media (prefers-reduced-motion:reduce){.logo .mk img.lp{animation:none}}
+/* j'aime / j'aime pas / commentaires */
+.actions{flex-wrap:wrap;gap:8px!important}
+.vote{display:flex;align-items:center;gap:5px;padding:6px 10px;border-radius:999px;border:1px solid var(--line);background:#fff;font-size:13px;font-weight:700;color:var(--mute)}
+.vote svg.i{width:18px!important;height:18px!important;color:inherit!important}
+.vote.on.up{background:var(--vrai-bg);color:var(--vrai);border-color:currentColor}
+.vote.on.down{background:var(--faux-bg);color:var(--faux);border-color:currentColor}
+.vote.cm.on{background:var(--alerte-bg);color:var(--alerte);border-color:currentColor}
+.pdate .hr{font-weight:600;color:#4a4055}
+.coms{margin:8px 14px 0;border:1px solid var(--line);border-radius:14px;padding:4px 12px 12px;background:var(--soft)}
+.com{padding:10px 0;border-top:1px solid var(--line);font-size:13.5px;line-height:1.45}
+.com:first-child{border-top:0}
+.com .cw{display:flex;gap:6px;align-items:baseline;font-size:12px;color:var(--mute);margin-bottom:2px}
+.com .cw b{color:var(--txt);font-size:13px}
+.com .ctx{white-space:pre-wrap;word-break:break-word}
+.com .cdel{margin-left:auto;font-size:11.5px;color:var(--faux);font-weight:600}
+.cform{display:flex;gap:8px;margin-top:10px}
+.cform textarea{min-height:44px;height:44px;border-radius:12px;padding:10px 12px;font-size:14px}
+.cform button{flex:0 0 auto;width:44px;border-radius:12px;background:var(--vice-g);color:#fff;display:grid;place-items:center}
+.cform button svg.i{width:18px;height:18px}
+.cnone{font-size:13px;color:var(--mute);padding:10px 0}
+/* mises à jour + légal */
+.majrow{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-top:1px solid var(--line);font-size:14px}
+.majrow:first-child{border-top:0}
+.majrow span{color:var(--mute)}
+.loghead{font-weight:800;font-size:14px;padding:12px 14px;border-bottom:1px solid var(--line)}
+.logrow{padding:10px 14px;border-top:1px solid var(--line);font-size:13.5px;line-height:1.45}
+.logrow:first-child{border-top:0}
+.logrow b{display:block}
+.logrow small{color:var(--mute)}
+.legal details{border-top:1px solid var(--line);padding:12px 14px}
+.legal details:first-child{border-top:0}
+.legal summary{font-weight:700;font-size:14.5px;cursor:pointer}
+.legal p{font-size:13.5px;line-height:1.55;color:#3a3045;margin-top:8px}
+.nextmaj{font-size:11.5px;color:var(--mute);font-weight:600}
+/* dernières infos (5 cartes max) */
+.une-wrap{max-width:820px;margin:0 auto;padding:14px 12px 4px}
+.une-h{display:flex;align-items:baseline;justify-content:space-between;padding:0 4px 8px}
+.une-h b{font-family:var(--disp);font-size:22px;letter-spacing:.6px}
+.une-h span{font-size:11.5px;color:var(--mute);font-weight:600}
+.une{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+@media(max-width:560px){.une{display:flex;overflow-x:auto;scrollbar-width:none}.une::-webkit-scrollbar{display:none}.une .uc{flex:0 0 112px}}
+.uc{position:relative;aspect-ratio:9/15;border-radius:14px;overflow:hidden;background:#1a0b2e;cursor:pointer;text-align:left;box-shadow:0 8px 18px -12px rgba(90,20,90,.6);transition:transform .15s}
+.uc:hover{transform:translateY(-2px)}
+.uc>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.uc:hover>img{transform:scale(1.05)}
+.uc .ua{position:absolute;top:8px;left:8px;width:32px;height:32px;border-radius:50%;overflow:hidden;box-shadow:0 0 0 2.5px var(--ring,#ff2d95),0 0 0 4px #fff}
+.uc .ut{position:absolute;left:0;right:0;bottom:0;padding:34px 8px 8px;background:linear-gradient(180deg,transparent,rgba(16,5,30,.92));color:#fff;font-size:12px;font-weight:700;line-height:1.25}
+.uc .ut small{display:block;font-size:10px;font-weight:600;opacity:.8;margin-top:3px}
+/* grand écran : on utilise toute la largeur */
+.app{max-width:1280px}
+nav.tabs>div{max-width:1280px}
+@media(min-width:760px){
+  #feed,#v-feed .filters{max-width:820px;margin:0 auto}
+  #feed .post{border:1px solid var(--line);border-radius:22px;margin:16px 12px}
+  #v-game .grid{grid-template-columns:repeat(4,minmax(0,1fr))}
+  #v-game .discs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  #v-game .discs .disc{margin:0}
+  #v-check .panel,#v-src .panel{max-width:820px;margin:0 auto}
+}
+@media(min-width:1140px){
+  #v-game .discs{grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--txt);color:#fff;padding:10px 16px;border-radius:12px;font-size:13px;z-index:200;display:none}
+.toast.on{display:block}
+</style>
+</head>
+<body>
+<div class="palms" id="palms"></div>
+<div class="app">
+  <header>
+    <div class="logo"><div class="mk" id="logoMk"></div><div class="wd">GAMECHECK</div></div>
+    <button id="installBtn" hidden style="margin-left:auto;margin-right:10px;font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:999px;background:var(--vice-g);color:#fff">Installer l'appli</button>
+    <div class="upd"><b>● Fil vérifié</b><br><span id="majTop">MAJ 21 nov. 2026</span></div>
+  </header>
+
+  <section class="view on" id="v-feed">
+    <div class="une-wrap"><div class="une-h"><b>Dernières infos</b><span id="majUne">MAJ du 21 nov. 2026</span></div><div class="une" id="une"></div></div>
+    <div class="filters" id="filters" style="padding-top:6px"></div>
+    <div id="feed"></div>
+  </section>
+
+  <section class="view" id="v-game"><div class="panel" id="game"></div></section>
+
+  <section class="view" id="v-check">
+    <div class="panel">
+      <div class="h1">Vérifier une rumeur</div>
+      <p class="lead">Colle une info vue sur TikTok, X, YouTube ou Insta. L'app la compare aux infos vérifiées et te dit si elle tient la route.</p>
+      <textarea id="claim" placeholder="Ex : « GTA 6 sort sur PC le mois prochain »"></textarea>
+      <div class="ex" id="examples"></div>
+      <button class="btn" id="checkBtn"></button>
+      <div class="result card" id="result"></div>
+      <p class="note" id="checkNote"></p>
+    </div>
+  </section>
+
+  <section class="view" id="v-src">
+    <div class="panel">
+      <div class="h1">Fiabilité des sources</div>
+      <p class="lead">Chaque source du fil a un niveau. Plus il est haut, plus tu peux lui faire confiance.</p>
+      <div class="card">
+        <div class="tierrow"><span class="tier t-officiel">OFFICIEL</span><div><h3>Rockstar, Take-Two, Sony, Microsoft</h3><p>Ce qu'ils annoncent eux-mêmes. C'est la référence absolue.</p></div></div>
+        <div class="tierrow"><span class="tier t-fiable">FIABLE</span><div><h3>Grands médias jeux vidéo et tech</h3><p>PC Gamer, TechRadar, Dexerto, GamesRadar+, Bloomberg, Malwarebytes… Ils vérifient avant de publier.</p></div></div>
+        <div class="tierrow"><span class="tier t-moyen">MOYEN</span><div><h3>Sites d'actu rapides, agrégateurs</h3><p>Utiles, mais ils relaient parfois des infos de fans ou de réseaux sociaux. À croiser.</p></div></div>
+        <div class="tierrow"><span class="tier t-leaker">LEAKER</span><div><h3>Comptes anonymes, « insiders »</h3><p>Parfois justes, souvent faux. Jamais une preuve à eux seuls.</p></div></div>
+      </div>
+      <div class="sec" id="rulesTitle"></div>
+      <div class="card">
+        <div class="rule"><span class="n">1</span><span><b>Pas de source officielle ?</b> Alors c'est au mieux une rumeur.</span></div>
+        <div class="rule"><span class="n">2</span><span><b>« Démo », « version PC », « APK » à télécharger :</b> c'est presque toujours un virus.</span></div>
+        <div class="rule"><span class="n">3</span><span><b>Capture d'écran sans lien :</b> facile à truquer. Cherche l'original.</span></div>
+        <div class="rule"><span class="n">4</span><span><b>Un seul compte qui l'affirme :</b> attends que des médias fiables confirment.</span></div>
+        <div class="rule"><span class="n">5</span><span><b>Titre en MAJUSCULES et sirènes :</b> ça cherche les clics, pas la vérité.</span></div>
+      </div>
+
+      <div class="sec" id="majTitle"></div>
+      <div class="card majcard">
+        <div class="majrow"><span>Fréquence</span><b>Toutes les 3 heures, 24 h/24</b></div>
+        <div class="majrow"><span>Dernière mise à jour</span><b id="majLast">—</b></div>
+        <div class="majrow"><span>Prochaine mise à jour</span><b id="majNext">—</b></div>
+        <div class="majrow"><span>Infos ajoutées automatiquement</span><b id="majCount">—</b></div>
+      </div>
+      <div class="card" style="margin-top:10px"><div class="loghead">Historique des mises à jour</div><div id="majLog"><div class="cnone" style="padding:12px 14px">Chargement…</div></div></div>
+
+      <div class="sec" id="legalTitle"></div>
+      <div class="card legal">
+        <details open><summary>Site indépendant</summary><p>GameCheck est un site de fans indépendant. Il n'est ni affilié, ni approuvé, ni sponsorisé par Rockstar Games, Take-Two Interactive, Sony Interactive Entertainment ou Microsoft. « Grand Theft Auto », « GTA » et les logos associés sont des marques de Take-Two Interactive. Les captures d'écran officielles restent la propriété de Rockstar Games et sont montrées uniquement pour illustrer l'actualité. Les noms et logos des médias cités appartiennent à leurs propriétaires.</p></details>
+        <details><summary>Comment les infos sont vérifiées</summary><p>Les infos sont recherchées et classées automatiquement par une intelligence artificielle (Claude, d'Anthropic) toutes les 3 heures, à partir de médias publics. Chaque info indique ses sources et leur niveau de fiabilité. Une IA peut se tromper : vérifie toujours auprès de la source officielle avant de partager. Une info classée par erreur est corrigée dès qu'elle est signalée en commentaire.</p></details>
+        <details><summary>Tes données personnelles</summary><p>Quand tu votes ou commentes, l'application enregistre ton identifiant de compte, ton vote, le texte de ton commentaire et son heure. Ton nom affiché vient de ton compte. Ces données servent uniquement à afficher les votes et la discussion. Tu peux supprimer tes commentaires à tout moment avec le bouton « Supprimer ». Pour toute demande d'accès ou d'effacement (RGPD), contacte l'éditeur. Aucune donnée n'est vendue ni utilisée pour de la publicité.</p></details>
+        <details><summary>Cookies</summary><p>L'application ne dépose aucun cookie publicitaire ni de mesure d'audience. Elle garde seulement, dans ton navigateur, quelques préférences d'affichage.</p></details>
+        <details><summary>Règles des commentaires</summary><p>Pas d'insultes, de harcèlement, de liens de téléchargement, de spoilers non signalés ni de pub. Les commentaires qui ne respectent pas ces règles peuvent être supprimés par l'éditeur.</p></details>
+        <details><summary>Mentions légales</summary><p>GameCheck est un projet personnel, gratuit et non commercial : aucune publicité, aucun abonnement, aucune vente. Éditeur : KOSHMAR TRAK, particulier non professionnel. Comme le permet la loi pour la confiance dans l'économie numérique (article 6-III-2), l'éditeur reste anonyme ; son identité est connue de l'hébergeur. Hébergement : Anthropic PBC, 548 Market Street, San Francisco, CA 94104, États-Unis (service Claude). Pour signaler une erreur ou un contenu, laisse un commentaire sous l'info concernée.</p></details>
+      </div>
+      <p class="note" id="appVersion"></p>
+    </div>
+  </section>
+</div>
+
+<nav class="tabs"><div id="tabs"></div></nav>
+
+<div class="toast" id="toast"></div>
+
+<script>
+/* ===== VERSION SITE : données lues dans data/*.json (mises à jour par la routine) ===== */
+(function(){
+  if(window.claude)return;
+  const load=async n=>{try{const r=await fetch('data/'+n+'.json',{cache:'no-store'});return r.ok?await r.json():[]}catch(e){return []}};
+  const wrap=o=>({id:o.id,exists:true,data:()=>o.data});
+  const no=()=>Promise.reject({code:'not_granted'});
+  const coll=name=>{let ord=null,lim=1000;const api={
+    orderBy(f,d){ord=[f,d||'asc'];return api},limit(n){lim=n;return api},
+    onSnapshot(cb){load(name).then(j=>{let a=Array.isArray(j)?j.filter(o=>o&&o.data):[];
+      if(ord)a=a.slice().sort((x,y)=>((+x.data[ord[0]]||0)-(+y.data[ord[0]]||0))*(ord[1]==='desc'?-1:1));
+      cb({docs:a.slice(0,lim).map(wrap)})});return()=>{}},
+    get:()=>load(name).then(j=>({docs:(Array.isArray(j)?j:[]).map(wrap)})),
+    doc:id=>doc(name+'/'+id)};return api};
+  const doc=p=>{const i=p.lastIndexOf('/'),c=p.slice(0,i),id=p.slice(i+1);return{
+    onSnapshot(cb){load(c).then(j=>{const o=(Array.isArray(j)?j:[]).find(x=>x&&x.id===id);cb(o?wrap(o):{exists:false,data:()=>null})});return()=>{}},
+    get:()=>load(c).then(j=>{const o=(Array.isArray(j)?j:[]).find(x=>x&&x.id===id);return o?wrap(o):{exists:false,data:()=>null}}),
+    set:no,update:no,delete:no}};
+  const db={collection:coll,doc};
+  window.claude={use:async n=>n==='db'?db:null};
+})();
+/* ===== ICONS ===== */
+const P={
+ check:'<circle cx="12" cy="12" r="9.5"/><path d="m8.5 12.2 2.4 2.4 4.8-5"/>',
+ alert:'<path d="M10.3 3.9 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/>',
+ x:'<circle cx="12" cy="12" r="9.5"/><path d="m15 9-6 6M9 9l6 6"/>',
+ xs:'<path d="m17 7-10 10M7 7l10 10"/>',
+ siren:'<path d="M7 18v-6a5 5 0 0 1 10 0v6"/><path d="M5 21a1 1 0 0 1-1-1v-1a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1a1 1 0 0 1-1 1z"/><path d="M21 12h1M18.5 4.5 18 5M2 12h1M12 2v1M4.9 4.9l.7.7M12 12v6"/>',
+ layers:'<path d="m12 2.5 9.5 4.8-9.5 4.8-9.5-4.8z"/><path d="m2.5 12 9.5 4.8 9.5-4.8"/><path d="m2.5 16.7 9.5 4.8 9.5-4.8"/>',
+ home:'<path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z"/>',
+ search:'<circle cx="11" cy="11" r="7.5"/><path d="m20.5 20.5-4.2-4.2"/>',
+ shield:'<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>',
+ gamepad:'<rect x="2" y="6" width="20" height="12" rx="5"/><path d="M6.5 12h4M8.5 10v4"/><path d="M15.5 13h.01M18 11h.01"/>',
+ heart:'<path d="M19.5 13.6C21 12 22 10.6 22 8.6A5.4 5.4 0 0 0 16.6 3.2c-1.8 0-3.2.8-4.6 2.3-1.4-1.5-2.8-2.3-4.6-2.3A5.4 5.4 0 0 0 2 8.6c0 2 1 3.4 2.5 5L12 21z"/>',
+ copy:'<rect x="9" y="9" width="12.5" height="12.5" rx="2.5"/><path d="M5 15H4.5A2.5 2.5 0 0 1 2 12.5v-8A2.5 2.5 0 0 1 4.5 2h8A2.5 2.5 0 0 1 15 4.5V5"/>',
+ ext:'<path d="M15 3h6v6M10 14 21 3"/><path d="M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"/>',
+ link:'<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
+ sparkles:'<path d="M12 3.5 13.9 9 19.5 11l-5.6 2-1.9 5.5-1.9-5.5L4.5 11 10.1 9z"/><path d="M19 3v3.5M17.3 4.8h3.5M5 17.5V21M3.3 19.3h3.5"/>',
+ info:'<circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5M12 7.8h.01"/>',
+ map:'<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
+ clock:'<circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3.2 2"/>',
+ users:'<circle cx="9" cy="8" r="3.8"/><path d="M2.5 20.5a6.5 6.5 0 0 1 13 0"/><path d="M16 4.3a3.8 3.8 0 0 1 0 7.4M21.5 20.5a6.5 6.5 0 0 0-4-6"/>',
+ tag:'<path d="M20.6 13.4 13.4 20.6a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.4"/>',
+ star:'<path d="m12 2.8 2.9 5.9 6.5.9-4.7 4.6 1.1 6.4L12 17.6l-5.8 3 1.1-6.4-4.7-4.6 6.5-.9z"/>',
+ eye:'<path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/>',
+ wifiOff:'<path d="m2 2 20 20"/><path d="M8.5 16.4a5 5 0 0 1 7 0M5 12.9a10 10 0 0 1 5.2-2.8M19 12.9a10 10 0 0 0-2.3-1.6M2 8.8a15 15 0 0 1 4.2-2.7M22 8.8A15 15 0 0 0 10.7 5"/><path d="M12 20h.01"/>',
+ monitor:'<rect x="2" y="3.5" width="20" height="13.5" rx="2.5"/><path d="M8 21h8M12 17v4"/>',
+ trophy:'<path d="M6 9H4.5A2.5 2.5 0 0 1 2 6.5V5h4M18 9h1.5A2.5 2.5 0 0 0 22 6.5V5h-4"/><path d="M6 3h12v6a6 6 0 0 1-12 0z"/><path d="M12 15v3M8 21h8M9.5 18h5"/>',
+ anchor:'<circle cx="12" cy="5" r="2.6"/><path d="M12 22V7.6M5 12H2a10 10 0 0 0 20 0h-3"/>',
+ bug:'<rect x="7" y="7" width="10" height="13" rx="5"/><path d="M12 11v5M7 12H3M21 12h-4M7.5 17 4 19.5M16.5 17l3.5 2.5M8.5 7 7 4.5M15.5 7 17 4.5"/>',
+ user:'<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>',
+ cloud:'<path d="M17.5 19H7a5 5 0 1 1 1.3-9.8A6 6 0 0 1 20 11a4 4 0 0 1-2.5 8z"/>',
+ box:'<path d="M21 8 12 3 3 8v8l9 5 9-5z"/><path d="m3 8 9 5 9-5M12 13v8"/>',
+ film:'<rect x="2.5" y="3" width="19" height="18" rx="2.5"/><path d="M7 3v18M17 3v18M2.5 8h4.5M2.5 16h4.5M17 8h4.5M17 16h4.5"/>',
+ verified:'<path d="m12 2 2.4 1.8 3-.2.9 2.9 2.5 1.7-.9 2.9.9 2.9-2.5 1.7-.9 2.9-3-.2L12 22l-2.4-1.8-3 .2-.9-2.9-2.5-1.7.9-2.9-.9-2.9 2.5-1.7.9-2.9 3 .2z"/><path d="m8.8 12 2.2 2.2 4.2-4.4"/>',
+ calendar:'<rect x="3" y="4.5" width="18" height="16.5" rx="2.5"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/>',
+ download:'<path d="M12 3v12M7 10l5 5 5-5"/><path d="M4 17v2.5A1.5 1.5 0 0 0 5.5 21h13a1.5 1.5 0 0 0 1.5-1.5V17"/>',
+ phone:'<rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/>',
+ bag:'<path d="M5 8h14l-1 13H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>',
+ laptop:'<rect x="4" y="4" width="16" height="11" rx="1.5"/><path d="M2 19h20"/><path d="m9.5 7.5-2 2 2 2M14.5 7.5l2 2-2 2"/>',
+ gavel:'<path d="m13 4 7 7M10.5 6.5l7 7"/><path d="m14 10-9.5 9.5a1.5 1.5 0 0 1-2-2L12 8"/><path d="M14 21h7"/>',
+ flashlight:'<path d="M6 2h12v4l-3 4v11a1 1 0 0 1-1 1h-4a1 1 0 0 1-1-1V10L6 6z"/><path d="M6 6h12M12 14v2"/>',
+ tv:'<rect x="2" y="6" width="20" height="14" rx="2.5"/><path d="m8 2 4 4 4-4"/>',
+ bridge:'<path d="M2 18h20M4 18V9M20 18V9M2 9h20M4 9c4 0 6 5 8 5s4-5 8-5M9 12.5V18M15 12.5V18"/>',
+ save:'<path d="M5 3h11l3 3v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z"/><path d="M7 3v5h8V3M7 21v-7h10v7"/>',
+ chart:'<path d="M3 3v18h18"/><path d="m7 15 4-4 3 3 6-7"/><path d="M15 7h5v5"/>',
+ folder:'<path d="M3 6a2 2 0 0 1 2-2h4l2 2.5h8a2 2 0 0 1 2 2V18a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>',
+ camera:'<path d="M3 8a2 2 0 0 1 2-2h2.5l1.5-2h6l1.5 2H19a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="3.5"/>',
+ trash:'<path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/>',
+ article:'<path d="M4 4h12a2 2 0 0 1 2 2v14H6a2 2 0 0 1-2-2z"/><path d="M18 8h2v10a2 2 0 0 1-2 2M8 8h6M8 12h6M8 16h4"/>',
+ play:'<path d="M7 4.5v15l12-7.5z"/>',
+ up:'<path d="M7 10v11H3V10z"/><path d="M7 10l4-7.5c1.6 0 2.7 1.3 2.4 2.9L12.8 9H19a2 2 0 0 1 2 2.3l-1.3 7.6A2.5 2.5 0 0 1 17.2 21H7"/>',
+ down:'<path d="M7 14V3H3v11z"/><path d="M7 14l4 7.5c1.6 0 2.7-1.3 2.4-2.9L12.8 15H19a2 2 0 0 0 2-2.3l-1.3-7.6A2.5 2.5 0 0 0 17.2 3H7"/>',
+ chat:'<path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.7-5A8.5 8.5 0 1 1 21 12z"/>',
+ send:'<path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/>'
+};
+const ic=(n,st='')=>`<svg class="i" viewBox="0 0 24 24" ${st?`style="${st}"`:''}>${P[n]||''}</svg>`;
+
+/* ===== CATEGORIES / TONES ===== */
+const TONES={
+ vrai:{c:'var(--vrai)',bg:'var(--vrai-bg)',g:'var(--vrai-g)',n1:'#00e0a4',n2:'#00a8e8'},
+ rumeur:{c:'var(--rumeur)',bg:'var(--rumeur-bg)',g:'var(--rumeur-g)',n1:'#ffc233',n2:'#ff7a00'},
+ faux:{c:'var(--faux)',bg:'var(--faux-bg)',g:'var(--faux-g)',n1:'#ff4d6d',n2:'#ff2d95'},
+ alerte:{c:'var(--alerte)',bg:'var(--alerte-bg)',g:'var(--alerte-g)',n1:'#a78bfa',n2:'#e040fb'},
+ info:{c:'var(--info)',bg:'var(--info-bg)',g:'var(--info-g)',n1:'#38bdf8',n2:'#6366f1'},
+ vice:{c:'#ff2d95',bg:'#fff0f7',g:'var(--vice-g)',n1:'#ff2d95',n2:'#ffb347'}
+};
+const CATS={
+  all:{label:'Tout',icon:'layers',tone:'vice'},
+  vrai:{label:'Confirmé',icon:'check',tone:'vrai'},
+  rumeur:{label:'Rumeur',icon:'alert',tone:'rumeur'},
+  faux:{label:'Faux',icon:'x',tone:'faux'},
+  alerte:{label:'Arnaque',icon:'siren',tone:'alerte'}
+};
+const TIER={officiel:'OFFICIEL',fiable:'FIABLE',moyen:'MOYEN',leaker:'LEAKER'};
+const tile=(icon,tone,sz=38)=>`<span class="tile" style="width:${sz}px;height:${sz}px;background:${TONES[tone].g};box-shadow:0 6px 14px -6px ${TONES[tone].n2}">${ic(icon,`width:${Math.round(sz*.5)}px;height:${Math.round(sz*.5)}px`)}</span>`;
+const badge=cat=>{const c=CATS[cat],t=TONES[c.tone];return `<span class="badge" style="background:${t.g};box-shadow:0 6px 16px -6px ${t.n2}">${ic(c.icon)}<span>${c.label.toUpperCase()}</span></span>`};
+
+/* ===== SCENE (original Vice City-style illustration) ===== */
+let UID=0;
+function rnd(seed){let s=seed*9301+49297;return()=>{s=(s*9301+49297)%233280;return s/233280}}
+function palm(x,base,h,lean,col){
+  const tx=x+lean, ty=base-h;
+  let s=`<path d="M${x} ${base} C ${x+lean*.2} ${base-h*.45} ${x+lean*.7} ${base-h*.8} ${tx} ${ty}" stroke="${col}" stroke-width="${h*.045}" fill="none" stroke-linecap="round"/>`;
+  const fr=[[-150,1],[-120,.95],[-60,.95],[-30,1],[-170,.75],[-10,.75],[-95,.6]];
+  fr.forEach(([a,k])=>{const r=a*Math.PI/180,L=h*.42*k;const ex=tx+Math.cos(r)*L,ey=ty+Math.sin(r)*L*.55+L*.5;const cx=tx+Math.cos(r)*L*.55,cy=ty+Math.sin(r)*L*.6-L*.1;
+    const dx=ex-tx,dy=ey-ty,len=Math.hypot(dx,dy)||1,nx=-dy/len*L*.13,ny=dx/len*L*.13;
+    s+=`<path d="M${tx} ${ty} Q ${cx+nx} ${cy+ny} ${ex} ${ey} Q ${cx-nx*.4} ${cy-ny*.4} ${tx} ${ty} Z" fill="${col}"/>`});
+  s+=`<circle cx="${tx}" cy="${ty}" r="${h*.025}" fill="${col}"/>`;
+  return s;
+}
+function scene(tone,icon,sec,seed=1,opt={}){
+  const id='s'+(++UID), t=TONES[tone], R=rnd(seed);
+  const W=360,H=640,hz=440;
+  let stars='';for(let i=0;i<26;i++){stars+=`<circle cx="${(R()*W).toFixed(1)}" cy="${(R()*200).toFixed(1)}" r="${(R()*1.3+.3).toFixed(2)}" fill="#fff" opacity="${(R()*.6+.2).toFixed(2)}"/>`}
+  let sky='',x=-10;while(x<W+10){const w=14+R()*26,h=20+R()*(R()>.8?110:55);sky+=`M${x.toFixed(1)} ${hz} V${(hz-h).toFixed(1)} H${(x+w).toFixed(1)} V${hz} Z `;x+=w+R()*3}
+  let win='';for(let i=0;i<40;i++){win+=`<rect x="${(R()*W).toFixed(1)}" y="${(hz-8-R()*50).toFixed(1)}" width="2" height="3" fill="#ffd1ec" opacity="${(R()*.5+.2).toFixed(2)}"/>`}
+  let refl='';for(let i=0;i<9;i++){const y=hz+12+i*14,w=150-i*14;refl+=`<rect x="${180-w/2}" y="${y}" width="${w}" height="${2+i*.3}" rx="1.5" fill="url(#${id}sun)" opacity="${(.55-i*.05).toFixed(2)}"/>`}
+  const sc=opt.small?3.6:5.2, cy=opt.cy||220;
+  const motif=icon?`<g filter="url(#${id}glow)" transform="translate(180 ${cy}) scale(${sc}) translate(-12 -12)" fill="none" stroke="${t.n1}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">${P[icon]}</g>
+   <g transform="translate(180 ${cy}) scale(${sc}) translate(-12 -12)" fill="none" stroke="#fff" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">${P[icon]}</g>`:'';
+  const secb=sec?`<g transform="translate(${180+sc*9} ${cy+sc*8})"><circle r="${sc*5.3}" fill="url(#${id}sec)" stroke="#fff" stroke-width="3"/><g transform="scale(${sc*.42}) translate(-12 -12)" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">${P[sec]}</g></g>`:'';
+  return `<svg class="sc" viewBox="0 0 ${W} ${H}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+   <linearGradient id="${id}sky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#12062b"/><stop offset=".38" stop-color="#4a1470"/><stop offset=".62" stop-color="#d6337f"/><stop offset=".69" stop-color="#ff7a45"/></linearGradient>
+   <linearGradient id="${id}sun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff07a"/><stop offset=".5" stop-color="#ffb04a"/><stop offset="1" stop-color="#ff3d8b"/></linearGradient>
+   <linearGradient id="${id}sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a0f55"/><stop offset="1" stop-color="#0c0420"/></linearGradient>
+   <linearGradient id="${id}sec" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${t.n1}"/><stop offset="1" stop-color="${t.n2}"/></linearGradient>
+   <radialGradient id="${id}tint" cx=".5" cy=".3" r=".7"><stop offset="0" stop-color="${t.n2}" stop-opacity=".45"/><stop offset="1" stop-color="${t.n2}" stop-opacity="0"/></radialGradient>
+   <mask id="${id}m"><rect width="${W}" height="${H}" fill="#fff"/>${[0,1,2,3,4,5].map(i=>`<rect x="0" y="${352+i*15}" width="${W}" height="${2+i*1.4}" fill="#000"/>`).join('')}</mask>
+   <filter id="${id}glow" x="-50%" y="-50%" width="200%" height="200%"><feGaussianBlur stdDeviation="1.6"/></filter>
+  </defs>
+  <rect width="${W}" height="${hz}" fill="url(#${id}sky)"/>
+  <rect width="${W}" height="${hz}" fill="url(#${id}tint)"/>
+  ${stars}
+  <circle cx="180" cy="${hz-10}" r="118" fill="url(#${id}sun)" mask="url(#${id}m)"/>
+  <path d="${sky}" fill="#24093d"/>${win}
+  <rect y="${hz}" width="${W}" height="${H-hz}" fill="url(#${id}sea)"/>${refl}
+  <path d="M0 ${hz} H${W}" stroke="#ff7ab8" stroke-width="1" opacity=".6"/>
+  ${palm(28,H+10,330,62,'#0b0318')}${palm(338,H+10,300,-58,'#0b0318')}${palm(-6,H+10,220,40,'#13052a')}
+  ${motif}${secb}
+  </svg>`;
+}
+const DOG='img/chien-buste.png';
+function logoSvg(){return `<span class="dogtile"><img src="${DOG}" alt=""></span>`}
+function dogLogo(){return `<span class="dogtile dog"><img src="${DOG}" alt="GameCheck"></span>`}
+/* icône de provenance d'une info (cartes du haut) */
+const BRANDS=[[/rockstar/i,'R','#fcaf17','#14101c'],[/take.?two/i,'T2','#14101c','#fff'],[/playstation|sony/i,'PS','#0070d1','#fff'],[/xbox|microsoft/i,'X','#107c10','#fff']];
+const TIER_ORDER={officiel:0,fiable:1,moyen:2,leaker:3};
+function srcBadge(p){
+  const s=(p.sources||[]).slice().sort((a,b)=>TIER_ORDER[a[1]]-TIER_ORDER[b[1]])[0]; if(!s)return '';
+  const name=strip(String(s[0]));
+  for(const [re,t,bg,fg] of BRANDS){if(re.test(name))return `<span class="sb" style="background:${bg};color:${fg}" title="${esc(name)}">${t}</span>`}
+  if(s[1]==='leaker')return `<span class="sb" style="background:#e11d48;color:#fff" title="Leaker">?</span>`;
+  const ini=name.replace(/\(.*?\)|:.*$/g,'').trim().split(/[\s.\-+]+/).filter(Boolean).slice(0,2).map(w=>w[0]).join('').toUpperCase()||'i';
+  const col=s[1]==='fiable'?'#2563eb':'#d97706';
+  return `<span class="sb" style="background:${col};color:#fff" title="${esc(name)}">${ini}</span>`;
+}
+function oldLogoSvg(){return `<svg viewBox="0 0 36 36"><defs><linearGradient id="lgs" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4a1470"/><stop offset=".6" stop-color="#ff2d95"/><stop offset="1" stop-color="#ff9a3d"/></linearGradient><linearGradient id="lgsun" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff07a"/><stop offset="1" stop-color="#ff7a45"/></linearGradient></defs><rect width="36" height="36" fill="url(#lgs)"/><circle cx="18" cy="24" r="10" fill="url(#lgsun)"/><rect y="21" width="36" height="1.2" fill="#ff2d95"/><rect y="24.5" width="36" height="1.6" fill="#ff2d95"/><rect y="28" width="36" height="8" fill="#2a0b45"/><path d="M8 36c0-6 1-11 4-15M12 21c-3-1-5 0-7 2M12 21c2-2 5-2 7-1M12 21c0-2-1-4-3-5M12 21c3 0 4 2 5 4" stroke="#12052a" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="m21 13 2.2 2.2 4.3-4.6" stroke="#fff" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`}
+
+const POSTS=[
+{cat:'vrai',date:'19 nov. 2026',title:'GTA 6 est sorti',
+ body:"<b>Grand Theft Auto VI</b> est disponible depuis le <b>jeudi 19 novembre 2026</b> sur <b>PS5 et Xbox Series X|S</b>, après deux reports (automne 2025, puis mai 2026).",
+ verdict:"Date annoncée par Rockstar sur X dès novembre 2025 et tenue jusqu'au bout.",
+ sources:[['Rockstar Games (annonce sur X)','officiel','https://www.techradar.com/gaming/grand-theft-auto-6-delayed-again-but-itll-still-ship-in-2026'],['Yahoo Tech : le jeu est sorti','fiable','https://tech.yahoo.com/gaming/breaking-news/article/gta-6-is-out-now-and-officially-ready-to-play-everything-you-need-to-know-about-the-rockstar-game-launch-including-reviews-pricing-story-mode-and-more-050048410.html'],['PC Gamer : historique des reports','fiable','https://www.pcgamer.com/games/action/grand-theft-auto-6-is-delayed-to-november-these-extra-months-will-allow-us-to-finish-the-game-with-the-level-of-polish-you-have-come-to-expect-and-deserve']]},
+{cat:'vrai',date:'18 nov. 2026',title:'99 sur Metacritic : record égalé',
+ body:"Avec <b>99/100 sur Metacritic</b>, GTA 6 égale <b>Zelda : Ocarina of Time</b>, la meilleure note jamais attribuée sur le site. C'est aussi le jeu Rockstar le mieux noté (GTA 4 avait 98, GTA 5 avait 97).",
+ verdict:"Note publique et vérifiable. Elle peut bouger un peu à mesure que de nouveaux tests arrivent. OpenCritic affiche 98 à 99 selon le moment.",
+ sources:[['Dexerto : note Metacritic','fiable','https://www.dexerto.com/gta/gta-6-is-the-joint-best-reviewed-game-of-the-all-time-3429300/'],['TechPowerUp : 118 notes parfaites sur 147','fiable','https://www.techpowerup.com/354998/gta-6-review-roundup-99-on-metacritic-and-118-perfect-scores'],['GGRecon : 10/10 chez IGN et ScreenRant','moyen','https://www.ggrecon.com/articles/gta-6-reviews-metacritic-99/']]},
+{cat:'vrai',date:'10 nov. 2026',title:'Le jeu le plus précommandé de l\'histoire sur PS et Xbox',
+ body:"Sony et Microsoft ont confirmé que GTA 6 est le jeu <b>le plus précommandé</b> de leurs boutiques. Le cabinet Sensor Tower estime environ <b>9,7 millions</b> de précommandes numériques, devant Cyberpunk 2077.",
+ verdict:"Le record est confirmé par Sony et Microsoft. En revanche, le chiffre de 9,7 millions reste une <b>estimation externe</b> : Rockstar n'a publié aucun total.",
+ sources:[['Blog PlayStation, via KeenGamer','officiel','https://www.keengamer.com/articles/news/gta-6-reportedly-becomes-the-most-pre-ordered-game-of-all-time-on-both-ps5-and-xbox/'],['TweakTown : chiffres Sensor Tower','moyen','https://www.tweaktown.com/rss/click/news/114621/?c=news-mf']]},
+{cat:'vrai',date:'16 nov. 2026',title:'Le pirate de la fuite de 2022 plaide coupable',
+ body:"<b>Arion Kurtaj</b>, membre du groupe Lapsus$, qui avait diffusé <b>90 vidéos</b> de GTA 6 en 2022, a plaidé coupable de tous les chefs d'accusation devant un tribunal de Londres.",
+ verdict:"Info judiciaire relayée par plusieurs médias de référence.",
+ sources:[['PC Gamer','fiable','https://www.pcgamer.com/games/grand-theft-auto/grand-theft-auto-6-hacker-pleads-guilty-to-all-charges/'],['Aftermath','fiable','https://aftermath.site/gta-6-hacker-2022-pleads-guilty/'],['Shacknews','fiable','https://www.shacknews.com/article/151372/gta-6-hacker-guilty-plea']]},
+{cat:'vrai',date:'14 nov. 2026',title:'Pas de mode Online au lancement',
+ body:"GTA 6 sort comme un <b>jeu solo</b>. Rockstar n'a annoncé ni date ni détails pour un nouveau GTA Online. L'actuel GTA Online (GTA 5) continue d'être mis à jour.",
+ verdict:"Take-Two a déclaré que GTA 6 est un titre solo et qu'il continuera de faire vivre GTA Online.",
+ sources:[['Take-Two (assemblée des actionnaires), via Notebookcheck','officiel','https://www.notebookcheck.net/Take-Two-hints-GTA-6-Online-release-date-is-far-off-with-focus-on-single-player.1402004.0.html'],['GGRecon','moyen','https://www.ggrecon.com/articles/gta-6-single-player-no-online-at-launch/']]},
+{cat:'vrai',date:'Nov. 2026',title:'Toujours aucune version PC annoncée',
+ body:"Aucune date PC n'a été donnée. Comme pour GTA 5 et Red Dead 2, Rockstar sort d'abord le jeu sur consoles.",
+ verdict:"Tout ce qui prétend être « GTA 6 PC » aujourd'hui est faux (voir les posts « Arnaque »).",
+ sources:[['PC Gamer : page GTA 6','fiable','https://www.pcgamer.com/grand-theft-auto-6/']]},
+{cat:'rumeur',date:'19 nov. 2026',title:'« Cyberleek » aurait fait fuiter une version Xbox complète',
+ body:"Le leaker anonyme <b>Cyberleek</b> affirme avoir publié une version <b>presque complète</b> de GTA 6 sur Xbox (environ 200 Go).",
+ verdict:"<b>Non vérifié.</b> Cela ne repose que sur les dires du leaker et sur des commentaires Reddit. Ne télécharge jamais ce genre de fichier : c'est illégal et souvent piégé.",
+ sources:[['PC Gamer','fiable','https://www.pcgamer.com/games/grand-theft-auto/cyberleek-drops-what-they-claim-is-a-near-complete-gta-6-xbox-build-online/'],['Cyberleek (compte anonyme)','leaker','https://www.pcgamer.com/games/grand-theft-auto/cyberleek-drops-what-they-claim-is-a-near-complete-gta-6-xbox-build-online/']]},
+{cat:'rumeur',date:'Sept. 2026',title:'GTA 6 Online en 2027 ?',
+ body:"Le PDG de Twitch, Dan Clancy, a laissé entendre à Bloomberg que le prochain GTA Online arriverait <b>en 2027</b>.",
+ verdict:"<b>Plausible mais non confirmé.</b> Rockstar n'a rien annoncé. Pour comparer : le Online de GTA 5 était arrivé deux semaines après le jeu, celui de Red Dead 2 un mois après.",
+ sources:[['GTABase : déclaration de Dan Clancy','moyen','https://www.gtabase.com/articles/gta-6/when-is-gta-6-online-coming-out'],['dlcompare : ce qui est confirmé','moyen','https://www.dlcompare.com/gaming-news/gta-6-online-is-there-multiplayer-at-launch-everything-confirmed-so-far']]},
+{cat:'rumeur',date:'Avril 2026',title:'« Le Online sortira un mois après le jeu »',
+ body:"Le compte X <b>TheGhostOfHope</b> affirmait que GTA 6 Online sortirait environ un mois après le jeu, soit vers la mi-décembre 2026.",
+ verdict:"<b>Rumeur de leaker</b>, sans aucune confirmation officielle à ce jour.",
+ sources:[['God is a Geek','moyen','https://godisageek.com/2026/04/gta-6-online-december-launch-leak-2026/'],['TheGhostOfHope (X)','leaker','https://godisageek.com/2026/04/gta-6-online-december-launch-leak-2026/']]},
+{cat:'rumeur',date:'14 nov. 2026',title:'Codes volés « à la lampe torche » dans les boîtes',
+ body:"Les boîtes « physiques » de GTA 6 ne contiennent <b>pas de disque</b>, seulement un code (ça, c'est confirmé). Des acheteurs disent avoir trouvé un code <b>absent ou déjà utilisé</b>. Une théorie dit qu'on pourrait lire le code à travers la boîte avec une lampe.",
+ verdict:"Les plaintes sont réelles, mais <b>personne n'a prouvé</b> que l'astuce de la lampe marche. Conseil : achète en ligne ou vérifie la boîte en magasin. PlayStation a une page d'aide pour les codes invalides.",
+ sources:[['Dexerto','fiable','https://www.dexerto.com/gaming/gta-6-players-furious-as-physical-copies-reportedly-arrive-with-missing-or-already-used-codes-3428334/'],['Gameranx','moyen','https://gameranx.com/?p=564517'],['NoobFeed : « inquiétudes non vérifiées »','moyen','https://www.noobfeed.com/news/gta-6-code-in-box-theft-concerns']]},
+{cat:'alerte',date:'Août 2026 → aujourd\'hui',title:'Démo ou version PC « gratuite » : c\'est un virus',
+ body:"De faux sites copient le style de Rockstar et proposent une <b>démo</b> ou une <b>version PC</b> de GTA 6. Le fichier installe un <b>voleur de mots de passe</b>.",
+ verdict:"<b>FAUX et dangereux.</b> Il n'existe aucune démo et aucune version PC officielle. Si tu as cliqué : change tes mots de passe et active la double authentification.",
+ sources:[['Malwarebytes','fiable','https://www.malwarebytes.com/?p=456116'],['Hypebeast','moyen','https://hypebeast.com/2026/8/grand-theft-auto-vi-fake-demo-malware-targets-fans']]},
+{cat:'alerte',date:'2026',title:'« GTA 6 Mobile » / APK Android',
+ body:"Des applis « GTA 6 Beta » ou « GTA 6 Mobile » circulent sur Android.",
+ verdict:"<b>FAUX.</b> Ce sont des applis pleines de pubs ou des malwares qui peuvent lire tes SMS (et donc tes codes de sécurité). GTA 6 n'existe pas sur mobile.",
+ sources:[['GadgetReview','moyen','https://www.gadgetreview.com/?p=388042'],['GTA BOOM','moyen','https://gtaboom.com/psa-hackers-are-using-gta-6-hype-to-steal-your-data-c5bc']]},
+{cat:'faux',date:'Nov. 2026',title:'Une page Steam de GTA 6 apparue au lancement',
+ body:"Une page Steam « GTA 6 » suspecte a circulé autour de la sortie.",
+ verdict:"<b>FAUX.</b> Aucune version PC n'est annoncée, donc aucune page Steam officielle n'existe. Méfie-toi des précommandes de « clés Steam ».",
+ sources:[['VGTimes : page Steam suspecte','moyen','https://vgtimes.com/games/gta-6/news/'],['games.gg : pas de PC au lancement','moyen','https://games.gg/news/phantom-vice-auto-gta-6-pc/']]},
+{cat:'faux',date:'14 août 2026',title:'Capture Netflix « 3 épisodes » de l\'Extended Look',
+ body:"Une capture montrait la présentation <i>GTA 6 : An Extended Look</i> sur Netflix découpée en 3 épisodes.",
+ verdict:"<b>FAUX.</b> Des dataminers ont montré que la mise en page ne correspondait pas à la vraie interface de Netflix.",
+ sources:[['Gameranx','moyen','https://gameranx.com/updates/id/563704/article/gta-6-rumor-debunked-netflix-screenshot-showing-three-episodes-was-faked/']]},
+{cat:'faux',date:'2026',title:'La vidéo « fuite du pont de Vice City »',
+ body:"Une vidéo virale présentée comme une fuite de gameplay montrait un pont de Vice City.",
+ verdict:"<b>FAUX.</b> Son créateur a avoué l'avoir fabriquée lui-même pendant plusieurs mois et a publié les coulisses.",
+ sources:[['Notebookcheck','moyen','https://www.notebookcheck.net/GTA-6-Vice-City-bridge-leak-confirmed-fake-as-creator-reveals-how-it-was-made.1252353.0.html']]},
+{cat:'faux',date:'Avril 2026',title:'« Le jeu a été retardé à cause du dev des sauvegardes viré »',
+ body:"Le site de ragots britannique Popbitch affirmait que Rockstar avait licencié le responsable des sauvegardes, ce qui aurait causé un retard.",
+ verdict:"<b>FAUX.</b> L'histoire a été démentie par des sources crédibles, et le jeu est bien sorti à la date prévue.",
+ sources:[['Gameranx (citant Kotaku)','moyen','https://gameranx.com/updates/id/562124/article/obviously-fake-gta-6-rumor-debunked-saving-the-release-date/']]}
+];
+
+/* Captures officielles Rockstar (galerie de lancement), stockées dans l'appli */
+const RSF=n=>'img/rs'+String(n).padStart(2,'0')+'.jpg';
+const B=id=>id;
+const OFFICIAL_IDS=['dee27b5f35a4a109f548772c9aa3e479','133da51df5e25ad1eff421b28ba21da6','45ba466d88291f8fac4e9bc40c153c44','c3824911dc9129a8fab8932e85c8dcbd','b4c623fd8644dec107df277015453407','3bc8325ac0b74bc368e82e5bf94d49e4','6aa7d07b0b527b3efc01f2c32838eca9','5a15b8b6b2df0d7964a662419cad996f','5ee3193adedb7377871dcf15c50fd55d','751ee82503ad22123a2f1eb68523c6e4','82ebc5dcd534af897d37b311991f488e','b27548d56aba0b39ca554fce9ed992d0','a856b17b7fecbb0bfb11c6638bd31da0','3a5e97d2f936d21c7bcbc296dbb58d1c','59ff1a56cc950a6b46384e606f9b3de9','744b77c45c5eebe8f834d26c887be4f7'];
+const OFFICIAL=OFFICIAL_IDS.map((_,k)=>RSF(k));
+const DISC_IMG=[16,17,18,19,20,21].map(RSF);
+const HERO_IMG=RSF(22);
+const MOTIF=[['gamepad','sparkles'],['trophy','star'],['chart','bag'],['laptop','gavel'],['wifiOff',''],['monitor','xs'],['folder','alert'],['calendar','alert'],['calendar','clock'],['flashlight','box'],['download','bug'],['phone','bug'],['bag','xs'],['tv','xs'],['bridge','xs'],['save','xs']];
+POSTS.forEach((p,i)=>{p.m=MOTIF[i]||['info','']; p.art=(p.sources.find(s=>s[1]!=='leaker')||p.sources[0])[2]});
+
+/* ===== LE JEU ===== */
+const STATUS={
+  confirme:{label:'Confirmé',icon:'check',tone:'vrai'},
+  teste:{label:'Testé par la presse',icon:'verified',tone:'info'},
+  theorie:{label:'Théorie de fans',icon:'sparkles',tone:'rumeur'},
+  signale:{label:'Signalé par des joueurs',icon:'alert',tone:'faux'}
+};
+const chip=k=>{const s=STATUS[k],t=TONES[s.tone];return `<span class="badge" style="background:${t.g};font-size:13px;box-shadow:0 6px 14px -6px ${t.n2}">${ic(s.icon)}<span>${s.label.toUpperCase()}</span></span>`};
+const FACTS=[
+ {icon:'users',tone:'vice',k:'Héros',v:'Jason & Lucia',s:"Un duo de criminels. L'histoire démarre sur un braquage raté."},
+ {icon:'map',tone:'vrai',k:'Lieu',v:'Leonida · Vice City',s:'Un État inspiré de la Floride. Vice City est calquée sur Miami.'},
+ {icon:'clock',tone:'rumeur',k:'Histoire',v:'≈ 80 heures',s:"Le temps mis par Rob Nelson (Rockstar North) pour la finir."},
+ {icon:'tag',tone:'alerte',k:'Prix',v:'79,99 € · 99,99 €',s:'Standard / Ultimate (Ultimate en numérique uniquement).'},
+ {icon:'box',tone:'faux',k:'Boîte',v:'Pas de disque',s:'La boîte contient seulement un code de téléchargement.'},
+ {icon:'cloud',tone:'info',k:'Météo',v:'Ouragans & orages',s:'Météo saisonnière, avec des pluies localisées.'},
+ {icon:'wifiOff',tone:'rumeur',k:'Online',v:'Pas au lancement',s:'Le jeu est solo. Aucune date pour le multi.'},
+ {icon:'monitor',tone:'faux',k:'PC',v:'Non annoncé',s:"Seulement PS5 et Xbox Series X|S pour l'instant."}
+];
+const MECH=[
+ {icon:'star',tone:'rumeur',h:'6 étoiles de recherche',p:"Le niveau 6 est de retour (GTA 5 s'arrêtait à 5). La police te repère à ton visage, tes vêtements, ta voiture et grâce aux caméras de surveillance. Des icônes t'indiquent ce qu'elle sait sur toi.",src:['Beebom','https://beebom.com/gta-6-confirms-six-star-wanted-level/']},
+ {icon:'eye',tone:'info',h:'Pas de vraie vue à la 1re personne',p:"Rockstar l'a confirmé : il n'y a pas de mode 1re personne complet au lancement. Tu peux seulement passer en vue subjective en visant avec certaines armes.",src:['Beebom','https://beebom.com/no-first-person-mode-in-gta-6-rockstar-confirms/']},
+ {icon:'users',tone:'vrai',h:'Un monde ultra peuplé',p:"Le nombre de personnages non joueurs a demandé une équipe d'auteurs dédiée. Selon PC Gamer, c'est en partie pour ça que le jeu a été retardé.",src:['PC Gamer','https://www.pcgamer.com/grand-theft-auto-6/']}
+];
+const DISC=[
+ {st:'teste',icon:'star',sec:'siren',tone:'rumeur',h:'Comment avoir les 6 étoiles',p:"Il faut semer un vrai chaos. PC Gamer n'a réussi qu'en volant un tank sur une base militaire et en faisant exploser d'autres véhicules.",src:['PC Gamer','https://www.pcgamer.com/games/grand-theft-auto/gta-6-six-stars/']},
+ {st:'confirme',icon:'eye',sec:'gamepad',tone:'info',h:"L'astuce de la vue subjective",p:"À l'arrêt, maintiens L2 puis clique L3 + R3 : tu passes en vue à la 1re personne pour observer les détails. Si tu bouges, ça s'arrête. Sans L2, ça active le mode Focus.",src:['VGC','https://www.videogameschronicle.com/guide/gta-6-first-person-mode-explained-does-gta-6-have-a-first-person-mode/']},
+ {st:'theorie',icon:'anchor',sec:'map',tone:'info',h:'Le bateau de Michael (GTA 5) ?',p:"Des joueurs ont repéré un bateau Marquis garé près de la planque de Jason. C'est le même modèle que celui de Michael De Santa dans GTA 5, et son GPS pointerait vers Los Santos.",src:['VGTimes','https://vgtimes.com/games/gta-6/news/']},
+ {st:'theorie',icon:'user',sec:'star',tone:'alerte',h:'« Little Sam », un caméo du patron de Rockstar ?',p:"Au chapitre 3, un vieil homme en t-shirt Rockstar Games s'appelle « Little Sam ». Les fans pensent à un clin d'œil à Sam Houser, cofondateur du studio. Rien d'officiel.",src:['VGTimes','https://vgtimes.com/games/gta-6/news/']},
+ {st:'theorie',icon:'tv',sec:'film',tone:'vrai',h:'Un paysage de Red Dead 2 caché',p:"Dans une pub à la télé du jeu, un décor de montagnes semble tout droit sorti de Red Dead Redemption 2.",src:['Notebookcheck','https://www.notebookcheck.net/GTA-6-This-tiny-Easter-egg-may-only-have-been-spotted-by-true-RDR2-fans.1381499.0.html']},
+ {st:'signale',icon:'gamepad',sec:'bug',tone:'faux',h:'Plantages sur PS5 (erreur CE-108255-1)',p:"Des joueurs disent que le jeu plante au bout de quelques minutes, même après réinstallation. Certains soupçonnent une surchauffe, mais la cause n'est pas confirmée.",src:['VGTimes','https://vgtimes.com/games/gta-6/news/']}
+];
+
+/* ===== STATE ===== */
+const $=s=>document.querySelector(s);
+let filter='all';
+let likes={},seen={};
+try{likes=JSON.parse(localStorage.getItem('vf_likes')||'{}')}catch(e){}
+try{seen=JSON.parse(localStorage.getItem('vf_seen')||'{}')}catch(e){}
+const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
+let PHOTOS={}; // post index -> blob url
+let assetsApi=null, dbApi=null;
+const toast=m=>{const t=$('#toast');t.textContent=m;t.classList.add('on');clearTimeout(t._h);t._h=setTimeout(()=>t.classList.remove('on'),2200)};
+const strip=s=>s.replace(/<[^>]+>/g,'');
+const esc=s=>String(s||'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+function visual(p,opt={}){ return PHOTOS[p.i]?`<img src="${PHOTOS[p.i]}" alt="">`:scene(CATS[p.cat].tone,p.m[0],p.m[1],p.i+3,opt) }
+function withIdx(){POSTS.forEach((p,i)=>{p.i=i;BYI[i]=p})}
+/* ===== INFOS AJOUTÉES PAR LA MISE À JOUR AUTO (base de données) ===== */
+let ALL=POSTS; const BYI={};
+const md=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
+const okUrl=u=>/^https:\/\//i.test(String(u||''))?String(u):'#';
+function sortKey(p){return p.ts||dayOf(p.date)}
+function mergeDb(docs){
+  const extra=[];
+  docs.forEach(d=>{const v=d.data()||{};if(!v.title||!CATS[v.cat]||v.cat==='all')return;
+    const n=Number.isFinite(+v.n)?+v.n:0;
+    const sources=(Array.isArray(v.sources)?v.sources:[]).slice(0,6).map(s=>[esc(s.nom||'Source'),TIER[s.niveau]?s.niveau:'moyen',okUrl(s.url)]);
+    if(!sources.length)return;
+    const p={cat:v.cat,date:esc(v.date||''),title:esc(v.title),body:md(v.body||''),verdict:md(v.verdict||''),sources,ts:+v.ts||0,i:1000+n,m:['info',''],auto:true};
+    p.art=(sources.find(s=>s[1]!=='leaker')||sources[0])[2];
+    extra.push(p)});
+  extra.sort((a,b)=>b.ts-a.ts);
+  ALL=extra.concat(POSTS); extra.forEach(p=>BYI[p.i]=p);
+  renderUne();renderFeed();
+}
+function nextMaj(){const d=new Date();const n=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate(),0,5));while(n<=d||n.getUTCHours()%3!==0)n.setUTCHours(n.getUTCHours()+1);return n.getTime()}
+function setMaj(v){if(!v||!v.label)return;$('#majTop').textContent='MAJ '+v.label;$('#majUne').textContent='MAJ '+v.label+' · prochaine '+fmtTs(nextMaj()).split(' à ')[1];
+  $('#majLast').textContent=v.label;$('#majNext').textContent=fmtTs(nextMaj());$('#majCount').textContent=String(+v.count||0)}
+function renderLog(docs){const rows=docs.map(d=>d.data()||{}).filter(v=>v.at);
+  $('#majLog').innerHTML=rows.length?rows.map(v=>`<div class="logrow"><b>${esc(v.label||fmtTs(v.at))} · ${+v.added||0} info${(+v.added||0)>1?'s':''} ajoutée${(+v.added||0)>1?'s':''}</b>${Array.isArray(v.titles)&&v.titles.length?`<small>${v.titles.slice(0,10).map(esc).join(' · ')}</small>`:'<small>Rien de nouveau à vérifier.</small>'}</div>`).join(''):'<div class="cnone" style="padding:12px 14px">Aucune mise à jour enregistrée pour l’instant.</div>'}
+
+/* ===== RENDER: stories / filters / feed ===== */
+function renderStories(){
+  $('#stories').innerHTML=Object.entries(CATS).map(([k,c])=>{
+    const list=k==='all'?POSTS:POSTS.filter(p=>p.cat===k);
+    const allSeen=list.every(p=>seen[p.i]);
+    return `<button class="story ${allSeen?'seen':''}" data-f="${k}"><div class="ring"><div>${scene(c.tone,null,null,k.length*7)}<span class="mini">${ic(c.icon)}</span></div></div>${c.label}<span class="count">${list.length}</span></button>`;
+  }).join('');
+  document.querySelectorAll('.story').forEach(b=>b.onclick=()=>{const k=b.dataset.f;const list=k==='all'?POSTS:POSTS.filter(p=>p.cat===k);let st=list.findIndex(p=>!seen[p.i]);openStory(list,st<0?0:st)});
+}
+function renderFilters(){
+  $('#filters').innerHTML=Object.entries(CATS).map(([k,c])=>`<button class="${filter===k?'on':''}" data-f="${k}">${c.label}</button>`).join('');
+  document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;renderFilters();renderFeed()});
+}
+const MOIS={janv:0,jan:0,'févr':1,fev:1,'fév':1,mars:2,avr:3,avril:3,mai:4,juin:5,juil:6,'août':7,aout:7,sept:8,oct:9,nov:10,'déc':11,dec:11};
+function dayOf(s){const m=String(s).toLowerCase().match(/^(\d{1,2})\s+([a-zéû]+)\.?\s+(\d{4})/);if(!m||MOIS[m[2]]===undefined)return 0;return new Date(+m[3],MOIS[m[2]],+m[1]).getTime()}
+function renderUne(){
+  const top=ALL.filter(p=>sortKey(p)).sort((a,b)=>sortKey(b)-sortKey(a)).slice(0,5);
+  $('#une').innerHTML=top.map(p=>{const t=TONES[CATS[p.cat].tone];const im=PHOTOS[p.i]||OFFICIAL[p.i];
+    return `<button class="uc" data-i="${p.i}">${im?`<img src="${im}" alt="" loading="lazy">`:''}${srcBadge(p).replace('class="sb" style="','class="sb" style="--ring:'+t.n1+';')}<span class="ut">${p.title}<small>${CATS[p.cat].label} · ${p.date}</small></span></button>`}).join('');
+  document.querySelectorAll('.uc').forEach(b=>b.onclick=()=>{filter='all';renderFilters();renderFeed();const el=$('#post'+b.dataset.i);el&&el.scrollIntoView({behavior:'smooth',block:'start'})});
+}
+function curList(){return ALL.filter(p=>filter==='all'||p.cat===filter)}
+function renderFeed(){
+  const list=curList();
+  if(!list.length){$('#feed').innerHTML='<div class="empty">Rien ici pour le moment.</div>';return}
+  $('#feed').innerHTML=list.map((p,j)=>{
+    const c=CATS[p.cat],t=TONES[c.tone],liked=likes[p.i];
+    return `<article class="post" id="post${p.i}">
+      <div class="phead">
+        <div class="av">${logoSvg()}</div>
+        <div class="pmeta"><div class="pname">gamecheck ${ic('verified')}</div><div class="pdate">${p.ts?`Publié le <span class="hr">${fmtTs(p.ts)}</span>`:p.date}</div></div>
+        ${badge(p.cat)}
+      </div>
+      <h2 class="ptitle" style="border-color:${t.n1}">${p.title}</h2>
+      ${(PHOTOS[p.i]||OFFICIAL[p.i])?`<div class="frame"><div class="in"><img src="${PHOTOS[p.i]||OFFICIAL[p.i]}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.frame').remove()">
+        <div class="ftop"><span class="tag">${PHOTOS[p.i]?ic('camera')+'Ta capture':ic('verified')+'Capture officielle Rockstar'}</span></div>
+      </div></div>`:''}
+      <div class="actions">
+        ${(()=>{const k='p'+p.i,s=voteStats(k),cs=comsFor(k);return `<button class="vote up ${s.mine===1?'on':''}" data-k="${k}" data-v="1" aria-label="J'aime">${ic('up')}${s.up}</button><button class="vote down ${s.mine===-1?'on':''}" data-k="${k}" data-v="-1" aria-label="J'aime pas">${ic('down')}${s.down}</button><button class="vote cm ${OPEN.has(k)?'on':''}" data-k="${k}" aria-label="Commentaires">${ic('chat')}${cs.length}</button>`})()}
+        <button class="share" data-i="${p.i}">${ic('copy')}<span>Copier</span></button>
+        <a class="art" href="${p.art}" target="_blank" rel="noopener">${ic('article')}Voir l'article</a>
+      </div>
+      ${OPEN.has('p'+p.i)?renderComs('p'+p.i):''}
+      ${assetsApi?`<div class="photo">${PHOTOS[p.i]?`<button class="rmph" data-i="${p.i}">${ic('trash')}Retirer ma capture</button>`:`<label>${ic('camera')}Ajouter ma capture du jeu<input type="file" accept="image/*" data-i="${p.i}"></label>`}</div>`:''}
+      <div class="body">${p.body}</div>
+      <div class="verdict" style="background:${t.bg}">${tile(c.icon,c.tone,26)}<span>${p.verdict}</span></div>
+      <details class="srcs"><summary>${ic('link')}${p.sources.length} source${p.sources.length>1?'s':''}</summary>
+        <div class="srcbox">${p.sources.map(s=>`<a class="src" href="${s[2]}" target="_blank" rel="noopener"><span class="nm">${s[0]} ${ic('ext')}</span><span class="tier t-${s[1]}">${TIER[s[1]]}</span></a>`).join('')}</div>
+      </details>
+    </article>`}).join('');
+  document.querySelectorAll('.vote.up,.vote.down').forEach(b=>b.onclick=()=>castVote(b.dataset.k,+b.dataset.v));
+  document.querySelectorAll('.vote.cm').forEach(b=>b.onclick=()=>{const k=b.dataset.k;OPEN.has(k)?OPEN.delete(k):OPEN.add(k);renderFeed()});
+  document.querySelectorAll('.cform textarea').forEach(t=>{t.value=DRAFT[t.dataset.k]||'';t.oninput=()=>{DRAFT[t.dataset.k]=t.value}});
+  document.querySelectorAll('.cform').forEach(f=>f.onsubmit=e=>{e.preventDefault();sendCom(f.dataset.k)});
+  document.querySelectorAll('.cdel').forEach(b=>b.onclick=()=>delCom(b.dataset.id));
+  fillNames();
+  document.querySelectorAll('.share').forEach(b=>b.onclick=async()=>{
+    const p=BYI[b.dataset.i];const txt=`${CATS[p.cat].label.toUpperCase()} : ${p.title}\n${strip(p.verdict)}\nSource : ${p.art}`;
+    const lab=b.querySelector('span');
+    try{await navigator.clipboard.writeText(txt);lab.textContent='Copié'}catch(e){lab.textContent='Impossible'}
+    setTimeout(()=>lab.textContent='Copier',1800);
+  });
+  document.querySelectorAll('.photo input').forEach(inp=>inp.onchange=()=>uploadPhoto(+inp.dataset.i,inp.files[0]));
+  document.querySelectorAll('.rmph').forEach(b=>b.onclick=()=>removePhoto(+b.dataset.i));
+}
+
+
+/* ===== J'AIME / J'AIME PAS / COMMENTAIRES (partagés, base de données) ===== */
+let VOTES={}, COMS={}, myId=null, userApi=null; const OPEN=new Set(), DRAFT={};
+const MO=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+function fmtTs(ts){const d=new Date(ts);return `${d.getDate()} ${MO[d.getMonth()]} ${d.getFullYear()} à ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`}
+function voteStats(k){let up=0,down=0;for(const u in VOTES){const v=VOTES[u][k];if(v===1)up++;else if(v===-1)down++}return{up,down,mine:myId&&VOTES[myId]?VOTES[myId][k]||0:0}}
+function comsFor(k){const out=[];for(const u in COMS){(COMS[u]||[]).forEach(c=>{if(c&&c.post===k&&typeof c.text==='string')out.push({...c,u})})}return out.sort((a,b)=>(a.at||0)-(b.at||0))}
+function renderComs(k){const cs=comsFor(k);
+  return `<div class="coms">${cs.length?cs.map(c=>`<div class="com"><div class="cw"><b class="cn" data-u="${esc(c.u)}">…</b><span>${c.at?fmtTs(c.at):''}</span>${c.u===myId?`<button class="cdel" data-id="${esc(c.id)}">Supprimer</button>`:''}</div><div class="ctx">${esc(c.text)}</div></div>`).join(''):'<div class="cnone">Aucun commentaire pour l’instant.</div>'}
+  ${dbApi&&myId?`<form class="cform" data-k="${k}"><textarea data-k="${k}" maxlength="500" placeholder="Écris un commentaire"></textarea><button type="submit" aria-label="Envoyer">${ic('send')}</button></form>`:'<div class="cnone">Les commentaires arrivent bientôt sur cette version du site.</div>'}</div>`}
+async function fillNames(){if(!userApi)return;const els=[...document.querySelectorAll('.cn')];if(!els.length)return;
+  const ids=[...new Set(els.map(e=>e.dataset.u))];try{const ps=await userApi.profiles(ids);els.forEach(e=>{const p=ps[e.dataset.u];e.textContent=(p&&p.name)||'Quelqu’un'})}catch(e){els.forEach(e=>e.textContent='Quelqu’un')}}
+async function castVote(k,v){if(!dbApi||!myId){toast('Les votes arrivent bientôt sur cette version du site.');return}
+  const mine={...(VOTES[myId]||{})};if(mine[k]===v)delete mine[k];else mine[k]=v;VOTES[myId]=mine;renderFeed();
+  try{await dbApi.doc('votes/'+myId).set(mine)}catch(e){toast('Ton vote n’a pas été enregistré.')}}
+async function sendCom(k){const text=(DRAFT[k]||'').trim().slice(0,500);if(!text)return;if(!dbApi||!myId)return;
+  const list=[...(COMS[myId]||[])].slice(-199);list.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),post:k,text,at:Date.now()});
+  COMS[myId]=list;DRAFT[k]='';renderFeed();
+  try{await dbApi.doc('comments/'+myId).set({items:list})}catch(e){toast('Ton commentaire n’a pas été envoyé.')}}
+async function delCom(id){if(!dbApi||!myId)return;const list=(COMS[myId]||[]).filter(c=>c.id!==id);COMS[myId]=list;renderFeed();
+  try{await dbApi.doc('comments/'+myId).set({items:list})}catch(e){toast('Impossible de supprimer.')}}
+async function initSocial(){
+  try{userApi=await window.claude.use('user')}catch(e){}
+  if(userApi){try{myId=await userApi.id()}catch(e){}}
+  if(!dbApi)return;
+  try{dbApi.collection('votes').onSnapshot(s=>{const m={};s.docs.forEach(d=>{const v=d.data();if(v&&typeof v==='object'){const o={};for(const k in v){if(v[k]===1||v[k]===-1)o[k]=v[k]}m[d.id]=o}});VOTES=m;renderFeed()},()=>{})}catch(e){}
+  try{dbApi.collection('comments').onSnapshot(s=>{const m={};s.docs.forEach(d=>{const v=d.data();if(v&&Array.isArray(v.items))m[d.id]=v.items.slice(-200)});COMS=m;renderFeed()},()=>{})}catch(e){}
+  renderFeed();
+}
+
+/* ===== GAME ===== */
+function renderGame(){
+  $('#game').innerHTML=`
+  <div class="hero"><div class="in"><img src="${HERO_IMG}" alt="" referrerpolicy="no-referrer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.remove()">
+    <div class="ov" style="background:linear-gradient(180deg,rgba(16,5,30,.15),rgba(16,5,30,.85))!important;padding-top:180px!important"><span class="badge">${ic('sparkles')}<span>DISPONIBLE DEPUIS LE 19 NOV.</span></span>
+    <h1>GRAND THEFT<br>AUTO VI</h1>
+    <p>Jason et Lucia se retrouvent mêlés à un complot criminel à travers l'État de Leonida. Sur PS5 et Xbox Series X|S.</p></div></div></div>
+  <div class="score"><div><b>99</b><span>Metacritic</span></div><div><b>98-99</b><span>OpenCritic</span></div><div><b>N°1</b><span>Précommandes</span></div></div>
+  <div class="sec">${tile('info','vice',28)}FICHE DU JEU</div>
+  <div class="grid">${FACTS.map(f=>`<div class="fact">${tile(f.icon,f.tone,38)}<div class="k">${f.k}</div><div class="v">${f.v}</div><div class="s">${f.s}</div></div>`).join('')}</div>
+  <div class="sec">${tile('gamepad','vice',28)}CE QUI CHANGE</div>
+  <div class="card">${MECH.map(m=>`<div class="mech">${tile(m.icon,m.tone,40)}<div><h3>${m.h}</h3><p>${m.p}</p><a href="${m.src[1]}" target="_blank" rel="noopener">${ic('link')}${m.src[0]}</a></div></div>`).join('')}</div>
+  <div class="sec">${tile('sparkles','vice',28)}DÉCOUVERTES DES JOUEURS</div>
+  <div class="legend">${Object.keys(STATUS).map(chip).join('')}</div>
+  <div class="discs">${DISC.map((d,k)=>`<div class="disc"><div class="img"><img src="${DISC_IMG[k]}" alt="" loading="lazy" referrerpolicy="no-referrer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.parentNode.remove()"></div><div class="pad"><div style="margin-bottom:10px">${chip(d.st)}</div><h3>${d.h}</h3><p>${d.p}</p><div class="foot"><a href="${d.src[1]}" target="_blank" rel="noopener">${ic('article')}Lire sur ${d.src[0]}${ic('ext')}</a></div></div></div>`).join('')}</div>
+  <p class="note">${ic('info')}<span>Les théories de fans sont des pistes, pas des certitudes : seul Rockstar peut les confirmer.</span></p>`;
+}
+
+/* ===== PHOTOS (user's own screenshots) ===== */
+async function initPhotos(){
+  try{ if(window.claude&&window.claude.use){ [assetsApi,dbApi]=await Promise.all([window.claude.use('assets'),window.claude.use('db')]); } }catch(e){}
+  if(!dbApi){ if(assetsApi){assetsApi=null} return }
+  try{ dbApi.collection('posts').orderBy('ts','desc').limit(500).onSnapshot(snap=>mergeDb(snap.docs),()=>{}); }catch(e){}
+  try{ dbApi.doc('meta/maj').onSnapshot(s=>{if(s.exists)setMaj(s.data())},()=>{}); }catch(e){}
+  try{ dbApi.collection('majlog').orderBy('at','desc').limit(30).onSnapshot(s=>renderLog(s.docs),()=>{}); }catch(e){}
+  try{
+    dbApi.collection('photos').onSnapshot(snap=>{
+      const m={}; snap.docs.forEach(d=>{const v=d.data();if(v&&typeof v.assetId==='string'){const i=+d.id.replace('p','');m[i]='/_blob/'+encodeURIComponent(v.assetId)}});
+      PHOTOS=m; renderFeed(); renderUne();
+    },()=>{});
+  }catch(e){}
+  if(assetsApi) renderFeed();
+  initSocial();
+}
+async function uploadPhoto(i,file){
+  if(!file||!assetsApi||!dbApi)return;
+  if(!file.type.startsWith('image/')){toast('Choisis une image.');return}
+  toast('Envoi de ta capture…');
+  try{
+    const a=await assetsApi.upload(file);
+    await dbApi.doc('photos/p'+i).set({assetId:a.id,at:Date.now()});
+    PHOTOS[i]=a.url||('/_blob/'+a.id); renderFeed(); toast('Capture ajoutée !');
+  }catch(e){toast("L'envoi a échoué. Réessaie.")}
+}
+async function removePhoto(i){
+  if(!dbApi)return;
+  try{
+    const d=await dbApi.doc('photos/p'+i).get(); const id=d.exists&&d.data().assetId;
+    await dbApi.doc('photos/p'+i).delete(); delete PHOTOS[i]; renderFeed();
+    if(id&&assetsApi){try{await assetsApi.delete(id)}catch(e){}}
+    toast('Capture retirée.');
+  }catch(e){toast('Impossible de retirer la capture.')}
+}
+
+/* ===== TABS ===== */
+const TABS=[['feed','home','Fil'],['game','gamepad','Le jeu'],['check','search','Vérifier'],['src','info','Infos']];
+$('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
+document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  document.querySelectorAll('.view').forEach(v=>v.classList.toggle('on',v.id==='v-'+b.dataset.v));
+  window.scrollTo({top:0});
+});
+
+/* ===== CHECKER ===== */
+const EX=['GTA 6 sort sur PC le mois prochain','Une démo gratuite de GTA 6 est dispo','GTA 6 Online sort en décembre','On peut jouer tout le jeu en vue FPS'];
+$('#examples').innerHTML=EX.map(e=>`<button>${e}</button>`).join('');
+document.querySelectorAll('#examples button').forEach(b=>b.onclick=()=>{$('#claim').value=b.textContent});
+$('#checkNote').innerHTML=`${ic('info')}<span>L'analyse ne va pas sur Internet en direct : elle s'appuie sur les infos vérifiées de l'app et sur des connaissances générales. Pour une info toute fraîche, vérifie toujours auprès d'une source officielle.</span>`;
+$('#rulesTitle').innerHTML=`${tile('shield','vice',28)}LES 5 RÉFLEXES ANTI-FAKE`;
+$('#majTitle').innerHTML=`${tile('clock','vice',28)}MISES À JOUR`;
+$('#legalTitle').innerHTML=`${tile('info','vice',28)}À PROPOS ET INFOS LÉGALES`;
+$('#appVersion').innerHTML=`${ic('info')}<span>GameCheck · version 1.0 du 21 nov. 2026</span>`;
+const btnHTML=()=>`${ic('search')}Analyser`;
+$('#checkBtn').innerHTML=btnHTML();
+let sampleFn=null;
+/* Vérification sans IA : recherche dans les infos déjà vérifiées */
+function localCheck(){
+  const norm=s=>strip(String(s)).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+  const STOP=new Set('le la les un une des de du et ou a au aux en sur pour par dans est sont que qui gta 6 vi va the of'.split(' '));
+  $('#checkBtn').innerHTML=`${ic('search')}Chercher dans les infos vérifiées`;
+  $('#checkNote').innerHTML=`${ic('info')}<span>La recherche compare ta phrase aux infos déjà vérifiées de l'appli. Si rien ne correspond, l'info n'a pas encore été vérifiée : méfie-toi et cherche une source officielle.</span>`;
+  $('#checkBtn').onclick=()=>{
+    const words=norm($('#claim').value).split(/[^a-z0-9]+/).filter(w=>w.length>2&&!STOP.has(w));
+    const box=$('#result'); box.className='result card on';
+    if(!words.length){box.innerHTML='<p>Écris l’info que tu veux vérifier.</p>';return}
+    const scored=ALL.map(p=>{const t=norm(p.title+' '+p.body+' '+p.verdict);let s=0;words.forEach(w=>{if(t.includes(w))s+=norm(p.title).includes(w)?2:1});return[p,s]}).filter(x=>x[1]>=Math.min(2,words.length)).sort((a,b)=>b[1]-a[1]).slice(0,3);
+    if(!scored.length){box.innerHTML=`<div class="rv">${tile('info','info',36)}<b style="color:${TONES.info.c}">PAS ENCORE VÉRIFIÉ</b></div><p>Aucune info vérifiée de l’appli ne correspond. Tant qu’aucune source officielle ne la confirme, considère-la comme une rumeur.</p><div class="tip">${ic('info')}<span>Démo, version PC, APK ou clé gratuite : c’est presque toujours une arnaque.</span></div>`;return}
+    box.innerHTML=scored.map(([p])=>{const c=CATS[p.cat];return `<div class="rv">${tile(c.icon,c.tone,36)}<b style="color:${TONES[c.tone].c}">${c.label.toUpperCase()}</b></div><p><b>${p.title}</b></p><p>${p.verdict}</p><div class="tip"><a href="#post${p.i}" style="color:inherit">${ic('eye')} Voir l’info dans le fil</a></div>`}).join('<hr style="border:0;border-top:1px solid var(--line);margin:12px 0">');
+    box.querySelectorAll('a[href^="#post"]').forEach(a=>a.onclick=e=>{e.preventDefault();document.querySelector('nav.tabs button[data-v="feed"]').click();filter='all';renderFilters();renderFeed();setTimeout(()=>{const el=document.querySelector(a.getAttribute('href'));el&&el.scrollIntoView({behavior:'smooth'})},60)});
+  };
+}
+(async()=>{
+  try{ if(window.claude&&window.claude.use){ sampleFn=await window.claude.use('sample'); } }catch(e){sampleFn=null}
+  if(!sampleFn){ localCheck(); }
+})();
+const VERD={vrai:{t:'Confirmé',i:'check',tone:'vrai'},probable:{t:'Probable',i:'check',tone:'vrai'},rumeur:{t:'Rumeur',i:'alert',tone:'rumeur'},faux:{t:'Faux',i:'x',tone:'faux'},arnaque:{t:'Arnaque probable',i:'siren',tone:'alerte'},inconnu:{t:'Impossible à vérifier',i:'info',tone:'info'}};
+$('#checkBtn').onclick=async()=>{
+  const claim=$('#claim').value.trim();
+  if(!claim||!sampleFn)return;
+  const btn=$('#checkBtn');btn.disabled=true;btn.innerHTML='<span class="spin"></span>Analyse…';
+  const ctx=ALL.map(p=>`[${p.cat.toUpperCase()}] ${p.date} – ${p.title} : ${strip(p.body)} Verdict : ${strip(p.verdict)} Sources : ${p.sources.map(s=>s[0]+' ('+s[1]+')').join(', ')}`).join('\n')
+   +'\nFICHE DU JEU :\n'+FACTS.map(f=>`- ${f.k} : ${f.v}. ${f.s}`).join('\n')
+   +'\nMÉCANIQUES :\n'+MECH.map(m=>`- ${m.h} : ${m.p}`).join('\n')
+   +'\nDÉCOUVERTES DE JOUEURS (statut entre crochets) :\n'+DISC.map(d=>`- [${STATUS[d.st].label}] ${d.h} : ${d.p}`).join('\n');
+  const prompt=`Tu es le vérificateur de faits de l'app « GameCheck ». Le fil actuel est consacré à GTA 6. Nous sommes le 21 novembre 2026. GTA 6 est sorti le 19 novembre 2026.
+Tu n'as PAS accès à Internet. Appuie-toi d'abord sur ces DONNÉES VÉRIFIÉES (mises à jour le 21/11/2026) :
+${ctx}
+
+Règles :
+- Si l'info est couverte par les données, base ton verdict dessus.
+- Si elle n'est pas couverte et que tu ne peux pas la vérifier, réponds « inconnu » ou « rumeur ». N'invente jamais de faits ni de sources.
+- Tes connaissances générales peuvent dater d'avant la sortie du jeu : sois prudent sur tout ce qui concerne le contenu du jeu.
+- Toute offre de démo, de version PC, d'APK, de clé gratuite ou d'accès anticipé = « arnaque ».
+- Réponds en français simple, adapté à un joueur.
+
+Info à vérifier : """${claim}"""
+
+Réponds UNIQUEMENT en JSON :
+{"verdict":"vrai|probable|rumeur|faux|arnaque|inconnu","resume":"1 à 2 phrases","raisons":["2 à 4 raisons courtes"],"conseil":"où vérifier ou quoi faire, 1 phrase"}`;
+  let r=null;
+  try{
+    if(typeof sampleFn.json==='function'){ r=await sampleFn.json(prompt,{modelTier:'default'}); }
+    else{ const out=await sampleFn(prompt,{modelTier:'default'}); const m=out.text.match(/\{[\s\S]*\}/); r=JSON.parse(m[0]); }
+  }catch(e){
+    const msg=e&&e.code==='rate_limited'?"Trop de demandes d'un coup. Réessaie dans un moment.":e&&e.code==='not_granted'?"L'analyse n'a pas été autorisée.":"L'analyse a échoué. Réessaie.";
+    $('#result').className='result card on';$('#result').innerHTML=`<p>${msg}</p>`;
+    btn.disabled=false;btn.innerHTML=btnHTML();return;
+  }
+  const v=VERD[r&&r.verdict]||VERD.inconnu;
+  $('#result').className='result card on';
+  $('#result').innerHTML=`<div class="rv">${tile(v.i,v.tone,36)}<b style="color:${TONES[v.tone].c}">${v.t.toUpperCase()}</b></div><p>${esc(r.resume)}</p>${Array.isArray(r.raisons)&&r.raisons.length?'<ul>'+r.raisons.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':''}${r.conseil?'<div class="tip">'+ic('info')+'<span>'+esc(r.conseil)+'</span></div>':''}`;
+  btn.disabled=false;btn.innerHTML=btnHTML();
+};
+
+/* ===== INIT ===== */
+$('#logoMk').innerHTML=dogLogo();
+$('#palms').innerHTML=`<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice">${palm(20,320,300,70,'#4a1470')}${palm(385,320,260,-60,'#4a1470')}</svg>`;
+if('serviceWorker' in navigator && location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{})}
+let installEvt=null;
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;$('#installBtn').hidden=false});
+$('#installBtn').onclick=async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('#installBtn').hidden=true};
+window.addEventListener('appinstalled',()=>{$('#installBtn').hidden=true;toast('GameCheck est installé !')});
+withIdx();renderUne();renderFilters();renderFeed();renderGame();initPhotos();
+</script>
+</body>
+</html>
