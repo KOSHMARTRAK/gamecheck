@@ -1,5 +1,29 @@
 [
   {
+    "id": "polices-avertissent-joueurs-gta6",
+    "data": {
+      "cat": "vrai",
+      "title": "Des polices américaines rappellent aux joueurs que les crimes de GTA 6 restent dans le jeu",
+      "body": "Les polices d'**Atlanta** et d'**Aurora (Colorado)** ont publié des messages à la sortie de GTA 6 pour rappeler que vols de voitures et agressions ont de vraies conséquences hors du jeu.",
+      "verdict": "Confirmé par plusieurs médias : il s'agit d'un message de prévention humoristique, pas d'une interdiction ni d'un lien prouvé entre le jeu et la délinquance.",
+      "sources": [
+        {
+          "nom": "FOX 5 Atlanta",
+          "niveau": "fiable",
+          "url": "https://www.fox5atlanta.com/news/atlanta-police-urge-gta-vi-players-keep-crime-game"
+        },
+        {
+          "nom": "Scripps News (Aurora Police)",
+          "niveau": "fiable",
+          "url": "https://turnto10.com/news/nation-world/aurora-police-gta-vi-gaming-reminder-says-car-theft-cincinnati-robbery-assault-bring-real-penalties-while-vice-city-wanted-stars-fade-colorado-law-still-sends-rule-breakers-to-jail-quickly"
+        }
+      ],
+      "date": "21 nov. 2026",
+      "ts": 1795285386716,
+      "n": 4
+    }
+  },
+  {
     "id": "record-ventes-premier-jour",
     "data": {
       "cat": "vrai",
