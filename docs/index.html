@@ -485,6 +485,77 @@ nav.tabs>.walker{position:absolute;bottom:calc(100% - 9px);width:24px;height:24p
 nav.tabs>.walker img{width:100%;height:100%;object-fit:contain;border-radius:50%;background:radial-gradient(circle at 50% 70%,#ffd166,#ff7a45 60%,#ff2d95);box-shadow:0 2px 4px rgba(120,80,30,.35);animation:dogBob .5s ease-in-out infinite alternate}
 @keyframes dogWalk{0%{left:3%;transform:scaleX(1)}46%{left:88%;transform:scaleX(1)}50%{left:88%;transform:scaleX(-1)}96%{left:3%;transform:scaleX(-1)}100%{left:3%;transform:scaleX(1)}}
 @keyframes dogBob{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-3px) rotate(6deg)}}
+/* === bibliothèque de jeux === */
+#v-explore .panel,#v-mine .panel{max-width:860px;margin:0 auto}
+.topg{padding:14px 16px 4px;max-width:860px;margin:0 auto}
+.topg-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.topg-h b{font-family:var(--disp);font-size:24px;letter-spacing:.6px}
+.topg-all{font-weight:700;font-size:13px;color:#0e6f6b}
+.topg-row{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,1fr);gap:12px;overflow-x:auto;padding:6px 2px 12px;scrollbar-width:none}
+.topg-row::-webkit-scrollbar{display:none}
+.tg{position:relative;height:190px;border-radius:24px;overflow:hidden;color:#fff;text-align:left;box-shadow:0 16px 30px -16px rgba(43,36,64,.55);
+  animation:tgFloat 5s ease-in-out infinite;animation-delay:var(--d);transition:transform .2s}
+.tg:hover{transform:translateY(-4px) scale(1.02)}
+.tg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.75}
+.tg::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.18),transparent 40%,rgba(16,5,30,.6));z-index:1}
+.tg::after{content:"";position:absolute;inset:-40% -80%;background:linear-gradient(115deg,transparent 44%,rgba(255,255,255,.45) 50%,transparent 56%);animation:kqShine 6s ease-in-out infinite;animation-delay:var(--d);z-index:2;pointer-events:none}
+.tg-e{position:absolute;top:12px;right:12px;font-size:44px;z-index:2;filter:drop-shadow(0 4px 8px rgba(0,0,0,.25));animation:tgIcon 3s ease-in-out infinite;animation-delay:var(--d)}
+.tg-tx{position:absolute;left:12px;right:12px;bottom:40px;z-index:2;display:flex;flex-direction:column;gap:2px}
+.tg-tx b{font-family:var(--disp);font-size:25px;letter-spacing:.5px;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,.35)}
+.tg-tx small{font-size:11.5px;font-weight:700;opacity:.9}
+.tg-go{position:absolute;left:12px;bottom:12px;z-index:2;font-size:12px;font-weight:800;background:rgba(255,255,255,.92);color:var(--txt);padding:5px 11px;border-radius:999px}
+@keyframes tgFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+@keyframes tgIcon{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(6deg) scale(1.08)}}
+@media(min-width:760px){.topg-row{grid-auto-flow:row;grid-template-columns:repeat(5,1fr);overflow:visible}.tg{height:210px}}
+.exq{margin:10px 0 4px}
+.hotrow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:10px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none}
+.hotrow::-webkit-scrollbar{display:none}
+.ggrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+@media(min-width:760px){.ggrid{grid-template-columns:repeat(4,1fr)}}
+.gtile{position:relative;height:104px;border-radius:20px;color:#fff;text-align:left;padding:12px;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;box-shadow:0 12px 24px -16px rgba(43,36,64,.55);transition:transform .2s}
+.gtile:hover{transform:translateY(-3px)}
+.gtile-e{position:absolute;top:8px;right:10px;font-size:36px;transition:transform .3s}
+.gtile:hover .gtile-e{transform:rotate(-10deg) scale(1.15)}
+.gtile b{font-family:var(--disp);font-size:21px;letter-spacing:.5px;line-height:1}
+.gtile small{font-size:11.5px;font-weight:700;opacity:.9}
+.glist{display:flex;flex-direction:column;gap:8px}
+.gt{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:18px;background:rgba(255,255,255,.8);border:1px solid rgba(255,255,255,.7);text-align:left;box-shadow:0 8px 18px -14px rgba(43,36,64,.4);transition:transform .15s}
+.gt:hover{transform:translateX(3px)}
+.gt-ic{flex:0 0 auto;width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:22px}
+.gt.big .gt-ic{width:54px;height:54px;font-size:27px}
+.gt-tx{flex:1;min-width:0;display:flex;flex-direction:column}
+.gt-tx b{font-size:15px;line-height:1.25}
+.gt-tx small{font-size:12px;color:var(--mute)}
+.gt-hot,.gt-fav{font-size:16px}
+.crumb{display:flex;flex-wrap:wrap;align-items:center;gap:4px;font-size:13px;margin:4px 0 10px}
+.crumb button{font-weight:700;color:#0e6f6b}.crumb i{font-style:normal;color:var(--mute)}.crumb span{font-weight:700}
+.frhero,.ghero{position:relative;border-radius:24px;overflow:hidden;color:#fff;padding:18px;display:flex;gap:14px;align-items:center;box-shadow:0 16px 30px -18px rgba(43,36,64,.6)}
+.frhero>span{font-size:46px}
+.frhero h1,.ghero h1{font-family:var(--disp);font-size:34px;letter-spacing:.6px;line-height:1}
+.frhero p,.ghero p{font-size:13px;opacity:.92;margin-top:4px}
+.ghero{min-height:190px;align-items:flex-end}
+.ghero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.ghero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 20%,rgba(16,5,30,.7))}
+.ghero-e{position:absolute;top:10px;right:16px;font-size:70px;opacity:.9;animation:tgIcon 3.5s ease-in-out infinite}
+.ghero-in{position:relative;z-index:1}
+.ghero-tags{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.ghero-tags span{font-size:11.5px;font-weight:700;background:rgba(255,255,255,.22);backdrop-filter:blur(4px);padding:3px 9px;border-radius:999px}
+.pfs{display:flex;flex-wrap:wrap;gap:5px;margin-top:8px}
+.pfc{font-size:11px;font-weight:800;background:rgba(255,255,255,.9);color:var(--txt);padding:3px 8px;border-radius:8px}
+.btn.follow{background:#fff;color:var(--txt);border:2px solid #13b5b0;box-shadow:none}
+.btn.follow.on{background:linear-gradient(135deg,#13b5b0,#2b8cff);color:#fff;border-color:transparent}
+.gmenu{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:12px}
+.gmenu button{display:flex;flex-direction:column;align-items:flex-start;gap:2px;padding:14px;border-radius:20px;background:rgba(255,255,255,.85);text-align:left;font-size:26px;box-shadow:0 10px 22px -16px rgba(43,36,64,.5);transition:transform .15s}
+.gmenu button:hover{transform:translateY(-3px)}
+.gmenu b{font-size:15px;margin-top:4px}.gmenu small{font-size:12px;color:var(--mute)}
+.gsoon{padding:16px;margin-top:12px}.gsoon b{font-size:15px}.gsoon p{font-size:14px;color:#4a4055;margin:6px 0 4px}
+.gsoon-b{display:flex;gap:8px;flex-wrap:wrap}.gsoon-b .btn{flex:1;min-width:180px}
+.frblock{margin-top:14px}
+.frname{display:flex;align-items:baseline;gap:8px;width:100%;font-family:var(--disp);font-size:22px;letter-spacing:.5px;margin-bottom:6px}
+.frname small{font-family:Inter,system-ui,sans-serif;font-size:12px;color:var(--mute);font-weight:600}
+.frname i{margin-left:auto;font-style:normal;color:#0e6f6b}
+.gback{display:inline-flex;margin:4px 0 8px;font-weight:800;color:#0e6f6b;font-size:14px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.75)}
+@media (prefers-reduced-motion:reduce){.tg,.tg::after,.tg-e,.ghero-e{animation:none!important}}
 /* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
 .kq{display:none}
 @media(min-width:1260px){#v-game .panel,#v-eggs .panel{max-width:860px;margin:0 auto}.kq{display:block;position:fixed;z-index:15;top:122px;right:max(18px,calc(50% - 622px));width:186px}}
@@ -579,13 +650,16 @@ nav.tabs>.walker img{width:100%;height:100%;object-fit:contain;border-radius:50%
   </header>
 
   <section class="view on" id="v-feed">
-    <div class="une-wrap"><div class="une-h"><b>Dernières infos</b><span id="majUne">MAJ du 21 nov. 2026</span></div><div class="une" id="une"></div></div>
+    <div class="topg" id="topg"></div>
+    <div class="une-wrap"><div class="une-h"><b>Dernières infos GTA VI</b><span id="majUne">MAJ du 21 nov. 2026</span></div><div class="une" id="une"></div></div>
     <div class="filters" id="filters" style="padding-top:6px"></div>
     <div id="feed"></div>
   </section>
 
   <section class="view" id="v-eggs"><div class="panel" id="eggs"></div></section>
   <section class="view" id="v-forum"><div class="panel" id="forum"></div></section>
+  <section class="view" id="v-explore"><div class="panel" id="explore"></div></section>
+  <section class="view" id="v-mine"><div class="panel" id="mine"></div></section>
   <section class="view" id="v-game"><div class="panel" id="game"></div></section>
 
   <section class="view" id="v-check">
@@ -1336,8 +1410,151 @@ function renderEggs(){
   <p class="note">${ic('info')}<span>Easter eggs repérés par les joueurs depuis la sortie et relayés par la presse jeu vidéo. « Testé par la presse » = repris par plusieurs sites ; « Signalé par des joueurs » = une seule source pour l'instant. Aucun n'est confirmé officiellement par Rockstar.</span></p>`;
 }
 renderEggs();
+/* ===== BIBLIOTHÈQUE DE JEUX : genres > licences > jeux (seulement les jeux à gros public) ===== */
+const GENRES=[
+ {id:'ouvert',n:'Monde ouvert',e:'🌆',c1:'#ff2d95',c2:'#ffb347',d:'Action-aventure en liberté totale'},
+ {id:'fps',n:'FPS',e:'🎯',c1:'#2b8cff',c2:'#13b5b0',d:'Tir à la première personne'},
+ {id:'br',n:'Battle royale',e:'🪂',c1:'#8b5cf6',c2:'#ff6fae',d:'Le dernier debout gagne'},
+ {id:'extraction',n:'Extraction & coop',e:'🪖',c1:'#64748b',c2:'#22c55e',d:'Entrer, piller, survivre, à plusieurs'},
+ {id:'souls',n:'Soulslike',e:'⚔️',c1:'#3f3f46',c2:'#f59e0b',d:'Difficiles, exigeants, mémorables'},
+ {id:'rpg',n:'RPG',e:'🧙',c1:'#7c3aed',c2:'#06b6d4',d:'Histoires, choix et personnages'},
+ {id:'mmo',n:'MMORPG',e:'🌍',c1:'#0ea5e9',c2:'#a855f7',d:'Des mondes partagés par des milliers de joueurs'},
+ {id:'moba',n:'MOBA',e:'🛡️',c1:'#1d4ed8',c2:'#ef4444',d:'Stratégie en équipe, 5 contre 5'},
+ {id:'sport',n:'Sport',e:'⚽',c1:'#16a34a',c2:'#facc15',d:'Foot, basket et compétition'},
+ {id:'course',n:'Course',e:'🏎️',c1:'#ef4444',c2:'#f97316',d:'Vitesse, circuits et drift'},
+ {id:'combat',n:'Combat',e:'🥊',c1:'#dc2626',c2:'#7c3aed',d:'Face à face, combos et tournois'},
+ {id:'horreur',n:'Horreur & survie',e:'🧟',c1:'#111827',c2:'#b91c1c',d:'Frissons garantis'},
+ {id:'sandbox',n:'Sandbox & création',e:'🧱',c1:'#22c55e',c2:'#0ea5e9',d:'Construire, créer, imaginer'},
+ {id:'aventure',n:'Aventure & plateforme',e:'🍄',c1:'#f43f5e',c2:'#fb923c',d:'Les grandes aventures, souvent chez Nintendo'},
+ {id:'mobile',n:'Mobile & gacha',e:'📱',c1:'#ec4899',c2:'#8b5cf6',d:'Les jeux qui tiennent dans la poche'},
+ {id:'inde',n:'Indé',e:'✨',c1:'#14b8a6',c2:'#a3e635',d:'Petits studios, grandes pépites'}
+];
+/* st : sorti | annonce | acces (accès anticipé) ; pf : plateformes ; hot : jeu du moment */
+const LIB=[
+ {id:'gta',n:'Grand Theft Auto',ed:'Rockstar Games',g:['ouvert'],games:[
+   {id:'gta-6',n:'GTA VI',y:2026,pf:['PS5','Xbox'],hot:1,full:1},{id:'gta-5',n:'GTA V',y:2013,pf:['PS5','Xbox','PC']},{id:'gta-online',n:'GTA Online',y:2013,pf:['PS5','Xbox','PC']},{id:'gta-4',n:'GTA IV',y:2008,pf:['Xbox','PC']}]},
+ {id:'rdr',n:'Red Dead Redemption',ed:'Rockstar Games',g:['ouvert'],games:[{id:'rdr-2',n:'Red Dead Redemption 2',y:2018,pf:['PS4','Xbox','PC']},{id:'rdr-1',n:'Red Dead Redemption',y:2010,pf:['PS4','Switch','PC']}]},
+ {id:'ac',n:"Assassin's Creed",ed:'Ubisoft',g:['ouvert'],games:[{id:'ac-shadows',n:"Assassin's Creed Shadows",y:2025,pf:['PS5','Xbox','PC']}]},
+ {id:'ghost',n:'Ghost of',ed:'Sucker Punch',g:['ouvert'],games:[{id:'ghost-yotei',n:'Ghost of Yōtei',y:2025,pf:['PS5']},{id:'ghost-tsushima',n:'Ghost of Tsushima',y:2020,pf:['PS5','PC']}]},
+ {id:'spiderman',n:"Marvel's Spider-Man",ed:'Insomniac Games',g:['ouvert'],games:[{id:'spiderman-2',n:"Marvel's Spider-Man 2",y:2023,pf:['PS5','PC']}]},
+ {id:'deathstranding',n:'Death Stranding',ed:'Kojima Productions',g:['ouvert'],games:[{id:'ds-2',n:'Death Stranding 2',y:2025,pf:['PS5']}]},
+ {id:'cod',n:'Call of Duty',ed:'Activision',g:['fps'],games:[{id:'cod-bo7',n:'Black Ops 7',y:2025,pf:['PS5','Xbox','PC'],hot:1},{id:'cod-bo6',n:'Black Ops 6',y:2024,pf:['PS5','Xbox','PC']},{id:'cod-warzone',n:'Warzone',y:2020,pf:['PS5','Xbox','PC'],g:['br']}]},
+ {id:'bf',n:'Battlefield',ed:'EA',g:['fps'],games:[{id:'bf-6',n:'Battlefield 6',y:2025,pf:['PS5','Xbox','PC'],hot:1}]},
+ {id:'cs',n:'Counter-Strike',ed:'Valve',g:['fps'],games:[{id:'cs-2',n:'Counter-Strike 2',y:2023,pf:['PC']}]},
+ {id:'valorant',n:'Valorant',ed:'Riot Games',g:['fps'],games:[{id:'valorant',n:'Valorant',y:2020,pf:['PC','PS5','Xbox'],hot:1}]},
+ {id:'r6',n:'Rainbow Six',ed:'Ubisoft',g:['fps'],games:[{id:'r6-x',n:'Rainbow Six Siege X',y:2025,pf:['PS5','Xbox','PC']}]},
+ {id:'ow',n:'Overwatch',ed:'Blizzard',g:['fps'],games:[{id:'ow-2',n:'Overwatch 2',y:2022,pf:['PS5','Xbox','PC','Switch']}]},
+ {id:'rivals',n:'Marvel Rivals',ed:'NetEase',g:['fps'],games:[{id:'marvel-rivals',n:'Marvel Rivals',y:2024,pf:['PS5','Xbox','PC'],hot:1}]},
+ {id:'fortnite',n:'Fortnite',ed:'Epic Games',g:['br','sandbox'],games:[{id:'fortnite',n:'Fortnite',y:2017,pf:['PS5','Xbox','PC','Switch','Mobile'],hot:1}]},
+ {id:'apex',n:'Apex Legends',ed:'Respawn',g:['br'],games:[{id:'apex',n:'Apex Legends',y:2019,pf:['PS5','Xbox','PC','Switch']}]},
+ {id:'pubg',n:'PUBG',ed:'Krafton',g:['br'],games:[{id:'pubg',n:'PUBG: Battlegrounds',y:2017,pf:['PS5','Xbox','PC']},{id:'pubg-mobile',n:'PUBG Mobile',y:2018,pf:['Mobile'],g:['mobile']}]},
+ {id:'arcraiders',n:'Arc Raiders',ed:'Embark Studios',g:['extraction'],games:[{id:'arc-raiders',n:'Arc Raiders',y:2025,pf:['PS5','Xbox','PC'],hot:1}]},
+ {id:'helldivers',n:'Helldivers',ed:'Arrowhead',g:['extraction'],games:[{id:'helldivers-2',n:'Helldivers 2',y:2024,pf:['PS5','Xbox','PC']}]},
+ {id:'eldenring',n:'Elden Ring',ed:'FromSoftware',g:['souls'],games:[{id:'elden-ring',n:'Elden Ring',y:2022,pf:['PS5','Xbox','PC']},{id:'elden-nightreign',n:'Elden Ring Nightreign',y:2025,pf:['PS5','Xbox','PC']}]},
+ {id:'darksouls',n:'Dark Souls',ed:'FromSoftware',g:['souls'],games:[{id:'ds-3',n:'Dark Souls III',y:2016,pf:['PS4','Xbox','PC']}]},
+ {id:'sekiro',n:'Sekiro',ed:'FromSoftware',g:['souls'],games:[{id:'sekiro',n:'Sekiro: Shadows Die Twice',y:2019,pf:['PS4','Xbox','PC']}]},
+ {id:'liesofp',n:'Lies of P',ed:'Neowiz',g:['souls'],games:[{id:'lies-of-p',n:'Lies of P',y:2023,pf:['PS5','Xbox','PC']}]},
+ {id:'mh',n:'Monster Hunter',ed:'Capcom',g:['rpg'],games:[{id:'mh-wilds',n:'Monster Hunter Wilds',y:2025,pf:['PS5','Xbox','PC']}]},
+ {id:'bg',n:"Baldur's Gate",ed:'Larian Studios',g:['rpg'],games:[{id:'bg-3',n:"Baldur's Gate 3",y:2023,pf:['PS5','Xbox','PC']}]},
+ {id:'expedition',n:'Clair Obscur',ed:'Sandfall Interactive (France)',g:['rpg'],games:[{id:'expedition-33',n:'Clair Obscur: Expedition 33',y:2025,pf:['PS5','Xbox','PC'],hot:1}]},
+ {id:'cyberpunk',n:'Cyberpunk',ed:'CD Projekt Red',g:['rpg','ouvert'],games:[{id:'cyberpunk-2077',n:'Cyberpunk 2077',y:2020,pf:['PS5','Xbox','PC','Switch 2']}]},
+ {id:'witcher',n:'The Witcher',ed:'CD Projekt Red',g:['rpg','ouvert'],games:[{id:'witcher-4',n:'The Witcher IV',st:'annonce',pf:['PS5','Xbox','PC']},{id:'witcher-3',n:'The Witcher 3',y:2015,pf:['PS5','Xbox','PC','Switch']}]},
+ {id:'tes',n:'The Elder Scrolls',ed:'Bethesda',g:['rpg','ouvert'],games:[{id:'tes-6',n:'The Elder Scrolls VI',st:'annonce',pf:['Xbox','PC']},{id:'skyrim',n:'Skyrim',y:2011,pf:['PS5','Xbox','PC','Switch']},{id:'eso',n:'The Elder Scrolls Online',y:2014,pf:['PS5','Xbox','PC'],g:['mmo']}]},
+ {id:'kcd',n:'Kingdom Come',ed:'Warhorse Studios',g:['rpg'],games:[{id:'kcd-2',n:'Kingdom Come: Deliverance II',y:2025,pf:['PS5','Xbox','PC']}]},
+ {id:'hogwarts',n:'Hogwarts Legacy',ed:'Avalanche Software',g:['rpg','ouvert'],games:[{id:'hogwarts-legacy',n:'Hogwarts Legacy',y:2023,pf:['PS5','Xbox','PC','Switch']}]},
+ {id:'diablo',n:'Diablo',ed:'Blizzard',g:['rpg'],games:[{id:'diablo-4',n:'Diablo IV',y:2023,pf:['PS5','Xbox','PC']}]},
+ {id:'poe',n:'Path of Exile',ed:'Grinding Gear Games',g:['rpg'],games:[{id:'poe-2',n:'Path of Exile 2',y:2024,st:'acces',pf:['PS5','Xbox','PC']}]},
+ {id:'wow',n:'World of Warcraft',ed:'Blizzard',g:['mmo'],games:[{id:'wow',n:'World of Warcraft',y:2004,pf:['PC']}]},
+ {id:'ff',n:'Final Fantasy',ed:'Square Enix',g:['mmo','rpg'],games:[{id:'ff-14',n:'Final Fantasy XIV',y:2013,pf:['PS5','Xbox','PC'],g:['mmo']},{id:'ff-7-rebirth',n:'Final Fantasy VII Rebirth',y:2024,pf:['PS5','PC'],g:['rpg']}]},
+ {id:'lostark',n:'Lost Ark',ed:'Smilegate',g:['mmo'],games:[{id:'lost-ark',n:'Lost Ark',y:2022,pf:['PC']}]},
+ {id:'lol',n:'League of Legends',ed:'Riot Games',g:['moba'],games:[{id:'lol',n:'League of Legends',y:2009,pf:['PC'],hot:1}]},
+ {id:'dota',n:'Dota',ed:'Valve',g:['moba'],games:[{id:'dota-2',n:'Dota 2',y:2013,pf:['PC']}]},
+ {id:'fc',n:'EA SPORTS FC',ed:'EA',g:['sport'],games:[{id:'fc-26',n:'EA SPORTS FC 26',y:2025,pf:['PS5','Xbox','PC','Switch 2'],hot:1}]},
+ {id:'nba2k',n:'NBA 2K',ed:'2K',g:['sport'],games:[{id:'nba-2k26',n:'NBA 2K26',y:2025,pf:['PS5','Xbox','PC']}]},
+ {id:'rl',n:'Rocket League',ed:'Psyonix',g:['sport','course'],games:[{id:'rocket-league',n:'Rocket League',y:2015,pf:['PS5','Xbox','PC','Switch']}]},
+ {id:'mk',n:'Mario Kart',ed:'Nintendo',g:['course'],games:[{id:'mk-world',n:'Mario Kart World',y:2025,pf:['Switch 2'],hot:1}]},
+ {id:'forza',n:'Forza Horizon',ed:'Playground Games',g:['course'],games:[{id:'fh-5',n:'Forza Horizon 5',y:2021,pf:['PS5','Xbox','PC']}]},
+ {id:'gt',n:'Gran Turismo',ed:'Polyphony Digital',g:['course'],games:[{id:'gt-7',n:'Gran Turismo 7',y:2022,pf:['PS5']}]},
+ {id:'f1',n:'F1',ed:'EA / Codemasters',g:['course'],games:[{id:'f1-25',n:'F1 25',y:2025,pf:['PS5','Xbox','PC']}]},
+ {id:'sf',n:'Street Fighter',ed:'Capcom',g:['combat'],games:[{id:'sf-6',n:'Street Fighter 6',y:2023,pf:['PS5','Xbox','PC','Switch 2']}]},
+ {id:'tekken',n:'Tekken',ed:'Bandai Namco',g:['combat'],games:[{id:'tekken-8',n:'Tekken 8',y:2024,pf:['PS5','Xbox','PC']}]},
+ {id:'mkombat',n:'Mortal Kombat',ed:'NetherRealm',g:['combat'],games:[{id:'mk-1',n:'Mortal Kombat 1',y:2023,pf:['PS5','Xbox','PC','Switch']}]},
+ {id:'smash',n:'Super Smash Bros.',ed:'Nintendo',g:['combat'],games:[{id:'smash-ultimate',n:'Super Smash Bros. Ultimate',y:2018,pf:['Switch']}]},
+ {id:'re',n:'Resident Evil',ed:'Capcom',g:['horreur'],games:[{id:'re-requiem',n:'Resident Evil Requiem',y:2026,pf:['PS5','Xbox','PC','Switch 2'],hot:1},{id:'re-4',n:'Resident Evil 4 (remake)',y:2023,pf:['PS5','Xbox','PC']}]},
+ {id:'sh',n:'Silent Hill',ed:'Konami',g:['horreur'],games:[{id:'sh-f',n:'Silent Hill f',y:2025,pf:['PS5','Xbox','PC']}]},
+ {id:'dbd',n:'Dead by Daylight',ed:'Behaviour',g:['horreur'],games:[{id:'dbd',n:'Dead by Daylight',y:2016,pf:['PS5','Xbox','PC','Switch','Mobile']}]},
+ {id:'minecraft',n:'Minecraft',ed:'Mojang',g:['sandbox'],games:[{id:'minecraft',n:'Minecraft',y:2011,pf:['PS5','Xbox','PC','Switch','Mobile'],hot:1}]},
+ {id:'roblox',n:'Roblox',ed:'Roblox Corporation',g:['sandbox'],games:[{id:'roblox',n:'Roblox',y:2006,pf:['PC','Xbox','PS5','Mobile'],hot:1}]},
+ {id:'sims',n:'Les Sims',ed:'EA',g:['sandbox'],games:[{id:'sims-4',n:'Les Sims 4',y:2014,pf:['PS5','Xbox','PC']}]},
+ {id:'zelda',n:'The Legend of Zelda',ed:'Nintendo',g:['aventure','ouvert'],games:[{id:'zelda-totk',n:'Tears of the Kingdom',y:2023,pf:['Switch','Switch 2']}]},
+ {id:'mario',n:'Super Mario',ed:'Nintendo',g:['aventure'],games:[{id:'mario-wonder',n:'Super Mario Bros. Wonder',y:2023,pf:['Switch']}]},
+ {id:'dk',n:'Donkey Kong',ed:'Nintendo',g:['aventure'],games:[{id:'dk-bananza',n:'Donkey Kong Bananza',y:2025,pf:['Switch 2']}]},
+ {id:'pokemon',n:'Pokémon',ed:'Game Freak / Nintendo',g:['aventure','rpg'],games:[{id:'pokemon-za',n:'Légendes Pokémon : Z-A',y:2025,pf:['Switch','Switch 2'],hot:1},{id:'pokemon-sv',n:'Pokémon Écarlate et Violet',y:2022,pf:['Switch']},{id:'pokemon-go',n:'Pokémon GO',y:2016,pf:['Mobile'],g:['mobile']}]},
+ {id:'acnh',n:'Animal Crossing',ed:'Nintendo',g:['sandbox'],games:[{id:'acnh',n:'Animal Crossing: New Horizons',y:2020,pf:['Switch']}]},
+ {id:'hoyo',n:'HoYoverse',ed:'HoYoverse',g:['mobile','rpg'],games:[{id:'genshin',n:'Genshin Impact',y:2020,pf:['PS5','PC','Mobile']},{id:'hsr',n:'Honkai: Star Rail',y:2023,pf:['PS5','PC','Mobile']}]},
+ {id:'supercell',n:'Supercell',ed:'Supercell',g:['mobile'],games:[{id:'clash-royale',n:'Clash Royale',y:2016,pf:['Mobile']},{id:'brawl-stars',n:'Brawl Stars',y:2018,pf:['Mobile']}]},
+ {id:'hk',n:'Hollow Knight',ed:'Team Cherry',g:['inde'],games:[{id:'silksong',n:'Hollow Knight: Silksong',y:2025,pf:['PS5','Xbox','PC','Switch','Switch 2']}]},
+ {id:'hades',n:'Hades',ed:'Supergiant Games',g:['inde'],games:[{id:'hades-2',n:'Hades II',y:2025,pf:['PC','Switch','Switch 2']}]},
+ {id:'stardew',n:'Stardew Valley',ed:'ConcernedApe',g:['inde','sandbox'],games:[{id:'stardew',n:'Stardew Valley',y:2016,pf:['PS5','Xbox','PC','Switch','Mobile']}]}
+];
+const GBYID={},FBYID={},GAMES=[];
+LIB.forEach(f=>{FBYID[f.id]=f;f.games.forEach(x=>{x.fr=f.id;x.genres=x.g||f.g;x.st=x.st||'sorti';GBYID[x.id]=x;GAMES.push(x)})});
+const GENBY={};GENRES.forEach(g=>GENBY[g.id]=g);
+const gGrad=gid=>{const g=GENBY[gid]||GENRES[0];return `linear-gradient(135deg,${g.c1},${g.c2})`};
+const stLbl=x=>x.st==='annonce'?'Annoncé':x.st==='acces'?'Accès anticipé':(x.y?'Sorti en '+x.y:'Sorti');
+let FOLLOW=[];try{FOLLOW=JSON.parse(localStorage.getItem('gc_follow')||'[]')}catch(e){}
+const isF=id=>FOLLOW.includes(id);
+function toggleFollow(id){FOLLOW=isF(id)?FOLLOW.filter(x=>x!==id):[...FOLLOW,id];try{localStorage.setItem('gc_follow',JSON.stringify(FOLLOW))}catch(e){}toast(isF(id)?'Ajouté à Mes jeux ⭐':'Retiré de Mes jeux');renderExplore();renderMine()}
+let XP={genre:null,fr:null,game:null,q:''};
+function goGame(id){const x=GBYID[id];if(!x)return;XP={genre:null,fr:x.fr,game:id,q:''};showView('explore');renderExplore()}
+const gameTile=(x,big)=>{const g=GENBY[x.genres[0]];return `<button class="gt${big?' big':''}" data-game="${x.id}"><span class="gt-ic" style="background:${gGrad(x.genres[0])}">${g?g.e:'🎮'}</span><span class="gt-tx"><b>${esc(x.n)}</b><small>${esc(FBYID[x.fr].ed)} · ${stLbl(x)}</small></span>${x.hot?'<span class="gt-hot" title="Jeu du moment">🔥</span>':''}${isF(x.id)?'<span class="gt-fav">⭐</span>':''}</button>`};
+const pfChips=x=>x.pf.map(p=>`<span class="pfc">${p}</span>`).join('');
+function renderExplore(){const el=document.getElementById('explore');if(!el)return;let h='';
+  const crumb=[`<button data-ex="root">Explorer</button>`];
+  if(XP.genre)crumb.push(`<button data-ex="genre:${XP.genre}">${GENBY[XP.genre].n}</button>`);
+  if(XP.fr&&!XP.genre&&XP.game)crumb.push(`<button data-ex="fr:${XP.fr}">${esc(FBYID[XP.fr].n)}</button>`);else if(XP.fr)crumb.push(`<button data-ex="fr:${XP.fr}">${esc(FBYID[XP.fr].n)}</button>`);
+  if(XP.game)crumb.push(`<span>${esc(GBYID[XP.game].n)}</span>`);
+  const crumbs=crumb.length>1?`<nav class="crumb">${crumb.join('<i>›</i>')}</nav>`:'';
+  if(XP.game){const x=GBYID[XP.game],f=FBYID[x.fr],g=GENBY[x.genres[0]];
+    h=`${crumbs}<div class="ghero" style="background:${gGrad(x.genres[0])}">${x.full?`<img src="${HERO_IMG}" alt="">`:`<span class="ghero-e">${g.e}</span>`}<div class="ghero-in"><div class="ghero-tags">${x.genres.map(id=>`<span>${GENBY[id].e} ${GENBY[id].n}</span>`).join('')}${x.hot?'<span>🔥 Du moment</span>':''}</div><h1>${esc(x.n)}</h1><p>${esc(f.ed)} · ${stLbl(x)}</p><div class="pfs">${pfChips(x)}</div></div></div>
+    <button class="btn follow ${isF(x.id)?'on':''}" data-follow="${x.id}">${isF(x.id)?'⭐ Dans Mes jeux':'☆ Suivre ce jeu'}</button>`;
+    if(x.full){h+=`<div class="gmenu"><button data-go="feed">📰<b>Les infos</b><small>Vrai, faux, rumeurs, arnaques</small></button><button data-go="eggs">🥚<b>Easter eggs</b><small>Les secrets cachés</small></button><button data-go="game">🗺️<b>Fiche & carte</b><small>Tout sur le jeu</small></button><button data-go="forum">💬<b>Forum</b><small>Discuter avec la commu</small></button></div>`}
+    else{h+=`<div class="card gsoon"><b>Les infos vérifiées sur ${esc(x.n)} arrivent bientôt.</b><p>Tu as vu une rumeur sur ce jeu ? Envoie-la, on la vérifie et le verdict apparaîtra ici.</p><div class="gsoon-b"><button class="btn" data-go="check">🔍 Demander une vérif</button><button class="btn ghost" data-go="forum">💬 En parler sur le forum</button></div></div>`}
+    const sib=f.games.filter(y=>y.id!==x.id);if(sib.length)h+=`<div class="sec">${tile('layers','vice',28)}DANS LA MÊME LICENCE</div><div class="glist">${sib.map(y=>gameTile(y)).join('')}</div>`;
+  }else if(XP.fr){const f=FBYID[XP.fr];
+    h=`${crumbs}<div class="frhero" style="background:${gGrad(f.g[0])}"><span>${GENBY[f.g[0]].e}</span><div><h1>${esc(f.n)}</h1><p>${esc(f.ed)} · ${f.games.length} jeu${f.games.length>1?'x':''}</p></div></div><div class="glist">${f.games.map(y=>gameTile(y,true)).join('')}</div>`;
+  }else if(XP.genre){const g=GENBY[XP.genre],frs=LIB.filter(f=>f.games.some(x=>x.genres.includes(g.id)));
+    h=`${crumbs}<div class="frhero" style="background:${gGrad(g.id)}"><span>${g.e}</span><div><h1>${g.n}</h1><p>${g.d}</p></div></div>
+    ${frs.map(f=>{const gs=f.games.filter(x=>x.genres.includes(g.id));return `<div class="frblock"><button class="frname" data-ex="fr:${f.id}">${esc(f.n)} <small>${esc(f.ed)}</small><i>›</i></button><div class="glist">${gs.map(x=>gameTile(x)).join('')}</div></div>`}).join('')}`;
+  }else{const q=XP.q.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
+    const found=q?GAMES.filter(x=>(x.n+' '+FBYID[x.fr].n+' '+FBYID[x.fr].ed).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').includes(q)):[];
+    h=`<div class="h1">Explorer</div><p class="lead">${GAMES.length} jeux parmi les plus joués, rangés par genre et par licence. Trouve ton jeu et suis-le.</p>
+    <input id="exQ" class="pin exq" placeholder="🔍 Chercher un jeu (ex : Fortnite, Elden Ring…)" value="${esc(XP.q)}">
+    ${q?`<div class="glist">${found.length?found.map(x=>gameTile(x)).join(''):'<div class="cnone card">Aucun jeu trouvé. Il n’est peut-être pas encore dans la bibliothèque.</div>'}</div>`:`
+    <div class="sec">${tile('sparkles','vice',28)}LES JEUX DU MOMENT</div><div class="hotrow">${GAMES.filter(x=>x.hot).map(x=>gameTile(x)).join('')}</div>
+    <div class="sec">${tile('layers','vice',28)}PAR GENRE</div><div class="ggrid">${GENRES.map(g=>{const n=GAMES.filter(x=>x.genres.includes(g.id)).length;return `<button class="gtile" data-ex="genre:${g.id}" style="background:${gGrad(g.id)}"><span class="gtile-e">${g.e}</span><b>${g.n}</b><small>${n} jeu${n>1?'x':''}</small></button>`}).join('')}</div>`}`;}
+  el.innerHTML=h;
+  el.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{const [k,v]=b.dataset.ex.split(':');XP={genre:null,fr:null,game:null,q:''};if(k==='genre')XP.genre=v;if(k==='fr')XP.fr=v;renderExplore();window.scrollTo({top:0})});
+  el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>{const keep=XP.genre;XP={genre:keep,fr:GBYID[b.dataset.game].fr,game:b.dataset.game,q:''};renderExplore();window.scrollTo({top:0})});
+  el.querySelectorAll('[data-follow]').forEach(b=>b.onclick=()=>toggleFollow(b.dataset.follow));
+  el.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>showView(b.dataset.go));
+  const q=el.querySelector('#exQ');if(q){q.oninput=()=>{XP.q=q.value;const pos=q.selectionStart;renderExplore();const n=document.getElementById('exQ');n.focus();n.setSelectionRange(pos,pos)}}
+}
+function renderMine(){const el=document.getElementById('mine');if(!el)return;const mine=FOLLOW.map(id=>GBYID[id]).filter(Boolean);
+  el.innerHTML=`<div class="h1">Mes jeux</div><p class="lead">Les jeux que tu suis. Appuie sur ☆ « Suivre ce jeu » sur la page d’un jeu pour l’ajouter ici.</p>
+  ${mine.length?`<div class="glist">${mine.map(x=>gameTile(x,true)).join('')}</div>`:`<div class="card gsoon"><b>Tu ne suis encore aucun jeu.</b><p>Commence par un des jeux du moment :</p></div><div class="hotrow">${GAMES.filter(x=>x.hot).map(x=>gameTile(x)).join('')}</div>`}
+  <p class="note">${ic('info')}<span>Ta liste est gardée sur cet appareil. Bientôt : un fil d’infos rien que pour tes jeux et des alertes.</span></p>`;
+  el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));}
+
+/* vitrine de l'accueil : les jeux les plus joués du moment (sans classement) */
+const TOPG=['gta-6','fortnite','minecraft','cod-bo7','fc-26'];
+function renderTop(){const el=document.getElementById('topg');if(!el)return;
+  el.innerHTML=`<div class="topg-h"><b>🔥 Les plus joués en ce moment</b><button class="topg-all">Tous les jeux ›</button></div><div class="topg-row">${TOPG.map((id,k)=>{const x=GBYID[id],g=GENBY[x.genres[0]];
+    return `<button class="tg" data-game="${id}" style="--d:${k*.6}s;background:${gGrad(x.genres[0])}">${x.full?`<img src="${HERO_IMG}" alt="">`:''}<span class="tg-e">${g.e}</span><span class="tg-tx"><b>${esc(x.n)}</b><small>${g.n}</small></span><span class="tg-go">Voir ›</span></button>`}).join('')}</div>`;
+  el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));
+  el.querySelector('.topg-all').onclick=()=>{XP={genre:null,fr:null,game:null,q:''};showView('explore');renderExplore()};}
 /* ===== TABS ===== */
-const TABS=[['feed','home','Fil'],['eggs','star','Easter eggs'],['forum','chat','Forum'],['check','search','Vérifier'],['game','gamepad','Le jeu']];
+const TABS=[['feed','home','Accueil'],['explore','layers','Explorer'],['forum','chat','Forum'],['check','search','Vérifier'],['mine','star','Mes jeux']];
 $('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
 function showView(v){
   document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));
@@ -1475,7 +1692,8 @@ let installEvt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;$('#installBtn').hidden=false});
 $('#installBtn').onclick=async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('#installBtn').hidden=true};
 window.addEventListener('appinstalled',()=>{$('#installBtn').hidden=true;toast('GameCheck est installé !')});
-withIdx();renderUne();renderFilters();renderFeed();renderGame();initMap();initPhotos();
+withIdx();renderUne();renderFilters();renderFeed();renderGame();initMap();initPhotos();renderTop();renderExplore();renderMine();
+['eggs','game'].forEach(v=>{const p=document.getElementById(v);if(p)p.insertAdjacentHTML('afterbegin','<button class="gback" onclick="goGame(\'gta-6\')">‹ GTA VI</button>')});
 </script>
 <script type="module">
 // Firebase (gratuit) : connexion Google + base de données pour les profils, J'aime, commentaires et forum.
