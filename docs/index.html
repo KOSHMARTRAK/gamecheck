@@ -18,7 +18,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --card:rgba(255,255,255,.82);--line:rgba(43,36,64,.10);--txt:#2b2440;--mute:#625a73;--soft:rgba(246,241,248,.85);
+  --card:rgba(255,255,255,.78);--line:rgba(43,36,64,.10);--txt:#2b2440;--mute:#625a73;--soft:rgba(246,241,248,.85);
   --vrai:#059669;--vrai-bg:#e9fbf4;--vrai-g:linear-gradient(135deg,#00e0a4,#00a8e8);
   --rumeur:#b45309;--rumeur-bg:#fff6e5;--rumeur-g:linear-gradient(135deg,#ffc233,#ff7a00);
   --faux:#e11d48;--faux-bg:#fff0f3;--faux-g:linear-gradient(135deg,#ff4d6d,#ff2d95);
@@ -28,14 +28,14 @@
   --disp:'Bebas Neue',Impact,'Arial Narrow',sans-serif;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{background:#fdfbfd}
+html{background:#f3d9f0}
 body{color:var(--txt);font-family:Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased;min-height:100vh;
   background:
-   radial-gradient(70% 55% at 0% 0%,#ffd6ea 0%,transparent 70%),
-   radial-gradient(70% 55% at 100% 0%,#c9f5f2 0%,transparent 70%),
-   radial-gradient(70% 55% at 100% 100%,#ffe2c8 0%,transparent 70%),
-   radial-gradient(70% 55% at 0% 100%,#e6dcff 0%,transparent 70%),
-   #fdfbfd;background-attachment:fixed}
+   radial-gradient(60% 40% at 0% 0%,rgba(255,45,149,.35) 0%,transparent 70%),
+   radial-gradient(60% 40% at 100% 25%,rgba(18,181,181,.30) 0%,transparent 70%),
+   radial-gradient(70% 45% at 0% 75%,rgba(160,110,255,.30) 0%,transparent 70%),
+   radial-gradient(70% 45% at 100% 100%,rgba(255,140,70,.30) 0%,transparent 70%),
+   linear-gradient(165deg,#ffd3ea 0%,#e9dcff 35%,#c8f3ef 65%,#ffe0c6 100%);background-attachment:fixed}
 .palms{position:fixed;inset:auto 0 0 0;height:300px;pointer-events:none;z-index:0;opacity:.09}
 .palms svg{width:100%;height:100%}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
@@ -74,7 +74,7 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.78);backdro
 .filters button{flex:0 0 auto;font-size:13px;font-weight:600;padding:7px 13px;border-radius:999px;background:rgba(255,255,255,.75);border:1px solid var(--line);color:#4a4055}
 .filters button.on{background:var(--txt);color:#fff;border-color:var(--txt)}
 /* post */
-.post{background:var(--card);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:12px 0;box-shadow:0 10px 30px -18px rgba(90,20,90,.35)}
+.post{background:var(--card);border:1px solid rgba(255,255,255,.7);border-radius:22px;margin:14px 10px;overflow:hidden;box-shadow:0 10px 30px -18px rgba(90,20,90,.35)}
 @media(min-width:540px){.post{border:1px solid var(--line);border-radius:22px;margin:14px 12px}}
 .phead{display:flex;align-items:center;gap:10px;padding:12px 14px}
 .av{width:36px;height:36px;border-radius:50%;overflow:hidden;flex:0 0 auto;box-shadow:0 0 0 2px #fff,0 0 0 3.5px #ff5fa2}
