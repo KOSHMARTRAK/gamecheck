@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://koshmartrak.github.io/gamecheck/sitemap.xml
