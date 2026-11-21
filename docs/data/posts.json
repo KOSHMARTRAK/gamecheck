@@ -1,5 +1,35 @@
 [
   {
+    "id": "tes6-sentinel-titre-rumeur",
+    "data": {
+      "game": "tes-6",
+      "cat": "rumeur",
+      "title": "The Elder Scrolls VI : un sous-titre « Sentinel » et une révélation rumorés",
+      "body": "Selon plusieurs médias, une source de Tom Warren (The Verge) affirme que le jeu s'appellerait **The Elder Scrolls VI: Sentinel**, avec une révélation du titre attendue en novembre. La théorie est aussi nourrie par des indices supposés cachés dans Starfield.",
+      "verdict": "**Non vérifié.** Bethesda n'a rien confirmé ni démenti : le sous-titre et la date de révélation restent des rumeurs.",
+      "sources": [
+        {
+          "nom": "Kotaku",
+          "niveau": "fiable",
+          "url": "https://kotaku.com/the-elder-scrolls-6-title-reportedly-being-revealed-next-month-just-about-eight-years-after-it-was-announced-2000751058"
+        },
+        {
+          "nom": "Beebom",
+          "niveau": "moyen",
+          "url": "https://beebom.com/elder-scrolls-6-title-and-reveal-window-teased-in-new-report/"
+        },
+        {
+          "nom": "Dexerto",
+          "niveau": "moyen",
+          "url": "https://www.dexerto.com/gaming/elder-scrolls-6-name-and-setting-reportedly-confirmed-after-fans-already-worked-it-out-3422824/"
+        }
+      ],
+      "date": "29 oct. 2026",
+      "ts": 1793271600000,
+      "n": 5
+    }
+  },
+  {
     "id": "polices-avertissent-joueurs-gta6",
     "data": {
       "cat": "vrai",
