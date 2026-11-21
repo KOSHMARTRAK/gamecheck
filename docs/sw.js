@@ -1,5 +1,5 @@
-// GameCheck : fonctionne hors connexion, et va toujours chercher les infos fraîches en premier.
-const CACHE = 'gamecheck-v1';
+﻿// GameCheck : fonctionne hors connexion, et va toujours chercher les infos fraÃ®ches en premier.
+const CACHE = 'gamecheck-v2';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'img/icon-192.png', 'img/icon-512.png', 'img/chien-buste.png'];
 
 self.addEventListener('install', e => {
@@ -15,7 +15,7 @@ self.addEventListener('fetch', e => {
   if (e.request.method !== 'GET' || url.origin !== location.origin) return;
   const fresh = url.pathname.endsWith('.json') || url.pathname.endsWith('/') || url.pathname.endsWith('.html');
   if (fresh) {
-    // réseau d'abord (infos à jour), cache si hors connexion
+    // rÃ©seau d'abord (infos Ã  jour), cache si hors connexion
     e.respondWith(fetch(e.request).then(r => { const c = r.clone(); caches.open(CACHE).then(x => x.put(e.request, c)); return r; })
       .catch(() => caches.match(e.request)));
   } else {

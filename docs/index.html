@@ -265,6 +265,22 @@ textarea:focus{outline:2px solid #ff2d95;border-color:transparent}
 .cform button{flex:0 0 auto;width:44px;border-radius:12px;background:var(--vice-g);color:#fff;display:grid;place-items:center}
 .cform button svg.i{width:18px;height:18px}
 .cnone{font-size:13px;color:var(--mute);padding:10px 0}
+/* signalement */
+.rmodal{position:fixed;inset:0;background:rgba(16,5,30,.55);z-index:300;display:flex;align-items:flex-end;justify-content:center;padding:16px}
+@media(min-width:600px){.rmodal{align-items:center}}
+.rbox{background:#fff;border-radius:20px;max-width:460px;width:100%;padding:18px;max-height:90vh;overflow:auto}
+.rbox h3{display:flex;align-items:center;gap:8px;font-size:17px}
+.rbox h3 svg.i{color:var(--faux)}
+.rsub{font-size:13px;color:var(--mute);margin:4px 0 12px}
+.rlist{display:flex;flex-direction:column;gap:8px;margin-bottom:12px;font-size:14px}
+.rlist label{display:flex;gap:8px;align-items:center;cursor:pointer}
+.rbox textarea{min-height:80px;font-size:14px}
+.rnote{font-size:12px;color:var(--mute);line-height:1.5;margin:10px 0 14px}
+.rbtns{display:flex;gap:8px;justify-content:flex-end}
+.rbtns button{padding:10px 14px;border-radius:12px;font-weight:700;font-size:14px}
+.rcancel{background:var(--soft)}
+.rsend{background:var(--faux);color:#fff}
+.actions .report{color:var(--mute)}
 /* mises à jour + légal */
 .majrow{display:flex;justify-content:space-between;gap:12px;padding:12px 14px;border-top:1px solid var(--line);font-size:14px}
 .majrow:first-child{border-top:0}
@@ -374,8 +390,10 @@ nav.tabs>div{max-width:1280px}
         <details><summary>Comment les infos sont vérifiées</summary><p>Les infos sont recherchées et classées automatiquement par une intelligence artificielle (Claude, d'Anthropic) toutes les 3 heures, à partir de médias publics. Chaque info indique ses sources et leur niveau de fiabilité. Une IA peut se tromper : vérifie toujours auprès de la source officielle avant de partager. Une info classée par erreur est corrigée dès qu'elle est signalée en commentaire.</p></details>
         <details><summary>Tes données personnelles</summary><p>Quand tu votes ou commentes, l'application enregistre ton identifiant de compte, ton vote, le texte de ton commentaire et son heure. Ton nom affiché vient de ton compte. Ces données servent uniquement à afficher les votes et la discussion. Tu peux supprimer tes commentaires à tout moment avec le bouton « Supprimer ». Pour toute demande d'accès ou d'effacement (RGPD), contacte l'éditeur. Aucune donnée n'est vendue ni utilisée pour de la publicité.</p></details>
         <details><summary>Cookies</summary><p>L'application ne dépose aucun cookie publicitaire ni de mesure d'audience. Elle garde seulement, dans ton navigateur, quelques préférences d'affichage.</p></details>
+        <details><summary>Signaler un contenu</summary><p>Chaque info et chaque commentaire a un bouton « Signaler » (fausse info, arnaque, contenu illégal, harcèlement, atteinte à tes droits). Les signalements sont examinés dans les meilleurs délais ; si un contenu est retiré ou corrigé, la raison est indiquée. Tu peux contester une décision en répondant au signalement. En cas de contenu manifestement illégal, tu peux aussi le signaler aux autorités sur internet-signalement.gouv.fr (PHAROS).</p></details>
+        <details><summary>Conditions d'utilisation</summary><p>GameCheck est gratuit et fourni tel quel, sans garantie. Les infos sont données à titre informatif : vérifie toujours auprès des sources officielles. En publiant un commentaire, tu t'engages à respecter les règles ci-dessous et la loi, et tu restes responsable de ce que tu écris. L'éditeur peut retirer un contenu ou bloquer un utilisateur qui ne les respecte pas. Le site est réservé aux personnes de 15 ans et plus pour les commentaires ; GTA 6 est un jeu classé PEGI 18.</p></details>
         <details><summary>Règles des commentaires</summary><p>Pas d'insultes, de harcèlement, de liens de téléchargement, de spoilers non signalés ni de pub. Les commentaires qui ne respectent pas ces règles peuvent être supprimés par l'éditeur.</p></details>
-        <details><summary>Mentions légales</summary><p>GameCheck est un projet personnel, gratuit et non commercial : aucune publicité, aucun abonnement, aucune vente. Éditeur : KOSHMAR TRAK, particulier non professionnel. Comme le permet la loi pour la confiance dans l'économie numérique (article 6-III-2), l'éditeur reste anonyme ; son identité est connue de l'hébergeur. Hébergement : Anthropic PBC, 548 Market Street, San Francisco, CA 94104, États-Unis (service Claude). Pour signaler une erreur ou un contenu, laisse un commentaire sous l'info concernée.</p></details>
+        <details><summary>Mentions légales</summary><p>GameCheck est un projet personnel, gratuit et non commercial : aucune publicité, aucun abonnement, aucune vente. Éditeur : KOSHMAR TRAK, particulier non professionnel. Comme le permet la loi pour la confiance dans l'économie numérique (article 6-III-2), l'éditeur reste anonyme ; son identité est connue de l'hébergeur. Hébergement : GitHub, Inc. (GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Contact et signalements : bouton « Signaler » ou github.com/KOSHMARTRAK/gamecheck/issues.</p></details>
       </div>
       <p class="note" id="appVersion"></p>
     </div>
@@ -460,7 +478,8 @@ const P={
  up:'<path d="M7 10v11H3V10z"/><path d="M7 10l4-7.5c1.6 0 2.7 1.3 2.4 2.9L12.8 9H19a2 2 0 0 1 2 2.3l-1.3 7.6A2.5 2.5 0 0 1 17.2 21H7"/>',
  down:'<path d="M7 14V3H3v11z"/><path d="M7 14l4 7.5c1.6 0 2.7-1.3 2.4-2.9L12.8 15H19a2 2 0 0 0 2-2.3l-1.3-7.6A2.5 2.5 0 0 0 17.2 3H7"/>',
  chat:'<path d="M21 12a8.5 8.5 0 0 1-12.6 7.4L3 21l1.7-5A8.5 8.5 0 1 1 21 12z"/>',
- send:'<path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/>'
+ send:'<path d="M22 2 11 13"/><path d="M22 2 15 22l-4-9-9-4z"/>',
+ flag:'<path d="M4 22V4"/><path d="M4 4h13l-2 4 2 4H4"/>'
 };
 const ic=(n,st='')=>`<svg class="i" viewBox="0 0 24 24" ${st?`style="${st}"`:''}>${P[n]||''}</svg>`;
 
@@ -732,7 +751,8 @@ function renderFeed(){
       </div></div>`:''}
       <div class="actions">
         ${(()=>{const k='p'+p.i,s=voteStats(k),cs=comsFor(k);return `<button class="vote up ${s.mine===1?'on':''}" data-k="${k}" data-v="1" aria-label="J'aime">${ic('up')}${s.up}</button><button class="vote down ${s.mine===-1?'on':''}" data-k="${k}" data-v="-1" aria-label="J'aime pas">${ic('down')}${s.down}</button><button class="vote cm ${OPEN.has(k)?'on':''}" data-k="${k}" aria-label="Commentaires">${ic('chat')}${cs.length}</button>`})()}
-        <button class="share" data-i="${p.i}">${ic('copy')}<span>Copier</span></button>
+        <button class="share" data-i="${p.i}" aria-label="Partager cette info">${ic('send')}<span>Partager</span></button>
+        <button class="report" data-i="${p.i}" aria-label="Signaler cette info">${ic('flag')}<span>Signaler</span></button>
         <a class="art" href="${p.art}" target="_blank" rel="noopener">${ic('article')}Voir l'article</a>
       </div>
       ${OPEN.has('p'+p.i)?renderComs('p'+p.i):''}
@@ -751,10 +771,14 @@ function renderFeed(){
   fillNames();
   document.querySelectorAll('.share').forEach(b=>b.onclick=async()=>{
     const p=BYI[b.dataset.i];const txt=`${CATS[p.cat].label.toUpperCase()} : ${p.title}\n${strip(p.verdict)}\nSource : ${p.art}`;
+    const url=location.href.split('#')[0]+'#post'+p.i;
+    if(navigator.share){try{await navigator.share({title:'GameCheck : '+strip(p.title),text:txt,url});return}catch(e){if(e&&e.name==='AbortError')return}}
     const lab=b.querySelector('span');
-    try{await navigator.clipboard.writeText(txt);lab.textContent='Copié'}catch(e){lab.textContent='Impossible'}
-    setTimeout(()=>lab.textContent='Copier',1800);
+    try{await navigator.clipboard.writeText(txt+'\n'+url);lab.textContent='Lien copié'}catch(e){lab.textContent='Impossible'}
+    setTimeout(()=>lab.textContent='Partager',1800);
   });
+  document.querySelectorAll('.report').forEach(b=>b.onclick=()=>openReport('info',BYI[b.dataset.i]));
+  document.querySelectorAll('.crep').forEach(b=>b.onclick=()=>openReport('commentaire',BYI[b.dataset.i],b.dataset.t));
   document.querySelectorAll('.photo input').forEach(inp=>inp.onchange=()=>uploadPhoto(+inp.dataset.i,inp.files[0]));
   document.querySelectorAll('.rmph').forEach(b=>b.onclick=()=>removePhoto(+b.dataset.i));
 }
@@ -767,7 +791,7 @@ function fmtTs(ts){const d=new Date(ts);return `${d.getDate()} ${MO[d.getMonth()
 function voteStats(k){let up=0,down=0;for(const u in VOTES){const v=VOTES[u][k];if(v===1)up++;else if(v===-1)down++}return{up,down,mine:myId&&VOTES[myId]?VOTES[myId][k]||0:0}}
 function comsFor(k){const out=[];for(const u in COMS){(COMS[u]||[]).forEach(c=>{if(c&&c.post===k&&typeof c.text==='string')out.push({...c,u})})}return out.sort((a,b)=>(a.at||0)-(b.at||0))}
 function renderComs(k){const cs=comsFor(k);
-  return `<div class="coms">${cs.length?cs.map(c=>`<div class="com"><div class="cw"><b class="cn" data-u="${esc(c.u)}">…</b><span>${c.at?fmtTs(c.at):''}</span>${c.u===myId?`<button class="cdel" data-id="${esc(c.id)}">Supprimer</button>`:''}</div><div class="ctx">${esc(c.text)}</div></div>`).join(''):'<div class="cnone">Aucun commentaire pour l’instant.</div>'}
+  return `<div class="coms">${cs.length?cs.map(c=>`<div class="com"><div class="cw"><b class="cn" data-u="${esc(c.u)}">…</b><span>${c.at?fmtTs(c.at):''}</span>${c.u===myId?`<button class="cdel" data-id="${esc(c.id)}">Supprimer</button>`:`<button class="cdel crep" data-i="${k.slice(1)}" data-t="${esc(String(c.text).slice(0,200))}">Signaler</button>`}</div><div class="ctx">${esc(c.text)}</div></div>`).join(''):'<div class="cnone">Aucun commentaire pour l’instant.</div>'}
   ${dbApi&&myId?`<form class="cform" data-k="${k}"><textarea data-k="${k}" maxlength="500" placeholder="Écris un commentaire"></textarea><button type="submit" aria-label="Envoyer">${ic('send')}</button></form>`:'<div class="cnone">Les commentaires arrivent bientôt sur cette version du site.</div>'}</div>`}
 async function fillNames(){if(!userApi)return;const els=[...document.querySelectorAll('.cn')];if(!els.length)return;
   const ids=[...new Set(els.map(e=>e.dataset.u))];try{const ps=await userApi.profiles(ids);els.forEach(e=>{const p=ps[e.dataset.u];e.textContent=(p&&p.name)||'Quelqu’un'})}catch(e){els.forEach(e=>e.textContent='Quelqu’un')}}
@@ -787,6 +811,28 @@ async function initSocial(){
   try{dbApi.collection('votes').onSnapshot(s=>{const m={};s.docs.forEach(d=>{const v=d.data();if(v&&typeof v==='object'){const o={};for(const k in v){if(v[k]===1||v[k]===-1)o[k]=v[k]}m[d.id]=o}});VOTES=m;renderFeed()},()=>{})}catch(e){}
   try{dbApi.collection('comments').onSnapshot(s=>{const m={};s.docs.forEach(d=>{const v=d.data();if(v&&Array.isArray(v.items))m[d.id]=v.items.slice(-200)});COMS=m;renderFeed()},()=>{})}catch(e){}
   renderFeed();
+}
+
+/* ===== SIGNALEMENT (obligation européenne DSA) ===== */
+const REPORT_REPO='https://github.com/KOSHMARTRAK/gamecheck/issues/new';
+const REASONS=['Information fausse ou trompeuse','Arnaque ou lien dangereux','Contenu illégal','Harcèlement, insulte ou haine','Atteinte à mes droits (image, droit d’auteur, vie privée)','Autre'];
+function openReport(kind,p,extra){
+  const m=document.createElement('div');m.className='rmodal';
+  m.innerHTML=`<div class="rbox" role="dialog" aria-modal="true" aria-labelledby="rtitle"><h3 id="rtitle">${ic('flag')} Signaler ${kind==='info'?'cette info':'ce commentaire'}</h3>
+   <p class="rsub">${p?p.title:''}</p>
+   <div class="rlist">${REASONS.map((r,i)=>`<label><input type="radio" name="rr" value="${i}" ${i?'':'checked'}> ${r}</label>`).join('')}</div>
+   <textarea id="rtext" maxlength="1000" placeholder="Explique en quelques mots ce qui ne va pas (facultatif)"></textarea>
+   <p class="rnote">Le signalement s’ouvre sur GitHub (compte gratuit). Il est examiné rapidement ; le contenu est corrigé ou retiré s’il ne respecte pas les règles ou la loi.</p>
+   <div class="rbtns"><button class="rcancel">Annuler</button><button class="rsend">Envoyer le signalement</button></div></div>`;
+  document.body.appendChild(m);
+  const close=()=>m.remove();
+  m.onclick=e=>{if(e.target===m)close()}; m.querySelector('.rcancel').onclick=close;
+  m.querySelector('.rsend').onclick=()=>{
+    const reason=REASONS[+m.querySelector('input[name=rr]:checked').value];
+    const body=`**Type :** ${kind}\n**Motif :** ${reason}\n**Info :** ${p?strip(p.title):''}\n**Lien :** ${location.href.split('#')[0]}#post${p?p.i:''}\n${extra?`**Commentaire signalé :** ${extra}\n`:''}\n**Détails :**\n${m.querySelector('#rtext').value}`;
+    window.open(REPORT_REPO+'?title='+encodeURIComponent('[Signalement] '+reason+' – '+(p?strip(p.title):'')).slice(0,1800)+'&body='+encodeURIComponent(body).slice(0,6000),'_blank','noopener');
+    close();toast('Merci, ton signalement va être examiné.');
+  };
 }
 
 /* ===== GAME ===== */
