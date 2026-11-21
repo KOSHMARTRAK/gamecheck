@@ -1,0 +1,76 @@
+rules_version = '2';
+// Règles de sécurité GameCheck (profils, commentaires, J'aime, forum, signalements).
+// Tout le monde peut lire. Pour écrire : être connecté ET avoir créé un profil, et ne pas être bloqué.
+// Les administrateurs sont listés dans la collection "admins" (modifiable seulement depuis la console).
+service cloud.firestore {
+  match /databases/{db}/documents {
+    function signed() { return request.auth != null; }
+    function isAdmin() { return signed() && exists(/databases/$(db)/documents/admins/$(request.auth.uid)); }
+    function hasProfile() { return exists(/databases/$(db)/documents/users/$(request.auth.uid)); }
+    function canPost() { return signed() && hasProfile() && get(/databases/$(db)/documents/users/$(request.auth.uid)).data.get('banned', false) != true; }
+    function str(v, mn, mx) { return v is string && v.size() >= mn && v.size() <= mx; }
+    function mine() { return request.resource.data.uid == request.auth.uid; }
+
+    match /admins/{uid} {
+      allow read: if signed() && request.auth.uid == uid;
+      allow write: if false;
+    }
+
+    match /users/{uid} {
+      allow read: if true;
+      allow create: if signed() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['pseudo', 'avatar', 'ts'])
+        && str(request.resource.data.pseudo, 3, 20) && str(request.resource.data.avatar, 1, 8);
+      allow update: if isAdmin() || (signed() && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['pseudo', 'avatar', 'ts', 'banned'])
+        && request.resource.data.get('banned', false) == resource.data.get('banned', false)
+        && str(request.resource.data.pseudo, 3, 20) && str(request.resource.data.avatar, 1, 8));
+      allow delete: if isAdmin() || (signed() && request.auth.uid == uid);
+    }
+
+    match /comments/{id} {
+      allow read: if true;
+      allow create: if canPost() && mine()
+        && request.resource.data.keys().hasOnly(['post', 'uid', 'text', 'ts'])
+        && str(request.resource.data.post, 1, 40) && str(request.resource.data.text, 1, 500)
+        && request.resource.data.ts == request.time;
+      allow delete: if signed() && (resource.data.uid == request.auth.uid || isAdmin());
+    }
+
+    match /votes/{id} {
+      allow read: if true;
+      allow create, update: if canPost() && mine()
+        && id == request.auth.uid + '_' + request.resource.data.post
+        && request.resource.data.keys().hasOnly(['post', 'uid', 'v'])
+        && request.resource.data.v in [1, -1];
+      allow delete: if signed() && resource.data.uid == request.auth.uid;
+    }
+
+    match /topics/{id} {
+      allow read: if true;
+      allow create: if canPost() && mine()
+        && request.resource.data.keys().hasOnly(['title', 'body', 'cat', 'uid', 'ts'])
+        && str(request.resource.data.title, 3, 120) && str(request.resource.data.body, 1, 3000)
+        && request.resource.data.cat in ['gta6', 'astuces', 'rumeurs', 'hors']
+        && request.resource.data.ts == request.time;
+      allow delete: if signed() && (resource.data.uid == request.auth.uid || isAdmin());
+    }
+
+    match /replies/{id} {
+      allow read: if true;
+      allow create: if canPost() && mine()
+        && request.resource.data.keys().hasOnly(['topic', 'uid', 'text', 'ts'])
+        && str(request.resource.data.topic, 1, 40) && str(request.resource.data.text, 1, 2000)
+        && request.resource.data.ts == request.time;
+      allow delete: if signed() && (resource.data.uid == request.auth.uid || isAdmin());
+    }
+
+    match /reports/{id} {
+      allow create: if signed() && mine()
+        && request.resource.data.keys().hasOnly(['target', 'reason', 'text', 'uid', 'ts'])
+        && str(request.resource.data.target, 1, 80) && str(request.resource.data.reason, 1, 60)
+        && request.resource.data.ts == request.time;
+      allow read, delete: if isAdmin();
+    }
+  }
+}

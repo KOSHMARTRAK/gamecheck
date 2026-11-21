@@ -365,18 +365,56 @@ nav.tabs>div{max-width:1280px}
 @media(min-width:1140px){
   #v-game .discs,#v-eggs .discs{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
-/* PC : bandes à vagues sur les côtés, du bas de l'en-tête jusqu'en bas de l'écran */
-@media(min-width:1320px){
-  .app::before,.app::after{content:"";position:fixed;top:var(--hh,84px);bottom:0;width:16px;z-index:9;pointer-events:none;background-repeat:repeat-y;animation:wvv 9s ease-in-out infinite;background-size:16px 120px,16px 180px}
-  .app::before{left:calc(50% - 640px);
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='120'%3E%3Cpath d='M7 0 Q0 30 7 60 T7 120 H0 V0Z' fill='rgba(255,255,255,.78)'/%3E%3C/svg%3E"),
-     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='180'%3E%3Cpath d='M9 0 Q16 45 9 90 T9 180 H0 V0Z' fill='rgba(19,181,176,.6)'/%3E%3C/svg%3E")}
-  .app::after{right:calc(50% - 640px);
-    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='120'%3E%3Cpath d='M9 0 Q16 30 9 60 T9 120 H16 V0Z' fill='rgba(255,255,255,.78)'/%3E%3C/svg%3E"),
-     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='180'%3E%3Cpath d='M7 0 Q0 45 7 90 T7 180 H16 V0Z' fill='rgba(19,181,176,.6)'/%3E%3C/svg%3E")}
+/* PC : l'appli devient une grande carte posée sur le fond pastel (cadre doux, même dégradé que le logo) */
+@media(min-width:900px){
+  .app{margin:18px auto 0;border-radius:28px 28px 0 0;background:rgba(255,255,255,.38);backdrop-filter:blur(6px);
+    box-shadow:0 30px 80px -40px rgba(43,36,64,.35),0 0 0 1px rgba(255,255,255,.7) inset}
+  .app::before{content:"";position:absolute;inset:-2px -2px 0 -2px;border-radius:30px 30px 0 0;padding:2px;pointer-events:none;
+    background:linear-gradient(180deg,#13b5b0,#ff2d95 55%,rgba(255,45,149,0) 100%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;opacity:.55}
+  header{border-radius:28px 28px 0 0}
 }
-@keyframes wvv{0%,55%{background-position:0 0,0 0}100%{background-position:0 120px,0 -180px}}
-@media (prefers-reduced-motion:reduce){.app::before,.app::after{animation:none}}
+/* profils, commentaires, forum */
+.mebtn{margin-left:10px;height:38px;min-width:38px;padding:0 10px;border-radius:999px;display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:700;background:var(--txt);color:#fff;flex:0 0 auto}
+.mebtn svg.i{width:16px;height:16px}
+.mebtn.in{padding:0;width:40px;background:#fff;box-shadow:0 0 0 2.5px #13b5b0,0 6px 14px -6px rgba(19,181,176,.7)}
+.ava{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--soft);font-size:14px;line-height:1;margin-right:6px;flex:0 0 auto}
+.ava.big{width:36px;height:36px;font-size:22px;margin:0;background:none}
+.banned{font-style:normal;font-size:11px;color:var(--faux);font-weight:700}
+.cw{display:flex;align-items:center;flex-wrap:wrap;gap:4px}
+.cacts{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.sbtn{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:600;color:var(--mute);padding:4px 8px;border-radius:999px;background:rgba(255,255,255,.7);border:1px solid var(--line)}
+.sbtn svg.i{width:13px;height:13px}
+.login-cta{margin-top:10px}
+.btn.ghost{background:var(--soft);color:var(--txt);box-shadow:none}
+.btn.danger{background:#fff0f3;color:var(--faux);box-shadow:none}
+.btn.gbtn{background:#fff;color:#1f1f1f;border:1px solid #dadce0;box-shadow:none}
+.acc{display:flex;flex-direction:column;gap:0}
+.pin{width:100%;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;font-size:15px;color:var(--txt);margin-bottom:10px}
+.avs{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:4px 0 12px}
+.avs button{aspect-ratio:1;border-radius:12px;font-size:22px;background:var(--soft);border:2px solid transparent}
+.avs button.on{border-color:#13b5b0;background:#e6fbfa}
+.cgu{display:flex;gap:8px;align-items:flex-start;font-size:13px;line-height:1.4;margin-bottom:12px;color:var(--mute)}
+.rsend.ok{background:linear-gradient(135deg,#13b5b0,#2b8cff)}
+#v-forum .panel{max-width:820px;margin:0 auto}
+.fcats{padding:6px 0 0}
+#fNew{margin:6px 0 4px}
+.flist{display:flex;flex-direction:column;gap:12px;margin-top:12px}
+.fitem{text-align:left;padding:14px;display:block;width:100%}
+.fitem h3{font-size:16.5px;margin:8px 0 4px;line-height:1.3}
+.fitem p{font-size:14px;color:#4a4055;line-height:1.45}
+.fmeta{display:flex;align-items:center;flex-wrap:wrap;gap:6px;font-size:12.5px;color:var(--mute)}
+.fmeta b{color:var(--txt)}
+.fcat{margin-left:auto;font-size:11.5px;font-weight:700;padding:3px 9px;border-radius:999px;background:linear-gradient(135deg,#d2f5e6,#cfe8ff);color:#0e6f6b}
+.fn{display:flex;align-items:center;gap:5px;margin-top:10px;font-size:12.5px;font-weight:700;color:#0e6f6b}
+.fn svg.i{width:15px;height:15px}
+.fback{font-weight:700;color:#0e6f6b;padding:8px 0;font-size:14px}
+.ftopic,.freply,.fform{padding:14px;margin-top:10px}
+.ftopic h2{font-family:var(--disp);font-size:28px;letter-spacing:.5px;line-height:1.05;margin:10px 0 8px}
+.fbody{font-size:14.5px;line-height:1.55;white-space:pre-wrap;word-wrap:break-word}
+.fh{font-weight:800;font-size:13px;color:var(--mute);margin:16px 2px 0;text-transform:uppercase;letter-spacing:.6px}
+.fform textarea{min-height:90px}
+.rbox select.pin{appearance:auto}
 .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--txt);color:#fff;padding:10px 16px;border-radius:12px;font-size:13px;z-index:200;display:none}
 .toast.on{display:block}
 </style>
@@ -388,6 +426,7 @@ nav.tabs>div{max-width:1280px}
     <div class="logo"><div class="mk" id="logoMk"></div><div class="wd">GAMECHECK</div></div>
     <button id="installBtn" hidden style="margin-left:auto;margin-right:10px;font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:999px;background:var(--vice-g);color:#fff">Installer l'appli</button>
     <div class="upd"><b>● Fil vérifié</b><br><span id="majTop">MAJ 21 nov. 2026</span></div>
+    <button id="meBtn" class="mebtn" aria-label="Mon profil" onclick="openAccount()"></button>
   </header>
 
   <section class="view on" id="v-feed">
@@ -397,6 +436,7 @@ nav.tabs>div{max-width:1280px}
   </section>
 
   <section class="view" id="v-eggs"><div class="panel" id="eggs"></div></section>
+  <section class="view" id="v-forum"><div class="panel" id="forum"></div></section>
   <section class="view" id="v-game"><div class="panel" id="game"></div></section>
 
   <section class="view" id="v-check">
@@ -462,11 +502,11 @@ nav.tabs>div{max-width:1280px}
       <div class="card legal">
         <details open><summary>Site indépendant</summary><p>GameCheck est un site de fans indépendant. Il n'est ni affilié, ni approuvé, ni sponsorisé par Rockstar Games, Take-Two Interactive, Sony Interactive Entertainment ou Microsoft. « Grand Theft Auto », « GTA » et les logos associés sont des marques de Take-Two Interactive. Les captures d'écran officielles restent la propriété de Rockstar Games et sont montrées uniquement pour illustrer l'actualité. Les noms et logos des médias cités appartiennent à leurs propriétaires.</p></details>
         <details><summary>Comment les infos sont vérifiées</summary><p>Les infos sont recherchées et classées automatiquement par une intelligence artificielle (Claude, d'Anthropic) toutes les 3 heures, à partir de médias publics. Chaque info indique ses sources et leur niveau de fiabilité. Une IA peut se tromper : vérifie toujours auprès de la source officielle avant de partager. Une info classée par erreur est corrigée dès qu'elle est signalée en commentaire.</p></details>
-        <details><summary>Tes données personnelles</summary><p>Quand tu votes ou commentes, l'application enregistre ton identifiant de compte, ton vote, le texte de ton commentaire et son heure. Ton nom affiché vient de ton compte. Ces données servent uniquement à afficher les votes et la discussion. Tu peux supprimer tes commentaires à tout moment avec le bouton « Supprimer ». Pour toute demande d'accès ou d'effacement (RGPD), contacte l'éditeur. Aucune donnée n'est vendue ni utilisée pour de la publicité.</p></details>
-        <details><summary>Cookies</summary><p>L'application ne dépose aucun cookie publicitaire ni de mesure d'audience. Elle garde seulement, dans ton navigateur, quelques préférences d'affichage.</p></details>
+        <details><summary>Tes données personnelles</summary><p>Pour voter, commenter ou écrire sur le forum, il faut un profil. La connexion se fait avec ton compte Google, via le service Firebase de Google (données hébergées dans l'Union européenne). GameCheck enregistre : un identifiant technique, le pseudo et l'avatar que tu choisis (visibles par tous), tes votes, tes commentaires, tes messages du forum et leur heure. Ton adresse e-mail n'est jamais affichée ni utilisée par GameCheck. Ces données servent uniquement à faire fonctionner les votes, les commentaires et le forum. Tu peux modifier ton profil, supprimer tes messages, ou supprimer tout ton compte et tout ce que tu as écrit (bouton profil en haut à droite, « Supprimer mon compte »). Pour toute autre demande (RGPD), utilise le bouton Signaler. Aucune donnée n'est vendue ni utilisée pour de la publicité.</p></details>
+        <details><summary>Cookies</summary><p>L'application ne dépose aucun cookie publicitaire ni de mesure d'audience. Elle garde seulement, dans ton navigateur, quelques préférences d'affichage et, si tu te connectes, ta session de connexion (indispensable pour rester connecté).</p></details>
         <details><summary>Signaler un contenu</summary><p>Chaque info et chaque commentaire a un bouton « Signaler » (fausse info, arnaque, contenu illégal, harcèlement, atteinte à tes droits). Les signalements sont examinés dans les meilleurs délais ; si un contenu est retiré ou corrigé, la raison est indiquée. Tu peux contester une décision en répondant au signalement. En cas de contenu manifestement illégal, tu peux aussi le signaler aux autorités sur internet-signalement.gouv.fr (PHAROS).</p></details>
-        <details><summary>Conditions d'utilisation</summary><p>GameCheck est gratuit et fourni tel quel, sans garantie. Les infos sont données à titre informatif : vérifie toujours auprès des sources officielles. En publiant un commentaire, tu t'engages à respecter les règles ci-dessous et la loi, et tu restes responsable de ce que tu écris. L'éditeur peut retirer un contenu ou bloquer un utilisateur qui ne les respecte pas. Le site est réservé aux personnes de 15 ans et plus pour les commentaires ; GTA 6 est un jeu classé PEGI 18.</p></details>
-        <details><summary>Règles des commentaires</summary><p>Pas d'insultes, de harcèlement, de liens de téléchargement, de spoilers non signalés ni de pub. Les commentaires qui ne respectent pas ces règles peuvent être supprimés par l'éditeur.</p></details>
+        <details><summary>Conditions d'utilisation</summary><p>GameCheck est gratuit et fourni tel quel, sans garantie. Les infos sont données à titre informatif : vérifie toujours auprès des sources officielles. En créant un profil et en publiant un commentaire ou un message sur le forum, tu t'engages à respecter les règles ci-dessous et la loi, et tu restes responsable de ce que tu écris. L'éditeur peut retirer un contenu ou bloquer un utilisateur qui ne les respecte pas. Les profils, les commentaires et le forum sont réservés aux personnes de 15 ans et plus ; GTA 6 est un jeu classé PEGI 18.</p></details>
+        <details><summary>Règles des commentaires</summary><p>Pas d'insultes, de harcèlement, de liens de téléchargement, de spoilers non signalés ni de pub. Les mêmes règles valent pour le forum, et on n'y publie aucune info personnelle (la sienne ou celle des autres). Les messages qui ne les respectent pas peuvent être supprimés et leur auteur bloqué.</p></details>
         <details><summary>Mentions légales</summary><p>GameCheck est un projet personnel, gratuit et non commercial : aucune publicité, aucun abonnement, aucune vente. Éditeur : KOSHMAR TRAK, particulier non professionnel. Comme le permet la loi pour la confiance dans l'économie numérique (article 6-III-2), l'éditeur reste anonyme ; son identité est connue de l'hébergeur. Hébergement : GitHub, Inc. (GitHub Pages), 88 Colin P. Kelly Jr. Street, San Francisco, CA 94107, États-Unis. Contact et signalements : bouton « Signaler » ou github.com/KOSHMARTRAK/gamecheck/issues.</p></details>
       </div>
       <p class="note" id="appVersion"></p>
@@ -781,7 +821,7 @@ function sortKey(p){return p.ts||dayOf(p.date)}
 const POOL=Array.from({length:23},(_,k)=>RSF(k));
 const hsh=s=>{let h=7;for(const c of String(s))h=(h*31+c.charCodeAt(0))>>>0;return h};
 function picOf(p,used){const own=PHOTOS[p.i]||p.img||OFFICIAL[p.i];if(own&&!(used&&used.has(own)))return own;let k=hsh(p.title)%POOL.length,n=0;while(used&&used.has(POOL[k])&&n++<POOL.length)k=(k+1)%POOL.length;return POOL[k]}
-const FB="this.onerror=null;this.src='img/rs22.jpg'"
+const IMGFB="this.onerror=null;this.src='img/rs22.jpg'"
 function mergeDb(docs){
   const extra=[];
   docs.forEach(d=>{const v=d.data()||{};if(!v.title||!CATS[v.cat]||v.cat==='all')return;
@@ -818,7 +858,7 @@ function dayOf(s){const m=String(s).toLowerCase().match(/^(\d{1,2})\s+([a-zéû]
 function renderUne(){
   const top=ALL.filter(p=>sortKey(p)).sort((a,b)=>sortKey(b)-sortKey(a)).slice(0,5);const USED=new Set();
   $('#une').innerHTML=top.map(p=>{const t=TONES[CATS[p.cat].tone];const im=picOf(p,USED);USED.add(im);
-    return `<button class="uc" data-i="${p.i}"><img src="${im}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${FB}>${srcBadge(p).replace('class="sb" style="','class="sb" style="--ring:'+t.n1+';')}<span class="ut">${p.title}<small>${CATS[p.cat].label} · ${p.date}</small></span></button>`}).join('');
+    return `<button class="uc" data-i="${p.i}"><img src="${im}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${IMGFB}>${srcBadge(p).replace('class="sb" style="','class="sb" style="--ring:'+t.n1+';')}<span class="ut">${p.title}<small>${CATS[p.cat].label} · ${p.date}</small></span></button>`}).join('');
   document.querySelectorAll('.uc').forEach(b=>b.onclick=()=>{filter='all';renderFilters();renderFeed();const el=$('#post'+b.dataset.i);el&&el.scrollIntoView({behavior:'smooth',block:'start'})});
 }
 function curList(){return ALL.filter(p=>filter==='all'||p.cat===filter)}
@@ -834,7 +874,7 @@ function renderFeed(){
         ${badge(p.cat)}
       </div>
       <h2 class="ptitle" style="border-color:${t.n1}">${p.title}</h2>
-      ${true?`<div class="frame"><div class="in"><img src="${picOf(p)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${FB}>
+      ${true?`<div class="frame"><div class="in"><img src="${picOf(p)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${IMGFB}>
         <div class="ftop"><span class="tag">${PHOTOS[p.i]?ic('camera')+'Ta capture':ic('verified')+'Capture officielle Rockstar'}</span></div>
       </div></div>`:''}
       <div class="actions">
@@ -872,33 +912,123 @@ function renderFeed(){
 }
 
 
-/* ===== J'AIME / J'AIME PAS / COMMENTAIRES (partagés, base de données) ===== */
-let VOTES={}, COMS={}, myId=null, userApi=null; const OPEN=new Set(), DRAFT={};
+/* ===== COMPTES, J'AIME, COMMENTAIRES, FORUM (Firebase : gratuit) ===== */
 const MO=['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
 function fmtTs(ts){const d=new Date(ts);return `${d.getDate()} ${MO[d.getMonth()]} ${d.getFullYear()} à ${String(d.getHours()).padStart(2,'0')}:${String(d.getMinutes()).padStart(2,'0')}`}
-function voteStats(k){let up=0,down=0;for(const u in VOTES){const v=VOTES[u][k];if(v===1)up++;else if(v===-1)down++}return{up,down,mine:myId&&VOTES[myId]?VOTES[myId][k]||0:0}}
-function comsFor(k){const out=[];for(const u in COMS){(COMS[u]||[]).forEach(c=>{if(c&&c.post===k&&typeof c.text==='string')out.push({...c,u})})}return out.sort((a,b)=>(a.at||0)-(b.at||0))}
+let ME=null, MYPROF=null, IS_ADMIN=false, USERS={}, VOTEDOCS=[], COMS=[], TOPICS=[], REPLIES=[];
+const OPEN=new Set(), DRAFT={};
+const AVATARS=['🐶','🦊','🐸','🐼','🦁','🐯','🐵','🤖','👽','💀','🔥','🎮','🚗','🌴','💎','👑'];
+const tsOf=x=>x&&typeof x.toMillis==='function'?x.toMillis():(typeof x==='number'?x:Date.now());
+const GSVG='<svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
+function who(uid){const u=USERS[uid];return u?`<span class="ava">${esc(u.avatar||'🐶')}</span><b>${esc(u.pseudo)}</b>${u.banned?' <i class="banned">bloqué</i>':''}`:'<span class="ava">👤</span><b>Compte supprimé</b>'}
+function voteStats(k){let up=0,down=0,mine=0;VOTEDOCS.forEach(v=>{if(v.post!==k)return;if(v.v===1)up++;else if(v.v===-1)down++;if(ME&&v.uid===ME.uid)mine=v.v});return{up,down,mine}}
+function comsFor(k){return COMS.filter(c=>c.post===k).sort((a,b)=>a.ts-b.ts)}
+function needProfile(msg){if(MYPROF)return false;openAccount(msg);return true}
+const canDel=x=>ME&&(x.uid===ME.uid||IS_ADMIN);
+const modBtns=(x,col,label)=>`${canDel(x)?`<button class="sbtn" data-del="${col}/${esc(x.id)}">${ic('trash')}Supprimer</button>`:''}${IS_ADMIN&&ME&&x.uid!==ME.uid&&USERS[x.uid]&&!USERS[x.uid].banned?`<button class="sbtn" data-ban="${esc(x.uid)}">Bloquer</button>`:''}${!ME||x.uid!==ME.uid?`<button class="sbtn" data-rep="${col}/${esc(x.id)}" data-lb="${label}" data-tx="${esc(String(x.text||x.title||'').slice(0,150))}">${ic('flag')}Signaler</button>`:''}`;
 function renderComs(k){const cs=comsFor(k);
-  return `<div class="coms">${cs.length?cs.map(c=>`<div class="com"><div class="cw"><b class="cn" data-u="${esc(c.u)}">…</b><span>${c.at?fmtTs(c.at):''}</span>${c.u===myId?`<button class="cdel" data-id="${esc(c.id)}">Supprimer</button>`:`<button class="cdel crep" data-i="${k.slice(1)}" data-t="${esc(String(c.text).slice(0,200))}">Signaler</button>`}</div><div class="ctx">${esc(c.text)}</div></div>`).join(''):'<div class="cnone">Aucun commentaire pour l’instant.</div>'}
-  ${dbApi&&myId?`<form class="cform" data-k="${k}"><textarea data-k="${k}" maxlength="500" placeholder="Écris un commentaire"></textarea><button type="submit" aria-label="Envoyer">${ic('send')}</button></form>`:'<div class="cnone">Les commentaires arrivent bientôt sur cette version du site.</div>'}</div>`}
-async function fillNames(){if(!userApi)return;const els=[...document.querySelectorAll('.cn')];if(!els.length)return;
-  const ids=[...new Set(els.map(e=>e.dataset.u))];try{const ps=await userApi.profiles(ids);els.forEach(e=>{const p=ps[e.dataset.u];e.textContent=(p&&p.name)||'Quelqu’un'})}catch(e){els.forEach(e=>e.textContent='Quelqu’un')}}
-async function castVote(k,v){if(!dbApi||!myId){toast('Les votes arrivent bientôt sur cette version du site.');return}
-  const mine={...(VOTES[myId]||{})};if(mine[k]===v)delete mine[k];else mine[k]=v;VOTES[myId]=mine;renderFeed();
-  try{await dbApi.doc('votes/'+myId).set(mine)}catch(e){toast('Ton vote n’a pas été enregistré.')}}
-async function sendCom(k){const text=(DRAFT[k]||'').trim().slice(0,500);if(!text)return;if(!dbApi||!myId)return;
-  const list=[...(COMS[myId]||[])].slice(-199);list.push({id:Date.now().toString(36)+Math.random().toString(36).slice(2,6),post:k,text,at:Date.now()});
-  COMS[myId]=list;DRAFT[k]='';renderFeed();
-  try{await dbApi.doc('comments/'+myId).set({items:list})}catch(e){toast('Ton commentaire n’a pas été envoyé.')}}
-async function delCom(id){if(!dbApi||!myId)return;const list=(COMS[myId]||[]).filter(c=>c.id!==id);COMS[myId]=list;renderFeed();
-  try{await dbApi.doc('comments/'+myId).set({items:list})}catch(e){toast('Impossible de supprimer.')}}
-async function initSocial(){
-  try{userApi=await window.claude.use('user')}catch(e){}
-  if(userApi){try{myId=await userApi.id()}catch(e){}}
-  if(!dbApi)return;
-  try{dbApi.collection('votes').onSnapshot(s=>{const m={};s.docs.forEach(d=>{const v=d.data();if(v&&typeof v==='object'){const o={};for(const k in v){if(v[k]===1||v[k]===-1)o[k]=v[k]}m[d.id]=o}});VOTES=m;renderFeed()},()=>{})}catch(e){}
-  try{dbApi.collection('comments').onSnapshot(s=>{const m={};s.docs.forEach(d=>{const v=d.data();if(v&&Array.isArray(v.items))m[d.id]=v.items.slice(-200)});COMS=m;renderFeed()},()=>{})}catch(e){}
-  renderFeed();
+  return `<div class="coms">${cs.length?cs.map(c=>`<div class="com"><div class="cw">${who(c.uid)}<span>${fmtTs(c.ts)}</span></div><div class="ctx">${esc(c.text)}</div><div class="cacts">${modBtns(c,'comments','ce commentaire')}</div></div>`).join(''):'<div class="cnone">Aucun commentaire pour l’instant.</div>'}
+  ${MYPROF?(MYPROF.banned?'<div class="cnone">Ton compte est bloqué : tu ne peux plus écrire.</div>':`<form class="cform" data-k="${k}"><textarea data-k="${k}" maxlength="500" placeholder="Écris un commentaire"></textarea><button type="submit" aria-label="Envoyer">${ic('send')}</button></form>`):`<button class="btn login-cta" type="button">${ic('user')}Connecte-toi pour commenter</button>`}</div>`}
+function wireSocial(root){root=root||document;
+  root.querySelectorAll('.login-cta').forEach(b=>b.onclick=()=>openAccount());
+  root.querySelectorAll('[data-del]').forEach(b=>b.onclick=()=>delItem(b.dataset.del));
+  root.querySelectorAll('[data-ban]').forEach(b=>b.onclick=()=>banUser(b.dataset.ban));
+  root.querySelectorAll('[data-rep]').forEach(b=>b.onclick=()=>reportItem(b.dataset.rep,b.dataset.lb,b.dataset.tx));}
+function fillNames(){wireSocial(document.getElementById('feed'))}
+async function castVote(k,v){if(needProfile('Connecte-toi pour voter.'))return;const s=voteStats(k),ref=FB.doc(FB.db,'votes',ME.uid+'_'+k);
+  try{if(s.mine===v)await FB.deleteDoc(ref);else await FB.setDoc(ref,{post:k,uid:ME.uid,v})}catch(e){toast('Ton vote n’a pas été enregistré.')}}
+async function sendCom(k){const text=(DRAFT[k]||'').trim().slice(0,500);if(!text||needProfile())return;DRAFT[k]='';
+  try{await FB.addDoc(FB.collection(FB.db,'comments'),{post:k,uid:ME.uid,text,ts:FB.serverTimestamp()})}catch(e){DRAFT[k]=text;toast('Ton commentaire n’a pas été envoyé.')}}
+async function delItem(path){if(!confirm('Supprimer définitivement ?'))return;const [col,id]=path.split('/');
+  try{await FB.deleteDoc(FB.doc(FB.db,col,id));if(col==='topics'){FV.topic=null;renderForum()}toast('Supprimé.')}catch(e){toast('Impossible de supprimer.')}}
+async function banUser(uid){const u=USERS[uid];if(!u||!confirm('Bloquer '+u.pseudo+' ? Il ne pourra plus écrire.'))return;
+  try{await FB.setDoc(FB.doc(FB.db,'users',uid),{banned:true},{merge:true});toast(u.pseudo+' est bloqué.')}catch(e){toast('Blocage impossible.')}}
+function modal(html){const m=document.createElement('div');m.className='rmodal';m.innerHTML=`<div class="rbox" role="dialog" aria-modal="true">${html}</div>`;document.body.appendChild(m);m.onclick=e=>{if(e.target===m)m.remove()};const c=m.querySelector('.rcancel');if(c)c.onclick=()=>m.remove();return m}
+function reportItem(target,label,text){
+  const m=modal(`<h3>${ic('flag')} Signaler ${label||'ce contenu'}</h3><p class="rsub">${esc(text||'')}</p><div class="rlist">${REASONS.map((r,i)=>`<label><input type="radio" name="rr" value="${i}" ${i?'':'checked'}> ${r}</label>`).join('')}</div><textarea id="rtext" maxlength="200" placeholder="Explique en quelques mots (facultatif)"></textarea><p class="rnote">Le signalement est envoyé à l’équipe GameCheck, qui retire le contenu s’il ne respecte pas les règles ou la loi.</p><div class="rbtns"><button class="rcancel">Annuler</button><button class="rsend">Envoyer</button></div>`);
+  m.querySelector('.rsend').onclick=async()=>{const reason=REASONS[+m.querySelector('input[name=rr]:checked').value].slice(0,60),extra=m.querySelector('#rtext').value;
+    if(ME&&window.FB){try{await FB.addDoc(FB.collection(FB.db,'reports'),{target,reason,text:(extra+' | '+(text||'')).slice(0,300),uid:ME.uid,ts:FB.serverTimestamp()});m.remove();toast('Merci, ton signalement a été envoyé.')}catch(e){toast('Envoi impossible, réessaie.')}}
+    else{window.open(REPORT_REPO+'?title='+encodeURIComponent('[Signalement] '+reason+' – '+target)+'&body='+encodeURIComponent('**Contenu :** '+target+'\n**Texte :** '+(text||'')+'\n**Détails :** '+extra),'_blank','noopener');m.remove();toast('Merci, ton signalement va être examiné.')}};}
+/* --- le compte --- */
+function renderMe(){const b=document.getElementById('meBtn');if(!b)return;b.innerHTML=MYPROF?`<span class="ava big">${esc(MYPROF.avatar||'🐶')}</span>`:`${ic('user')}<span>Connexion</span>`;b.classList.toggle('in',!!MYPROF);b.title=MYPROF?'Mon profil : '+MYPROF.pseudo:'Se connecter'}
+function openAccount(msg){
+  if(!window.FB){toast('La connexion se charge, réessaie dans un instant.');return}
+  if(ME&&MYPROF){const nRep=IS_ADMIN?' ('+REPORTS.length+')':'';
+    const m=modal(`<h3><span class="ava big">${esc(MYPROF.avatar)}</span> ${esc(MYPROF.pseudo)}</h3><p class="rsub">Ton profil GameCheck${IS_ADMIN?' · administrateur':''}</p><div class="acc">${IS_ADMIN?`<button class="btn" data-a="rep">${ic('flag')}Signalements reçus${nRep}</button>`:''}<button class="btn" data-a="edit">${ic('user')}Modifier mon profil</button><button class="btn ghost" data-a="out">Se déconnecter</button><button class="btn danger" data-a="del">${ic('trash')}Supprimer mon compte</button></div><p class="rnote">Supprimer ton compte efface ton profil, tes commentaires, tes sujets et réponses du forum, et tes votes.</p><div class="rbtns"><button class="rcancel">Fermer</button></div>`);
+    if(IS_ADMIN)m.querySelector('[data-a=rep]').onclick=()=>{m.remove();openReports()};
+    m.querySelector('[data-a=edit]').onclick=()=>{m.remove();openProfile(false)};
+    m.querySelector('[data-a=out]').onclick=async()=>{m.remove();await FB.signOut(FB.auth);toast('Tu es déconnecté.')};
+    m.querySelector('[data-a=del]').onclick=()=>{m.remove();deleteAccount()};return}
+  if(ME&&!MYPROF){openProfile(true);return}
+  const m=modal(`<h3>${ic('user')} Rejoins GameCheck</h3><p class="rsub">${esc(msg||'Crée ton profil pour commenter, voter et discuter sur le forum.')}</p><button class="btn gbtn" id="gLogin">${GSVG}Continuer avec Google</button><p class="rnote">On garde seulement ton pseudo et ton avatar (visibles par tous) et un identifiant technique. Ton adresse e-mail n’est jamais affichée. Tu peux supprimer ton compte quand tu veux. À partir de 15 ans.</p><div class="rbtns"><button class="rcancel">Plus tard</button></div>`);
+  m.querySelector('#gLogin').onclick=async()=>{const p=new FB.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});
+    try{await FB.signInWithPopup(FB.auth,p);m.remove()}catch(e){const c=e&&e.code||'';
+      if(/popup-blocked|operation-not-supported|cancelled-popup/.test(c)){FB.signInWithRedirect(FB.auth,p)}
+      else if(!/popup-closed/.test(c))toast('Connexion impossible ('+c+')')}};}
+function openProfile(first){const cur=MYPROF||{pseudo:'',avatar:AVATARS[0]};let av=cur.avatar||AVATARS[0];
+  const m=modal(`<h3>${first?'Crée ton profil':'Modifier mon profil'}</h3><p class="rsub">Ton pseudo et ton avatar sont visibles par tout le monde. N’utilise pas ton vrai nom.</p><input id="pPseudo" class="pin" maxlength="20" placeholder="Ton pseudo (3 à 20 caractères)" value="${esc(cur.pseudo)}"><div class="avs">${AVATARS.map(a=>`<button type="button" class="${a===av?'on':''}" data-a="${a}">${a}</button>`).join('')}</div>${first?'<label class="cgu"><input type="checkbox" id="pCgu"> J’ai 15 ans ou plus et j’accepte les règles des commentaires et du forum (page Infos).</label>':''}<div class="rbtns"><button class="rcancel">Annuler</button><button class="rsend ok">Enregistrer</button></div>`);
+  m.querySelectorAll('.avs button').forEach(b=>b.onclick=()=>{av=b.dataset.a;m.querySelectorAll('.avs button').forEach(x=>x.classList.toggle('on',x===b))});
+  m.querySelector('.rcancel').onclick=()=>{m.remove();if(first&&!MYPROF)FB.signOut(FB.auth)};
+  m.onclick=e=>{if(e.target===m&&!first)m.remove()};
+  m.querySelector('.ok').onclick=async()=>{const pseudo=m.querySelector('#pPseudo').value.trim().replace(/\s+/g,' ');
+    if(pseudo.length<3){toast('Le pseudo doit faire au moins 3 caractères.');return}
+    if(first&&!m.querySelector('#pCgu').checked){toast('Coche la case pour continuer.');return}
+    if(Object.entries(USERS).some(([id,u])=>id!==ME.uid&&u.pseudo&&u.pseudo.toLowerCase()===pseudo.toLowerCase())){toast('Ce pseudo est déjà pris.');return}
+    try{await FB.setDoc(FB.doc(FB.db,'users',ME.uid),{pseudo,avatar:av,ts:Date.now()},{merge:true});MYPROF={...(MYPROF||{}),pseudo,avatar:av};m.remove();renderMe();renderFeed();renderForum();toast(first?'Bienvenue '+pseudo+' !':'Profil mis à jour.')}
+    catch(e){toast('Enregistrement impossible, réessaie.')}};}
+async function deleteAccount(){if(!confirm('Supprimer définitivement ton compte, ton profil, tes commentaires, tes messages du forum et tes votes ? C’est irréversible.'))return;const uid=ME.uid,D=(c,id)=>FB.deleteDoc(FB.doc(FB.db,c,id));
+  try{await Promise.all([...COMS.filter(x=>x.uid===uid).map(x=>D('comments',x.id)),...REPLIES.filter(x=>x.uid===uid).map(x=>D('replies',x.id)),...TOPICS.filter(x=>x.uid===uid).map(x=>D('topics',x.id)),...VOTEDOCS.filter(x=>x.uid===uid).map(x=>D('votes',uid+'_'+x.post))]);
+    await D('users',uid);try{await FB.deleteUser(FB.auth.currentUser)}catch(e){await FB.signOut(FB.auth)}MYPROF=null;toast('Ton compte a été supprimé.')}catch(e){toast('Suppression impossible, réessaie.')}}
+let REPORTS=[],repUnsub=null;
+function openReports(){const m=modal(`<h3>${ic('flag')} Signalements reçus</h3><div id="repList">${REPORTS.length?REPORTS.map(r=>`<div class="com"><div class="cw"><b>${esc(r.reason)}</b><span>${fmtTs(r.ts)}</span></div><div class="ctx">${esc(r.target)} — ${esc(r.text||'')}</div><div class="cacts"><button class="sbtn" data-go="${esc(r.target)}">Voir</button><button class="sbtn" data-del="${esc(r.target)}">Supprimer le contenu</button><button class="sbtn" data-ok="${esc(r.id)}">Classer</button></div></div>`).join(''):'<div class="cnone">Aucun signalement. 👍</div>'}</div><div class="rbtns"><button class="rcancel">Fermer</button></div>`);
+  wireSocial(m);m.querySelectorAll('[data-ok]').forEach(b=>b.onclick=async()=>{try{await FB.deleteDoc(FB.doc(FB.db,'reports',b.dataset.ok));m.remove();openReports()}catch(e){toast('Impossible.')}});
+  m.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{const [c,id]=b.dataset.go.split('/');m.remove();if(c==='topics'){FV.topic=id;showView('forum');renderForum()}else if(c==='replies'){const r=REPLIES.find(x=>x.id===id);if(r){FV.topic=r.topic;showView('forum');renderForum()}}else if(c==='comments'){const x=COMS.find(y=>y.id===id);if(x){OPEN.add(x.post);showView('feed');renderFeed();setTimeout(()=>{const el=document.getElementById('post'+x.post.slice(1));el&&el.scrollIntoView({behavior:'smooth'})},80)}}});}
+/* --- le forum --- */
+const FCATS={gta6:'GTA 6',astuces:'Astuces',rumeurs:'Rumeurs',hors:'Hors-sujet'};
+let FV={cat:'all',topic:null},FDRAFT='';
+function renderForum(){const el=document.getElementById('forum');if(!el)return;
+  if(FV.topic){const t=TOPICS.find(x=>x.id===FV.topic);if(!t){FV.topic=null;return renderForum()}
+    const rs=REPLIES.filter(r=>r.topic===t.id);
+    el.innerHTML=`<button class="fback">‹ Tous les sujets</button>
+    <article class="card ftopic"><div class="fmeta">${who(t.uid)}<span>${fmtTs(t.ts)}</span><span class="fcat">${FCATS[t.cat]||''}</span></div><h2>${esc(t.title)}</h2><div class="fbody">${esc(t.body)}</div><div class="cacts">${modBtns(t,'topics','ce sujet')}</div></article>
+    <div class="fh">${rs.length} réponse${rs.length>1?'s':''}</div>
+    ${rs.map(r=>`<div class="card freply"><div class="fmeta">${who(r.uid)}<span>${fmtTs(r.ts)}</span></div><div class="fbody">${esc(r.text)}</div><div class="cacts">${modBtns(r,'replies','cette réponse')}</div></div>`).join('')}
+    ${MYPROF?(MYPROF.banned?'<div class="cnone card">Ton compte est bloqué : tu ne peux plus écrire.</div>':`<form class="card fform" id="fReply"><textarea maxlength="2000" placeholder="Ta réponse…"></textarea><button class="btn" type="submit">${ic('send')}Répondre</button></form>`):`<button class="btn login-cta">${ic('user')}Connecte-toi pour répondre</button>`}`;
+    el.querySelector('.fback').onclick=()=>{FV.topic=null;renderForum();window.scrollTo({top:0})};
+    const f=el.querySelector('#fReply');if(f){const ta=f.querySelector('textarea');ta.value=FDRAFT;ta.oninput=()=>{FDRAFT=ta.value};
+      f.onsubmit=async e=>{e.preventDefault();const text=ta.value.trim().slice(0,2000);if(!text)return;FDRAFT='';
+        try{await FB.addDoc(FB.collection(FB.db,'replies'),{topic:t.id,uid:ME.uid,text,ts:FB.serverTimestamp()})}catch(err){FDRAFT=text;renderForum();toast('Ta réponse n’a pas été envoyée.')}}}
+  }else{const list=TOPICS.filter(t=>FV.cat==='all'||t.cat===FV.cat);
+    el.innerHTML=`<div class="h1">Forum</div><p class="lead">Discute de GTA 6 avec la communauté : questions, astuces, rumeurs… Tout le monde peut lire ; pour écrire, il faut un profil.</p>
+    <div class="filters fcats">${[['all','Tout'],...Object.entries(FCATS)].map(([k,l])=>`<button class="${FV.cat===k?'on':''}" data-c="${k}">${l}</button>`).join('')}</div>
+    <button class="btn" id="fNew">${ic('chat')}Nouveau sujet</button>
+    <div class="flist">${!window.FB?'<div class="cnone card">Chargement du forum…</div>':list.length?list.map(t=>{const n=REPLIES.filter(r=>r.topic===t.id).length;return `<button class="card fitem" data-t="${esc(t.id)}"><div class="fmeta">${who(t.uid)}<span>${fmtTs(t.ts)}</span><span class="fcat">${FCATS[t.cat]||''}</span></div><h3>${esc(t.title)}</h3><p>${esc(t.body.slice(0,160))}${t.body.length>160?'…':''}</p><div class="fn">${ic('chat')} ${n} réponse${n>1?'s':''}</div></button>`}).join(''):'<div class="cnone card">Aucun sujet pour l’instant. Lance la discussion !</div>'}</div>
+    <p class="note">${ic('info')}<span>Pas d’insultes, pas de spam, pas d’infos personnelles, pas de liens piratés ni d’arnaques. Les messages qui ne respectent pas les règles sont supprimés et leur auteur peut être bloqué.</span></p>`;
+    el.querySelectorAll('.fcats button').forEach(b=>b.onclick=()=>{FV.cat=b.dataset.c;renderForum()});
+    el.querySelectorAll('.fitem').forEach(b=>b.onclick=()=>{FV.topic=b.dataset.t;FDRAFT='';renderForum();window.scrollTo({top:0})});
+    el.querySelector('#fNew').onclick=()=>{if(needProfile('Connecte-toi pour créer un sujet.'))return;if(MYPROF.banned){toast('Ton compte est bloqué.');return}newTopic()};}
+  wireSocial(el);}
+function newTopic(){const m=modal(`<h3>${ic('chat')} Nouveau sujet</h3><input id="tTitle" class="pin" maxlength="120" placeholder="Titre (ex : Où trouver le jet-ski secret ?)"><select id="tCat" class="pin">${Object.entries(FCATS).map(([k,l])=>`<option value="${k}">${l}</option>`).join('')}</select><textarea id="tBody" maxlength="3000" placeholder="Ton message…"></textarea><div class="rbtns"><button class="rcancel">Annuler</button><button class="rsend ok">Publier</button></div>`);
+  m.querySelector('.ok').onclick=async()=>{const title=m.querySelector('#tTitle').value.trim(),body=m.querySelector('#tBody').value.trim(),cat=m.querySelector('#tCat').value;
+    if(title.length<3){toast('Le titre doit faire au moins 3 caractères.');return}if(!body){toast('Écris ton message.');return}
+    try{const r=await FB.addDoc(FB.collection(FB.db,'topics'),{title:title.slice(0,120),body:body.slice(0,3000),cat,uid:ME.uid,ts:FB.serverTimestamp()});m.remove();FV.topic=r.id;renderForum();toast('Sujet publié !')}catch(e){toast('Publication impossible, réessaie.')}};}
+/* --- branchement à Firebase --- */
+function initSocial(){
+  const go=()=>{if(!window.FB)return;const {db}=FB,col=n=>FB.collection(db,n),err=()=>{};
+    FB.onSnapshot(col('users'),s=>{USERS={};s.forEach(d=>USERS[d.id]=d.data());if(ME&&USERS[ME.uid])MYPROF=USERS[ME.uid];renderMe();renderFeed();renderForum()},err);
+    FB.onSnapshot(col('votes'),s=>{VOTEDOCS=s.docs.map(d=>d.data());renderFeed()},err);
+    FB.onSnapshot(FB.query(col('comments'),FB.orderBy('ts','desc'),FB.limit(2000)),s=>{COMS=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts)}});renderFeed()},err);
+    FB.onSnapshot(FB.query(col('topics'),FB.orderBy('ts','desc'),FB.limit(300)),s=>{TOPICS=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts)}});renderForum()},err);
+    FB.onSnapshot(FB.query(col('replies'),FB.orderBy('ts','asc'),FB.limit(5000)),s=>{REPLIES=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts)}});renderForum()},err);
+    FB.getRedirectResult(FB.auth).catch(()=>{});
+    FB.onAuthStateChanged(FB.auth,async u=>{ME=u?{uid:u.uid}:null;MYPROF=u?USERS[u.uid]||null:null;IS_ADMIN=false;if(repUnsub){repUnsub();repUnsub=null}
+      if(u){try{IS_ADMIN=(await FB.getDoc(FB.doc(db,'admins',u.uid))).exists()}catch(e){}
+        if(IS_ADMIN)repUnsub=FB.onSnapshot(FB.query(col('reports'),FB.orderBy('ts','desc'),FB.limit(200)),s=>{REPORTS=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts)}})},err);
+        if(!MYPROF){try{const p=await FB.getDoc(FB.doc(db,'users',u.uid));MYPROF=p.exists()?p.data():null}catch(e){}}
+        if(!MYPROF)openProfile(true)}
+      renderMe();renderFeed();renderForum()});};
+  if(window.FB)go();else window.addEventListener('fb-ready',go,{once:true});
+  renderMe();renderForum();
 }
 
 /* ===== CARTE INTERACTIVE DE LEONIDA (schéma original, non officiel) ===== */
@@ -1018,12 +1148,12 @@ async function removePhoto(i){
 
 function renderEggs(){
   $('#eggs').innerHTML=`  <div class="h1">Easter eggs</div><p class="lead">Les secrets et clins d'œil cachés dans GTA 6, trouvés par les joueurs. Chacun indique où le trouver et à quel point c'est fiable.</p><div class="legend">${Object.keys(STATUS).map(chip).join('')}</div>
-  <div class="discs">${EGGS.map((d,k)=>`<div class="disc"><div class="img"><img src="${POOL[(k*3+5)%POOL.length]}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror=${FB}></div><div class="pad"><div style="margin-bottom:10px">${chip(d.st)}</div><h3>${d.h}</h3><p>${d.p}</p>${d.o?`<p style="margin-top:6px"><b>Où :</b> ${d.o}</p>`:''}<div class="foot">${d.src.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${ic('article')}${s[0]}${ic('ext')}</a>`).join(' ')}</div></div></div>`).join('')}</div>
+  <div class="discs">${EGGS.map((d,k)=>`<div class="disc"><div class="img"><img src="${POOL[(k*3+5)%POOL.length]}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror=${IMGFB}></div><div class="pad"><div style="margin-bottom:10px">${chip(d.st)}</div><h3>${d.h}</h3><p>${d.p}</p>${d.o?`<p style="margin-top:6px"><b>Où :</b> ${d.o}</p>`:''}<div class="foot">${d.src.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${ic('article')}${s[0]}${ic('ext')}</a>`).join(' ')}</div></div></div>`).join('')}</div>
   <p class="note">${ic('info')}<span>Easter eggs repérés par les joueurs depuis la sortie et relayés par la presse jeu vidéo. « Testé par la presse » = repris par plusieurs sites ; « Signalé par des joueurs » = une seule source pour l'instant. Aucun n'est confirmé officiellement par Rockstar.</span></p>`;
 }
 renderEggs();
 /* ===== TABS ===== */
-const TABS=[['feed','home','Fil'],['eggs','star','Easter eggs'],['check','search','Vérifier'],['game','gamepad','Le jeu']];
+const TABS=[['feed','home','Fil'],['eggs','star','Easter eggs'],['forum','chat','Forum'],['check','search','Vérifier'],['game','gamepad','Le jeu']];
 $('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
 function showView(v){
   document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));
@@ -1043,7 +1173,7 @@ $('#rulesTitle').innerHTML=`${tile('shield','vice',28)}LES 5 RÉFLEXES ANTI-FAKE
 $('#majTitle').innerHTML=`${tile('clock','vice',28)}MISES À JOUR`;
 $('#dlTitle').innerHTML=`${tile('download','vice',28)}INSTALLER GAMECHECK`;
 $('#legalTitle').innerHTML=`${tile('info','vice',28)}À PROPOS ET INFOS LÉGALES`;
-$('#appVersion').innerHTML=`${ic('info')}<span>GameCheck · version 1.4 du 21 nov. 2026 (onglet Easter eggs)</span>`;
+$('#appVersion').innerHTML=`${ic('info')}<span>GameCheck · version 1.5 du 21 nov. 2026 (profils et forum)</span>`;
 const btnHTML=()=>`${ic('search')}Analyser`;
 $('#checkBtn').innerHTML=btnHTML();
 let sampleFn=null;
@@ -1162,6 +1292,16 @@ window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=
 $('#installBtn').onclick=async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('#installBtn').hidden=true};
 window.addEventListener('appinstalled',()=>{$('#installBtn').hidden=true;toast('GameCheck est installé !')});
 withIdx();renderUne();renderFilters();renderFeed();renderGame();initMap();initPhotos();
+</script>
+<script type="module">
+// Firebase (gratuit) : connexion Google + base de données pour les profils, J'aime, commentaires et forum.
+// Ces clés sont publiques par nature : la sécurité est assurée par les règles Firestore (fichier firestore.rules).
+import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
+import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut,deleteUser} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
+import {getFirestore,collection,doc,onSnapshot,setDoc,addDoc,deleteDoc,getDoc,serverTimestamp,query,orderBy,limit} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+const app=initializeApp({apiKey:"AIzaSyBZ72tLBT5lrhqRPWcmmdNxC8nlSgB-q6g",authDomain:"gamecheck-48594.firebaseapp.com",projectId:"gamecheck-48594",storageBucket:"gamecheck-48594.firebasestorage.app",messagingSenderId:"171841910675",appId:"1:171841910675:web:55a976d6202a2b0485da66"});
+window.FB={auth:getAuth(app),db:getFirestore(app),GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut,deleteUser,collection,doc,onSnapshot,setDoc,addDoc,deleteDoc,getDoc,serverTimestamp,query,orderBy,limit};
+window.dispatchEvent(new Event('fb-ready'));
 </script>
 </body>
 </html>
