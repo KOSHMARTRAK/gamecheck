@@ -457,11 +457,11 @@ nav.tabs>div{max-width:1280px}
 .toast.on{display:block}
 /* === bordures ondulées et vivantes (signature GameCheck) === */
 .post,.card,.disc,.fact{position:relative;border-color:rgba(255,255,255,.55)}
-.post::before,.card::before,.disc::before,.fact::before{content:"";position:absolute;top:18px;bottom:18px;left:0;right:0;pointer-events:none;z-index:3;opacity:.75;
+.post::before,.card::before,.disc::before,.fact::before,.kq-box::before{content:"";position:absolute;top:18px;bottom:18px;left:0;right:0;pointer-events:none;z-index:3;opacity:.75;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='40'%3E%3Cpath d='M3 0Q0 10 3 20T3 40' fill='none' stroke='%2313b5b0' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"),
    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='40'%3E%3Cpath d='M3 0Q6 10 3 20T3 40' fill='none' stroke='%23ff6fae' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat:repeat-y;background-size:6px 40px;background-position:0 0,100% 0;animation:waveV 7s linear infinite}
-.post::after,.card::after,.disc::after,.fact::after{content:"";position:absolute;left:18px;right:18px;top:0;bottom:0;pointer-events:none;z-index:3;opacity:.75;
+.post::after,.card::after,.disc::after,.fact::after,.kq-box::after{content:"";position:absolute;left:18px;right:18px;top:0;bottom:0;pointer-events:none;z-index:3;opacity:.75;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='6'%3E%3Cpath d='M0 3Q10 0 20 3T40 3' fill='none' stroke='%2313b5b0' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"),
    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='6'%3E%3Cpath d='M0 3Q10 6 20 3T40 3' fill='none' stroke='%23ff6fae' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat:repeat-x;background-size:40px 6px;background-position:0 0,0 100%;animation:waveH 7s linear infinite}
@@ -485,6 +485,42 @@ nav.tabs>.walker{position:absolute;bottom:calc(100% - 9px);width:24px;height:24p
 nav.tabs>.walker img{width:100%;height:100%;object-fit:contain;border-radius:50%;background:radial-gradient(circle at 50% 70%,#ffd166,#ff7a45 60%,#ff2d95);box-shadow:0 2px 4px rgba(120,80,30,.35);animation:dogBob .5s ease-in-out infinite alternate}
 @keyframes dogWalk{0%{left:3%;transform:scaleX(1)}46%{left:88%;transform:scaleX(1)}50%{left:88%;transform:scaleX(-1)}96%{left:3%;transform:scaleX(-1)}100%{left:3%;transform:scaleX(1)}}
 @keyframes dogBob{from{transform:translateY(0) rotate(-6deg)}to{transform:translateY(-3px) rotate(6deg)}}
+/* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
+.kq{display:none}
+@media(min-width:1260px){#v-game .panel,#v-eggs .panel{max-width:860px;margin:0 auto}.kq{display:block;position:fixed;z-index:15;top:122px;right:max(18px,calc(50% - 622px));width:186px}}
+.kq-lbl{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:7px}
+.kq-box{position:relative;border-radius:26px;overflow:hidden;background:linear-gradient(180deg,#9fe3ff 0%,#c9f0ff 14%,#ffeef6 60%,#ffe2c4 100%);
+  border:1px solid rgba(255,255,255,.85);box-shadow:0 24px 50px -26px rgba(43,36,64,.5),0 0 0 6px rgba(255,255,255,.25);animation:kqFloat 6s ease-in-out infinite}
+@keyframes kqFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.kq-sky{position:relative;height:58px;overflow:hidden}
+.kq-plane{position:absolute;top:9px;left:0;width:260px;height:40px;animation:kqFly 12s linear infinite}
+@keyframes kqFly{from{transform:translateX(196px)}to{transform:translateX(-270px)}}
+.kq-cloud{position:absolute;top:14px;left:20px;width:38px;height:10px;border-radius:10px;background:#fff;opacity:.9;animation:kqCloud 30s linear infinite}
+.kq-cloud::before{content:"";position:absolute;left:8px;top:-7px;width:18px;height:15px;border-radius:50%;background:inherit}
+.kq-cloud.k2{top:34px;width:28px;height:8px;opacity:.7;animation-duration:44s;animation-delay:-20s}
+@keyframes kqCloud{from{left:-40px}to{left:200px}}
+.kq-slot{position:relative;margin:0 12px;height:min(600px,calc(100vh - 400px));min-height:220px;border-radius:18px;overflow:hidden;
+  background:rgba(255,255,255,.6);display:flex;align-items:center;justify-content:center;text-align:center;
+  box-shadow:inset 0 0 0 2px rgba(19,181,176,.35),inset 0 0 0 5px rgba(255,255,255,.6)}
+.kq-slot::after{content:"";position:absolute;inset:-40% -60%;background:linear-gradient(115deg,transparent 42%,rgba(255,255,255,.75) 50%,transparent 58%);animation:kqShine 5.5s ease-in-out infinite;pointer-events:none}
+@keyframes kqShine{0%,55%{transform:translateX(-55%)}100%{transform:translateX(55%)}}
+.kq-ph{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px}
+.kq-dog{width:54px;height:54px;border-radius:50%;overflow:hidden;background:radial-gradient(circle at 50% 70%,#ffd166,#ff7a45 60%,#ff2d95);box-shadow:0 0 0 3px #fff,0 0 0 5.5px #13b5b0;animation:kqBob 2.4s ease-in-out infinite}
+.kq-dog img{width:100%;height:100%;object-fit:contain}
+@keyframes kqBob{0%,100%{transform:rotate(-6deg) translateY(0)}50%{transform:rotate(6deg) translateY(-4px)}}
+.kq-ph b{font-family:var(--disp);font-size:30px;line-height:.95;letter-spacing:.8px;background:var(--vice-g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.kq-ph span{font-size:12px;font-weight:800;color:#0e6f6b;background:rgba(19,181,176,.12);padding:4px 10px;border-radius:999px}
+.kq-ph small{font-size:11px;line-height:1.35;color:var(--mute)}
+.kq-sand{position:relative;height:40px;margin-top:14px;background:linear-gradient(180deg,#ffe8bf,#f8d9a2);
+  background-image:radial-gradient(circle,rgba(190,140,70,.35) 0 1px,transparent 1.5px),linear-gradient(180deg,#ffe8bf,#f8d9a2);background-size:11px 9px,auto}
+.kq-sand::before{content:"";position:absolute;left:0;right:0;bottom:100%;height:12px;background-repeat:repeat-x;background-size:60px 12px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='12'%3E%3Cpath d='M0 6Q15 0 30 6T60 6V12H0Z' fill='%23ffe8bf'/%3E%3Cpath d='M0 6Q15 0 30 6T60 6' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E");animation:kqShore 6s linear infinite}
+@keyframes kqShore{to{background-position:60px 0}}
+.kq-crab{position:absolute;bottom:8px;width:20px;height:14px;animation:kqCrab 18s linear infinite}
+.kq-crab svg{width:100%;height:100%;animation:crabStep .28s ease-in-out infinite alternate}
+@keyframes kqCrab{0%{left:-24px}30%{left:40%}45%{left:40%}100%{left:190px}}
+.kq-shell{position:absolute;right:20px;bottom:10px;width:13px;height:13px;transform:rotate(-12deg)}
+@media (prefers-reduced-motion:reduce){.kq *,.kq-box{animation:none!important}}
 @media (prefers-reduced-motion:reduce){.post::before,.post::after,.card::before,.card::after,.disc::before,.disc::after,.fact::before,.fact::after,.nbg *,nav.tabs>.walker,nav.tabs>.walker img{animation:none!important}}
 </style>
 </head>
@@ -627,6 +663,34 @@ nav.tabs>.walker img{width:100%;height:100%;object-fit:contain;border-radius:50%
   </section>
 </div>
 
+<aside class="kq" aria-label="Espace publicitaire">
+  <div class="kq-lbl">Publicité</div>
+  <div class="kq-box">
+    <div class="kq-sky" aria-hidden="true">
+      <span class="kq-cloud"></span><span class="kq-cloud k2"></span>
+      <svg class="kq-plane" viewBox="0 0 260 40"><defs><linearGradient id="kqBan" x1="0" x2="1"><stop offset="0" stop-color="#ff2d95"/><stop offset=".6" stop-color="#ff6a3d"/><stop offset="1" stop-color="#ffb347"/></linearGradient></defs>
+        <path d="M8 20Q8 14 19 14L40 15 46 10H49L47 20Q30 25 8 20Z" fill="#fff" stroke="#2b2440" stroke-width="1.2"/>
+        <path d="M19 19H32L25 29Z" fill="#13b5b0"/><circle cx="15" cy="17.5" r="2" fill="#7fd6f5"/>
+        <rect x="5" y="10" width="2" height="20" rx="1" fill="#2b2440" opacity=".55"><animate attributeName="height" values="20;3;20" dur=".14s" repeatCount="indefinite"/><animate attributeName="y" values="10;18.5;10" dur=".14s" repeatCount="indefinite"/></rect>
+        <path d="M48 17Q60 21 72 18" fill="none" stroke="#2b2440" stroke-width=".9"/>
+        <path fill="url(#kqBan)"><animate attributeName="d" dur="1.1s" repeatCount="indefinite" values="M72 8Q112 3 152 8T232 8L232 30Q192 35 152 30T72 30Z;M72 8Q112 13 152 8T232 8L232 30Q192 25 152 30T72 30Z;M72 8Q112 3 152 8T232 8L232 30Q192 35 152 30T72 30Z"/></path>
+        <text x="152" y="24.5" text-anchor="middle" font-family="Bebas Neue,Impact,sans-serif" font-size="15" letter-spacing="1.5" fill="#fff">VOTRE PUB ICI</text>
+      </svg>
+    </div>
+    <div class="kq-slot" id="kqSlot">
+      <div class="kq-ph">
+        <span class="kq-dog"><img src="img/chien-buste.png" alt=""></span>
+        <b>TON ANNONCE<br>ICI</b>
+        <span>Format 160 × 600</span>
+        <small>Emplacement publicitaire<br>bientôt disponible</small>
+      </div>
+    </div>
+    <div class="kq-sand" aria-hidden="true">
+      <span class="kq-crab"><svg viewBox="0 0 30 20"><g stroke="#d8432a" stroke-width="1.6" stroke-linecap="round"><path d="M8 12 2 15M8 14 3 18M22 12l6 3M22 14l5 4M7 7 4 2M23 7l3-5"/></g><circle cx="4" cy="2" r="2.4" fill="#ff6a4d"/><circle cx="26" cy="2" r="2.4" fill="#ff6a4d"/><ellipse cx="15" cy="11" rx="9" ry="6" fill="#ff6a4d"/><circle cx="12" cy="8" r="1.4" fill="#fff"/><circle cx="18" cy="8" r="1.4" fill="#fff"/><circle cx="12" cy="8" r=".7" fill="#222"/><circle cx="18" cy="8" r=".7" fill="#222"/></svg></span>
+      <svg class="kq-shell" viewBox="0 0 20 20"><path d="M10 18 2 9a8 8 0 0 1 16 0z" fill="#ffc6b0"/><path d="M10 18 4 6M10 18V2M10 18l6-12" stroke="#e98f78" stroke-width="1"/></svg>
+    </div>
+  </div>
+</aside>
 <nav class="tabs"><div class="nbg" aria-hidden="true">
   <svg class="shell s1" viewBox="0 0 20 20"><path d="M10 18 2 9a8 8 0 0 1 16 0z" fill="#ffc6b0"/><path d="M10 18 4 6M10 18V2M10 18l6-12M10 18 2.5 10M10 18l7.5-8" stroke="#e98f78" stroke-width="1"/></svg>
   <svg class="shell s2" viewBox="0 0 20 20"><path d="M10 1l2.4 5.6 6 .5-4.6 4 1.4 6L10 14l-5.2 3.1 1.4-6-4.6-4 6-.5z" fill="#ff9f6b"/><circle cx="10" cy="9.5" r="1.3" fill="#ffd2b8"/></svg>
