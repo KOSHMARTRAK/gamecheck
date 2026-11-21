@@ -266,6 +266,11 @@ textarea:focus{outline:2px solid #ff2d95;border-color:transparent}
 .cform button{flex:0 0 auto;width:44px;border-radius:12px;background:var(--vice-g);color:#fff;display:grid;place-items:center}
 .cform button svg.i{width:18px;height:18px}
 .cnone{font-size:13px;color:var(--mute);padding:10px 0}
+/* installation */
+.dlcard{padding:14px}
+.dlcard .btn{margin-top:0}
+.dlsteps p{font-size:13.5px;line-height:1.5;color:#3a3045;margin-top:10px}
+.dlshare{padding-top:10px;border-top:1px solid var(--line)}
 /* carte */
 .mapcard{padding:10px;overflow:hidden}
 .leonida{width:100%;max-width:520px;display:block;margin:0 auto}
@@ -387,6 +392,17 @@ nav.tabs>div{max-width:1280px}
         <div class="rule"><span class="n">3</span><span><b>Capture d'écran sans lien :</b> facile à truquer. Cherche l'original.</span></div>
         <div class="rule"><span class="n">4</span><span><b>Un seul compte qui l'affirme :</b> attends que des médias fiables confirment.</span></div>
         <div class="rule"><span class="n">5</span><span><b>Titre en MAJUSCULES et sirènes :</b> ça cherche les clics, pas la vérité.</span></div>
+      </div>
+
+      <div class="sec" id="dlTitle"></div>
+      <div class="card dlcard">
+        <a class="btn" href="https://github.com/KOSHMARTRAK/gamecheck/releases/latest/download/GameCheck.apk" rel="noopener" style="text-decoration:none">Télécharger l'appli Android (APK)</a>
+        <div class="dlsteps">
+          <p><b>Android :</b> télécharge le fichier, ouvre-le, puis accepte « Installer des applis de cette source ». Tu peux aussi ouvrir ce site dans Chrome et toucher « Installer l'appli ».</p>
+          <p><b>iPhone :</b> ouvre ce site dans Safari, touche le bouton Partager □↑ puis « Sur l'écran d'accueil ».</p>
+          <p><b>PC :</b> dans Chrome ou Edge, clique sur l'icône d'installation dans la barre d'adresse.</p>
+          <p class="dlshare">Partage GameCheck : <b>koshmartrak.github.io/gamecheck</b></p>
+        </div>
       </div>
 
       <div class="sec" id="majTitle"></div>
@@ -957,6 +973,7 @@ document.querySelectorAll('#examples button').forEach(b=>b.onclick=()=>{$('#clai
 $('#checkNote').innerHTML=`${ic('info')}<span>L'analyse ne va pas sur Internet en direct : elle s'appuie sur les infos vérifiées de l'app et sur des connaissances générales. Pour une info toute fraîche, vérifie toujours auprès d'une source officielle.</span>`;
 $('#rulesTitle').innerHTML=`${tile('shield','vice',28)}LES 5 RÉFLEXES ANTI-FAKE`;
 $('#majTitle').innerHTML=`${tile('clock','vice',28)}MISES À JOUR`;
+$('#dlTitle').innerHTML=`${tile('download','vice',28)}INSTALLER GAMECHECK`;
 $('#legalTitle').innerHTML=`${tile('info','vice',28)}À PROPOS ET INFOS LÉGALES`;
 $('#appVersion').innerHTML=`${ic('info')}<span>GameCheck · version 1.0 du 21 nov. 2026</span>`;
 const btnHTML=()=>`${ic('search')}Analyser`;
