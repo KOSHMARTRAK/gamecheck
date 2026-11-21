@@ -6,7 +6,7 @@ Projet perso gratuit de KOSHMAR TRAK (créé le 21 nov. 2026 avec Claude).
 - **Le site / l'appli (à partager)** : https://koshmartrak.github.io/gamecheck/
 - **Les fichiers sur GitHub** : https://github.com/KOSHMARTRAK/gamecheck
 - **Les signalements reçus** : https://github.com/KOSHMARTRAK/gamecheck/issues
-- **La mise à jour automatique (toutes les 3 h)** : https://claude.ai/code/routines/trig_01X9kjw4TPoqaFtEfkyjXFLq
+- **La mise à jour des infos** (EN PAUSE depuis le 21 nov. 2026 : seulement à la demande, bouton « Run now » ou demande à Claude) : https://claude.ai/code/routines/trig_01X9kjw4TPoqaFtEfkyjXFLq
 - **L'ancienne version dans Claude** : https://claude.ai/artifact/UFLjgBq7xooKQo4wp7XhAB
 - **Les dessins de la mascotte (Figma)** : https://www.figma.com/design/04WhYi1fuD19bf4cUJa43r
 

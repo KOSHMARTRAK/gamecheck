@@ -1,5 +1,5 @@
-﻿// GameCheck : fonctionne hors connexion, et va toujours chercher les infos fraÃ®ches en premier.
-const CACHE = 'gamecheck-v5';
+// GameCheck : fonctionne hors connexion, et va toujours chercher les infos fraÃ®ches en premier.
+const CACHE = 'gamecheck-v6';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'img/icon-192.png', 'img/icon-512.png', 'img/chien-buste.png'];
 
 self.addEventListener('install', e => {
