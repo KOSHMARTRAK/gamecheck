@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -266,6 +266,19 @@ textarea:focus{outline:2px solid #ff2d95;border-color:transparent}
 .cform button{flex:0 0 auto;width:44px;border-radius:12px;background:var(--vice-g);color:#fff;display:grid;place-items:center}
 .cform button svg.i{width:18px;height:18px}
 .cnone{font-size:13px;color:var(--mute);padding:10px 0}
+/* carte */
+.mapcard{padding:10px;overflow:hidden}
+.leonida{width:100%;max-width:520px;display:block;margin:0 auto}
+.leonida .reg{cursor:pointer;outline:none}
+.leonida .reg path{transition:fill-opacity .2s,stroke-width .2s}
+.leonida .reg:hover path,.leonida .reg:focus path{fill-opacity:.8}
+.leonida .reg.on path{fill-opacity:.95;stroke-width:3.5}
+.leonida .mlab{font-family:var(--disp);font-size:14px;letter-spacing:.8px;fill:#fff;pointer-events:none;paint-order:stroke;stroke:#14101c;stroke-width:3px}
+.mapinfo{margin-top:10px;border-radius:14px;overflow:hidden;background:var(--soft)}
+.mapinfo img{width:100%;aspect-ratio:16/8;object-fit:cover;display:block}
+.mapinfo .mi{padding:12px 14px}
+.mapinfo b{font-family:var(--disp);font-size:24px;letter-spacing:.6px}
+.mapinfo p{font-size:14px;line-height:1.5;color:#3a3045;margin-top:2px}
 /* signalement */
 .rmodal{position:fixed;inset:0;background:rgba(16,5,30,.55);z-index:300;display:flex;align-items:flex-end;justify-content:center;padding:16px}
 @media(min-width:600px){.rmodal{align-items:center}}
@@ -814,6 +827,41 @@ async function initSocial(){
   renderFeed();
 }
 
+/* ===== CARTE INTERACTIVE DE LEONIDA (schéma original, non officiel) ===== */
+const REGIONS=[
+ {k:'gellhorn',n:'Port Gellhorn',c:'#f59e0b',d:'M22,70 L168,52 L176,118 L122,134 L62,128 L22,112 Z',lx:92,ly:96,img:5,
+  t:"Une ville portuaire au nord-ouest de Leonida, sur la côte du golfe. Ambiance de station balnéaire qui a connu des jours meilleurs."},
+ {k:'kalaga',n:'Mont Kalaga',c:'#22c55e',d:'M168,52 L330,40 L352,92 L322,142 L232,152 L176,118 Z',lx:262,ly:96,img:null,
+  t:"Une région de nature au nord de l'État : forêts et reliefs, loin des néons de la ville."},
+ {k:'ambrosia',n:'Ambrosia',c:'#a855f7',d:'M176,118 L232,152 L322,142 L306,240 L252,262 L202,222 Z',lx:252,ly:196,img:null,
+  t:"Une région de l'intérieur des terres de Leonida, loin des plages, à explorer dans le jeu."},
+ {k:'grassrivers',n:'Grassrivers',c:'#14b8a6',d:'M202,222 L252,262 L272,362 L232,388 L196,332 L186,262 Z',lx:224,ly:306,img:20,
+  t:"Des marais immenses au sud, inspirés des Everglades de Floride : hautes herbes, bateaux à hélice… et alligators."},
+ {k:'vice',n:'Vice City',c:'#ff2d95',d:'M252,262 L306,240 L322,300 L302,372 L272,362 Z',lx:288,ly:308,img:1,
+  t:"La grande ville de Leonida, inspirée de Miami : plages, néons, gratte-ciel, fêtes et vie nocturne. C'est le centre de l'histoire."},
+ {k:'keys',n:'Leonida Keys',c:'#38bdf8',d:'M262,398 m-14,0 a14,7 0 1,0 28,0 a14,7 0 1,0 -28,0 M226,414 m-13,0 a13,6 0 1,0 26,0 a13,6 0 1,0 -26,0 M190,428 m-12,0 a12,6 0 1,0 24,0 a12,6 0 1,0 -24,0 M154,440 m-11,0 a11,5 0 1,0 22,0 a11,5 0 1,0 -22,0 M120,450 m-10,0 a10,5 0 1,0 20,0 a10,5 0 1,0 -20,0',lx:190,ly:466,img:18,
+  t:"Un chapelet d'îles au sud, inspiré des Florida Keys. D'après Rockstar, c'est là que Jason vit et travaille."}
+];
+function mapSvg(){
+  return `<svg class="leonida" viewBox="0 0 380 490" role="img" aria-label="Carte schématique de Leonida">
+   <defs><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a0f55"/><stop offset="1" stop-color="#0c0420"/></linearGradient>
+   <pattern id="waves" width="24" height="12" patternUnits="userSpaceOnUse"><path d="M0 8 Q6 4 12 8 T24 8" fill="none" stroke="#ffffff" stroke-opacity=".06"/></pattern></defs>
+   <rect width="380" height="490" rx="18" fill="url(#sea)"/><rect width="380" height="490" rx="18" fill="url(#waves)"/>
+   <text x="350" y="40" class="mlab" text-anchor="end" style="font-size:11px;opacity:.6">N ↑</text>
+   <text x="70" y="250" class="mlab" style="font-size:11px;opacity:.5">Golfe</text>
+   ${REGIONS.map(r=>`<g class="reg" data-k="${r.k}" tabindex="0" role="button" aria-label="${r.n}"><path d="${r.d}" fill="${r.c}" fill-opacity=".55" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><text x="${r.lx}" y="${r.ly}" text-anchor="middle" class="mlab">${r.n.toUpperCase()}</text></g>`).join('')}
+  </svg>`;
+}
+function selectRegion(k){
+  const r=REGIONS.find(x=>x.k===k); if(!r)return;
+  document.querySelectorAll('.leonida .reg').forEach(g=>g.classList.toggle('on',g.dataset.k===k));
+  $('#mapInfo').innerHTML=`${r.img!=null?`<img src="${RSF(r.img)}" alt="${r.n}" loading="lazy">`:''}<div class="mi"><b style="color:${r.c}">${r.n}</b><p>${r.t}</p></div>`;
+}
+function initMap(){
+  document.querySelectorAll('.leonida .reg').forEach(g=>{g.onclick=()=>selectRegion(g.dataset.k);g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectRegion(g.dataset.k)}}});
+  selectRegion('vice');
+}
+
 /* ===== SIGNALEMENT (obligation européenne DSA) ===== */
 const REPORT_REPO='https://github.com/KOSHMARTRAK/gamecheck/issues/new';
 const REASONS=['Information fausse ou trompeuse','Arnaque ou lien dangereux','Contenu illégal','Harcèlement, insulte ou haine','Atteinte à mes droits (image, droit d’auteur, vie privée)','Autre'];
@@ -846,6 +894,9 @@ function renderGame(){
   <div class="score"><div><b>99</b><span>Metacritic</span></div><div><b>98-99</b><span>OpenCritic</span></div><div><b>N°1</b><span>Précommandes</span></div></div>
   <div class="sec">${tile('info','vice',28)}FICHE DU JEU</div>
   <div class="grid">${FACTS.map(f=>`<div class="fact">${tile(f.icon,f.tone,38)}<div class="k">${f.k}</div><div class="v">${f.v}</div><div class="s">${f.s}</div></div>`).join('')}</div>
+  <div class="sec">${tile('map','vice',28)}CARTE DE LEONIDA</div>
+  <div class="card mapcard">${mapSvg()}<div class="mapinfo" id="mapInfo"></div></div>
+  <p class="note">${ic('info')}<span>Carte schématique faite par GameCheck pour situer les régions : ce n'est pas la carte officielle du jeu. Les noms des régions viennent du site de Rockstar Games.</span></p>
   <div class="sec">${tile('gamepad','vice',28)}CE QUI CHANGE</div>
   <div class="card">${MECH.map(m=>`<div class="mech">${tile(m.icon,m.tone,40)}<div><h3>${m.h}</h3><p>${m.p}</p><a href="${m.src[1]}" target="_blank" rel="noopener">${ic('link')}${m.src[0]}</a></div></div>`).join('')}</div>
   <div class="sec">${tile('sparkles','vice',28)}DÉCOUVERTES DES JOUEURS</div>
@@ -978,7 +1029,7 @@ let installEvt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;$('#installBtn').hidden=false});
 $('#installBtn').onclick=async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('#installBtn').hidden=true};
 window.addEventListener('appinstalled',()=>{$('#installBtn').hidden=true;toast('GameCheck est installé !')});
-withIdx();renderUne();renderFilters();renderFeed();renderGame();initPhotos();
+withIdx();renderUne();renderFilters();renderFeed();renderGame();initMap();initPhotos();
 </script>
 </body>
 </html>
