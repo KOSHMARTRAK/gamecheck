@@ -556,7 +556,19 @@ nav.tabs>.walker img{width:100%;height:100%;object-fit:contain;border-radius:50%
 .frname i{margin-left:auto;font-style:normal;color:#0e6f6b}
 .gback{display:inline-flex;margin:4px 0 8px;font-weight:800;color:#0e6f6b;font-size:14px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.75)}
 @media (prefers-reduced-motion:reduce){.tg,.tg::after,.tg-e,.ghero-e{animation:none!important}}
-/* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
+/* barre du bas aux couleurs du jeu consulté */
+nav.tabs.themed{background:var(--nbgc)!important;box-shadow:0 -3px 0 var(--nact),0 -10px 24px -10px rgba(0,0,0,.35)}
+nav.tabs.themed::before,nav.tabs.themed>.nbg,nav.tabs.themed>.walker{display:none}
+nav.tabs.themed button{color:var(--nfg);position:relative;text-shadow:0 1px 2px rgba(0,0,0,.35)}
+nav.tabs.themed button svg.i{filter:drop-shadow(0 1px 1px rgba(0,0,0,.3))}
+nav.tabs.themed button.on{color:var(--nact)}
+nav.tabs.themed button.on::before{content:"";position:absolute;top:0;left:28%;right:28%;height:3px;border-radius:0 0 4px 4px;background:var(--nact);box-shadow:0 0 10px var(--nact)}
+.navtag{position:absolute;left:50%;bottom:calc(100% + 6px);transform:translateX(-50%);z-index:3;white-space:nowrap;font-size:12px;font-weight:800;color:var(--nfg,#fff);
+  background:var(--nbgc,#2b2440);padding:5px 12px;border-radius:999px;box-shadow:0 0 0 2px var(--nact,#fff),0 8px 18px -8px rgba(0,0,0,.5);text-shadow:0 1px 2px rgba(0,0,0,.35);animation:tagIn .35s ease-out}
+nav.tabs>.navtag{display:block;width:auto;max-width:92vw;overflow:hidden;text-overflow:ellipsis}
+nav.tabs>.navtag[hidden]{display:none}
+.navtag span{font-size:14px}
+@keyframes tagIn{from{opacity:0;transform:translate(-50%,6px)}to{opacity:1;transform:translate(-50%,0)}}/* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
 .kq{display:none}
 @media(min-width:1260px){#v-game .panel,#v-eggs .panel{max-width:860px;margin:0 auto}.kq{display:block;position:fixed;z-index:15;top:122px;right:max(18px,calc(50% - 622px));width:186px}}
 .kq-lbl{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:7px}
@@ -772,7 +784,7 @@ nav.tabs>.walker img{width:100%;height:100%;object-fit:contain;border-radius:50%
   <svg class="shell s4" viewBox="0 0 20 20"><path d="M10 18 2 9a8 8 0 0 1 16 0z" fill="#fff0c9"/><path d="M10 18 4 6M10 18V2M10 18l6-12" stroke="#d9b66a" stroke-width="1"/></svg>
   <span class="crab c1"><svg viewBox="0 0 30 20"><g stroke="#d8432a" stroke-width="1.6" stroke-linecap="round" class="legs"><path d="M8 12 2 15M8 14 3 18M22 12l6 3M22 14l5 4"/></g><path d="M7 7 4 2M23 7l3-5" stroke="#d8432a" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="2" r="2.4" fill="#ff6a4d"/><circle cx="26" cy="2" r="2.4" fill="#ff6a4d"/><ellipse cx="15" cy="11" rx="9" ry="6" fill="#ff6a4d"/><circle cx="12" cy="8" r="1.4" fill="#fff"/><circle cx="18" cy="8" r="1.4" fill="#fff"/><circle cx="12" cy="8" r=".7" fill="#222"/><circle cx="18" cy="8" r=".7" fill="#222"/></svg></span>
   <span class="crab c2"><svg viewBox="0 0 30 20"><g stroke="#d8432a" stroke-width="1.6" stroke-linecap="round" class="legs"><path d="M8 12 2 15M8 14 3 18M22 12l6 3M22 14l5 4"/></g><path d="M7 7 4 2M23 7l3-5" stroke="#d8432a" stroke-width="1.6" stroke-linecap="round"/><circle cx="4" cy="2" r="2.4" fill="#ff6a4d"/><circle cx="26" cy="2" r="2.4" fill="#ff6a4d"/><ellipse cx="15" cy="11" rx="9" ry="6" fill="#ff6a4d"/><circle cx="12" cy="8" r="1.4" fill="#fff"/><circle cx="18" cy="8" r="1.4" fill="#fff"/><circle cx="12" cy="8" r=".7" fill="#222"/><circle cx="18" cy="8" r=".7" fill="#222"/></svg></span>
-</div><span class="walker" aria-hidden="true"><img src="img/chien-buste.png" alt=""></span><div id="tabs"></div></nav>
+</div><div class="navtag" id="navTag" hidden></div><span class="walker" aria-hidden="true"><img src="img/chien-buste.png" alt=""></span><div id="tabs"></div></nav>
 
 <div class="toast" id="toast"></div>
 
@@ -1546,6 +1558,36 @@ function renderMine(){const el=document.getElementById('mine');if(!el)return;con
   <p class="note">${ic('info')}<span>Ta liste est gardée sur cet appareil. Bientôt : un fil d’infos rien que pour tes jeux et des alertes.</span></p>`;
   el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));}
 
+/* barre du bas : prend le style du jeu ou du genre consulté (le thème plage reste le thème de base) */
+const NAVT={
+ gta:{bg:'linear-gradient(90deg,#ff2d95,#ff6a3d 55%,#ffb347)',fg:'#fff',act:'#1b0b2e',e:'🌴'},
+ rdr:{bg:'linear-gradient(90deg,#5a1a12,#8b2a1c 55%,#c2753a)',fg:'#f6e6cf',act:'#ffd59a',e:'🤠'},
+ eldenring:{bg:'linear-gradient(180deg,#2b2417,#100d08)',fg:'#e8d9a8',act:'#f5c84c',e:'🌳'},
+ darksouls:{bg:'linear-gradient(180deg,#2a2622,#0d0c0b)',fg:'#d9d2c3',act:'#ff9b3d',e:'🔥'},
+ sekiro:{bg:'linear-gradient(180deg,#3a0d0d,#120606)',fg:'#f1e3d3',act:'#ff4d4d',e:'🗡️'},
+ cod:{bg:'linear-gradient(90deg,#2f3322,#4a4f33)',fg:'#e5e7d4',act:'#e0c66b',e:'🎖️'},
+ bf:{bg:'linear-gradient(90deg,#0f1f2e,#2a4a63)',fg:'#e2eef7',act:'#ff7a1a',e:'💥'},
+ fortnite:{bg:'linear-gradient(90deg,#3d5afe,#9c27b0)',fg:'#fff',act:'#ffe14d',e:'🪂'},
+ minecraft:{bg:'linear-gradient(180deg,#5d9e3a 0 22%,#7b5536 22% 100%)',fg:'#fff',act:'#b6f26c',e:'⛏️'},
+ roblox:{bg:'linear-gradient(90deg,#1f2937,#374151)',fg:'#fff',act:'#ef4444',e:'🧱'},
+ pokemon:{bg:'linear-gradient(90deg,#e3350d,#b71c1c)',fg:'#fff',act:'#ffcb05',e:'⚡'},
+ mk:{bg:'linear-gradient(90deg,#e60012,#ff8a00 50%,#0050aa)',fg:'#fff',act:'#ffe14d',e:'🏁'},
+ fc:{bg:'repeating-linear-gradient(90deg,#1f8f3a 0 40px,#23a043 40px 80px)',fg:'#fff',act:'#f5ff6b',e:'⚽'},
+ lol:{bg:'linear-gradient(90deg,#091428,#0a323c)',fg:'#cdbe91',act:'#c8aa6e',e:'🛡️'},
+ valorant:{bg:'linear-gradient(90deg,#0f1923,#3a0f17)',fg:'#ece8e1',act:'#ff4655',e:'🎯'},
+ re:{bg:'linear-gradient(180deg,#2a0a0a,#0a0303)',fg:'#e9d6d6',act:'#e11d48',e:'☣️'},
+ zelda:{bg:'linear-gradient(90deg,#1e4d3a,#2f6b4f)',fg:'#f2ecd0',act:'#e6c75a',e:'🗡️'},
+ wow:{bg:'linear-gradient(90deg,#1a1308,#3a2a10)',fg:'#f0dca2',act:'#ffb400',e:'🐉'}
+};
+let CURV='feed';
+function navCtx(){if(CURV==='eggs'||CURV==='game')return{fr:'gta',game:'gta-6',genre:'ouvert'};
+  if(CURV==='explore'){if(XP.game){const x=GBYID[XP.game];return{fr:x.fr,game:x.id,genre:x.genres[0]}}if(XP.fr)return{fr:XP.fr,genre:FBYID[XP.fr].g[0]};if(XP.genre)return{genre:XP.genre}}return null}
+function applyNavTheme(){const nav=document.querySelector('nav.tabs'),tag=document.getElementById('navTag');if(!nav)return;const c=navCtx();
+  if(!c){nav.classList.remove('themed');if(tag)tag.hidden=true;return}
+  const g=GENBY[c.genre],t=(c.fr&&NAVT[c.fr])||{bg:`linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.28)),linear-gradient(90deg,${g.c1},${g.c2})`,fg:'#fff',act:'#fff6a8',e:g.e};
+  nav.style.setProperty('--nbgc',t.bg);nav.style.setProperty('--nfg',t.fg);nav.style.setProperty('--nact',t.act);nav.classList.add('themed');
+  if(tag){const name=c.game?GBYID[c.game].n:c.fr?FBYID[c.fr].n:'';tag.innerHTML=`<span>${t.e}</span> ${esc(name?name+' · ':'')}${g.e} ${g.n}`;tag.hidden=false}}
+{const _rx=renderExplore;renderExplore=function(){_rx();applyNavTheme()}}
 /* vitrine de l'accueil : les jeux les plus joués du moment (sans classement) */
 const TOPG=['gta-6','fortnite','minecraft','cod-bo7','fc-26'];
 function renderTop(){const el=document.getElementById('topg');if(!el)return;
@@ -1556,7 +1598,7 @@ function renderTop(){const el=document.getElementById('topg');if(!el)return;
 /* ===== TABS ===== */
 const TABS=[['feed','home','Accueil'],['explore','layers','Explorer'],['forum','chat','Forum'],['check','search','Vérifier'],['mine','star','Mes jeux']];
 $('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
-function showView(v){
+function showView(v){CURV=v;setTimeout(applyNavTheme,0);
   document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));
   document.querySelectorAll('.view').forEach(s=>s.classList.toggle('on',s.id==='v-'+v));
   window.scrollTo({top:0});
