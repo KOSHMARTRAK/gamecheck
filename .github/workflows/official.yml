@@ -1,9 +1,9 @@
-# Robot gratuit (sans IA) : récupère toutes les heures les annonces officielles des jeux (Steam, PlayStation Blog, Xbox Wire)
+# Robot gratuit (sans IA) : récupère les annonces officielles des jeux (Steam, PlayStation Blog, Xbox Wire)
+# Lancement À LA DEMANDE uniquement (Actions > Annonces officielles > Run workflow, ou demande à Claude).
+# Pour le refaire tourner toutes les heures, remettre :  schedule: - cron: "17 * * * *"
 name: Annonces officielles
 
 on:
-  schedule:
-    - cron: "17 * * * *"
   workflow_dispatch:
 
 permissions:
