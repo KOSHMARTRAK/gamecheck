@@ -1119,8 +1119,8 @@ function mergeDb(docs){
   renderUne();renderFeed();
 }
 function nextMaj(){const d=new Date();const n=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate(),0,5));while(n<=d||(n.getUTCHours()!==7&&n.getUTCHours()!==19))n.setUTCHours(n.getUTCHours()+1);return n.getTime()}
-function setMaj(v){if(!v||!v.label)return;$('#majTop').textContent='MAJ '+v.label;$('#majUne').textContent='MAJ '+v.label+' · prochaine '+fmtTs(nextMaj()).split(' à ')[1];
-  $('#majLast').textContent=v.label;$('#majNext').textContent=fmtTs(nextMaj());$('#majCount').textContent=String(+v.count||0)}
+function setMaj(v){if(!v||!v.label)return;$('#majTop').textContent='MAJ '+v.label;$('#majUne').textContent='MAJ '+v.label;
+  $('#majLast').textContent=v.label;$('#majNext').textContent='À la demande';$('#majCount').textContent=String(+v.count||0)}
 function renderLog(docs){const rows=docs.map(d=>d.data()||{}).filter(v=>v.at);
   $('#majLog').innerHTML=rows.length?rows.map(v=>`<div class="logrow"><b>${esc(v.label||fmtTs(v.at))} · ${+v.added||0} info${(+v.added||0)>1?'s':''} ajoutée${(+v.added||0)>1?'s':''}</b>${Array.isArray(v.titles)&&v.titles.length?`<small>${v.titles.slice(0,10).map(esc).join(' · ')}</small>`:'<small>Rien de nouveau à vérifier.</small>'}</div>`).join(''):'<div class="cnone" style="padding:12px 14px">Aucune mise à jour enregistrée pour l’instant.</div>'}
 
