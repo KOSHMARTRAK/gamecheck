@@ -365,6 +365,18 @@ nav.tabs>div{max-width:1280px}
 @media(min-width:1140px){
   #v-game .discs{grid-template-columns:repeat(3,minmax(0,1fr))}
 }
+/* PC : bandes à vagues sur les côtés, du bas de l'en-tête jusqu'en bas de l'écran */
+@media(min-width:1320px){
+  .app::before,.app::after{content:"";position:fixed;top:var(--hh,84px);bottom:0;width:16px;z-index:9;pointer-events:none;background-repeat:repeat-y;animation:wvv 9s ease-in-out infinite;background-size:16px 120px,16px 180px}
+  .app::before{left:calc(50% - 640px);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='120'%3E%3Cpath d='M7 0 Q0 30 7 60 T7 120 H0 V0Z' fill='rgba(255,255,255,.78)'/%3E%3C/svg%3E"),
+     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='180'%3E%3Cpath d='M9 0 Q16 45 9 90 T9 180 H0 V0Z' fill='rgba(19,181,176,.6)'/%3E%3C/svg%3E")}
+  .app::after{right:calc(50% - 640px);
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='120'%3E%3Cpath d='M9 0 Q16 30 9 60 T9 120 H16 V0Z' fill='rgba(255,255,255,.78)'/%3E%3C/svg%3E"),
+     url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='180'%3E%3Cpath d='M7 0 Q0 45 7 90 T7 180 H16 V0Z' fill='rgba(19,181,176,.6)'/%3E%3C/svg%3E")}
+}
+@keyframes wvv{0%,55%{background-position:0 0,0 0}100%{background-position:0 120px,0 -180px}}
+@media (prefers-reduced-motion:reduce){.app::before,.app::after{animation:none}}
 .toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%);background:var(--txt);color:#fff;padding:10px 16px;border-radius:12px;font-size:13px;z-index:200;display:none}
 .toast.on{display:block}
 </style>
@@ -1107,6 +1119,8 @@ Réponds UNIQUEMENT en JSON :
 
 /* ===== INIT ===== */
 $('#logoMk').innerHTML=dogLogo();
+const setHH=()=>{const h=document.querySelector('header');h&&document.documentElement.style.setProperty('--hh',h.getBoundingClientRect().bottom+'px')};
+setHH();addEventListener('resize',setHH);addEventListener('load',setHH);
 $('#palms').innerHTML=`<svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMax slice">${palm(20,320,300,70,'#4a1470')}${palm(385,320,260,-60,'#4a1470')}</svg>`;
 if('serviceWorker' in navigator && location.protocol==='https:'){navigator.serviceWorker.register('sw.js').catch(()=>{})}
 let installEvt=null;
