@@ -1,13 +1,13 @@
 {
-  "name": "GameCheck â€“ le vrai du faux sur GTA 6",
+  "name": "GameCheck – le vrai du faux sur GTA 6",
   "short_name": "GameCheck",
-  "description": "Rumeurs, fausses infos et arnaques GTA 6 vÃ©rifiÃ©es, mises Ã  jour toutes les 3 heures.",
+  "description": "Rumeurs, fausses infos et arnaques GTA 6 vérifiées, avec les sources.",
   "lang": "fr",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#fff4ee",
+  "background_color": "#dcf3f3",
   "theme_color": "#13B5B0",
   "icons": [
     { "src": "img/icon-round-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
@@ -15,4 +15,3 @@
     { "src": "img/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
   ]
 }
-

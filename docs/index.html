@@ -42,7 +42,19 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 a{color:inherit}
 svg.i{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:0 0 auto}
 .app{max-width:520px;margin:0 auto;min-height:100vh;padding-bottom:92px;position:relative;z-index:1}
-header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(16px);border-bottom:1px solid var(--line);padding:11px 16px;display:flex;align-items:center;justify-content:space-between}
+header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.78);backdrop-filter:saturate(180%) blur(16px);padding:11px 16px;display:flex;align-items:center;justify-content:space-between}
+/* vagues (haut et bas) */
+header::after,nav.tabs::before{content:"";position:absolute;left:0;right:0;height:16px;pointer-events:none;background-repeat:repeat-x;animation:wv 9s ease-in-out infinite}
+header::after{top:100%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='16'%3E%3Cpath d='M0 7 Q30 0 60 7 T120 7 V0 H0Z' fill='rgba(255,255,255,.78)'/%3E%3C/svg%3E"),
+   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='16'%3E%3Cpath d='M0 9 Q45 16 90 9 T180 9 V0 H0Z' fill='rgba(19,181,176,.6)'/%3E%3C/svg%3E");
+  background-size:120px 16px,180px 16px}
+nav.tabs::before{bottom:100%;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='16'%3E%3Cpath d='M0 9 Q30 16 60 9 T120 9 V16 H0Z' fill='rgba(255,255,255,.88)'/%3E%3C/svg%3E"),
+   url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='16'%3E%3Cpath d='M0 7 Q45 0 90 7 T180 7 V16 H0Z' fill='rgba(255,45,149,.6)'/%3E%3C/svg%3E");
+  background-size:120px 16px,180px 16px}
+@keyframes wv{0%,55%{background-position:0 0,0 0}100%{background-position:120px 0,-180px 0}}
+@media (prefers-reduced-motion:reduce){header::after,nav.tabs::before{animation:none}}
 .logo{display:flex;align-items:center;gap:10px}
 .logo .mk{width:36px;height:36px;border-radius:11px;overflow:hidden;box-shadow:0 6px 16px rgba(255,45,149,.35)}
 .logo .mk svg{width:100%;height:100%;display:block}
@@ -130,7 +142,7 @@ header{position:sticky;top:0;z-index:10;background:rgba(255,255,255,.78);backdro
 .photo svg.i{width:15px;height:15px}
 .photo input{display:none}
 /* nav */
-nav.tabs{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(16px);border-top:1px solid var(--line);display:flex;justify-content:center;z-index:20}
+nav.tabs{position:fixed;bottom:0;left:0;right:0;background:rgba(255,255,255,.88);backdrop-filter:saturate(180%) blur(16px);display:flex;justify-content:center;z-index:20}
 nav.tabs>div{display:flex;width:100%;max-width:520px}
 nav.tabs button{flex:1;padding:9px 0 16px;font-size:10.5px;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:4px;font-weight:600}
 nav.tabs svg.i{width:23px;height:23px}
