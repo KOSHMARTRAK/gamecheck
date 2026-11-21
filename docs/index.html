@@ -766,13 +766,17 @@ let ALL=POSTS; const BYI={};
 const md=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
 const okUrl=u=>/^https:\/\//i.test(String(u||''))?String(u):'#';
 function sortKey(p){return p.ts||dayOf(p.date)}
+/* Image toujours présente : photo envoyée, image de l'article, capture dédiée, sinon une capture officielle choisie automatiquement (sans doublon dans les 5 cartes) */
+const POOL=Array.from({length:23},(_,k)=>RSF(k));
+const hsh=s=>{let h=7;for(const c of String(s))h=(h*31+c.charCodeAt(0))>>>0;return h};
+function picOf(p,used){const own=PHOTOS[p.i]||p.img||OFFICIAL[p.i];if(own&&!(used&&used.has(own)))return own;let k=hsh(p.title)%POOL.length,n=0;while(used&&used.has(POOL[k])&&n++<POOL.length)k=(k+1)%POOL.length;return POOL[k]}
+const FB="this.onerror=null;this.src='img/rs22.jpg'"
 function mergeDb(docs){
   const extra=[];
   docs.forEach(d=>{const v=d.data()||{};if(!v.title||!CATS[v.cat]||v.cat==='all')return;
     const n=Number.isFinite(+v.n)?+v.n:0;
     const sources=(Array.isArray(v.sources)?v.sources:[]).slice(0,6).map(s=>[esc(s.nom||'Source'),TIER[s.niveau]?s.niveau:'moyen',okUrl(s.url)]);
-    if(!sources.length)return;
-    const p={cat:v.cat,date:esc(v.date||''),title:esc(v.title),body:md(v.body||''),verdict:md(v.verdict||''),sources,ts:+v.ts||0,i:1000+n,m:['info',''],auto:true};
+    const p={cat:v.cat,date:esc(v.date||''),title:esc(v.title),body:md(v.body||''),verdict:md(v.verdict||''),sources,ts:+v.ts||0,i:1000+n,m:['info',''],auto:true,img:/^https:\/\//i.test(String(v.img||''))?esc(v.img):''};
     p.art=((sources.find(s=>s[1]!=='leaker')||sources[0])||[])[2]||'';
     extra.push(p)});
   extra.sort((a,b)=>b.ts-a.ts);
@@ -801,9 +805,9 @@ function renderFilters(){
 const MOIS={janv:0,jan:0,'févr':1,fev:1,'fév':1,mars:2,avr:3,avril:3,mai:4,juin:5,juil:6,'août':7,aout:7,sept:8,oct:9,nov:10,'déc':11,dec:11};
 function dayOf(s){const m=String(s).toLowerCase().match(/^(\d{1,2})\s+([a-zéû]+)\.?\s+(\d{4})/);if(!m||MOIS[m[2]]===undefined)return 0;return new Date(+m[3],MOIS[m[2]],+m[1]).getTime()}
 function renderUne(){
-  const top=ALL.filter(p=>sortKey(p)).sort((a,b)=>sortKey(b)-sortKey(a)).slice(0,5);
-  $('#une').innerHTML=top.map(p=>{const t=TONES[CATS[p.cat].tone];const im=PHOTOS[p.i]||OFFICIAL[p.i];
-    return `<button class="uc" data-i="${p.i}">${im?`<img src="${im}" alt="" loading="lazy">`:''}${srcBadge(p).replace('class="sb" style="','class="sb" style="--ring:'+t.n1+';')}<span class="ut">${p.title}<small>${CATS[p.cat].label} · ${p.date}</small></span></button>`}).join('');
+  const top=ALL.filter(p=>sortKey(p)).sort((a,b)=>sortKey(b)-sortKey(a)).slice(0,5);const USED=new Set();
+  $('#une').innerHTML=top.map(p=>{const t=TONES[CATS[p.cat].tone];const im=picOf(p,USED);USED.add(im);
+    return `<button class="uc" data-i="${p.i}"><img src="${im}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${FB}>${srcBadge(p).replace('class="sb" style="','class="sb" style="--ring:'+t.n1+';')}<span class="ut">${p.title}<small>${CATS[p.cat].label} · ${p.date}</small></span></button>`}).join('');
   document.querySelectorAll('.uc').forEach(b=>b.onclick=()=>{filter='all';renderFilters();renderFeed();const el=$('#post'+b.dataset.i);el&&el.scrollIntoView({behavior:'smooth',block:'start'})});
 }
 function curList(){return ALL.filter(p=>filter==='all'||p.cat===filter)}
@@ -819,7 +823,7 @@ function renderFeed(){
         ${badge(p.cat)}
       </div>
       <h2 class="ptitle" style="border-color:${t.n1}">${p.title}</h2>
-      ${(PHOTOS[p.i]||OFFICIAL[p.i])?`<div class="frame"><div class="in"><img src="${PHOTOS[p.i]||OFFICIAL[p.i]}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror="this.closest('.frame').remove()">
+      ${true?`<div class="frame"><div class="in"><img src="${picOf(p)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${FB}>
         <div class="ftop"><span class="tag">${PHOTOS[p.i]?ic('camera')+'Ta capture':ic('verified')+'Capture officielle Rockstar'}</span></div>
       </div></div>`:''}
       <div class="actions">
