@@ -1,0 +1,34 @@
+# Robot gratuit (sans IA) : récupère toutes les heures les annonces officielles des jeux (Steam, PlayStation Blog, Xbox Wire)
+name: Annonces officielles
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: official-news
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Récupérer les annonces
+        run: node scripts/official.mjs
+      - name: Publier si nouveau
+        run: |
+          git config user.name "GameCheck bot"
+          git config user.email "gamecheck-bot@users.noreply.github.com"
+          git add docs/data/official.json
+          if git diff --cached --quiet; then echo "Rien de nouveau"; exit 0; fi
+          git commit -m "Annonces officielles $(date -u +%d/%m\ %H:%M)"
+          for i in 1 2 3; do git pull --rebase origin main && git push origin HEAD:main && break; sleep 5; done
