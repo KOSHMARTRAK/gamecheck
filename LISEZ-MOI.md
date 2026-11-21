@@ -1,40 +1,39 @@
-﻿# GameCheck â€“ le vrai du faux sur GTA 6
+﻿# GameCheck – le vrai du faux sur GTA 6
 
-Projet perso gratuit de KOSHMAR TRAK (crÃ©Ã© le 21 nov. 2026 avec Claude).
+Projet perso gratuit de KOSHMAR TRAK (créé le 21 nov. 2026 avec Claude).
 
-## Les liens Ã  retenir
-- **Le site / l'appli (Ã  partager)** : https://koshmartrak.github.io/gamecheck/
+## Les liens à retenir
+- **Le site / l'appli (à partager)** : https://koshmartrak.github.io/gamecheck/
 - **Les fichiers sur GitHub** : https://github.com/KOSHMARTRAK/gamecheck
-- **Les signalements reÃ§us** : https://github.com/KOSHMARTRAK/gamecheck/issues
-- **La mise Ã  jour automatique (toutes les 3 h)** : https://claude.ai/code/routines/trig_01X9kjw4TPoqaFtEfkyjXFLq
+- **Les signalements reçus** : https://github.com/KOSHMARTRAK/gamecheck/issues
+- **La mise à jour automatique (toutes les 3 h)** : https://claude.ai/code/routines/trig_01X9kjw4TPoqaFtEfkyjXFLq
 - **L'ancienne version dans Claude** : https://claude.ai/artifact/UFLjgBq7xooKQo4wp7XhAB
 - **Les dessins de la mascotte (Figma)** : https://www.figma.com/design/04WhYi1fuD19bf4cUJa43r
 
 ## L'appli Android (APK)
-- **Lien de tÃ©lÃ©chargement direct** : https://github.com/KOSHMARTRAK/gamecheck/releases/latest/download/GameCheck.apk
+- **Lien de téléchargement direct** : https://github.com/KOSHMARTRAK/gamecheck/releases/latest/download/GameCheck.apk
 - **Page des versions** : https://github.com/KOSHMARTRAK/gamecheck/releases
-- **Sortir une nouvelle version** : GitHub â†’ onglet *Actions* â†’ Â« Appli Android Â» â†’ *Run workflow* (augmenter la version, ex. 1.0.1 / numÃ©ro 2). Ou demande-le Ã  Claude.
-- âš ï¸ **ClÃ© de signature** : `apk/android.keystore` + mot de passe dans `apk/signing-password.txt` (sur ton PC uniquement, jamais en ligne ; une copie chiffrÃ©e est dans les secrets GitHub). **Ne les supprime jamais** : sans eux, impossible de mettre l'appli Ã  jour.
-- Le dÃ©pÃ´t `KOSHMARTRAK.github.io` (dossier `GameCheck-racine`) sert seulement Ã  lier le site et l'appli (plein Ã©cran). Ne pas le supprimer.
+- **Sortir une nouvelle version** : GitHub → onglet *Actions* → « Appli Android » → *Run workflow* (augmenter la version, ex. 1.0.1 / numéro 2). Ou demande-le à Claude.
+- ⚠️ **Clé de signature** : `apk/android.keystore` + mot de passe dans `apk/signing-password.txt` (sur ton PC uniquement, jamais en ligne ; une copie est dans les secrets GitHub). **Ne les supprime jamais** : sans eux, impossible de mettre l'appli à jour.
+- Le dépôt `KOSHMARTRAK.github.io` (dossier `GameCheck-racine`) sert seulement à lier le site et l'appli (plein écran). Ne pas le supprimer.
 
 ## Installer l'appli
-- **Android (Chrome)** : ouvrir le site â†’ bouton Â« Installer l'appli Â» en haut, ou menu â‹® â†’ Â« Installer l'application Â».
-- **iPhone (Safari)** : ouvrir le site â†’ bouton Partager â–¡â†‘ â†’ Â« Sur l'Ã©cran d'accueil Â».
-- **PC (Chrome / Edge)** : icÃ´ne d'installation dans la barre d'adresse.
+- **Android** : télécharger l'APK ci-dessus, ou ouvrir le site dans Chrome → « Installer l'appli ».
+- **iPhone (Safari)** : ouvrir le site → bouton Partager □↑ → « Sur l'écran d'accueil ».
+- **PC (Chrome / Edge)** : icône d'installation dans la barre d'adresse.
 
 ## Le dossier
 - `docs/` : le site en ligne (c'est ce dossier que GitHub publie).
-  - `docs/data/` : les infos ajoutÃ©es automatiquement, l'historique des mises Ã  jour.
-  - `docs/img/` : captures, icÃ´ne du chien.
+  - `docs/data/` : les infos ajoutées automatiquement (par la routine des 3 h), l'historique des mises à jour.
+  - `docs/img/` : captures, icône du chien.
+- `android/` + `.github/workflows/android.yml` : fabrication automatique de l'APK.
 - `serve.ps1` : pour tester le site sur ton PC (http://localhost:8765).
-- Le reste (`icone/`, `figma/`, `rs-img/`, `export/`) : fichiers de travail, pas en ligne.
+- Le reste (`icone/`, `figma/`, `rs-img/`, `export/`, `apk/`) : fichiers de travail, pas en ligne.
 
 ## Pour modifier l'appli
-Ouvre la session **Â« â­ GameCheck â€“ appli GTA 6 (projet principal) Â»** (Ã©pinglÃ©e en haut dans l'appli Claude, onglet Code) et dis ce que tu veux changer.
+Ouvre la session **« ⭐ GameCheck – appli GTA 6 (projet principal) »** (épinglée en haut dans l'appli Claude, onglet Code) et dis ce que tu veux changer.
 
-## La suite prÃ©vue
-1. Brancher la mise Ã  jour automatique sur le site (aujourd'hui elle alimente encore la version Claude).
-2. J'aime et commentaires partagÃ©s (Firebase, gratuit).
-3. Fichier APK Android Ã  envoyer.
-4. RÃ©fÃ©rencement Google (Google Search Console, gratuit).
-
+## La suite prévue
+1. J'aime et commentaires partagés (Firebase, gratuit).
+2. Référencement Google (Google Search Console, gratuit).
+3. Accès réseau « complet » pour la routine (réglages de l'environnement Default sur claude.ai/code).
