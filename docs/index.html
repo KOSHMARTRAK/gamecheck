@@ -161,6 +161,16 @@ textarea:focus{outline:2px solid #ff2d95;border-color:transparent}
 .btn{width:100%;margin-top:12px;padding:15px;border-radius:16px;font-weight:700;font-size:15px;background:var(--vice-g);color:#fff;display:flex;align-items:center;justify-content:center;gap:8px;box-shadow:0 10px 24px -10px rgba(255,45,149,.6)}
 .btn:disabled{opacity:.5}
 .ex{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ask,.qz{margin-top:16px;padding:16px}
+.ask .h2,.qz .h2{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:22px;letter-spacing:.5px}
+#askLink{width:100%;background:#fff;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;font-size:14px;color:var(--txt)}
+.qz .q{margin-top:14px}
+.qz .q p{font-size:14px;font-weight:600;line-height:1.4}
+.qz .yn{display:flex;gap:8px;margin-top:8px}
+.qz .yn button{flex:1;padding:9px;border-radius:12px;background:#fff;border:1px solid var(--line);font-weight:700;font-size:14px;color:var(--mute)}
+.qz .yn button.on{background:var(--txt);color:#fff;border-color:var(--txt)}
+.qz .qr{margin-top:16px;border-radius:14px;padding:14px;display:none}
+.qz .qr.on{display:block}
 .ex button{font-size:12.5px;padding:7px 12px;border-radius:999px;background:#fff;border:1px solid var(--line);color:#4a4055;text-align:left}
 .result{margin-top:18px;padding:16px;display:none}
 .result.on{display:block}
@@ -385,6 +395,14 @@ nav.tabs>div{max-width:1280px}
       <button class="btn" id="checkBtn"></button>
       <div class="result card" id="result"></div>
       <p class="note" id="checkNote"></p>
+      <div class="card ask" id="askBox" hidden>
+        <div class="h2" id="askTitle"></div>
+        <p class="lead" style="margin:6px 0 10px">Tu as vu une info qui n'est pas dans le fil ? Envoie-la : elle sera vérifiée sur le web à la prochaine mise à jour, et le verdict apparaîtra dans le fil.</p>
+        <input id="askLink" type="url" placeholder="Lien où tu l'as vue (facultatif)">
+        <button class="btn" id="askBtn"></button>
+        <p class="note" id="askNote"></p>
+      </div>
+      <div class="card qz" id="quiz"></div>
     </div>
   </section>
 
@@ -992,17 +1010,53 @@ $('#appVersion').innerHTML=`${ic('info')}<span>GameCheck · version 1.0 du 21 no
 const btnHTML=()=>`${ic('search')}Analyser`;
 $('#checkBtn').innerHTML=btnHTML();
 let sampleFn=null;
+/* Test anti-intox : marche pour n'importe quelle rumeur, sans base de données */
+const QZ=[
+ {q:'La source est un compte officiel (Rockstar, Take-Two, PlayStation, Xbox) ou un grand média connu ?',risk:'non',w:2},
+ {q:'D’autres médias sérieux disent la même chose ?',risk:'non',w:2},
+ {q:'On te demande de télécharger un fichier, de payer ou de te connecter à un compte ?',risk:'oui',w:4},
+ {q:'Ça promet un truc gratuit ou en avance (démo, clé, version PC, bêta, argent du jeu) ?',risk:'oui',w:3},
+ {q:'Il n’y a qu’une capture ou une vidéo, sans lien vers la vraie source ?',risk:'oui',w:1}];
+const QA={};
+function renderQuiz(){
+  const el=$('#quiz');
+  el.innerHTML=`<div class="h2">${tile('shield','vice',28)}LE TEST ANTI-INTOX</div><p class="lead" style="margin:6px 0 0">5 questions sur la rumeur que tu as vue. Ça marche même si elle n'est pas dans le fil.</p>`+
+   QZ.map((x,i)=>`<div class="q"><p>${i+1}. ${x.q}</p><div class="yn"><button data-q="${i}" data-a="oui" class="${QA[i]==='oui'?'on':''}">Oui</button><button data-q="${i}" data-a="non" class="${QA[i]==='non'?'on':''}">Non</button></div></div>`).join('')+
+   `<div class="qr" id="qres"></div>`;
+  el.querySelectorAll('.yn button').forEach(b=>b.onclick=()=>{QA[b.dataset.q]=b.dataset.a;renderQuiz()});
+  const n=Object.keys(QA).length; if(n<QZ.length)return;
+  let s=0; QZ.forEach((x,i)=>{if(QA[i]===x.risk)s+=x.w});
+  const r=s>=5?{tone:'faux',icon:'x',t:'PROBABLEMENT FAUX',p:'Trop de signaux d’alerte. Ne télécharge rien, ne paie rien, ne donne aucun identifiant. Demande une vérif si tu veux en avoir le cœur net.'}
+   :s>=2?{tone:'rumeur',icon:'alert',t:'MÉFIANCE',p:'Ce n’est pas confirmé. Attends qu’un compte officiel ou plusieurs médias sérieux en parlent avant d’y croire ou de partager.'}
+   :{tone:'vrai',icon:'check',t:'PLUTÔT CRÉDIBLE',p:'Les signaux sont bons. Vérifie quand même la source d’origine avant de partager.'};
+  const q=$('#qres'); q.className='qr on'; q.style.background=TONES[r.tone].bg;
+  q.innerHTML=`<div class="rv">${tile(r.icon,r.tone,36)}<b style="color:${TONES[r.tone].c}">${r.t}</b></div><p style="margin-top:8px;font-size:14px;line-height:1.5">${r.p}</p><button class="btn" id="qzReset" style="background:var(--txt);box-shadow:none">Refaire le test</button>`;
+  $('#qzReset').onclick=()=>{for(const k in QA)delete QA[k];renderQuiz()};
+}
 /* Vérification sans IA : recherche dans les infos déjà vérifiées */
 function localCheck(){
   const norm=s=>strip(String(s)).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
   const STOP=new Set('le la les un une des de du et ou a au aux en sur pour par dans est sont que qui gta 6 vi va the of'.split(' '));
-  $('#checkBtn').innerHTML=`${ic('search')}Chercher dans les infos vérifiées`;
-  $('#checkNote').innerHTML=`${ic('info')}<span>La recherche compare ta phrase aux infos déjà vérifiées de l'appli. Si rien ne correspond, l'info n'a pas encore été vérifiée : méfie-toi et cherche une source officielle.</span>`;
+  document.querySelector('#v-check .h1').textContent='Vérifier une rumeur';
+  document.querySelector('#v-check .lead').textContent="Colle une info vue sur TikTok, X, YouTube ou Insta. On regarde d'abord si elle est déjà dans le fil. Sinon, demande une vérif ou fais le test anti-intox juste en dessous.";
+  $('#checkBtn').innerHTML=`${ic('search')}Chercher dans le fil`;
+  $('#checkNote').innerHTML=`${ic('info')}<span>La recherche compare ta phrase aux infos déjà vérifiées du fil. Si rien ne correspond, ça ne veut pas dire que c'est faux : l'info n'a juste pas encore été vérifiée.</span>`;
+  $('#askTitle').innerHTML=`${tile('search','vice',28)}DEMANDER UNE VÉRIF`;
+  $('#askBtn').innerHTML=`${ic('check')}Envoyer ma demande`;
+  $('#askNote').innerHTML=`${ic('info')}<span>L'envoi ouvre une page GitHub déjà remplie : clique sur « Submit new issue » (il faut un compte GitHub gratuit). Ta demande est publique : n'y mets aucune info personnelle.</span>`;
+  $('#askBtn').onclick=()=>{
+    const claim=$('#claim').value.trim(), link=$('#askLink').value.trim();
+    if(claim.length<8){toast('Écris d’abord l’info à vérifier dans la case du haut.');$('#claim').focus();return}
+    const title='[VERIF] '+claim.replace(/\s+/g,' ').slice(0,90);
+    const body=`**Info à vérifier :**\n${claim}\n\n**Vue ici :** ${link||'(pas de lien)'}\n\n_Envoyé depuis l'onglet Vérifier de GameCheck._`;
+    window.open('https://github.com/KOSHMARTRAK/gamecheck/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body),'_blank','noopener');
+  };
+  renderQuiz();
   $('#checkBtn').onclick=()=>{
     const words=norm($('#claim').value).split(/[^a-z0-9]+/).filter(w=>w.length>2&&!STOP.has(w));
-    const box=$('#result'); box.className='result card on';
+    const box=$('#result'); box.className='result card on'; $('#askBox').hidden=false;
     if(!words.length){box.innerHTML='<p>Écris l’info que tu veux vérifier.</p>';return}
-    const scored=ALL.map(p=>{const t=norm(p.title+' '+p.body+' '+p.verdict);let s=0;words.forEach(w=>{if(t.includes(w))s+=norm(p.title).includes(w)?2:1});return[p,s]}).filter(x=>x[1]>=Math.min(2,words.length)).sort((a,b)=>b[1]-a[1]).slice(0,3);
+    const need=Math.max(1,Math.ceil(words.length/2));const scored=ALL.map(p=>{const t=norm(p.title+' '+p.body+' '+p.verdict);let s=0,h=0;words.forEach(w=>{if(t.includes(w)){h++;s+=norm(p.title).includes(w)?2:1}});return[p,h>=need?s:0]}).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,3);
     if(!scored.length){box.innerHTML=`<div class="rv">${tile('info','info',36)}<b style="color:${TONES.info.c}">PAS ENCORE VÉRIFIÉ</b></div><p>Aucune info vérifiée de l’appli ne correspond. Tant qu’aucune source officielle ne la confirme, considère-la comme une rumeur.</p><div class="tip">${ic('info')}<span>Démo, version PC, APK ou clé gratuite : c’est presque toujours une arnaque.</span></div>`;return}
     box.innerHTML=scored.map(([p])=>{const c=CATS[p.cat];return `<div class="rv">${tile(c.icon,c.tone,36)}<b style="color:${TONES[c.tone].c}">${c.label.toUpperCase()}</b></div><p><b>${p.title}</b></p><p>${p.verdict}</p><div class="tip"><a href="#post${p.i}" style="color:inherit">${ic('eye')} Voir l’info dans le fil</a></div>`}).join('<hr style="border:0;border-top:1px solid var(--line);margin:12px 0">');
     box.querySelectorAll('a[href^="#post"]').forEach(a=>a.onclick=e=>{e.preventDefault();document.querySelector('nav.tabs button[data-v="feed"]').click();filter='all';renderFilters();renderFeed();setTimeout(()=>{const el=document.querySelector(a.getAttribute('href'));el&&el.scrollIntoView({behavior:'smooth'})},60)});
