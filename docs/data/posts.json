@@ -1,5 +1,120 @@
 [
   {
+    "id": "fortnite-scott-pilgrim-leak",
+    "data": {
+      "game": "fortnite",
+      "cat": "rumeur",
+      "title": "Fortnite : un leak annonce une collaboration Scott Pilgrim",
+      "body": "Le leaker HYPEX affirme avoir trouvé des fichiers chiffrés lors de la dernière maintenance, avec deux skins (un masculin, un féminin) liés à Scott Pilgrim.",
+      "verdict": "**Non vérifié.** Epic Games n'a rien annoncé ; l'information repose sur un leaker et un seul média.",
+      "sources": [
+        {
+          "nom": "Beebom",
+          "niveau": "moyen",
+          "url": "https://beebom.com/fortnite-leak-reveals-scott-pilgrim-collab/amp/"
+        }
+      ],
+      "date": "12 nov. 2026",
+      "ts": 1795352155710,
+      "n": 6
+    }
+  },
+  {
+    "id": "roblox-blxrush-faux-robux",
+    "data": {
+      "game": "roblox",
+      "cat": "alerte",
+      "title": "Roblox : le site BlxRush et les « Robux gratuits » sont une arnaque",
+      "body": "Des sites comme BlxRush.com promettent des Robux gratuits via des pages de connexion imitant Roblox, diffusées sur YouTube, TikTok ou Discord.",
+      "verdict": "**FAUX et dangereux.** Roblox répète qu'il n'existe ni Robux gratuits ni code miracle : ces pages volent les identifiants du compte.",
+      "sources": [
+        {
+          "nom": "MalwareTips",
+          "niveau": "moyen",
+          "url": "https://malwaretips.com/blogs/blxrush-com/"
+        },
+        {
+          "nom": "Money.com",
+          "niveau": "moyen",
+          "url": "https://money.com/fake-roblox-giveaway-scam/"
+        }
+      ],
+      "date": "4 nov. 2026",
+      "ts": 1795352155710,
+      "n": 7
+    }
+  },
+  {
+    "id": "fc-faux-prime-gaming-fc27",
+    "data": {
+      "game": "fc-26",
+      "cat": "alerte",
+      "title": "EA FC : un faux site « Prime Gaming x FC 27 » vole mots de passe et codes 2FA",
+      "body": "Malwarebytes décrit un faux site de récompenses Prime Gaming x FC 27 qui promet des packs gratuits et collecte les identifiants EA ainsi que les codes de double authentification.",
+      "verdict": "**FAUX et dangereux.** N'entrez jamais vos identifiants EA sur un site de « récompenses » ; passez uniquement par EA et Prime Gaming officiels.",
+      "sources": [
+        {
+          "nom": "Malwarebytes",
+          "niveau": "fiable",
+          "url": "https://www.malwarebytes.com/ru/blog/threat-intel/2026/11/fake-prime-gaming-x-fc-27-reward-site-harvests-ea-passwords-and-2fa-codes"
+        }
+      ],
+      "date": "16 nov. 2026",
+      "ts": 1795352155710,
+      "n": 8
+    }
+  },
+  {
+    "id": "minecraft-weedhack-faux-mods",
+    "data": {
+      "game": "minecraft",
+      "cat": "alerte",
+      "title": "Minecraft : de faux mods et clients diffusent le malware WeedHack",
+      "body": "McAfee affirme que plus de 116 000 joueurs ont été infectés par de faux mods et outils promus par du référencement YouTube piégé. Un autre faux mod d'optimisation diffuse le voleur Myth Stealer.",
+      "verdict": "**FAUX et dangereux.** Ces mods volent mots de passe, cookies et portefeuilles crypto : téléchargez uniquement depuis des sources reconnues.",
+      "sources": [
+        {
+          "nom": "McAfee",
+          "niveau": "fiable",
+          "url": "https://www.mcafee.com/blogs/security-news/minecraft-malware-campaign-research-teen-hacker-cyberbullying/"
+        },
+        {
+          "nom": "Digital Trends",
+          "niveau": "fiable",
+          "url": "https://www.digitaltrends.com/gaming/minecraft-malware-campaign-reportedly-infected-over-116000-players/"
+        }
+      ],
+      "date": "22 nov. 2026",
+      "ts": 1795352155710,
+      "n": 9
+    }
+  },
+  {
+    "id": "gta6-online-un-mois-apres",
+    "data": {
+      "game": "gta-6",
+      "cat": "rumeur",
+      "title": "GTA 6 : un leaker affirme que GTA Online arrivera dans le mois suivant la sortie",
+      "body": "Le leaker TheGhostOfHope dit que le mode en ligne arrivera moins d'un mois après le 19 novembre ; des chaînes de caractères multijoueur ont aussi été repérées dans une build.",
+      "verdict": "**Non vérifié.** Rockstar n'a rien confirmé sur un mode en ligne ; la source du leaker reste faible.",
+      "sources": [
+        {
+          "nom": "OpenCritic",
+          "niveau": "moyen",
+          "url": "https://opencritic.com/news/29064/gta-6-online-will-launch-sooner-than-expected-leaker-claims"
+        },
+        {
+          "nom": "Notebookcheck",
+          "niveau": "moyen",
+          "url": "https://notebookcheck.net/GTA-6-Online-release-window-has-apparently-leaked.1449676.0.html"
+        }
+      ],
+      "date": "22 nov. 2026",
+      "ts": 1795352155710,
+      "n": 10
+    }
+  },
+  {
     "id": "tes6-sentinel-titre-rumeur",
     "data": {
       "game": "tes-6",
