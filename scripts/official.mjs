@@ -7,14 +7,12 @@ import { readFile, writeFile } from 'node:fs/promises';
 const OUT = 'docs/data/official.json';
 const KEEP_DAYS = 45, MAX_ITEMS = 500;
 
-// Jeux suivis : GTA VI et Path of Exile 2. id du jeu dans l'appli -> identifiant Steam (vérifié le 21/11/2026)
-const STEAM = {
-  'poe-2': 2694490 // GTA VI n'est pas sur Steam
-};
+// Jeu suivi : GTA VI. id du jeu dans l'appli -> identifiant Steam (vérifié le 21/11/2026)
+const STEAM = {}; // GTA VI n'est pas sur Steam : seuls les blogs officiels sont lus
 
 // mots-clés pour rattacher un article de blog à un jeu (le premier qui correspond gagne : du plus précis au plus large)
 const KEYS = [
-  ['gta-6', /\b(GTA ?(VI|6)|Grand Theft Auto ?(VI|6))\b/i], ['poe-2', /Path of Exile ?2|\bPoE ?2\b/i]
+  ['gta-6', /\b(GTA ?(VI|6)|Grand Theft Auto ?(VI|6))\b/i]
 ];
 const RSS = [
   ['PlayStation Blog', 'https://blog.fr.playstation.com/feed/'],
