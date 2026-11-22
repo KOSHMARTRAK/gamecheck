@@ -629,7 +629,28 @@ body[data-univ="poe-2"] .post::before,body[data-univ="poe-2"] .card::before,body
 body[data-univ="poe-2"] .post::after,body[data-univ="poe-2"] .card::after,body[data-univ="poe-2"] .disc::after,body[data-univ="poe-2"] .fact::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='6'%3E%3Cpath d='M0 3Q10 0 20 3T40 3' fill='none' stroke='%23d4a24c' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='6'%3E%3Cpath d='M0 3Q10 6 20 3T40 3' fill='none' stroke='%23c0392b' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")}
 body[data-univ="poe-2"] .app{background:rgba(12,5,4,.45)}
 body[data-univ="poe-2"] .empty{color:var(--mute)}
-@media (prefers-reduced-motion:reduce){.hbg .emb{animation:none!important}}/* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
+@media (prefers-reduced-motion:reduce){.hbg .emb{animation:none!important}}/* PoE : thème complet (textes, boutons, puces, profil, notification, pub, cadre PC) */
+body[data-univ="poe-2"] :is(#v-eggs,#v-game,#v-src,#v-check,#v-forum,#v-mine,#v-explore) :is(p,a,b,h2,h3,summary,li,label,.k,.v,.s,.lead,.note,.h1,.sec){color:var(--txt)!important}
+body[data-univ="poe-2"] :is(.lead,.note,.rsub,.rnote,.s,small){color:var(--mute)!important}
+body[data-univ="poe-2"] :is(.ex button,.qz .yn button,.score div,.mapinfo,.tg-go,.pfc,.btn.follow,.btn.ghost,.gchip,.pk,.avs button,.rcancel){background:rgba(40,16,11,.9)!important;color:var(--txt)!important;border-color:rgba(212,162,76,.3)!important}
+body[data-univ="poe-2"] :is(.qz .yn button.on,.btn.follow.on,.pk.on,.avs button.on){background:linear-gradient(135deg,#9e1b14,#d4a24c)!important;color:#fff!important;border-color:transparent!important}
+body[data-univ="poe-2"] .score b{background:linear-gradient(135deg,#f0c26a,#c0392b);-webkit-background-clip:text;background-clip:text}
+body[data-univ="poe-2"] .mebtn{background:linear-gradient(135deg,#9e1b14,#d4a24c);color:#fff}
+body[data-univ="poe-2"] .mebtn.in{background:#1a0806;box-shadow:0 0 0 2.5px #d4a24c,0 6px 14px -6px rgba(212,162,76,.7)}
+body[data-univ="poe-2"] .toast{background:#d4a24c;color:#1a0806}
+body[data-univ="poe-2"] .ava{background:rgba(60,24,16,.9)}
+body[data-univ="poe-2"] .tier{filter:saturate(.8) brightness(.95)}
+body[data-univ="poe-2"] .app::before{background:linear-gradient(180deg,#d4a24c,#9e1b14 55%,rgba(158,27,20,0) 100%)}
+body[data-univ="poe-2"] .kq-box{background:linear-gradient(180deg,#2a0f0a,#140605 60%,#0c0403)!important;border-color:rgba(212,162,76,.4)}
+body[data-univ="poe-2"] .kq-slot{background:rgba(30,12,9,.8);box-shadow:inset 0 0 0 2px rgba(212,162,76,.35)}
+body[data-univ="poe-2"] .kq-sand,body[data-univ="poe-2"] .kq-cloud{display:none}
+body[data-univ="poe-2"] .kq-ph b{background:linear-gradient(135deg,#f0c26a,#c0392b);-webkit-background-clip:text;background-clip:text}
+body[data-univ="poe-2"] .kq-ph span{background:rgba(212,162,76,.15);color:#f0c26a}
+body[data-univ="poe-2"] .kq-lbl{color:var(--mute)}
+body[data-univ="poe-2"] .badge{filter:saturate(.85)}
+body[data-univ="poe-2"] .dogtile.logo0{background:#1a0806}
+body[data-univ="poe-2"] .frame{background:conic-gradient(from 210deg,#d4a24c,#9e1b14,#5a1a10,#d4a24c,#d4a24c)}
+body[data-univ="poe-2"] .hero{background:conic-gradient(from 210deg,#d4a24c,#9e1b14,#5a1a10,#d4a24c)}/* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
 .kq{display:none}
 @media(min-width:1260px){#v-game .panel,#v-eggs .panel{max-width:860px;margin:0 auto}.kq{display:block;position:fixed;z-index:15;top:122px;right:max(18px,calc(50% - 622px));width:186px}}
 .kq-lbl{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:7px}
@@ -1650,8 +1671,8 @@ const NAVT={
  wow:{bg:'linear-gradient(90deg,#1a1308,#3a2a10)',fg:'#f0dca2',act:'#ffb400',e:'🐉'}
 };
 let CURV='feed';
-function navCtx(){if(CURV==='eggs'||CURV==='game')return null;if(CURV!=='explore'&&typeof UNIV!=='undefined'&&UNIV!=='gta-6'&&GBYID[UNIV]){const x=GBYID[UNIV];return{fr:x.fr,game:x.id,genre:x.genres[0]}}
-  if(CURV==='explore'){if(XP.game){const x=GBYID[XP.game];return{fr:x.fr,game:x.id,genre:x.genres[0]}}if(XP.fr)return{fr:XP.fr,genre:FBYID[XP.fr].g[0]};if(XP.genre)return{genre:XP.genre}}return null}
+function navCtx(){if(CURV==='explore'&&(XP.game||XP.fr||XP.genre)){}else if(typeof UNIV!=='undefined'&&UNIV!=='gta-6'&&GBYID[UNIV]){const x=GBYID[UNIV];return{fr:x.fr,game:x.id,genre:x.genres[0]}}
+  if(CURV==='eggs'||CURV==='game')return null;if(CURV==='explore'){if(XP.game){const x=GBYID[XP.game];return{fr:x.fr,game:x.id,genre:x.genres[0]}}if(XP.fr)return{fr:XP.fr,genre:FBYID[XP.fr].g[0]};if(XP.genre)return{genre:XP.genre}}return null}
 function applyNavTheme(){const nav=document.querySelector('nav.tabs'),tag=document.getElementById('navTag');if(!nav)return;const c=navCtx();
   if(!c){nav.classList.remove('themed');if(tag)tag.hidden=true;return}
   const g=GENBY[c.genre],t=(c.fr&&NAVT[c.fr])||{bg:`linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.28)),linear-gradient(90deg,${g.c1},${g.c2})`,fg:'#fff',act:'#fff6a8',e:g.e};

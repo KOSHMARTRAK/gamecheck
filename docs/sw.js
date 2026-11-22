@@ -1,5 +1,5 @@
 // GameCheck : marche hors connexion, et va toujours chercher la version la plus récente en premier.
-const CACHE = 'gamecheck-v30';
+const CACHE = 'gamecheck-v31';
 const CORE = ['./', 'index.html', 'manifest.webmanifest', 'img/icon-192.png', 'img/icon-512.png', 'img/chien-buste.png'];
 
 self.addEventListener('install', e => {
