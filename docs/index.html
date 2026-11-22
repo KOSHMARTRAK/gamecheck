@@ -1260,6 +1260,8 @@ function openAccount(msg){
   if(ME&&!MYPROF){openProfile(true);return}
   const m=modal(`<h3>${ic('user')} Rejoins GameCheck</h3><p class="rsub">${esc(msg||'Crée ton profil pour commenter, voter et discuter sur le forum.')}</p><button class="btn gbtn" id="gLogin">${GSVG}Continuer avec Google</button><p class="rnote">On garde seulement ton pseudo et ton avatar (visibles par tous) et un identifiant technique. Ton adresse e-mail n’est jamais affichée. Tu peux supprimer ton compte quand tu veux. À partir de 15 ans.</p><div class="rbtns"><button class="rcancel">Plus tard</button></div>`);
   m.querySelector('#gLogin').onclick=async()=>{const p=new FB.GoogleAuthProvider();p.setCustomParameters({prompt:'select_account'});
+    // sur téléphone et dans l'appli installée : redirection dans le même onglet (les fenêtres pop-up y sont peu fiables)
+    if(matchMedia('(pointer:coarse)').matches||matchMedia('(display-mode: standalone)').matches){try{await FB.signInWithRedirect(FB.auth,p)}catch(e){toast('Connexion impossible ('+((e&&e.code)||'erreur')+')')}return}
     try{await FB.signInWithPopup(FB.auth,p);m.remove()}catch(e){const c=e&&e.code||'';
       if(/popup-blocked|operation-not-supported|cancelled-popup/.test(c)){FB.signInWithRedirect(FB.auth,p)}
       else if(!/popup-closed/.test(c))toast('Connexion impossible ('+c+')')}};}
@@ -1799,7 +1801,7 @@ withIdx();renderUne();renderFilters();renderFeed();renderGame();initMap();initPh
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut,deleteUser} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import {getFirestore,collection,doc,onSnapshot,setDoc,addDoc,deleteDoc,getDoc,serverTimestamp,query,orderBy,limit} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-const app=initializeApp({apiKey:"AIzaSyBZ72tLBT5lrhqRPWcmmdNxC8nlSgB-q6g",authDomain:"gamecheck-48594.firebaseapp.com",projectId:"gamecheck-48594",storageBucket:"gamecheck-48594.firebasestorage.app",messagingSenderId:"171841910675",appId:"1:171841910675:web:55a976d6202a2b0485da66"});
+const app=initializeApp({apiKey:"AIzaSyBZ72tLBT5lrhqRPWcmmdNxC8nlSgB-q6g",authDomain:location.hostname==='koshmartrak.github.io'?'koshmartrak.github.io':'gamecheck-48594.firebaseapp.com',projectId:"gamecheck-48594",storageBucket:"gamecheck-48594.firebasestorage.app",messagingSenderId:"171841910675",appId:"1:171841910675:web:55a976d6202a2b0485da66"});
 window.FB={auth:getAuth(app),db:getFirestore(app),GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut,deleteUser,collection,doc,onSnapshot,setDoc,addDoc,deleteDoc,getDoc,serverTimestamp,query,orderBy,limit};
 window.dispatchEvent(new Event('fb-ready'));
 </script>
