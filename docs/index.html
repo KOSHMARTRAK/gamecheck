@@ -1801,7 +1801,7 @@ withIdx();renderUne();renderFilters();renderFeed();renderGame();initMap();initPh
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut,deleteUser} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
 import {getFirestore,collection,doc,onSnapshot,setDoc,addDoc,deleteDoc,getDoc,serverTimestamp,query,orderBy,limit} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
-const app=initializeApp({apiKey:"AIzaSyBZ72tLBT5lrhqRPWcmmdNxC8nlSgB-q6g",authDomain:location.hostname==='koshmartrak.github.io'?'koshmartrak.github.io':'gamecheck-48594.firebaseapp.com',projectId:"gamecheck-48594",storageBucket:"gamecheck-48594.firebasestorage.app",messagingSenderId:"171841910675",appId:"1:171841910675:web:55a976d6202a2b0485da66"});
+const app=initializeApp({apiKey:"AIzaSyBZ72tLBT5lrhqRPWcmmdNxC8nlSgB-q6g",authDomain:(location.hostname==='koshmartrak.github.io'&&(matchMedia('(pointer:coarse)').matches||matchMedia('(display-mode: standalone)').matches))?'koshmartrak.github.io':'gamecheck-48594.firebaseapp.com',projectId:"gamecheck-48594",storageBucket:"gamecheck-48594.firebasestorage.app",messagingSenderId:"171841910675",appId:"1:171841910675:web:55a976d6202a2b0485da66"});
 window.FB={auth:getAuth(app),db:getFirestore(app),GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut,deleteUser,collection,doc,onSnapshot,setDoc,addDoc,deleteDoc,getDoc,serverTimestamp,query,orderBy,limit};
 window.dispatchEvent(new Event('fb-ready'));
 </script>
