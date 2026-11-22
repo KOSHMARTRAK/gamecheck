@@ -506,7 +506,8 @@ nav.tabs>.walker img{width:100%;height:100%;object-fit:contain;border-radius:50%
 .tg-go{position:absolute;left:12px;bottom:12px;z-index:2;font-size:12px;font-weight:800;background:rgba(255,255,255,.92);color:var(--txt);padding:5px 11px;border-radius:999px}
 @keyframes tgFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @keyframes tgIcon{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(6deg) scale(1.08)}}
-@media(min-width:760px){.topg-row{grid-auto-flow:row;grid-template-columns:repeat(5,1fr);overflow:visible}.tg{height:210px}}
+.topg-row{grid-auto-flow:row!important;grid-template-columns:repeat(2,1fr)!important;overflow:visible!important}
+@media(min-width:760px){.tg{height:230px}}
 .exq{margin:10px 0 4px}
 .hotrow{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(230px,1fr);gap:10px;overflow-x:auto;padding:4px 2px 10px;scrollbar-width:none}
 .hotrow::-webkit-scrollbar{display:none}
@@ -1121,7 +1122,7 @@ function picOf(p,used){const own=PHOTOS[p.i]||p.img||OFFICIAL[p.i];if(own&&!(use
 const IMGFB="this.onerror=null;this.src='img/rs22.jpg'"
 function mergeDb(docs){
   const extra=[];
-  docs.forEach(d=>{const v=d.data()||{};if(!v.title||!CATS[v.cat]||v.cat==='all')return;
+  docs.forEach(d=>{const v=d.data()||{};if(!v.title||!CATS[v.cat]||v.cat==='all')return;if(v.game&&typeof GBYID!=='undefined'&&!GBYID[v.game])return;
     const n=Number.isFinite(+v.n)?+v.n:0;
     const sources=(Array.isArray(v.sources)?v.sources:[]).slice(0,6).map(s=>[esc(s.nom||'Source'),TIER[s.niveau]?s.niveau:'moyen',okUrl(s.url)]);
     const p={cat:v.cat,date:esc(v.date||''),title:esc(v.title),body:md(v.body||''),verdict:md(v.verdict||''),sources,ts:+v.ts||0,i:1000+n,m:['info',''],auto:true,game:(typeof GBYID!=='undefined'&&GBYID[v.game])?v.game:'gta-6',img:/^https:\/\//i.test(String(v.img||''))?esc(v.img):''};
@@ -1505,7 +1506,7 @@ const LIB=[
  {id:'kcd',n:'Kingdom Come',ed:'Warhorse Studios',g:['rpg'],games:[{id:'kcd-2',n:'Kingdom Come: Deliverance II',y:2025,pf:['PS5','Xbox','PC']}]},
  {id:'hogwarts',n:'Hogwarts Legacy',ed:'Avalanche Software',g:['rpg','ouvert'],games:[{id:'hogwarts-legacy',n:'Hogwarts Legacy',y:2023,pf:['PS5','Xbox','PC','Switch']}]},
  {id:'diablo',n:'Diablo',ed:'Blizzard',g:['rpg'],games:[{id:'diablo-4',n:'Diablo IV',y:2023,pf:['PS5','Xbox','PC']}]},
- {id:'poe',n:'Path of Exile',ed:'Grinding Gear Games',g:['rpg'],games:[{id:'poe-2',n:'Path of Exile 2',y:2024,st:'acces',pf:['PS5','Xbox','PC']}]},
+ {id:'poe',n:'Path of Exile',ed:'Grinding Gear Games',g:['rpg'],games:[{id:'poe-2',n:'Path of Exile 2',y:2024,pf:['PS5','Xbox','PC'],hot:1}]},
  {id:'wow',n:'World of Warcraft',ed:'Blizzard',g:['mmo'],games:[{id:'wow',n:'World of Warcraft',y:2004,pf:['PC']}]},
  {id:'ff',n:'Final Fantasy',ed:'Square Enix',g:['mmo','rpg'],games:[{id:'ff-14',n:'Final Fantasy XIV',y:2013,pf:['PS5','Xbox','PC'],g:['mmo']},{id:'ff-7-rebirth',n:'Final Fantasy VII Rebirth',y:2024,pf:['PS5','PC'],g:['rpg']}]},
  {id:'lostark',n:'Lost Ark',ed:'Smilegate',g:['mmo'],games:[{id:'lost-ark',n:'Lost Ark',y:2022,pf:['PC']}]},
@@ -1540,6 +1541,8 @@ const LIB=[
  {id:'stardew',n:'Stardew Valley',ed:'ConcernedApe',g:['inde','sandbox'],games:[{id:'stardew',n:'Stardew Valley',y:2016,pf:['PS5','Xbox','PC','Switch','Mobile']}]}
 ];
 const GBYID={},FBYID={},GAMES=[];
+const ACTIVE=['gta-6','poe-2']; /* jeux suivis par GameCheck : ajouter un id ici pour réactiver un jeu */
+LIB.forEach(f=>{f.games=f.games.filter(x=>ACTIVE.includes(x.id))});for(let i=LIB.length-1;i>=0;i--)if(!LIB[i].games.length)LIB.splice(i,1);
 LIB.forEach(f=>{FBYID[f.id]=f;f.games.forEach(x=>{x.fr=f.id;x.genres=x.g||f.g;x.st=x.st||'sorti';GBYID[x.id]=x;GAMES.push(x)})});
 const GENBY={};GENRES.forEach(g=>GENBY[g.id]=g);
 const gGrad=gid=>{const g=GENBY[gid]||GENRES[0];return `linear-gradient(135deg,${g.c1},${g.c2})`};
@@ -1574,7 +1577,7 @@ function renderExplore(){const el=document.getElementById('explore');if(!el)retu
     <input id="exQ" class="pin exq" placeholder="🔍 Chercher un jeu (ex : Fortnite, Elden Ring…)" value="${esc(XP.q)}">
     ${q?`<div class="glist">${found.length?found.map(x=>gameTile(x)).join(''):'<div class="cnone card">Aucun jeu trouvé. Il n’est peut-être pas encore dans la bibliothèque.</div>'}</div>`:`
     <div class="sec">${tile('sparkles','vice',28)}LES JEUX DU MOMENT</div><div class="hotrow">${GAMES.filter(x=>x.hot).map(x=>gameTile(x)).join('')}</div>
-    <div class="sec">${tile('layers','vice',28)}PAR GENRE</div><div class="ggrid">${GENRES.map(g=>{const n=GAMES.filter(x=>x.genres.includes(g.id)).length;return `<button class="gtile" data-ex="genre:${g.id}" style="background:${gGrad(g.id)}"><span class="gtile-e">${g.e}</span><b>${g.n}</b><small>${n} jeu${n>1?'x':''}</small></button>`}).join('')}</div>`}`;}
+    <div class="sec">${tile('layers','vice',28)}PAR GENRE</div><div class="ggrid">${GENRES.filter(g=>GAMES.some(x=>x.genres.includes(g.id))).map(g=>{const n=GAMES.filter(x=>x.genres.includes(g.id)).length;return `<button class="gtile" data-ex="genre:${g.id}" style="background:${gGrad(g.id)}"><span class="gtile-e">${g.e}</span><b>${g.n}</b><small>${n} jeu${n>1?'x':''}</small></button>`}).join('')}</div>`}`;}
   el.innerHTML=h;
   el.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{const [k,v]=b.dataset.ex.split(':');XP={genre:null,fr:null,game:null,q:''};if(k==='genre')XP.genre=v;if(k==='fr')XP.fr=v;renderExplore();window.scrollTo({top:0})});
   el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>{const keep=XP.genre;XP={genre:keep,fr:GBYID[b.dataset.game].fr,game:b.dataset.game,q:''};renderExplore();window.scrollTo({top:0})});
@@ -1607,6 +1610,7 @@ const NAVT={
  valorant:{bg:'linear-gradient(90deg,#0f1923,#3a0f17)',fg:'#ece8e1',act:'#ff4655',e:'🎯'},
  re:{bg:'linear-gradient(180deg,#2a0a0a,#0a0303)',fg:'#e9d6d6',act:'#e11d48',e:'☣️'},
  zelda:{bg:'linear-gradient(90deg,#1e4d3a,#2f6b4f)',fg:'#f2ecd0',act:'#e6c75a',e:'🗡️'},
+ poe:{bg:'linear-gradient(180deg,#2a0f0a,#0d0605)',fg:'#e9d2b0',act:'#d4a24c',e:'🩸'},
  wow:{bg:'linear-gradient(90deg,#1a1308,#3a2a10)',fg:'#f0dca2',act:'#ffb400',e:'🐉'}
 };
 let CURV='feed';
@@ -1623,7 +1627,7 @@ let OFFN=[];
 const offCard=n=>{const x=GBYID[n.g];if(!x)return'';const g=GENBY[x.genres[0]];return `<a class="offc" href="${esc(n.u)}" target="_blank" rel="noopener"><span class="offc-g" style="background:${gGrad(x.genres[0])}">${g.e}</span><span class="offc-tx"><small><b>${esc(x.n)}</b> · ${esc(n.s)} · ${fmtTs(n.ts)}</small><b>${esc(n.t)}</b>${n.x?`<span>${esc(n.x)}</span>`:''}</span></a>`};
 function renderOffHome(){const el=document.getElementById('offHome');if(!el)return;const l=OFFN.filter(n=>inFeedG(n.g)).slice(0,10);
   el.innerHTML=l.length?`<div class="topg-h"><b>📢 Annonces officielles</b><small class="offh-s">mises à jour toutes les heures</small></div><div class="offrow">${l.map(offCard).join('')}</div>`:''}
-async function loadOfficial(){try{const r=await fetch('data/official.json',{cache:'no-store'});if(r.ok){const a=await r.json();if(Array.isArray(a))OFFN=a.filter(n=>n&&n.g&&/^https:\/\//.test(n.u||'')).sort((a,b)=>b.ts-a.ts)}}catch(e){}
+async function loadOfficial(){try{const r=await fetch('data/official.json',{cache:'no-store'});if(r.ok){const a=await r.json();if(Array.isArray(a))OFFN=a.filter(n=>n&&n.g&&GBYID[n.g]&&/^https:\/\//.test(n.u||'')).sort((a,b)=>b.ts-a.ts)}}catch(e){}
   renderOffHome();renderExplore();renderMine()}
 {const _r2=renderExplore;renderExplore=function(){_r2();if(!XP.game)return;const el=document.getElementById('explore');if(!el)return;const id=XP.game,x=GBYID[id];
   const posts=(typeof ALL!=='undefined'?ALL:[]).filter(p=>(p.game||'gta-6')===id).slice(0,6),off=OFFN.filter(n=>n.g===id).slice(0,6);let h='';
@@ -1647,9 +1651,9 @@ function pickFeedG(){let sel=new Set(FEEDG);const withNews=new Set([...ALL.map(p
   const wire=()=>m.querySelectorAll('.pk').forEach(b=>b.onclick=()=>{const id=b.dataset.id;sel.has(id)?sel.delete(id):sel.add(id);b.classList.toggle('on')});wire();
   m.querySelector('[data-clear]').onclick=e=>{e.stopPropagation();sel.clear();m.querySelectorAll('.pk.on').forEach(b=>b.classList.remove('on'))};
   m.querySelector('.ok').onclick=()=>{m.remove();setFeedG([...sel]);toast(sel.size?sel.size+' jeu'+(sel.size>1?'x':'')+' sur ton fil':'Tous les jeux sur ton fil')};}/* vitrine de l'accueil : les jeux les plus joués du moment (sans classement) */
-const TOPG=['gta-6','fortnite','minecraft','cod-bo7','fc-26'];
+const TOPG=['gta-6','poe-2'];
 function renderTop(){const el=document.getElementById('topg');if(!el)return;
-  el.innerHTML=`<div class="topg-h"><b>🔥 Les plus joués en ce moment</b><button class="topg-all">Tous les jeux ›</button></div><div class="topg-row">${TOPG.map((id,k)=>{const x=GBYID[id],g=GENBY[x.genres[0]];
+  el.innerHTML=`<div class="topg-h"><b>🔥 Nos jeux</b><button class="topg-all">Tous les jeux ›</button></div><div class="topg-row">${TOPG.map((id,k)=>{const x=GBYID[id],g=GENBY[x.genres[0]];
     return `<button class="tg" data-game="${id}" style="--d:${k*.6}s;background:${gGrad(x.genres[0])}">${x.full?`<img src="${HERO_IMG}" alt="">`:''}<span class="tg-e">${g.e}</span><span class="tg-tx"><b>${esc(x.n)}</b><small>${g.n}</small></span><span class="tg-go">Voir ›</span></button>`}).join('')}</div>`;
   el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));
   el.querySelector('.topg-all').onclick=()=>{XP={genre:null,fr:null,game:null,q:''};showView('explore');renderExplore()};}
