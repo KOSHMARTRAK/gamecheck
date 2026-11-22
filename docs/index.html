@@ -650,7 +650,18 @@ body[data-univ="poe-2"] .kq-lbl{color:var(--mute)}
 body[data-univ="poe-2"] .badge{filter:saturate(.85)}
 body[data-univ="poe-2"] .dogtile.logo0{background:#1a0806}
 body[data-univ="poe-2"] .frame{background:conic-gradient(from 210deg,#d4a24c,#9e1b14,#5a1a10,#d4a24c,#d4a24c)}
-body[data-univ="poe-2"] .hero{background:conic-gradient(from 210deg,#d4a24c,#9e1b14,#5a1a10,#d4a24c)}/* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
+body[data-univ="poe-2"] .hero{background:conic-gradient(from 210deg,#d4a24c,#9e1b14,#5a1a10,#d4a24c)}/* logo premium : médaille or, halo, reflet qui passe */
+.logo .mk{width:54px;height:54px;margin:2px}
+.plogo{position:relative;display:block;width:100%;height:100%;border-radius:50%;overflow:hidden;
+  box-shadow:0 0 0 1.5px rgba(255,236,170,.9),0 6px 16px -4px rgba(140,80,10,.55),0 0 22px -4px rgba(255,200,80,.65);animation:plogoGlow 4s ease-in-out infinite}
+.plogo img{width:100%;height:100%;display:block;object-fit:cover}
+.plogo-shine{position:absolute;inset:-30%;background:linear-gradient(115deg,transparent 40%,rgba(255,255,255,.85) 50%,transparent 60%);transform:translateX(-80%);animation:plogoShine 5s ease-in-out infinite;pointer-events:none;mix-blend-mode:screen}
+@keyframes plogoShine{0%,62%{transform:translateX(-80%)}82%,100%{transform:translateX(80%)}}
+@keyframes plogoGlow{0%,100%{box-shadow:0 0 0 1.5px rgba(255,236,170,.9),0 6px 16px -4px rgba(140,80,10,.55),0 0 18px -6px rgba(255,200,80,.5)}50%{box-shadow:0 0 0 1.5px rgba(255,236,170,1),0 6px 16px -4px rgba(140,80,10,.55),0 0 26px -2px rgba(255,200,80,.85)}}
+.logo .mk:hover .plogo{transform:scale(1.06) rotate(-4deg);transition:transform .25s}
+body[data-univ="poe-2"] .plogo{box-shadow:0 0 0 1.5px rgba(240,194,106,.9),0 0 24px -4px rgba(200,50,20,.7)}
+@media (prefers-reduced-motion:reduce){.plogo,.plogo-shine{animation:none!important}}
+/* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
 .kq{display:none}
 @media(min-width:1260px){#v-game .panel,#v-eggs .panel{max-width:860px;margin:0 auto}.kq{display:block;position:fixed;z-index:15;top:122px;right:max(18px,calc(50% - 622px));width:186px}}
 .kq-lbl{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:7px}
@@ -1019,7 +1030,7 @@ function scene(tone,icon,sec,seed=1,opt={}){
 }
 const DOG='img/chien-buste.png';
 function logoSvg(){return `<span class="dogtile"><img src="${DOG}" alt=""></span>`}
-function dogLogo(){return `<span class="dogtile dog"><img src="${DOG}" alt="GameCheck"></span>`}
+function dogLogo(){return `<span class="plogo"><img src="img/logo-premium.png" alt="GameCheck"><i class="plogo-shine"></i></span>`}
 /* icône de provenance d'une info (cartes du haut) */
 const BRANDS=[[/rockstar/i,'R','#fcaf17','#14101c'],[/take.?two/i,'T2','#14101c','#fff'],[/playstation|sony/i,'PS','#0070d1','#fff'],[/xbox|microsoft/i,'X','#107c10','#fff']];
 const TIER_ORDER={officiel:0,fiable:1,moyen:2,leaker:3};
