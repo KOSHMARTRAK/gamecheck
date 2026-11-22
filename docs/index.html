@@ -661,6 +661,25 @@ body[data-univ="poe-2"] .hero{background:conic-gradient(from 210deg,#d4a24c,#9e1
 .logo .mk:hover .plogo{transform:scale(1.06) rotate(-4deg);transition:transform .25s}
 body[data-univ="poe-2"] .plogo{box-shadow:0 0 0 1.5px rgba(240,194,106,.9),0 0 24px -4px rgba(200,50,20,.7)}
 @media (prefers-reduced-motion:reduce){.plogo,.plogo-shine{animation:none!important}}
+/* === fond « dégradé vivant » : grandes taches de couleur floues qui se déplacent lentement === */
+body{background:#fff1f7}
+.meshbg{position:fixed;inset:0;z-index:0;overflow:hidden;pointer-events:none;background:#fff1f7}
+.meshbg i{position:absolute;border-radius:50%;filter:blur(70px);opacity:.75;will-change:transform}
+.meshbg .m1{width:62vmax;height:62vmax;left:-18vmax;top:-20vmax;background:#ff4fa3;animation:mb1 22s ease-in-out infinite alternate}
+.meshbg .m2{width:58vmax;height:58vmax;right:-20vmax;top:8vmax;background:#2fd4cf;animation:mb2 26s ease-in-out infinite alternate}
+.meshbg .m3{width:60vmax;height:60vmax;left:-10vmax;bottom:-24vmax;background:#ffb04a;animation:mb3 24s ease-in-out infinite alternate}
+.meshbg .m4{width:46vmax;height:46vmax;right:-8vmax;bottom:-16vmax;background:#8b5cf6;opacity:.6;animation:mb4 28s ease-in-out infinite alternate}
+.meshbg .m5{width:34vmax;height:34vmax;left:34%;top:30%;background:#ffffff;opacity:.55;animation:mb2 30s ease-in-out infinite alternate-reverse}
+@keyframes mb1{to{transform:translate(18vmax,14vmax) scale(1.12)}}
+@keyframes mb2{to{transform:translate(-16vmax,12vmax) scale(.9)}}
+@keyframes mb3{to{transform:translate(14vmax,-12vmax) scale(1.1)}}
+@keyframes mb4{to{transform:translate(-14vmax,-10vmax) scale(1.15)}}
+.palms{display:none}
+/* cartes en verre dépoli par-dessus le dégradé */
+.post,.card,.disc,.fact,.gt,.offc,.gmenu button{background:rgba(255,255,255,.62)!important;-webkit-backdrop-filter:blur(14px) saturate(140%);backdrop-filter:blur(14px) saturate(140%);border-color:rgba(255,255,255,.75)!important}
+.filters button,.gchip{background:rgba(255,255,255,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+@media(min-width:900px){.app{background:rgba(255,255,255,.22)!important;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}}
+@media (prefers-reduced-motion:reduce){.meshbg i{animation:none!important}}
 /* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
 .kq{display:none}
 @media(min-width:1260px){#v-game .panel,#v-eggs .panel{max-width:860px;margin:0 auto}.kq{display:block;position:fixed;z-index:15;top:122px;right:max(18px,calc(50% - 622px));width:186px}}
@@ -701,6 +720,7 @@ body[data-univ="poe-2"] .plogo{box-shadow:0 0 0 1.5px rgba(240,194,106,.9),0 0 2
 </style>
 </head>
 <body>
+<div class="meshbg" aria-hidden="true"><i class="m1"></i><i class="m2"></i><i class="m3"></i><i class="m4"></i><i class="m5"></i></div>
 <div class="palms" id="palms"></div>
 <div class="app">
   <header>
