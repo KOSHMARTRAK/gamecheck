@@ -594,7 +594,42 @@ nav.tabs>.navtag[hidden]{display:none}
 .pk-l{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .pk{font-size:12.5px;font-weight:600;padding:6px 10px;border-radius:999px;background:var(--soft);border:1.5px solid transparent;color:var(--txt)}
 .pk.on{background:#e6fbfa;border-color:#13b5b0;color:#0e6f6b;font-weight:800}
-.pk i,.rsub .dot{font-style:normal;color:#13b5b0;font-size:10px}/* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
+.pk i,.rsub .dot{font-style:normal;color:#13b5b0;font-size:10px}/* interrupteur GTA VI / PoE 2 */
+.univ{position:relative;display:flex;gap:4px;padding:3px;border-radius:999px;margin-left:auto;background:rgba(255,255,255,.78);box-shadow:inset 0 0 0 1.5px rgba(43,36,64,.12),0 6px 14px -8px rgba(43,36,64,.45);perspective:200px}
+.univ .knob{position:absolute;top:3px;left:3px;width:34px;height:34px;border-radius:50%;background:var(--vice-g);box-shadow:0 0 0 2px #fff,0 4px 12px rgba(255,45,149,.5);transition:transform .5s cubic-bezier(.6,-.4,.3,1.4),background .35s,box-shadow .35s}
+.univ[data-on="poe-2"] .knob{transform:translateX(38px);background:radial-gradient(circle at 50% 40%,#5a1a10,#120605);box-shadow:0 0 0 2px #d4a24c,0 4px 14px rgba(180,40,20,.6)}
+.univ button{position:relative;z-index:1;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-family:var(--disp);font-size:17px;letter-spacing:.5px;color:#8a7f96;transition:transform .6s,color .3s}
+.univ button.u-poe-2{font-family:Georgia,'Times New Roman',serif;font-weight:700;font-size:15px}
+.univ button.on{color:#fff;transform:rotateY(360deg)}
+.univ button.u-poe-2.on{color:#f0c26a;text-shadow:0 0 8px rgba(255,120,60,.7)}
+#v-feed.flip{animation:univFlip .55s ease}
+@keyframes univFlip{0%{transform:perspective(900px) rotateY(0);opacity:1}45%{transform:perspective(900px) rotateY(12deg);opacity:.35}100%{transform:perspective(900px) rotateY(0);opacity:1}}
+.gfilt{display:none!important}
+@media(max-width:420px){.mebtn span{display:none}.mebtn{padding:0;width:38px;justify-content:center}.logo .wd{font-size:22px}}
+@media (prefers-reduced-motion:reduce){.univ *,#v-feed.flip{transition:none!important;animation:none!important}}/* ===== UNIVERS PATH OF EXILE 2 : sombre, rouge sang et or ===== */
+.hbg .emb{display:none}
+body[data-univ="poe-2"]{--txt:#efe0c7;--mute:#b9a487;--card:rgba(26,11,8,.86);--line:rgba(212,162,76,.22);--soft:rgba(60,24,16,.75);--vice-g:linear-gradient(135deg,#9e1b14,#d4a24c);
+  background:radial-gradient(60% 40% at 0% 0%,rgba(170,30,15,.45),transparent 70%),radial-gradient(60% 40% at 100% 100%,rgba(212,162,76,.18),transparent 70%),linear-gradient(rgba(10,4,3,.82),rgba(10,4,3,.9)),url("https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/93edc6a1815c760dfbb6d93b6a0d8d0e19372180/page_bg_raw.jpg") center top/cover fixed,#0c0605;color:var(--txt)}
+html:has(body[data-univ="poe-2"]){background:#0c0605}
+body[data-univ="poe-2"] .palms{opacity:.08}
+body[data-univ="poe-2"] .hbg{background:linear-gradient(rgba(12,4,3,.35),rgba(12,4,3,.75)),url("https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/29a8f70e50291aa9fab22a51ec8334f3eedeb267/ss_29a8f70e50291aa9fab22a51ec8334f3eedeb267.1920x1080.jpg") center 35%/cover}
+body[data-univ="poe-2"] .hbg .sun,body[data-univ="poe-2"] .hbg .cloud,body[data-univ="poe-2"] .hbg .bird,body[data-univ="poe-2"] .hbg .palm,body[data-univ="poe-2"] .hbg .sea,body[data-univ="poe-2"] .hbg .sp{display:none}
+body[data-univ="poe-2"] .hbg .emb{display:block;position:absolute;bottom:-6px;width:4px;height:4px;border-radius:50%;background:#ffb347;box-shadow:0 0 8px 3px rgba(255,90,30,.8);animation:ember 4.5s linear infinite;opacity:0}
+.hbg .e1{left:12%;animation-delay:0s}.hbg .e2{left:31%;animation-delay:-1.6s}.hbg .e3{left:47%;animation-delay:-3.1s}.hbg .e4{left:63%;animation-delay:-.8s}.hbg .e5{left:78%;animation-delay:-2.4s}.hbg .e6{left:92%;animation-delay:-3.8s}
+@keyframes ember{0%{transform:translate(0,0) scale(1);opacity:0}15%{opacity:1}100%{transform:translate(-14px,-80px) scale(.3);opacity:0}}
+body[data-univ="poe-2"] header::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='16'%3E%3Cpath d='M0 7 Q30 0 60 7 T120 7 V0 H0Z' fill='%23200a07'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='16'%3E%3Cpath d='M0 9 Q45 16 90 9 T180 9 V0 H0Z' fill='%23d4a24c' fill-opacity='.55'/%3E%3C/svg%3E")}
+body[data-univ="poe-2"] .logo .wd{background:linear-gradient(135deg,#f0c26a,#b3261e);-webkit-background-clip:text;background-clip:text}
+body[data-univ="poe-2"] .univ{background:rgba(20,8,6,.75);box-shadow:inset 0 0 0 1.5px rgba(212,162,76,.35)}
+body[data-univ="poe-2"] .card,body[data-univ="poe-2"] .post,body[data-univ="poe-2"] .disc,body[data-univ="poe-2"] .fact,body[data-univ="poe-2"] .gt,body[data-univ="poe-2"] .offc,body[data-univ="poe-2"] .gmenu button,body[data-univ="poe-2"] .filters button,body[data-univ="poe-2"] .gback,body[data-univ="poe-2"] .rbox,body[data-univ="poe-2"] .sbtn,body[data-univ="poe-2"] .vote,body[data-univ="poe-2"] textarea,body[data-univ="poe-2"] .pin,body[data-univ="poe-2"] #askLink{background:rgba(26,11,8,.88)!important;color:var(--txt)!important;border-color:rgba(212,162,76,.28)!important}
+body[data-univ="poe-2"] .filters button.on{background:linear-gradient(135deg,#9e1b14,#d4a24c)!important;color:#fff!important}
+body[data-univ="poe-2"] .body,body[data-univ="poe-2"] .fitem p,body[data-univ="poe-2"] .offc-tx>span,body[data-univ="poe-2"] .gsoon p,body[data-univ="poe-2"] .vpost p,body[data-univ="poe-2"] .mapinfo p{color:#dccbb0!important}
+body[data-univ="poe-2"] .offc-tx small b,body[data-univ="poe-2"] .topg-all,body[data-univ="poe-2"] .crumb button,body[data-univ="poe-2"] .fback,body[data-univ="poe-2"] .fn,body[data-univ="poe-2"] .pgame{color:#f0c26a!important}
+body[data-univ="poe-2"] .pgame{background:rgba(212,162,76,.14)!important}
+body[data-univ="poe-2"] .post::before,body[data-univ="poe-2"] .card::before,body[data-univ="poe-2"] .disc::before,body[data-univ="poe-2"] .fact::before{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='40'%3E%3Cpath d='M3 0Q0 10 3 20T3 40' fill='none' stroke='%23d4a24c' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='6' height='40'%3E%3Cpath d='M3 0Q6 10 3 20T3 40' fill='none' stroke='%23c0392b' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")}
+body[data-univ="poe-2"] .post::after,body[data-univ="poe-2"] .card::after,body[data-univ="poe-2"] .disc::after,body[data-univ="poe-2"] .fact::after{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='6'%3E%3Cpath d='M0 3Q10 0 20 3T40 3' fill='none' stroke='%23d4a24c' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"),url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='6'%3E%3Cpath d='M0 3Q10 6 20 3T40 3' fill='none' stroke='%23c0392b' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E")}
+body[data-univ="poe-2"] .app{background:rgba(12,5,4,.45)}
+body[data-univ="poe-2"] .empty{color:var(--mute)}
+@media (prefers-reduced-motion:reduce){.hbg .emb{animation:none!important}}/* === emplacement publicitaire (PC) : panneau de plage, avion à banderole === */
 .kq{display:none}
 @media(min-width:1260px){#v-game .panel,#v-eggs .panel{max-width:860px;margin:0 auto}.kq{display:block;position:fixed;z-index:15;top:122px;right:max(18px,calc(50% - 622px));width:186px}}
 .kq-lbl{font-size:10.5px;font-weight:800;letter-spacing:1.6px;text-transform:uppercase;color:var(--mute);text-align:center;margin-bottom:7px}
@@ -680,10 +715,11 @@ nav.tabs>.navtag[hidden]{display:none}
         </g>
         <circle cx="44" cy="43" r="3" fill="#6b3f1d"/><circle cx="49" cy="44" r="3" fill="#7a4b25"/>
       </svg>
-      <span class="sea"></span><span class="sp s1"></span><span class="sp s2"></span><span class="sp s3"></span><span class="sp s4"></span><span class="sp s5"></span><span class="sp s6"></span></div>
+      <span class="emb e1"></span><span class="emb e2"></span><span class="emb e3"></span><span class="emb e4"></span><span class="emb e5"></span><span class="emb e6"></span><span class="sea"></span><span class="sp s1"></span><span class="sp s2"></span><span class="sp s3"></span><span class="sp s4"></span><span class="sp s5"></span><span class="sp s6"></span></div>
     <div class="logo"><div class="mk" id="logoMk"></div><div class="wd">GAMECHECK</div></div>
     <button id="installBtn" hidden style="margin-left:auto;margin-right:10px;font-size:12.5px;font-weight:700;padding:8px 12px;border-radius:999px;background:var(--vice-g);color:#fff">Installer l'appli</button>
     <div class="upd"><b>● Fil vérifié</b><br><span id="majTop">MAJ 21 nov. 2026</span></div>
+    <div class="univ" id="univSw" role="group" aria-label="Choisir le jeu"></div>
     <button id="meBtn" class="mebtn" aria-label="Mon profil" onclick="openAccount()"></button>
   </header>
 
@@ -1118,7 +1154,7 @@ function sortKey(p){return p.ts||dayOf(p.date)}
 /* Image toujours présente : photo envoyée, image de l'article, capture dédiée, sinon une capture officielle choisie automatiquement (sans doublon dans les 5 cartes) */
 const POOL=Array.from({length:23},(_,k)=>RSF(k));
 const hsh=s=>{let h=7;for(const c of String(s))h=(h*31+c.charCodeAt(0))>>>0;return h};
-function picOf(p,used){const own=PHOTOS[p.i]||p.img||OFFICIAL[p.i];if(own&&!(used&&used.has(own)))return own;let k=hsh(p.title)%POOL.length,n=0;while(used&&used.has(POOL[k])&&n++<POOL.length)k=(k+1)%POOL.length;return POOL[k]}
+function picOf(p,used){if(p.game==='poe-2'&&typeof POE_SS!=='undefined'&&!p.img){let k=hsh(p.title)%POE_SS.length,n=0;while(used&&used.has(POE_SS[k])&&n++<POE_SS.length)k=(k+1)%POE_SS.length;return POE_SS[k]}const own=PHOTOS[p.i]||p.img||OFFICIAL[p.i];if(own&&!(used&&used.has(own)))return own;let k=hsh(p.title)%POOL.length,n=0;while(used&&used.has(POOL[k])&&n++<POOL.length)k=(k+1)%POOL.length;return POOL[k]}
 const IMGFB="this.onerror=null;this.src='img/rs22.jpg'"
 function mergeDb(docs){
   const extra=[];
@@ -1163,7 +1199,7 @@ function inFeedG(g){return !FEEDG.length||FEEDG.includes(g||'gta-6')}
 function curList(){return ALL.filter(p=>(filter==='all'||p.cat===filter)&&inFeedG(p.game))}
 function renderFeed(){
   const list=curList();
-  if(!list.length){$('#feed').innerHTML='<div class="empty">Rien ici pour le moment.</div>';return}
+  if(!list.length){const gn=(typeof FEEDG!=='undefined'&&FEEDG.length===1&&GBYID[FEEDG[0]])?GBYID[FEEDG[0]].n:'';$('#feed').innerHTML=`<div class="empty card" style="padding:18px;margin:14px 10px;text-align:center"><b>Pas encore d’info vérifiée${gn?' sur '+esc(gn):''} ici.</b><p style="margin:6px 0 12px">Tu as vu une rumeur ? Envoie-la, on la vérifie.</p><button class="btn" onclick="showView('check')">🔍 Demander une vérif</button></div>`;return}
   $('#feed').innerHTML=list.map((p,j)=>{
     const c=CATS[p.cat],t=TONES[c.tone],liked=likes[p.i];
     return `<article class="post" id="post${p.i}">
@@ -1506,7 +1542,7 @@ const LIB=[
  {id:'kcd',n:'Kingdom Come',ed:'Warhorse Studios',g:['rpg'],games:[{id:'kcd-2',n:'Kingdom Come: Deliverance II',y:2025,pf:['PS5','Xbox','PC']}]},
  {id:'hogwarts',n:'Hogwarts Legacy',ed:'Avalanche Software',g:['rpg','ouvert'],games:[{id:'hogwarts-legacy',n:'Hogwarts Legacy',y:2023,pf:['PS5','Xbox','PC','Switch']}]},
  {id:'diablo',n:'Diablo',ed:'Blizzard',g:['rpg'],games:[{id:'diablo-4',n:'Diablo IV',y:2023,pf:['PS5','Xbox','PC']}]},
- {id:'poe',n:'Path of Exile',ed:'Grinding Gear Games',g:['rpg'],games:[{id:'poe-2',n:'Path of Exile 2',y:2024,pf:['PS5','Xbox','PC'],hot:1}]},
+ {id:'poe',n:'Path of Exile',ed:'Grinding Gear Games',g:['rpg'],games:[{id:'poe-2',n:'Path of Exile 2',y:2024,st:'acces',pf:['PS5','Xbox','PC'],hot:1}]},
  {id:'wow',n:'World of Warcraft',ed:'Blizzard',g:['mmo'],games:[{id:'wow',n:'World of Warcraft',y:2004,pf:['PC']}]},
  {id:'ff',n:'Final Fantasy',ed:'Square Enix',g:['mmo','rpg'],games:[{id:'ff-14',n:'Final Fantasy XIV',y:2013,pf:['PS5','Xbox','PC'],g:['mmo']},{id:'ff-7-rebirth',n:'Final Fantasy VII Rebirth',y:2024,pf:['PS5','PC'],g:['rpg']}]},
  {id:'lostark',n:'Lost Ark',ed:'Smilegate',g:['mmo'],games:[{id:'lost-ark',n:'Lost Ark',y:2022,pf:['PC']}]},
@@ -1546,7 +1582,7 @@ LIB.forEach(f=>{f.games=f.games.filter(x=>ACTIVE.includes(x.id))});for(let i=LIB
 LIB.forEach(f=>{FBYID[f.id]=f;f.games.forEach(x=>{x.fr=f.id;x.genres=x.g||f.g;x.st=x.st||'sorti';GBYID[x.id]=x;GAMES.push(x)})});
 const GENBY={};GENRES.forEach(g=>GENBY[g.id]=g);
 const gGrad=gid=>{const g=GENBY[gid]||GENRES[0];return `linear-gradient(135deg,${g.c1},${g.c2})`};
-const stLbl=x=>x.st==='annonce'?'Annoncé':x.st==='acces'?'Accès anticipé':(x.y?'Sorti en '+x.y:'Sorti');
+const stLbl=x=>x.st==='annonce'?'Annoncé':x.st==='acces'?(x.id==='poe-2'?'Accès anticipé · version complète le 11 déc.':'Accès anticipé'):(x.y?'Sorti en '+x.y:'Sorti');
 let FOLLOW=[];try{FOLLOW=JSON.parse(localStorage.getItem('gc_follow')||'[]')}catch(e){}
 const isF=id=>FOLLOW.includes(id);
 function toggleFollow(id){FOLLOW=isF(id)?FOLLOW.filter(x=>x!==id):[...FOLLOW,id];try{localStorage.setItem('gc_follow',JSON.stringify(FOLLOW))}catch(e){}toast(isF(id)?'Ajouté à Mes jeux ⭐':'Retiré de Mes jeux');renderExplore();renderMine()}
@@ -1561,7 +1597,7 @@ function renderExplore(){const el=document.getElementById('explore');if(!el)retu
   if(XP.game)crumb.push(`<span>${esc(GBYID[XP.game].n)}</span>`);
   const crumbs=crumb.length>1?`<nav class="crumb">${crumb.join('<i>›</i>')}</nav>`:'';
   if(XP.game){const x=GBYID[XP.game],f=FBYID[x.fr],g=GENBY[x.genres[0]];
-    h=`${crumbs}<div class="ghero" style="background:${gGrad(x.genres[0])}">${x.full?`<img src="${HERO_IMG}" alt="">`:`<span class="ghero-e">${g.e}</span>`}<div class="ghero-in"><div class="ghero-tags">${x.genres.map(id=>`<span>${GENBY[id].e} ${GENBY[id].n}</span>`).join('')}${x.hot?'<span>🔥 Du moment</span>':''}</div><h1>${esc(x.n)}</h1><p>${esc(f.ed)} · ${stLbl(x)}</p><div class="pfs">${pfChips(x)}</div></div></div>
+    h=`${crumbs}<div class="ghero" style="background:${gGrad(x.genres[0])}">${gameImg(x.id)?`<img src="${gameImg(x.id)}" alt="" referrerpolicy="no-referrer">`:`<span class="ghero-e">${g.e}</span>`}<div class="ghero-in"><div class="ghero-tags">${x.genres.map(id=>`<span>${GENBY[id].e} ${GENBY[id].n}</span>`).join('')}${x.hot?'<span>🔥 Du moment</span>':''}</div><h1>${esc(x.n)}</h1><p>${esc(f.ed)} · ${stLbl(x)}</p><div class="pfs">${pfChips(x)}</div></div></div>
     <button class="btn follow ${isF(x.id)?'on':''}" data-follow="${x.id}">${isF(x.id)?'⭐ Dans Mes jeux':'☆ Suivre ce jeu'}</button>`;
     if(x.full){h+=`<div class="gmenu"><button data-go="feed">📰<b>Les infos</b><small>Vrai, faux, rumeurs, arnaques</small></button><button data-go="eggs">🥚<b>Easter eggs</b><small>Les secrets cachés</small></button><button data-go="game">🗺️<b>Fiche & carte</b><small>Tout sur le jeu</small></button><button data-go="forum">💬<b>Forum</b><small>Discuter avec la commu</small></button></div>`}
     else{h+=`<div class="card gsoon"><b>Les infos vérifiées sur ${esc(x.n)} arrivent bientôt.</b><p>Tu as vu une rumeur sur ce jeu ? Envoie-la, on la vérifie et le verdict apparaîtra ici.</p><div class="gsoon-b"><button class="btn" data-go="check">🔍 Demander une vérif</button><button class="btn ghost" data-go="forum">💬 En parler sur le forum</button></div></div>`}
@@ -1614,7 +1650,7 @@ const NAVT={
  wow:{bg:'linear-gradient(90deg,#1a1308,#3a2a10)',fg:'#f0dca2',act:'#ffb400',e:'🐉'}
 };
 let CURV='feed';
-function navCtx(){if(CURV==='eggs'||CURV==='game')return{fr:'gta',game:'gta-6',genre:'ouvert'};
+function navCtx(){if(CURV==='eggs'||CURV==='game')return null;if(CURV!=='explore'&&typeof UNIV!=='undefined'&&UNIV!=='gta-6'&&GBYID[UNIV]){const x=GBYID[UNIV];return{fr:x.fr,game:x.id,genre:x.genres[0]}}
   if(CURV==='explore'){if(XP.game){const x=GBYID[XP.game];return{fr:x.fr,game:x.id,genre:x.genres[0]}}if(XP.fr)return{fr:XP.fr,genre:FBYID[XP.fr].g[0]};if(XP.genre)return{genre:XP.genre}}return null}
 function applyNavTheme(){const nav=document.querySelector('nav.tabs'),tag=document.getElementById('navTag');if(!nav)return;const c=navCtx();
   if(!c){nav.classList.remove('themed');if(tag)tag.hidden=true;return}
@@ -1650,11 +1686,22 @@ function pickFeedG(){let sel=new Set(FEEDG);const withNews=new Set([...ALL.map(p
   const m=modal(`<h3>🎮 Choisis les jeux de ton fil</h3><p class="rsub">Seules les infos de ces jeux s'afficheront sur l'Accueil. Rien de coché = tous les jeux. <i class="dot">●</i> = a déjà des infos.</p><div class="pk-wrap">${body()}</div><div class="rbtns"><button class="rcancel" data-clear="1">Tout décocher</button><button class="rsend ok">Valider</button></div>`);
   const wire=()=>m.querySelectorAll('.pk').forEach(b=>b.onclick=()=>{const id=b.dataset.id;sel.has(id)?sel.delete(id):sel.add(id);b.classList.toggle('on')});wire();
   m.querySelector('[data-clear]').onclick=e=>{e.stopPropagation();sel.clear();m.querySelectorAll('.pk.on').forEach(b=>b.classList.remove('on'))};
-  m.querySelector('.ok').onclick=()=>{m.remove();setFeedG([...sel]);toast(sel.size?sel.size+' jeu'+(sel.size>1?'x':'')+' sur ton fil':'Tous les jeux sur ton fil')};}/* vitrine de l'accueil : les jeux les plus joués du moment (sans classement) */
+  m.querySelector('.ok').onclick=()=>{m.remove();setFeedG([...sel]);toast(sel.size?sel.size+' jeu'+(sel.size>1?'x':'')+' sur ton fil':'Tous les jeux sur ton fil')};}/* captures officielles Path of Exile 2 (galerie Steam de Grinding Gear Games) */
+const POE_SS=['29a8f70e50291aa9fab22a51ec8334f3eedeb267','31cafb888d499f04022bf47c6bb6ae879ed139ae','e91a68cabd08ce676bb1a554a0205ac8b0ca6221','f4676d0b868f78aef63d15833a1d96afc76dc8d2','07c21f3e884059d85bc2ed0213d71cd99a5499b5','e8d9749bf7885a38c2db8c4ba64e55fd376b4715','88c9dccd5619feb31707ed5f5e549e5aba6de0ec','e5d757b94801daf70836c1686208ed6d39785b36','e2d559c229fc8e66cefae1f19370fa4ccd2fc712','2430433b358a16fe2c9dd4b883eb955d8a252c3c','69140f666c152c1af0cefb077fbc0b770f87e569','033b9250c0e77bf1767bd26fd104bc2680378ffe'].map(h=>`https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/${h}/ss_${h}.1920x1080.jpg`);
+const POE_BG='https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/93edc6a1815c760dfbb6d93b6a0d8d0e19372180/page_bg_raw.jpg';
+const gameImg=id=>id==='poe-2'?POE_SS[0]:id==='gta-6'?HERO_IMG:'';/* interrupteur d'univers en haut : GTA VI <-> Path of Exile 2 (tout l'Accueil bascule sur le jeu choisi) */
+const UNIVS=[{id:'gta-6',t:'VI',n:'GTA VI'},{id:'poe-2',t:'II',n:'Path of Exile 2'}];
+let UNIV='gta-6';try{const u=localStorage.getItem('gc_univ');if(UNIVS.some(x=>x.id===u))UNIV=u}catch(e){}
+function renderUnivSw(){const el=document.getElementById('univSw');if(!el)return;el.dataset.on=UNIV;
+  el.innerHTML='<span class="knob"></span>'+UNIVS.map(u=>`<button class="u-${u.id} ${u.id===UNIV?'on':''}" data-u="${u.id}" aria-pressed="${u.id===UNIV}" title="${u.n}">${u.t}</button>`).join('');
+  el.querySelectorAll('button').forEach(b=>b.onclick=()=>setUniv(b.dataset.u===UNIV?UNIVS.find(x=>x.id!==UNIV).id:b.dataset.u));}
+function setUniv(id,silent){UNIV=id;try{localStorage.setItem('gc_univ',id)}catch(e){}document.body.dataset.univ=id;renderUnivSw();setFeedG([id]);applyNavTheme();
+  const v=document.getElementById('v-feed');if(v&&!silent){v.classList.remove('flip');void v.offsetWidth;v.classList.add('flip')}
+  if(!silent)toast(GBYID[id].n+' activé')}/* vitrine de l'accueil : les jeux les plus joués du moment (sans classement) */
 const TOPG=['gta-6','poe-2'];
 function renderTop(){const el=document.getElementById('topg');if(!el)return;
   el.innerHTML=`<div class="topg-h"><b>🔥 Nos jeux</b><button class="topg-all">Tous les jeux ›</button></div><div class="topg-row">${TOPG.map((id,k)=>{const x=GBYID[id],g=GENBY[x.genres[0]];
-    return `<button class="tg" data-game="${id}" style="--d:${k*.6}s;background:${gGrad(x.genres[0])}">${x.full?`<img src="${HERO_IMG}" alt="">`:''}<span class="tg-e">${g.e}</span><span class="tg-tx"><b>${esc(x.n)}</b><small>${g.n}</small></span><span class="tg-go">Voir ›</span></button>`}).join('')}</div>`;
+    return `<button class="tg" data-game="${id}" style="--d:${k*.6}s;background:${gGrad(x.genres[0])}">${gameImg(x.id)?`<img src="${gameImg(x.id)}" alt="" referrerpolicy="no-referrer">`:''}<span class="tg-e">${g.e}</span><span class="tg-tx"><b>${esc(x.n)}</b><small>${g.n}</small></span><span class="tg-go">Voir ›</span></button>`}).join('')}</div>`;
   el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));
   el.querySelector('.topg-all').onclick=()=>{XP={genre:null,fr:null,game:null,q:''};showView('explore');renderExplore()};}
 /* ===== TABS ===== */
@@ -1796,7 +1843,7 @@ let installEvt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;$('#installBtn').hidden=false});
 $('#installBtn').onclick=async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('#installBtn').hidden=true};
 window.addEventListener('appinstalled',()=>{$('#installBtn').hidden=true;toast('GameCheck est installé !')});
-withIdx();renderUne();renderFilters();renderFeed();renderGame();initMap();initPhotos();renderTop();renderExplore();renderMine();renderGFilt();loadOfficial();
+withIdx();renderUne();renderFilters();renderFeed();renderGame();initMap();initPhotos();renderTop();renderExplore();renderMine();renderGFilt();setUniv(UNIV,true);loadOfficial();
 ['eggs','game'].forEach(v=>{const p=document.getElementById(v);if(p)p.insertAdjacentHTML('afterbegin','<button class="gback" onclick="goGame(\'gta-6\')">‹ GTA VI</button>')});
 </script>
 <script type="module">
