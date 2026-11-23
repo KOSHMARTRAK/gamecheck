@@ -1281,7 +1281,7 @@ function renderFeed(){
         <div class="pmeta"><div class="pname">gamecheck ${ic('verified')}</div><div class="pdate">${p.ts?`Publié le <span class="hr">${fmtTs(p.ts)}</span>`:p.date}</div></div>
         ${badge(p.cat)}
       </div>
-      ${(()=>{const gid=p.game||'gta-6',x=typeof GBYID!=='undefined'&&GBYID[gid];return x?`<button class="pgame" onclick="goGame('${gid}')">${GENBY[x.genres[0]].e} ${esc(x.n)} ›</button>`:''})()}<h2 class="ptitle" style="border-color:${t.n1}">${p.title}</h2>
+      <h2 class="ptitle" style="border-color:${t.n1}">${p.title}</h2>
       ${true?`<div class="frame"><div class="in"><img src="${(()=>{if(FU.size>=POOL.length)FU.clear();const im=picOf(p,FU);FU.add(im);return im})()}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${IMGFB}>
         <div class="ftop"><span class="tag">${PHOTOS[p.i]?ic('camera')+'Ta capture':ic('verified')+'Capture officielle Rockstar'}</span></div>
       </div></div>`:''}
