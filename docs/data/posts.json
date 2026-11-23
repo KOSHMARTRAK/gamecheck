@@ -1,5 +1,95 @@
 [
   {
+    "id": "multijoueur-gta6-2027",
+    "data": {
+      "game": "gta-6",
+      "cat": "rumeur",
+      "title": "GTA 6 : le mode en ligne arriverait en 2027, sans annonce de Rockstar",
+      "body": "Le patron de Twitch a évoqué un multijoueur « l'année prochaine », et plusieurs médias parlent de **2027**. Take-Two confirme seulement que GTA Online restera supporté.",
+      "verdict": "**Non vérifié.** Aucune date ni aucun détail officiel de Rockstar : l'information vient de propos de tiers.",
+      "sources": [
+        {
+          "nom": "Beebom",
+          "niveau": "moyen",
+          "url": "https://beebom.com/gta-6-online-arrives-next-year-says-twitch-ceo/"
+        },
+        {
+          "nom": "Digital Trends",
+          "niveau": "moyen",
+          "url": "https://digitaltrends.com/gaming/gta-vis-online-mode-could-arrive-in-2027-well-after-the-single-player-campaign-begins/"
+        },
+        {
+          "nom": "GTAboom",
+          "niveau": "moyen",
+          "url": "https://www.gtaboom.com/twitch-ceo-expects-gta-6-online-to-launch-in-2027"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795447034906,
+      "n": 19
+    }
+  },
+  {
+    "id": "maison-belville-san-andreas-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "rumeur",
+      "title": "GTA 6 : la maison de Belville serait celle d'une image cachée dans San Andreas en 2021",
+      "body": "Un joueur de la communauté de cartographie a retrouvé à **Belville** une maison qui ressemble à une image ajoutée à GTA San Andreas Definitive Edition en 2021.",
+      "verdict": "**Non vérifié.** La ressemblance est frappante, mais Rockstar n'a rien confirmé : le studio a pu réutiliser le décor.",
+      "sources": [
+        {
+          "nom": "Dexerto",
+          "niveau": "moyen",
+          "url": "https://www.dexerto.com/gta/gta-6-screenshot-hidden-in-san-andreas-back-in-2021-was-real-and-the-house-has-a-dark-secret-3429837/"
+        },
+        {
+          "nom": "Kotaku",
+          "niveau": "moyen",
+          "url": "https://kotaku.com/turns-out-gta-san-andreas-remastered-was-teasing-gta-6-back-in-2021-2000758132"
+        },
+        {
+          "nom": "VGC",
+          "niveau": "moyen",
+          "url": "https://www.videogameschronicle.com/news/gta-6-players-discover-our-real-first-look-at-the-game-was-likely-hidden-in-a-2021-remaster/"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795447034905,
+      "n": 18
+    }
+  },
+  {
+    "id": "psn-pannes-lancement-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : deux pannes du PlayStation Network autour du lancement",
+      "body": "Le **PSN** a connu deux perturbations les 18 et 19 novembre (connexion, téléchargements). Elles sont aujourd'hui résolues.",
+      "verdict": "Les pannes sont réelles, mais Sony n'a pas confirmé que GTA 6 en soit la cause : la forte demande reste une hypothèse.",
+      "sources": [
+        {
+          "nom": "TechRepublic",
+          "niveau": "fiable",
+          "url": "https://www.techrepublic.com/article/news-psn-back-online-gta-6-outages/"
+        },
+        {
+          "nom": "Notebookcheck",
+          "niveau": "moyen",
+          "url": "https://www.notebookcheck.net/GTA-6-causes-PlayStation-Network-outages.1453653.0.html"
+        },
+        {
+          "nom": "IBTimes",
+          "niveau": "moyen",
+          "url": "https://www.ibtimes.co.uk/gta-vi-launch-psn-login-connection-problems-1833330"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795447034904,
+      "n": 17
+    }
+  },
+  {
     "id": "oeuf-tour-secret-gta6",
     "data": {
       "game": "gta-6",
