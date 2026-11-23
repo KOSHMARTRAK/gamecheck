@@ -63,6 +63,16 @@ Pour grandir :
 - **Newsletter gratuite** : un mail par semaine avec l'actu GTA VI.
 - Play Store : 25 $ une seule fois (payant, donc plus tard, l'APK gratuit suffit pour l'instant).
 
+## Préparer dès maintenant pour gagner de l'argent plus tard
+- **Stats de visites dès que possible** (GoatCounter, gratuit) : sans chiffres, impossible de vendre de la pub ou un partenariat.
+- **Garder « GameCheck » comme marque**, avec GTA VI comme rubrique : moins de risque juridique, et l'appli pourra s'ouvrir à d'autres jeux sans changer de nom.
+- **Faire grossir les comptes et la newsletter** (avec accord RGPD) : une audience qu'on possède vaut de l'argent auprès des sponsors.
+- **Défis et Records « présentés par » une marque**, avec un lot offert : le sponsor paie pour apparaître (règlement de jeu-concours à prévoir).
+- **Premium** construit autour des nouveautés : sans pub, carte des spots complète, badges et défis exclusifs.
+- **Page « Annonceurs »** avec les chiffres de l'appli (visites, membres), à montrer aux marques.
+- **Bandeau de consentement cookies** gratuit (obligatoire en Europe avant de mettre de la pub).
+- Pour encaisser de l'argent : un statut micro-entrepreneur (gratuit à créer en France), à voir le moment venu.
+
 ⚠️ GTA VI appartient à Rockstar / Take-Two : gagner de l'argent avec leur nom et leurs images est risqué. Avant de mettre de la pub ou du Premium, il faudra vérifier leurs règles sur les contenus de fans.
 
 ## Rappels
