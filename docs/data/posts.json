@@ -1,113 +1,143 @@
 [
-    {
-        "id":  "polices-avertissent-joueurs-gta6",
-        "data":  {
-                     "cat":  "vrai",
-                     "title":  "Des polices américaines rappellent aux joueurs que les crimes de GTA 6 restent dans le jeu",
-                     "body":  "Les polices d\u0027**Atlanta** et d\u0027**Aurora (Colorado)** ont publié des messages à la sortie de GTA 6 pour rappeler que vols de voitures et agressions ont de vraies conséquences hors du jeu.",
-                     "verdict":  "Confirmé par plusieurs médias : il s\u0027agit d\u0027un message de prévention humoristique, pas d\u0027une interdiction ni d\u0027un lien prouvé entre le jeu et la délinquance.",
-                     "sources":  [
-                                     {
-                                         "nom":  "FOX 5 Atlanta",
-                                         "niveau":  "fiable",
-                                         "url":  "https://www.fox5atlanta.com/news/atlanta-police-urge-gta-vi-players-keep-crime-game"
-                                     },
-                                     {
-                                         "nom":  "Scripps News (Aurora Police)",
-                                         "niveau":  "fiable",
-                                         "url":  "https://turnto10.com/news/nation-world/aurora-police-gta-vi-gaming-reminder-says-car-theft-cincinnati-robbery-assault-bring-real-penalties-while-vice-city-wanted-stars-fade-colorado-law-still-sends-rule-breakers-to-jail-quickly"
-                                     }
-                                 ],
-                     "date":  "21 nov. 2026",
-                     "ts":  1795285386716,
-                     "n":  4
-                 }
-    },
-    {
-        "id":  "record-ventes-premier-jour",
-        "data":  {
-                     "cat":  "vrai",
-                     "title":  "GTA 6 : Take-Two annonce un record de 3,79 Md$ de ventes le premier jour",
-                     "body":  "Take-Two dit que GTA 6 a généré environ **3,79 milliards de dollars** de ventes au détail dès le premier jour, un record pour un lancement de divertissement. Environ 32,5 millions d\u0027unités auraient été écoulées avant la sortie.",
-                     "verdict":  "Chiffres publiés par l\u0027éditeur et repris par plusieurs médias financiers. Sensor Tower avance des estimations plus basses (24,5 M d\u0027exemplaires) : ce sont des chiffres de société, pas des audits indépendants.",
-                     "sources":  [
-                                     {
-                                         "nom":  "Take-Two",
-                                         "niveau":  "officiel",
-                                         "url":  "https://www.tipranks.com/news/company-announcements/take-two-reports-record-grand-theft-auto-vi-launch"
-                                     },
-                                     {
-                                         "nom":  "Yahoo Finance",
-                                         "niveau":  "fiable",
-                                         "url":  "https://finance.yahoo.com/markets/stocks/articles/gta-6-maker-two-rakes-202549370.html"
-                                     },
-                                     {
-                                         "nom":  "The Week",
-                                         "niveau":  "moyen",
-                                         "url":  "https://www.theweek.in/news/biz-tech/2026/11/20/gta-6-sales-records-take-two-interactive-earnings.html"
-                                     }
-                                 ],
-                     "date":  "21 nov. 2026",
-                     "ts":  1795276203869,
-                     "n":  3
-                 }
-    },
-    {
-        "id":  "cyberleek-build-complete-23-nov",
-        "data":  {
-                     "body":  "Le groupe Cyberleek affirme diffuser une build Xbox d\u0027environ **209 Go** et promet le fichier principal pour le **23 novembre**, ou plus tôt si sa crypto atteint 15 M$ de capitalisation. Rien ne prouve que ce soit authentique ; le groupe a déjà utilisé des leaks pour promouvoir un schéma crypto.",
-                     "cat":  "alerte",
-                     "date":  "20 nov. 2026",
-                     "n":  2,
-                     "sources":  [
-                                     {
-                                         "niveau":  "moyen",
-                                         "nom":  "Journal du Geek",
-                                         "url":  "https://journaldugeek.com/2026/11/20/gta-6-apres-jason-et-lucia-tout-nus-cyberleek-promet-la-version-piratee-du-jeu-complet-pour-le-23-novembre"
-                                     },
-                                     {
-                                         "niveau":  "fiable",
-                                         "nom":  "PC Gamer",
-                                         "url":  "https://www.pcgamer.com/games/grand-theft-auto/cyberleek-drops-what-they-claim-is-a-near-complete-gta-6-xbox-build-online/"
-                                     },
-                                     {
-                                         "niveau":  "moyen",
-                                         "nom":  "KeenGamer",
-                                         "url":  "https://www.keengamer.com/articles/news/gta-6-xbox-build-allegedly-leaked-by-cyberleek-209gb-files-surface-online/"
-                                     }
-                                 ],
-                     "title":  "Cyberleek promet le jeu complet piraté le 23 nov. : piège crypto probable",
-                     "ts":  1795273901846,
-                     "verdict":  "**Non vérifié.** Ne téléchargez rien : les faux installeurs « GTA 6 » servent souvent à installer des voleurs de mots de passe, et ne misez pas sur la crypto liée au groupe."
-                 }
-    },
-    {
-        "id":  "metacritic-note-joueurs-54",
-        "data":  {
-                     "body":  "Sur Metacritic, GTA 6 affiche **99** côté presse mais une note joueurs autour de **5,4/10** sur PS5, avec des chiffres qui bougent d\u0027heure en heure. Une partie des notes est du « review bombing », mais certains joueurs critiquent aussi le 30 fps et des bugs.",
-                     "cat":  "vrai",
-                     "date":  "21 nov. 2026",
-                     "n":  1,
-                     "sources":  [
-                                     {
-                                         "niveau":  "fiable",
-                                         "nom":  "OpenCritic",
-                                         "url":  "https://opencritic.com/news/40063/gta-6-is-getting-review-bombed-on-metacritic-despite-its-99-100-critic-score"
-                                     },
-                                     {
-                                         "niveau":  "fiable",
-                                         "nom":  "GGRecon",
-                                         "url":  "https://www.ggrecon.com/articles/gta-6-metacritic-user-score-review-bombed/"
-                                     },
-                                     {
-                                         "niveau":  "fiable",
-                                         "nom":  "Dexerto",
-                                         "url":  "https://www.dexerto.com/gaming/gta-6-and-ocarina-of-time-remake-caught-in-metacritic-review-bomb-war-3430280/"
-                                     }
-                                 ],
-                     "title":  "Metacritic : 99 chez les critiques, environ 5,4 chez les joueurs",
-                     "ts":  1795273901846,
-                     "verdict":  "Confirmé par plusieurs médias : l\u0027écart est réel, mais la note joueurs est volatile et en partie polluée par des zéros de campagne. Ne vous fiez pas à un seul chiffre."
-                 }
+  {
+    "id": "bugs-lancement-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : des bugs au lancement, mais pas un « nouveau Cyberpunk »",
+      "body": "Depuis la sortie, des joueurs partagent des **bugs** : personnage qui passe à travers le sol, passants coincés dans les murs, bateau qui bugge. Les vidéos tournent beaucoup et certains comparent déjà le lancement à celui de **Cyberpunk 2077**.",
+      "verdict": "Les bugs existent bien (plusieurs médias les rapportent), mais la plupart sont visuels ou mineurs et ne touchent pas la majorité des joueurs. La comparaison avec Cyberpunk 2077 est exagérée.",
+      "sources": [
+        {
+          "nom": "Futurism",
+          "niveau": "fiable",
+          "url": "https://futurism.com/future-society/gta-6-bugs"
+        },
+        {
+          "nom": "Gulf News",
+          "niveau": "fiable",
+          "url": "https://gulfnews.com/technology/gaming/gta-6-glitches-go-viral-flying-cars-disappearing-characters-and-police-encounter-issues-spark-cyberpunk-2077-comparisons-1.500752989"
+        },
+        {
+          "nom": "PC Guide",
+          "niveau": "moyen",
+          "url": "https://www.pcguide.com/news/gta-6-bugs-draw-comparisons-to-cyberpunk-2077s-messy-launch-but-its-far-from-the-same-thing/"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795443941071,
+      "n": 11
     }
+  },
+  {
+    "id": "polices-avertissent-joueurs-gta6",
+    "data": {
+      "cat": "vrai",
+      "title": "Des polices américaines rappellent aux joueurs que les crimes de GTA 6 restent dans le jeu",
+      "body": "Les polices d'**Atlanta** et d'**Aurora (Colorado)** ont publié des messages à la sortie de GTA 6 pour rappeler que vols de voitures et agressions ont de vraies conséquences hors du jeu.",
+      "verdict": "Confirmé par plusieurs médias : il s'agit d'un message de prévention humoristique, pas d'une interdiction ni d'un lien prouvé entre le jeu et la délinquance.",
+      "sources": [
+        {
+          "nom": "FOX 5 Atlanta",
+          "niveau": "fiable",
+          "url": "https://www.fox5atlanta.com/news/atlanta-police-urge-gta-vi-players-keep-crime-game"
+        },
+        {
+          "nom": "Scripps News (Aurora Police)",
+          "niveau": "fiable",
+          "url": "https://turnto10.com/news/nation-world/aurora-police-gta-vi-gaming-reminder-says-car-theft-cincinnati-robbery-assault-bring-real-penalties-while-vice-city-wanted-stars-fade-colorado-law-still-sends-rule-breakers-to-jail-quickly"
+        }
+      ],
+      "date": "21 nov. 2026",
+      "ts": 1795285386716,
+      "n": 4
+    }
+  },
+  {
+    "id": "record-ventes-premier-jour",
+    "data": {
+      "cat": "vrai",
+      "title": "GTA 6 : Take-Two annonce un record de 3,79 Md$ de ventes le premier jour",
+      "body": "Take-Two dit que GTA 6 a généré environ **3,79 milliards de dollars** de ventes au détail dès le premier jour, un record pour un lancement de divertissement. Environ 32,5 millions d'unités auraient été écoulées avant la sortie.",
+      "verdict": "Chiffres publiés par l'éditeur et repris par plusieurs médias financiers. Sensor Tower avance des estimations plus basses (24,5 M d'exemplaires) : ce sont des chiffres de société, pas des audits indépendants.",
+      "sources": [
+        {
+          "nom": "Take-Two",
+          "niveau": "officiel",
+          "url": "https://www.tipranks.com/news/company-announcements/take-two-reports-record-grand-theft-auto-vi-launch"
+        },
+        {
+          "nom": "Yahoo Finance",
+          "niveau": "fiable",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/gta-6-maker-two-rakes-202549370.html"
+        },
+        {
+          "nom": "The Week",
+          "niveau": "moyen",
+          "url": "https://www.theweek.in/news/biz-tech/2026/11/20/gta-6-sales-records-take-two-interactive-earnings.html"
+        }
+      ],
+      "date": "21 nov. 2026",
+      "ts": 1795276203869,
+      "n": 3
+    }
+  },
+  {
+    "id": "cyberleek-build-complete-23-nov",
+    "data": {
+      "body": "Le groupe Cyberleek affirme diffuser une build Xbox d'environ **209 Go** et promet le fichier principal pour le **23 novembre**, ou plus tôt si sa crypto atteint 15 M$ de capitalisation. Rien ne prouve que ce soit authentique ; le groupe a déjà utilisé des leaks pour promouvoir un schéma crypto.",
+      "cat": "alerte",
+      "date": "20 nov. 2026",
+      "n": 2,
+      "sources": [
+        {
+          "niveau": "moyen",
+          "nom": "Journal du Geek",
+          "url": "https://journaldugeek.com/2026/11/20/gta-6-apres-jason-et-lucia-tout-nus-cyberleek-promet-la-version-piratee-du-jeu-complet-pour-le-23-novembre"
+        },
+        {
+          "niveau": "fiable",
+          "nom": "PC Gamer",
+          "url": "https://www.pcgamer.com/games/grand-theft-auto/cyberleek-drops-what-they-claim-is-a-near-complete-gta-6-xbox-build-online/"
+        },
+        {
+          "niveau": "moyen",
+          "nom": "KeenGamer",
+          "url": "https://www.keengamer.com/articles/news/gta-6-xbox-build-allegedly-leaked-by-cyberleek-209gb-files-surface-online/"
+        }
+      ],
+      "title": "Cyberleek promet le jeu complet piraté le 23 nov. : piège crypto probable",
+      "ts": 1795273901846,
+      "verdict": "**Non vérifié.** Ne téléchargez rien : les faux installeurs « GTA 6 » servent souvent à installer des voleurs de mots de passe, et ne misez pas sur la crypto liée au groupe."
+    }
+  },
+  {
+    "id": "metacritic-note-joueurs-54",
+    "data": {
+      "body": "Sur Metacritic, GTA 6 affiche **99** côté presse mais une note joueurs autour de **5,4/10** sur PS5, avec des chiffres qui bougent d'heure en heure. Une partie des notes est du « review bombing », mais certains joueurs critiquent aussi le 30 fps et des bugs.",
+      "cat": "vrai",
+      "date": "21 nov. 2026",
+      "n": 1,
+      "sources": [
+        {
+          "niveau": "fiable",
+          "nom": "OpenCritic",
+          "url": "https://opencritic.com/news/40063/gta-6-is-getting-review-bombed-on-metacritic-despite-its-99-100-critic-score"
+        },
+        {
+          "niveau": "fiable",
+          "nom": "GGRecon",
+          "url": "https://www.ggrecon.com/articles/gta-6-metacritic-user-score-review-bombed/"
+        },
+        {
+          "niveau": "fiable",
+          "nom": "Dexerto",
+          "url": "https://www.dexerto.com/gaming/gta-6-and-ocarina-of-time-remake-caught-in-metacritic-review-bomb-war-3430280/"
+        }
+      ],
+      "title": "Metacritic : 99 chez les critiques, environ 5,4 chez les joueurs",
+      "ts": 1795273901846,
+      "verdict": "Confirmé par plusieurs médias : l'écart est réel, mais la note joueurs est volatile et en partie polluée par des zéros de campagne. Ne vous fiez pas à un seul chiffre."
+    }
+  }
 ]
