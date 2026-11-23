@@ -1,6 +1,10 @@
 # GameCheck : feuille de route (idées retenues)
 
 Toutes les idées validées par l'utilisateur le 23 nov. 2026. On choisit 2 ou 3 priorités à chaque séance, le reste attend ici.
+
+**MÉTHODE DÉCIDÉE LE 23 NOV. :**
+- **Phase 1 (maintenant)** : construire l'appli idéale (Guide, Records, défis, carte des spots, anti-spoiler, tier lists, finitions…). On ne fait aucune promo.
+- **Phase 2 (plus tard)** : publication et promo (Google, réseaux, Play Store, version anglaise), puis rentabilité (pub, Premium, sponsors), seulement quand on est sûrs que l'appli peut être rentable.
 Fait = le déplacer dans RESUME-PROJET.md.
 
 ## Rentabiliser l'appli
