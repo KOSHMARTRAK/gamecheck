@@ -50,7 +50,15 @@ Fonctions :
 - **Favoris** : garder une info ou une page du Guide.
 - Quiz GTA VI avec classement : **pas prioritaire**, l'utilisateur doute qu'un quiz fait par IA soit assez bon.
 
+- **Bonus de la semaine GTA Online** : résumé des bonus et promos Rockstar, mis à jour chaque jeudi (fait revenir les joueurs).
+- **Mode anti-spoiler** : bouton qui floute les infos qui dévoilent l'histoire.
+- **Carte des spots de la commu** : carte dessinée par nous (pas celle de Rockstar), les joueurs y placent sauts, easter eggs et lieux de record (lien avec les Records GameCheck).
+- **Tier lists votées** : voitures, armes, missions ; classement qui bouge en direct.
+- **Widget Android** : dernière info ou bonus de la semaine sur l'écran du téléphone.
+- (Calculateur « combien de temps pour me payer X » : refusé.)
+
 Pour grandir :
+- **Parrainage** : inviter un ami = un badge.
 - **Version anglaise** : public 10 fois plus grand.
 - **Newsletter gratuite** : un mail par semaine avec l'actu GTA VI.
 - Play Store : 25 $ une seule fois (payant, donc plus tard, l'APK gratuit suffit pour l'instant).
