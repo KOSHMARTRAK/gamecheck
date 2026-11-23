@@ -1250,7 +1250,7 @@ function inFeedG(g){return !FEEDG.length||FEEDG.includes(g||'gta-6')}
 function curList(){return ALL.filter(p=>(filter==='all'||p.cat===filter)&&inFeedG(p.game))}
 function renderFeed(){
   const list=curList();
-  if(!list.length){const gn=(typeof FEEDG!=='undefined'&&FEEDG.length===1&&GBYID[FEEDG[0]])?GBYID[FEEDG[0]].n:'';$('#feed').innerHTML=`<div class="empty card" style="padding:18px;margin:14px 10px;text-align:center"><b>Pas encore d’info vérifiée${gn?' sur '+esc(gn):''} ici.</b><p style="margin:6px 0 12px">Tu as vu une rumeur ? Envoie-la, on la vérifie.</p><button class="btn" onclick="showView('check')">🔍 Demander une vérif</button></div>`;return}
+  if(!list.length){const gn=(typeof FEEDG!=='undefined'&&FEEDG.length===1&&GBYID[FEEDG[0]])?GBYID[FEEDG[0]].n:'';$('#feed').innerHTML=`<div class="empty card" style="padding:18px;margin:14px 10px;text-align:center"><b>Pas encore d’info vérifiée${gn?' sur '+esc(gn):''} ici.</b></div>`;return}
   $('#feed').innerHTML=list.map((p,j)=>{
     const c=CATS[p.cat],t=TONES[c.tone],liked=likes[p.i];
     return `<article class="post" id="post${p.i}">
@@ -1672,7 +1672,7 @@ function renderTop(){const el=document.getElementById('topg');if(!el)return;
     return `<button class="tg" data-game="${id}" style="--d:${k*.6}s;background:${gGrad(x.genres[0])}">${gameImg(x.id)?`<img src="${gameImg(x.id)}" alt="" referrerpolicy="no-referrer">`:''}<span class="tg-e">${g.e}</span><span class="tg-tx"><b>${esc(x.n)}</b><small>${g.n}</small></span><span class="tg-go">Voir ›</span></button>`}).join('')}</div>`;
   el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));}
 /* ===== TABS ===== */
-const TABS=[['feed','home','Accueil'],['forum','chat','Forum'],['check','search','Vérifier']];
+const TABS=[['feed','home','Accueil'],['forum','chat','Forum']];
 $('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
 function showView(v){CURV=v;setTimeout(applyNavTheme,0);
   document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));
