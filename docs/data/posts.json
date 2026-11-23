@@ -1,5 +1,535 @@
 [
   {
+    "id": "faux-demos-extended-look-infostealer-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "alerte",
+      "title": "GTA 6 : fausses démos « Rockstar » qui installent un voleur de mots de passe",
+      "body": "Des sites imitant Rockstar proposent un bouton « Play Now » ou un faux téléchargement de GTA 6, qui installe un **logiciel voleur de mots de passe**. Il n'existe aucune démo officielle.",
+      "verdict": "**FAUX et dangereux.** Aucune démo ni version PC n'est proposée par Rockstar : ne téléchargez rien hors des boutiques officielles.",
+      "sources": [
+        {
+          "nom": "Malwarebytes",
+          "niveau": "fiable",
+          "url": "https://www.malwarebytes.com/?p=456116"
+        },
+        {
+          "nom": "McAfee",
+          "niveau": "fiable",
+          "url": "https://www.mcafee.com/blogs/mcafee-news/gta-6-meccha-chameleon-gaming-scams-fall-gaming-releases/"
+        },
+        {
+          "nom": "TechRepublic",
+          "niveau": "fiable",
+          "url": "https://techrepublic.com/article/news-fake-gta-6-demo-malware-scam"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795435200000,
+      "n": 37
+    }
+  },
+  {
+    "id": "regions-leonida-six-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : la carte de Leonida compte six régions, autour de Vice City",
+      "body": "Rockstar a présenté six régions : **Vice City, Leonida Keys, Grassrivers, Port Gellhorn, Ambrosia et Mount Kalaga**. Les deux héros sont Jason Duval et Lucia Caminos.",
+      "verdict": "Les noms viennent du matériel officiel de Rockstar et sont repris par plusieurs médias. La taille exacte de la carte n'est pas confirmée.",
+      "sources": [
+        {
+          "nom": "Beebom",
+          "niveau": "fiable",
+          "url": "https://beebom.com/gta-6-map/amp/"
+        },
+        {
+          "nom": "Red Bull",
+          "niveau": "fiable",
+          "url": "https://www.redbull.com/us-en/gta-6-biomes-map-explained"
+        },
+        {
+          "nom": "Escapist Magazine",
+          "niveau": "fiable",
+          "url": "https://www.escapistmagazine.com/all-gta-6-locations-confirmed-so-far/"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795435200000,
+      "n": 36
+    }
+  },
+  {
+    "id": "mandy-chien-jetski-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : Mandy et un chien en jet-ski, deux surprises virales au lancement",
+      "body": "Des joueurs ont découvert le personnage de **Mandy** (mission Pipeworks) et un chien à lunettes qui vient vous secourir en jet-ski si vous nagez trop loin.",
+      "verdict": "Confirmé par plusieurs médias. Les conditions exactes d'apparition du chien sont encore à l'étude.",
+      "sources": [
+        {
+          "nom": "Gulf News",
+          "niveau": "fiable",
+          "url": "https://gulfnews.com/entertainment/gta-6-is-here-mandy-a-jet-skiing-dog-and-8-more-things-players-are-talking-about-1.500752990"
+        },
+        {
+          "nom": "Windows Central",
+          "niveau": "fiable",
+          "url": "https://www.windowscentral.com/gaming/gta-6-players-are-ignoring-crime-to-jet-ski-with-dogs-and-redecorate-their-bedrooms-the-funniest-clips-so-far"
+        },
+        {
+          "nom": "KeenGamer",
+          "niveau": "moyen",
+          "url": "https://www.keengamer.com/articles/news/gta-6s-mandy-goes-viral-on-launch-day-after-pipework-scene/"
+        }
+      ],
+      "date": "19 nov. 2026",
+      "ts": 1795089600000,
+      "n": 35
+    }
+  },
+  {
+    "id": "arnaque-acces-anticipe-crypto-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "alerte",
+      "title": "GTA 6 : de faux « accès anticipés » payables en crypto vident des portefeuilles",
+      "body": "Des sites vendent un « accès anticipé » à GTA 6 en cryptomonnaie, puis installent des logiciels malveillants ou vident les portefeuilles.",
+      "verdict": "**FAUX et dangereux.** Rockstar ne vend aucun accès anticipé : ne payez jamais en crypto pour un jeu.",
+      "sources": [
+        {
+          "nom": "Privacy Guides",
+          "niveau": "fiable",
+          "url": "https://www.privacyguides.org/news/2026/06/30/fake-gta-v6crypto-scams-drain-wallets-and-install-malware/"
+        },
+        {
+          "nom": "TechRadar",
+          "niveau": "fiable",
+          "url": "https://techradar.com/pro/security/gta-vi-fans-beware-experts-warn-a-new-wave-of-scam-websites-is-offering-early-access-but-just-stealing-your-bank-details-instead"
+        }
+      ],
+      "date": "30 juin 2026",
+      "ts": 1782820800000,
+      "n": 34
+    }
+  },
+  {
+    "id": "precommandes-25-juin-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : précommandes ouvertes le 25 juin 2026 sur PS5 et Xbox Series",
+      "body": "Rockstar a annoncé l'ouverture des précommandes le **25 juin 2026** pour PlayStation 5 et Xbox Series X|S, en boutiques en ligne et chez les revendeurs.",
+      "verdict": "Annonce officielle de Rockstar, relayée par plusieurs médias.",
+      "sources": [
+        {
+          "nom": "Digital Trends",
+          "niveau": "fiable",
+          "url": "https://www.digitaltrends.com/gaming/gta-6-pre-orders-open-june-25-as-rockstar-ramps-up-its-launch-campaign"
+        },
+        {
+          "nom": "Wccftech",
+          "niveau": "fiable",
+          "url": "https://wccftech.com/gta-6-pre-orders-june-25-ps5-xbox-series-xs/"
+        },
+        {
+          "nom": "Notebookcheck",
+          "niveau": "fiable",
+          "url": "https://www.notebookcheck.net/GTA-6-pre-order-date-confirmed-by-Rockstar.1324604.0.html"
+        }
+      ],
+      "date": "25 juin 2026",
+      "ts": 1782388800000,
+      "n": 33
+    }
+  },
+  {
+    "id": "prix-79-99-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : 79,99 $ l'édition Standard et 99,99 $ l'Ultimate",
+      "body": "Rockstar a fixé l'édition **Standard à 79,99 $** et l'**Ultimate à 99,99 $**. En France, la Standard est affichée à 79,99 €.",
+      "verdict": "Prix officiels confirmés par plusieurs médias. Un article parle de 69,99 $ : c'est une erreur.",
+      "sources": [
+        {
+          "nom": "Push Square",
+          "niveau": "fiable",
+          "url": "https://www.pushsquare.com/news/2026/06/gta-6-confirmed-to-be-an-usd80-game"
+        },
+        {
+          "nom": "Engadget",
+          "niveau": "fiable",
+          "url": "https://engadget.com/2200483/rockstar-reveals-gta-6-pricing-launch/"
+        },
+        {
+          "nom": "TechSpot",
+          "niveau": "fiable",
+          "url": "https://techspot.com/news/112883-gta-6-standard-edition-confirmed-cost-80-while.html"
+        }
+      ],
+      "date": "24 juin 2026",
+      "ts": 1782302400000,
+      "n": 32
+    }
+  },
+  {
+    "id": "ultimate-edition-vintage-vice-city-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : l'Ultimate Edition et le pack précommande « Vintage Vice City » détaillés",
+      "body": "L'Ultimate ajoute un atelier de customisation, un buggy Vapid Dominator et des boutiques. Toute précommande donne le **Vintage Vice City Pack** (Vapid Stanier '55, garage, tenues).",
+      "verdict": "Contenus décrits par Rockstar et repris par la presse. Un upgrade Standard vers Ultimate à 20 $ est signalé.",
+      "sources": [
+        {
+          "nom": "Push Square",
+          "niveau": "fiable",
+          "url": "https://www.pushsquare.com/news/2026/06/gta-6-ultimate-edition-and-more-detailed-ahead-of-pre-orders-going-live"
+        },
+        {
+          "nom": "VGC",
+          "niveau": "fiable",
+          "url": "https://www.videogameschronicle.com/guide/gta-6-ultimate-edition-vs-standard-edition-all-ultimate-edition-pre-order-benefits/"
+        },
+        {
+          "nom": "The Sixth Axis",
+          "niveau": "fiable",
+          "url": "https://www.thesixthaxis.com/2026/06/24/gta-6-ultimate-edition-pre-order-bonus-and-vintage-vice-city-pack-revealed/"
+        }
+      ],
+      "date": "24 juin 2026",
+      "ts": 1782302400000,
+      "n": 31
+    }
+  },
+  {
+    "id": "boite-sans-disque-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : les boîtes physiques ne contiennent pas de disque, seulement un code",
+      "body": "Rockstar vend une version « code dans la boîte » : **pas de disque**, le jeu se télécharge. Des revendeurs auraient refusé de la vendre.",
+      "verdict": "Confirmé par Rockstar. Aucun disque n'est prévu à ce jour selon les médias.",
+      "sources": [
+        {
+          "nom": "VGC",
+          "niveau": "fiable",
+          "url": "https://videogameschronicle.com/news/rockstar-confirms-there-will-be-no-disc-version-of-gta6-at-launch/"
+        },
+        {
+          "nom": "GamesRadar",
+          "niveau": "fiable",
+          "url": "https://www.gamesradar.com/games/grand-theft-auto/gta-6-physical-copies-are-a-code-in-a-box-as-rockstar-confirms-they-wont-come-with-a-disk/"
+        },
+        {
+          "nom": "Wccftech",
+          "niveau": "fiable",
+          "url": "https://wccftech.com/gta-6-retail-copies-digital-code-leaks-single-player/"
+        }
+      ],
+      "date": "24 juin 2026",
+      "ts": 1782302400000,
+      "n": 30
+    }
+  },
+  {
+    "id": "pc-console-d-abord-zelnick-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : pas de PC au lancement, car la console est le « cœur » de cible, dit Take-Two",
+      "body": "Le patron de Take-Two, Strauss Zelnick, explique que Rockstar sort d'abord sur console pour « servir le cœur » de son public. Le jeu sort sur **PS5 et Xbox Series** seulement.",
+      "verdict": "Propos tenus à Bloomberg. Aucune date de version PC n'a été donnée.",
+      "sources": [
+        {
+          "nom": "TechRadar",
+          "niveau": "fiable",
+          "url": "https://www.techradar.com/gaming/take-two-ceo-says-gta-6-isnt-coming-to-pc-day-one-because-console-players-are-the-core-consumer-but-the-real-reason-is-obvious"
+        },
+        {
+          "nom": "PC Gamer",
+          "niveau": "fiable",
+          "url": "https://pcgamer.com/gaming-industry/pc-players-arent-grand-theft-auto-6s-core-audience-take-two-ceo-says-and-thats-why-we-have-to-wait-for-it"
+        },
+        {
+          "nom": "GamesRadar",
+          "niveau": "fiable",
+          "url": "https://www.gamesradar.com/games/grand-theft-auto/gta-6-skipping-pc-at-launch-not-due-to-playstation-deal-but-because-rockstar-focuses-on-the-core-consumer-take-two-ceo-says/"
+        }
+      ],
+      "date": "5 mai 2026",
+      "ts": 1777982400000,
+      "n": 29
+    }
+  },
+  {
+    "id": "accord-marketing-sony-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "rumeur",
+      "title": "GTA 6 : un accord marketing avec PlayStation, mais sans exclusivité prouvée",
+      "body": "Des propos de Zelnick montrent un accord marketing avec Sony. Certains médias parlent d'**exclusivité**, d'autres disent qu'il ne porte que sur la promotion.",
+      "verdict": "**Non vérifié.** Ni Rockstar ni Sony n'ont détaillé l'accord, et le jeu sort aussi sur Xbox Series.",
+      "sources": [
+        {
+          "nom": "Push Square",
+          "niveau": "fiable",
+          "url": "https://www.pushsquare.com/news/2026/05/playstation-seemingly-lands-gta-6-ps5-marketing-deal"
+        },
+        {
+          "nom": "Gfinity Esports",
+          "niveau": "moyen",
+          "url": "https://www.gfinityesports.com/article/playstation-reportedly-has-gta-6-marketing-rights"
+        },
+        {
+          "nom": "OpenCritic",
+          "niveau": "fiable",
+          "url": "https://opencritic.com/news/30710/it-looks-like-playstation-has-secured-gta-6-marketing-rights"
+        }
+      ],
+      "date": "5 mai 2026",
+      "ts": 1777982400000,
+      "n": 28
+    }
+  },
+  {
+    "id": "fuite-pont-vice-city-fausse-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "faux",
+      "title": "GTA 6 : la « fuite du pont de Vice City » était un canular",
+      "body": "Une vidéo floue de 40 secondes, présentée comme un build de 2020, a fait le tour du web. Son auteur, « tenshi », a avoué l'avoir fabriquée.",
+      "verdict": "**FAUX.** Le créateur a reconnu le canular et expliqué comment il l'a réalisé.",
+      "sources": [
+        {
+          "nom": "Notebookcheck",
+          "niveau": "fiable",
+          "url": "https://www.notebookcheck.net/GTA-6-Vice-City-bridge-leak-confirmed-fake-as-creator-reveals-how-it-was-made.1252353.0.html"
+        },
+        {
+          "nom": "GamesHub",
+          "niveau": "moyen",
+          "url": "https://www.gameshub.com/?p=2861506"
+        }
+      ],
+      "date": "15 mars 2026",
+      "ts": 1773576000000,
+      "n": 27
+    }
+  },
+  {
+    "id": "report-19-novembre-2026-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : nouveau report, la sortie passe au 19 novembre 2026",
+      "body": "Rockstar a annoncé que le jeu sortirait le **jeudi 19 novembre 2026**, au lieu de mai 2026, pour le peaufiner. Take-Two se disait confiant sur cette date.",
+      "verdict": "Annonce officielle de Rockstar, confirmée par la presse.",
+      "sources": [
+        {
+          "nom": "VGC",
+          "niveau": "fiable",
+          "url": "https://www.videogameschronicle.com/news/grand-theft-auto-6-has-been-delayed-again-to-the-end-of-2026/"
+        },
+        {
+          "nom": "TechRadar",
+          "niveau": "fiable",
+          "url": "https://www.techradar.com/gaming/grand-theft-auto-6-delayed-again-but-itll-still-ship-in-2026"
+        },
+        {
+          "nom": "Variety",
+          "niveau": "fiable",
+          "url": "https://au.variety.com/2025/tv/news/gta-6-release-delayed-november-2026-29751"
+        }
+      ],
+      "date": "6 nov. 2025",
+      "ts": 1762430400000,
+      "n": 26
+    }
+  },
+  {
+    "id": "activites-vehicules-trailer-2-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : jet-skis, quads et nombreuses activités vus dans le trailer 2",
+      "body": "Le trailer 2 montre des **jet-skis, des quads** et des activités comme le basket, la musculation ou la plongée. Rockstar dit que les images viennent de la console PS5.",
+      "verdict": "Les éléments visibles sont confirmés ; certaines interprétations des fans restent des hypothèses.",
+      "sources": [
+        {
+          "nom": "GamingBible",
+          "niveau": "moyen",
+          "url": "https://www.gamingbible.com/news/gta-6-confirms-side-activities-158807-20250507"
+        },
+        {
+          "nom": "PC Gamer",
+          "niveau": "fiable",
+          "url": "https://www.pcgamer.com/games/grand-theft-auto/all-the-takeaways-and-little-details-from-grand-theft-auto-6s-new-trailer"
+        },
+        {
+          "nom": "The Drive",
+          "niveau": "fiable",
+          "url": "https://www.thedrive.com/news/new-gta-6-trailer-is-here-and-vice-citys-cars-have-never-looked-better"
+        }
+      ],
+      "date": "7 mai 2025",
+      "ts": 1746619200000,
+      "n": 25
+    }
+  },
+  {
+    "id": "trailer-2-475-millions-vues-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : le trailer 2 cumule 475 millions de vues en 24 h, mais pas sur YouTube seul",
+      "body": "Rockstar annonce **475 millions de vues** en 24 h, toutes plateformes. Sur YouTube seul, le record reste au trailer 1.",
+      "verdict": "Chiffre fourni par Rockstar. Le total multi-plateformes n'est pas comparable au record YouTube.",
+      "sources": [
+        {
+          "nom": "TechRadar",
+          "niveau": "fiable",
+          "url": "https://www.techradar.com/gaming/the-latest-grand-theft-auto-6-trailer-has-set-a-major-record-by-racking-up-475-million-views-in-just-24-hours"
+        },
+        {
+          "nom": "VGC",
+          "niveau": "fiable",
+          "url": "https://www.videogameschronicle.com/news/at-nearly-half-a-billion-views-rockstar-says-gta-6s-new-trailer-is-the-biggest-video-launch-of-all-time"
+        },
+        {
+          "nom": "TweakTown",
+          "niveau": "fiable",
+          "url": "https://www.tweaktown.com/news/105101/grand-theft-auto-6-trailer-2-fails-to-beat-the-world-record-set-by-1/index.html"
+        }
+      ],
+      "date": "6 mai 2025",
+      "ts": 1746532800000,
+      "n": 24
+    }
+  },
+  {
+    "id": "report-mai-2026-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : premier report, de l'automne 2025 au 26 mai 2026",
+      "body": "Rockstar a repoussé la sortie au **26 mai 2026** et s'est excusée. Take-Two a soutenu ce choix.",
+      "verdict": "Annonce officielle, confirmée par la presse. La date sera repoussée ensuite à novembre 2026.",
+      "sources": [
+        {
+          "nom": "Kotaku",
+          "niveau": "fiable",
+          "url": "https://kotaku.com/gta6-grand-theft-auto-6-release-date-delay-may-2026-1851778799"
+        },
+        {
+          "nom": "Push Square",
+          "niveau": "fiable",
+          "url": "https://www.pushsquare.com/news/2025/05/gta-6-publisher-supports-rockstar-in-2026-delay-commits-to-excellence"
+        },
+        {
+          "nom": "GamesRadar",
+          "niveau": "fiable",
+          "url": "https://www.gamesradar.com/games/grand-theft-auto/take-two-ceo-fully-supports-rockstars-gta-6-delay-promises-a-groundbreaking-blockbuster-entertainment-experience-that-exceeds-audience-expectations"
+        }
+      ],
+      "date": "2 mai 2025",
+      "ts": 1746187200000,
+      "n": 23
+    }
+  },
+  {
+    "id": "pirate-fuite-condamne-hopital-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : le pirate de la fuite de 2022 condamné à un internement indéfini",
+      "body": "Arion Kurtaj, du groupe Lapsus$, a été placé en hôpital sécurisé pour une durée indéterminée. Il avait volé des vidéos et du code de GTA 6.",
+      "verdict": "Confirmé par plusieurs médias. Un média indique qu'il serait ensuite sorti puis en attente d'un nouveau procès.",
+      "sources": [
+        {
+          "nom": "PC Gamer",
+          "niveau": "fiable",
+          "url": "https://www.pcgamer.com/uk/teenage-grand-theft-auto-6-hacker-given-an-indefinite-sentence-in-a-secure-hospital-due-to-his-intent-to-return-to-cybercrime-as-soon-as-possible/"
+        },
+        {
+          "nom": "Engadget",
+          "niveau": "fiable",
+          "url": "https://www.engadget.com/gta-6-hacker-is-sentenced-to-an-indefinite-hospitalization-194251395.html"
+        },
+        {
+          "nom": "BleepingComputer",
+          "niveau": "fiable",
+          "url": "https://www.bleepingcomputer.com/news/security/lapsus-hacker-behind-gta-6-leak-gets-indefinite-hospital-sentence/amp/"
+        }
+      ],
+      "date": "21 déc. 2023",
+      "ts": 1703160000000,
+      "n": 22
+    }
+  },
+  {
+    "id": "trailer-1-record-youtube-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : le trailer 1 bat le record YouTube des 24 h avec 90 millions de vues",
+      "body": "Le premier trailer, sorti en avance après une fuite, a dépassé le record de MrBeast pour une vidéo non musicale. Guinness retient **90 421 491 vues** en 24 h.",
+      "verdict": "Chiffre validé par Guinness. Le record toutes catégories reste à BTS.",
+      "sources": [
+        {
+          "nom": "TechCrunch",
+          "niveau": "fiable",
+          "url": "https://techcrunch.com/2023/12/05/grand-theft-auto-vi-trailer-breaks-mrbeasts-record-for-most-youtube-views-in-24-hours/"
+        },
+        {
+          "nom": "Push Square",
+          "niveau": "fiable",
+          "url": "https://pushsquare.com/news/2023/12/gta-6-trailer-pulls-90-million-views-in-24-hours-sets-new-world-records"
+        },
+        {
+          "nom": "PC Gamer",
+          "niveau": "fiable",
+          "url": "https://www.pcgamer.com/gta-6-trailer-smashes-a-youtube-viewership-recordbut-still-cant-compare-with-another-three-letter-acronym"
+        }
+      ],
+      "date": "5 déc. 2023",
+      "ts": 1701777600000,
+      "n": 21
+    }
+  },
+  {
+    "id": "rockstar-confirme-fuite-2022-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : Rockstar confirme la fuite de 2022, 90 vidéos de développement",
+      "body": "Après une intrusion, environ **90 vidéos** de GTA 6 en développement ont circulé. Rockstar s'est dit « extrêmement déçu » et a dit que le travail continuerait.",
+      "verdict": "Confirmé par Rockstar le 19 septembre 2022.",
+      "sources": [
+        {
+          "nom": "GamesRadar",
+          "niveau": "fiable",
+          "url": "https://gamesradar.com/rockstar-acknowledges-massive-gta-6-leak-we-are-extremely-disappointed"
+        },
+        {
+          "nom": "PC Gamer",
+          "niveau": "fiable",
+          "url": "https://www.pcgamer.com/take-two-cracks-down-on-leaked-grand-theft-auto-6-footage-as-rockstar-confirms-network-intrusion"
+        },
+        {
+          "nom": "GameSpot",
+          "niveau": "fiable",
+          "url": "https://gamespot.com/articles/gta-6-leak-rockstar-responds-says-work-will-continue-as-planned/1100-6507632/"
+        }
+      ],
+      "date": "19 sept. 2022",
+      "ts": 1663588800000,
+      "n": 20
+    }
+  },
+  {
     "id": "multijoueur-gta6-2027",
     "data": {
       "game": "gta-6",
