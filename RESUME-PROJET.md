@@ -10,12 +10,12 @@
 - Appli perso Path of Exile 2 (privée, à part) : https://claude.ai/artifact/EynRGW5pzBQuFK1b4QwZo6
 
 ## Ce que fait l'appli (100 % GTA VI)
-- Menu du bas : Accueil, Explorer, Forum, Vérifier, Mes jeux ; Infos en cliquant sur le logo.
+- Menu du bas : Accueil, Forum, Vérifier, Mes jeux ; Infos en cliquant sur le logo (onglet Explorer retiré le 23 nov.).
 - Accueil : vitrine GTA VI, annonces officielles, infos vérifiées (vrai, rumeur, faux, arnaque) avec J'aime et commentaires.
 - Vérifier : recherche dans le fil, « Demander une vérif » (issue GitHub [VERIF]), test anti-intox en 5 questions.
-- Le jeu (via Explorer > GTA VI) : fiche, carte de Leonida, Easter eggs, forum.
+- Le jeu (bouton « Voir › » de la vitrine GTA VI de l'Accueil) : fiche, carte de Leonida, Easter eggs, forum.
 - Profils : connexion Google (Firebase gratuit), pseudo et avatar, modération (admin = KOSHMAR, uid tsjGm2MccNNdcxB9SkDsWm6Qgq43).
-- Bibliothèque : le code contient 82 jeux masqués ; seul `ACTIVE=['gta-6']` est affiché (index.html).
+- Bibliothèque : les 82 autres jeux ont été supprimés du code le 23 nov. ; `LIB` ne contient plus que GTA VI.
 
 ## Style
 - Haut : plage animée (soleil, cocotier, mouettes, vagues). Bas : sable, coquillages, crabes, chien KOSHMAR qui se promène.
