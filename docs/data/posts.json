@@ -1,5 +1,145 @@
 [
   {
+    "id": "oeuf-tour-secret-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "rumeur",
+      "title": "GTA 6 : lancer un œuf depuis une tour déclencherait une cinématique secrète",
+      "body": "Des joueurs affirment qu'un **œuf** caché au sommet d'une tour radio, lancé du haut, déclenche une scène secrète. Le tout repose sur une vidéo de joueur.",
+      "verdict": "**Non vérifié.** Aucune confirmation de Rockstar, et l'emplacement exact n'est pas établi de façon indépendante.",
+      "sources": [
+        {
+          "nom": "IBTimes",
+          "niveau": "moyen",
+          "url": "https://www.ibtimes.co.uk/gta-6-player-discovers-literal-easter-egg-leonida-1833342"
+        },
+        {
+          "nom": "Games.gg",
+          "niveau": "moyen",
+          "url": "https://games.gg/grand-theft-auto-vi/guides/grand-theft-auto-6-easter-eggs-and-secrets-known-clues/"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795446829467,
+      "n": 16
+    }
+  },
+  {
+    "id": "patchs-prelancement-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : deux patchs avant le lancement, sans notes officielles",
+      "body": "Deux mises à jour sont sorties avant le 19 novembre : la **1.002.000** (environ 1 Go sur PS5) puis la **1.002.001**, plus petite.",
+      "verdict": "Les patchs sont bien réels, mais Rockstar n'a publié aucune note officielle : leur contenu exact n'est pas confirmé.",
+      "sources": [
+        {
+          "nom": "Beebom",
+          "niveau": "fiable",
+          "url": "https://beebom.com/gta-6-gets-second-pre-launch-update/"
+        },
+        {
+          "nom": "KeenGamer",
+          "niveau": "moyen",
+          "url": "https://www.keengamer.com/articles/news/gta-6-update-1-002-starts-rolling-out-on-ps5-and-xbox-ahead-of-launch/"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795446829466,
+      "n": 15
+    }
+  },
+  {
+    "id": "pc-t1-2027-rumeur-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "rumeur",
+      "title": "GTA 6 : une version PC au premier trimestre 2027 ? Rien d'officiel",
+      "body": "Un rapport de **GamesBeat**, appuyé sur quatre sources anonymes, évoque une sortie PC début 2027. Un autre leaker parle de février 2027.",
+      "verdict": "**Non vérifié.** Rockstar et Take-Two n'ont rien annoncé sur le PC. Reprise par plusieurs médias, mais toujours sans confirmation officielle.",
+      "sources": [
+        {
+          "nom": "TechSpot",
+          "niveau": "fiable",
+          "url": "https://techspot.com/news/114187-gta-6-reportedly-coming-pc-q1-2027-months.html"
+        },
+        {
+          "nom": "Dot Esports",
+          "niveau": "moyen",
+          "url": "https://dotesports.com/gta/news/gta-6-pc-release-q1-2027-report"
+        },
+        {
+          "nom": "GamingBolt",
+          "niveau": "moyen",
+          "url": "https://gamingbolt.com/gta-6s-reported-pc-timeline-could-mark-a-major-shift-for-rockstar"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795446829465,
+      "n": 14
+    }
+  },
+  {
+    "id": "arnaques-cles-beta-pc-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "alerte",
+      "title": "GTA 6 : vague de fausses clés « bêta », faux sites PC et pré-commandes",
+      "body": "Des chercheurs en sécurité signalent une hausse d'arnaques : fausses **clés bêta**, faux installateurs « version PC », faux sites d'accès anticipé et vols de comptes.",
+      "verdict": "**FAUX et dangereux.** Il n'existe ni version PC annoncée ni bêta publique. N'achetez que sur le site de Rockstar ou la boutique officielle de votre console.",
+      "sources": [
+        {
+          "nom": "Malwarebytes",
+          "niveau": "fiable",
+          "url": "https://www.malwarebytes.com/fr/blog/scams/2026/11/gta-6-scams-could-cost-you-your-account-money-or-crypto"
+        },
+        {
+          "nom": "TechRadar",
+          "niveau": "fiable",
+          "url": "https://techradar.com/pro/security/gta-vi-fans-beware-experts-warn-a-new-wave-of-scam-websites-is-offering-early-access-but-just-stealing-your-bank-details-instead"
+        },
+        {
+          "nom": "Notebookcheck",
+          "niveau": "fiable",
+          "url": "https://www.notebookcheck.net/NordVPN-exposes-GTA-6-pre-order-scams-as-malware-threat-rises-before-release-date.1306541.0.html"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795446829464,
+      "n": 13
+    }
+  },
+  {
+    "id": "records-streaming-lancement-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : record historique de spectateurs en streaming au lancement",
+      "body": "Selon **Streams Charts**, GTA 6 a atteint environ **3,29 millions** de spectateurs simultanés sur Twitch, un record pour un jeu, et plus de **6 millions** en cumulant Twitch, YouTube et Kick.",
+      "verdict": "Plusieurs médias reprennent les mêmes chiffres, qui restent préliminaires. Il s'agit de spectateurs de streams, pas de joueurs ni de ventes.",
+      "sources": [
+        {
+          "nom": "Esports.gg",
+          "niveau": "fiable",
+          "url": "https://esports.gg/news/grand-theft-auto-6/gta-6-breaks-streaming-record-with-6-38-million-viewers/"
+        },
+        {
+          "nom": "GGRecon",
+          "niveau": "fiable",
+          "url": "https://www.ggrecon.com/articles/gta-6-twitch-viewership-record/"
+        },
+        {
+          "nom": "Insider Gaming",
+          "niveau": "fiable",
+          "url": "https://insider-gaming.com/gta-6-streaming-launch-record/"
+        }
+      ],
+      "date": "23 nov. 2026",
+      "ts": 1795446829463,
+      "n": 12
+    }
+  },
+  {
     "id": "bugs-lancement-gta6",
     "data": {
       "game": "gta-6",
