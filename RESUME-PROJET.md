@@ -38,6 +38,7 @@
 - Clé de signature APK : `apk/` (jamais en ligne) + secrets GitHub.
 
 ## Idées en attente
+- **Feuille de route complète : IDEES.md** (rentabilité, Records GameCheck, défis, carte des spots, version anglaise…). Programme du 25 nov. : MERCREDI.md.
 - **À faire après le reset du forfait (mer. 25 nov. vers 16 h)** : un « Guide » / soluce de GTA VI (bien débuter, argent, astuces, armes, véhicules, collectibles, secrets, puis missions), fait à partir de recherches web, rédigé avec nos mots (pas de copie de guides). L'utilisateur a choisi d'attendre mercredi.
 - **Aussi mercredi** : (a) refaire la page Infos (clic sur le logo) pour une appli d'actu : retirer « 5 réflexes anti-fake » et le vocabulaire vérification ; (b) réécrire les anciennes infos dont le verdict commence par « FAUX. » ou « Non vérifié. » en ton « À savoir ».
 - **Plus tard** : référencement Google (Search Console).
