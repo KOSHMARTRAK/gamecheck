@@ -18,6 +18,25 @@ Pour démarrer : ouvre une nouvelle session dans le dossier GameCheck et écris
 - Dans `docs/index.html` (tableau `POSTS`) et dans `docs/data/posts.json` : les verdicts qui commencent par « **FAUX.** » ou « **Non vérifié.** » passent en ton « À savoir » (contexte, conseil), comme la nouvelle consigne de la routine.
 - Ne pas toucher au badge « Alerte arnaque ».
 
+## Idées pour rentabiliser l'appli (à trier ensemble)
+Étape 0, avant tout : **avoir du monde**. Il faut des stats de visites gratuites (GoatCounter ou Firebase Analytics), le référencement Google et le partage depuis le stream.
+
+Gagner de l'argent :
+- Pub sur le site (Google AdSense, l'emplacement 160 × 600 est déjà prêt) et dans l'APK (AdMob).
+- Liens d'affiliation : consoles, manettes, casques, cartes PSN/Xbox via Amazon Partenaires ou les stores officiels (jamais de clés grises).
+- Bouton « Soutenir » : dons Ko-fi ou Tipeee, gratuits à créer.
+- Version Premium : pas de pub, badge doré au forum, avatars exclusifs, checklist sauvegardée en ligne.
+- Emplacement « Partenaire » à vendre à des marques gaming (casques, chaises, boissons).
+- Boutique de goodies du chien KOSHMAR, en impression à la demande sans stock (Spreadshop, Fourthwall).
+
+Faire grandir la commu (et donc les abonnés Twitch) :
+- Bandeau « KOSHMARTRAK en live » et bouton Discord KOKO COMU.
+- Avantages pour les abonnés Twitch (connexion Twitch, badge, sondages réservés).
+- Notifications, sondages de la commu, checklist des collectibles, calendrier GTA VI avec compte à rebours.
+- Plus tard : reprendre la formule pour d'autres gros jeux, pour toucher plus de monde.
+
+⚠️ GTA VI appartient à Rockstar / Take-Two : gagner de l'argent avec leur nom et leurs images est risqué. Avant de mettre de la pub ou du Premium, il faudra vérifier leurs règles sur les contenus de fans.
+
 ## Rappels
 - Chaque mise en ligne : augmenter la version du cache dans `docs/sw.js` (actuellement v42), puis commit + push sur main.
 - Tester en local avec « gamecheck » (port 8765), en mode mobile.
