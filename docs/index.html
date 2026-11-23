@@ -504,6 +504,28 @@ nav.tabs>.walker img{width:100%;height:100%;object-fit:contain;border-radius:50%
 .tg-tx b{font-family:var(--disp);font-size:25px;letter-spacing:.5px;line-height:1;text-shadow:0 2px 10px rgba(0,0,0,.35)}
 .tg-tx small{font-size:11.5px;font-weight:700;opacity:.9}
 .tg-go{position:absolute;left:12px;bottom:12px;z-index:2;font-size:12px;font-weight:800;background:rgba(255,255,255,.92);color:var(--txt);padding:5px 11px;border-radius:999px}
+
+/* vitrine GTA VI premium (Accueil) */
+@property --hb{syntax:'<angle>';inherits:false;initial-value:0deg}
+.h6{position:relative;margin:8px 0 14px;border-radius:28px;padding:3px;background:conic-gradient(from var(--hb),#ff2d95,#ffb347,#22d3ee,#a855f7,#ff2d95);animation:h6spin 6s linear infinite;box-shadow:0 26px 50px -22px rgba(255,45,149,.65),0 10px 30px -18px rgba(34,211,238,.6)}
+.h6-in{position:relative;height:270px;border-radius:25px;overflow:hidden;background:#1b0b2e;color:#fff;isolation:isolate}
+.h6-in img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 40%;animation:h6zoom 22s ease-in-out infinite alternate;z-index:-2}
+.h6-in::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(27,11,46,.85) 0%,rgba(27,11,46,.35) 45%,transparent 70%),linear-gradient(0deg,rgba(255,45,149,.55),transparent 55%)}
+.h6-in::after{content:"";position:absolute;inset:-40% -80%;background:linear-gradient(115deg,transparent 45%,rgba(255,255,255,.35) 50%,transparent 55%);animation:kqShine 7s ease-in-out infinite;pointer-events:none}
+.h6-tags{position:absolute;top:16px;left:16px;display:flex;gap:6px;flex-wrap:wrap}
+.h6-tags span{font-size:11px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.h6-tags .live{background:linear-gradient(90deg,#ff2d95,#ff6a3d);border:0;display:inline-flex;align-items:center;gap:6px}
+.h6-tags .live i{width:7px;height:7px;border-radius:50%;background:#fff;animation:h6pulse 1.4s ease-in-out infinite}
+.h6-tx{position:absolute;left:18px;right:18px;bottom:18px}
+.h6-tx h2{margin:0;font-family:var(--disp);font-size:72px;line-height:.9;letter-spacing:1px;background:linear-gradient(90deg,#ff7ac6,#ffb347 45%,#fff3a8 60%,#ff7ac6);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:h6grad 5s linear infinite;filter:drop-shadow(0 0 18px rgba(255,45,149,.75)) drop-shadow(0 4px 10px rgba(0,0,0,.45))}
+.h6-tx p{margin:6px 0 0;font-weight:800;font-size:15px;letter-spacing:.4px;text-shadow:0 2px 10px rgba(0,0,0,.5)}
+.h6-tx p small{display:block;font-weight:600;font-size:12.5px;opacity:.85;margin-top:2px}
+@media(min-width:760px){.h6-in{height:340px}.h6-tx{left:34px;bottom:30px}.h6-tags{top:24px;left:34px}.h6-tx h2{font-size:120px}.h6-tx p{font-size:18px}}
+@keyframes h6spin{to{--hb:360deg}}
+@keyframes h6zoom{from{transform:scale(1.02)}to{transform:scale(1.14) translateX(-2%)}}
+@keyframes h6grad{to{background-position:-200% 0}}
+@keyframes h6pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.7)}}
+@media (prefers-reduced-motion:reduce){.h6,.h6-in img,.h6-in::after,.h6-tx h2,.h6-tags .live i{animation:none!important}}
 @keyframes tgFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
 @keyframes tgIcon{0%,100%{transform:rotate(-6deg) scale(1)}50%{transform:rotate(6deg) scale(1.08)}}
 .topg-row{grid-auto-flow:row!important;grid-template-columns:1fr!important;overflow:visible!important}
@@ -1668,9 +1690,7 @@ function setUniv(id,silent){UNIV=id;try{localStorage.setItem('gc_univ',id)}catch
   if(!silent)toast(GBYID[id].n+' activé')}/* vitrine de l'accueil : les jeux les plus joués du moment (sans classement) */
 const TOPG=['gta-6'];
 function renderTop(){const el=document.getElementById('topg');if(!el)return;
-  el.innerHTML=`<div class="topg-h"><b>🔥 GTA VI</b></div><div class="topg-row">${TOPG.map((id,k)=>{const x=GBYID[id],g=GENBY[x.genres[0]];
-    return `<button class="tg" data-game="${id}" style="--d:${k*.6}s;background:${gGrad(x.genres[0])}">${gameImg(x.id)?`<img src="${gameImg(x.id)}" alt="" referrerpolicy="no-referrer">`:''}<span class="tg-e">${g.e}</span><span class="tg-tx"><b>${esc(x.n)}</b><small>${g.n}</small></span><span class="tg-go">Voir ›</span></button>`}).join('')}</div>`;
-  el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));}
+  el.innerHTML=`<div class="h6"><div class="h6-in">${HERO_IMG?`<img src="${HERO_IMG}" alt="" referrerpolicy="no-referrer">`:''}<div class="h6-tags"><span class="live"><i></i>Disponible</span><span>Rockstar Games</span><span>PS5 · Xbox Series</span></div><div class="h6-tx"><h2>GTA VI</h2><p>Bienvenue à Leonida<small>Le vrai du faux sur le jeu le plus attendu</small></p></div></div></div>`;}
 /* ===== TABS ===== */
 const TABS=[['feed','home','Accueil'],['forum','chat','Forum']];
 $('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
