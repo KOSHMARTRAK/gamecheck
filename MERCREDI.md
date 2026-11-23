@@ -19,7 +19,9 @@ Pour démarrer : ouvre une nouvelle session dans le dossier GameCheck et écris
 - Ne pas toucher au badge « Alerte arnaque ».
 
 ## Idées pour rentabiliser l'appli (à trier ensemble)
-Étape 0, avant tout : **avoir du monde**. Il faut des stats de visites gratuites (GoatCounter ou Firebase Analytics), le référencement Google et le partage depuis le stream.
+**L'appli est un projet indépendant : aucun lien avec le stream de l'utilisateur** (ni Twitch ni Discord KOKO COMU).
+
+Étape 0, avant tout : **avoir du monde**. Il faut des stats de visites gratuites (GoatCounter ou Firebase Analytics), le référencement Google, des cartes d'infos faciles à partager sur les réseaux, et une page Play Store plus tard.
 
 Gagner de l'argent :
 - Pub sur le site (Google AdSense, l'emplacement 160 × 600 est déjà prêt) et dans l'APK (AdMob).
@@ -27,12 +29,12 @@ Gagner de l'argent :
 - Bouton « Soutenir » : dons Ko-fi ou Tipeee, gratuits à créer.
 - Version Premium : pas de pub, badge doré au forum, avatars exclusifs, checklist sauvegardée en ligne.
 - Emplacement « Partenaire » à vendre à des marques gaming (casques, chaises, boissons).
-- Boutique de goodies du chien KOSHMAR, en impression à la demande sans stock (Spreadshop, Fourthwall).
+- Boutique de goodies de la mascotte de l'appli (le chien), en impression à la demande sans stock (Spreadshop, Fourthwall).
 
-Faire grandir la commu (et donc les abonnés Twitch) :
-- Bandeau « KOSHMARTRAK en live » et bouton Discord KOKO COMU.
-- Avantages pour les abonnés Twitch (connexion Twitch, badge, sondages réservés).
+Faire grandir la communauté de l'appli :
 - Notifications, sondages de la commu, checklist des collectibles, calendrier GTA VI avec compte à rebours.
+- Profils plus fun : niveaux, badges pour les membres actifs du forum.
+- Comptes de l'appli sur les réseaux (TikTok, X), indépendants du stream.
 - Plus tard : reprendre la formule pour d'autres gros jeux, pour toucher plus de monde.
 
 ⚠️ GTA VI appartient à Rockstar / Take-Two : gagner de l'argent avec leur nom et leurs images est risqué. Avant de mettre de la pub ou du Premium, il faudra vérifier leurs règles sur les contenus de fans.
