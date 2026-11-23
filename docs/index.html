@@ -1561,71 +1561,7 @@ const GENRES=[
 ];
 /* st : sorti | annonce | acces (accès anticipé) ; pf : plateformes ; hot : jeu du moment */
 const LIB=[
- {id:'gta',n:'Grand Theft Auto',ed:'Rockstar Games',g:['ouvert'],games:[
-   {id:'gta-6',n:'GTA VI',y:2026,pf:['PS5','Xbox'],hot:1,full:1},{id:'gta-5',n:'GTA V',y:2013,pf:['PS5','Xbox','PC']},{id:'gta-online',n:'GTA Online',y:2013,pf:['PS5','Xbox','PC']},{id:'gta-4',n:'GTA IV',y:2008,pf:['Xbox','PC']}]},
- {id:'rdr',n:'Red Dead Redemption',ed:'Rockstar Games',g:['ouvert'],games:[{id:'rdr-2',n:'Red Dead Redemption 2',y:2018,pf:['PS4','Xbox','PC']},{id:'rdr-1',n:'Red Dead Redemption',y:2010,pf:['PS4','Switch','PC']}]},
- {id:'ac',n:"Assassin's Creed",ed:'Ubisoft',g:['ouvert'],games:[{id:'ac-shadows',n:"Assassin's Creed Shadows",y:2025,pf:['PS5','Xbox','PC']}]},
- {id:'ghost',n:'Ghost of',ed:'Sucker Punch',g:['ouvert'],games:[{id:'ghost-yotei',n:'Ghost of Yōtei',y:2025,pf:['PS5']},{id:'ghost-tsushima',n:'Ghost of Tsushima',y:2020,pf:['PS5','PC']}]},
- {id:'spiderman',n:"Marvel's Spider-Man",ed:'Insomniac Games',g:['ouvert'],games:[{id:'spiderman-2',n:"Marvel's Spider-Man 2",y:2023,pf:['PS5','PC']}]},
- {id:'deathstranding',n:'Death Stranding',ed:'Kojima Productions',g:['ouvert'],games:[{id:'ds-2',n:'Death Stranding 2',y:2025,pf:['PS5']}]},
- {id:'cod',n:'Call of Duty',ed:'Activision',g:['fps'],games:[{id:'cod-bo7',n:'Black Ops 7',y:2025,pf:['PS5','Xbox','PC'],hot:1},{id:'cod-bo6',n:'Black Ops 6',y:2024,pf:['PS5','Xbox','PC']},{id:'cod-warzone',n:'Warzone',y:2020,pf:['PS5','Xbox','PC'],g:['br']}]},
- {id:'bf',n:'Battlefield',ed:'EA',g:['fps'],games:[{id:'bf-6',n:'Battlefield 6',y:2025,pf:['PS5','Xbox','PC'],hot:1}]},
- {id:'cs',n:'Counter-Strike',ed:'Valve',g:['fps'],games:[{id:'cs-2',n:'Counter-Strike 2',y:2023,pf:['PC']}]},
- {id:'valorant',n:'Valorant',ed:'Riot Games',g:['fps'],games:[{id:'valorant',n:'Valorant',y:2020,pf:['PC','PS5','Xbox'],hot:1}]},
- {id:'r6',n:'Rainbow Six',ed:'Ubisoft',g:['fps'],games:[{id:'r6-x',n:'Rainbow Six Siege X',y:2025,pf:['PS5','Xbox','PC']}]},
- {id:'ow',n:'Overwatch',ed:'Blizzard',g:['fps'],games:[{id:'ow-2',n:'Overwatch 2',y:2022,pf:['PS5','Xbox','PC','Switch']}]},
- {id:'rivals',n:'Marvel Rivals',ed:'NetEase',g:['fps'],games:[{id:'marvel-rivals',n:'Marvel Rivals',y:2024,pf:['PS5','Xbox','PC'],hot:1}]},
- {id:'fortnite',n:'Fortnite',ed:'Epic Games',g:['br','sandbox'],games:[{id:'fortnite',n:'Fortnite',y:2017,pf:['PS5','Xbox','PC','Switch','Mobile'],hot:1}]},
- {id:'apex',n:'Apex Legends',ed:'Respawn',g:['br'],games:[{id:'apex',n:'Apex Legends',y:2019,pf:['PS5','Xbox','PC','Switch']}]},
- {id:'pubg',n:'PUBG',ed:'Krafton',g:['br'],games:[{id:'pubg',n:'PUBG: Battlegrounds',y:2017,pf:['PS5','Xbox','PC']},{id:'pubg-mobile',n:'PUBG Mobile',y:2018,pf:['Mobile'],g:['mobile']}]},
- {id:'arcraiders',n:'Arc Raiders',ed:'Embark Studios',g:['extraction'],games:[{id:'arc-raiders',n:'Arc Raiders',y:2025,pf:['PS5','Xbox','PC'],hot:1}]},
- {id:'helldivers',n:'Helldivers',ed:'Arrowhead',g:['extraction'],games:[{id:'helldivers-2',n:'Helldivers 2',y:2024,pf:['PS5','Xbox','PC']}]},
- {id:'eldenring',n:'Elden Ring',ed:'FromSoftware',g:['souls'],games:[{id:'elden-ring',n:'Elden Ring',y:2022,pf:['PS5','Xbox','PC']},{id:'elden-nightreign',n:'Elden Ring Nightreign',y:2025,pf:['PS5','Xbox','PC']}]},
- {id:'darksouls',n:'Dark Souls',ed:'FromSoftware',g:['souls'],games:[{id:'ds-3',n:'Dark Souls III',y:2016,pf:['PS4','Xbox','PC']}]},
- {id:'sekiro',n:'Sekiro',ed:'FromSoftware',g:['souls'],games:[{id:'sekiro',n:'Sekiro: Shadows Die Twice',y:2019,pf:['PS4','Xbox','PC']}]},
- {id:'liesofp',n:'Lies of P',ed:'Neowiz',g:['souls'],games:[{id:'lies-of-p',n:'Lies of P',y:2023,pf:['PS5','Xbox','PC']}]},
- {id:'mh',n:'Monster Hunter',ed:'Capcom',g:['rpg'],games:[{id:'mh-wilds',n:'Monster Hunter Wilds',y:2025,pf:['PS5','Xbox','PC']}]},
- {id:'bg',n:"Baldur's Gate",ed:'Larian Studios',g:['rpg'],games:[{id:'bg-3',n:"Baldur's Gate 3",y:2023,pf:['PS5','Xbox','PC']}]},
- {id:'expedition',n:'Clair Obscur',ed:'Sandfall Interactive (France)',g:['rpg'],games:[{id:'expedition-33',n:'Clair Obscur: Expedition 33',y:2025,pf:['PS5','Xbox','PC'],hot:1}]},
- {id:'cyberpunk',n:'Cyberpunk',ed:'CD Projekt Red',g:['rpg','ouvert'],games:[{id:'cyberpunk-2077',n:'Cyberpunk 2077',y:2020,pf:['PS5','Xbox','PC','Switch 2']}]},
- {id:'witcher',n:'The Witcher',ed:'CD Projekt Red',g:['rpg','ouvert'],games:[{id:'witcher-4',n:'The Witcher IV',st:'annonce',pf:['PS5','Xbox','PC']},{id:'witcher-3',n:'The Witcher 3',y:2015,pf:['PS5','Xbox','PC','Switch']}]},
- {id:'tes',n:'The Elder Scrolls',ed:'Bethesda',g:['rpg','ouvert'],games:[{id:'tes-6',n:'The Elder Scrolls VI',st:'annonce',pf:['Xbox','PC']},{id:'skyrim',n:'Skyrim',y:2011,pf:['PS5','Xbox','PC','Switch']},{id:'eso',n:'The Elder Scrolls Online',y:2014,pf:['PS5','Xbox','PC'],g:['mmo']}]},
- {id:'kcd',n:'Kingdom Come',ed:'Warhorse Studios',g:['rpg'],games:[{id:'kcd-2',n:'Kingdom Come: Deliverance II',y:2025,pf:['PS5','Xbox','PC']}]},
- {id:'hogwarts',n:'Hogwarts Legacy',ed:'Avalanche Software',g:['rpg','ouvert'],games:[{id:'hogwarts-legacy',n:'Hogwarts Legacy',y:2023,pf:['PS5','Xbox','PC','Switch']}]},
- {id:'diablo',n:'Diablo',ed:'Blizzard',g:['rpg'],games:[{id:'diablo-4',n:'Diablo IV',y:2023,pf:['PS5','Xbox','PC']}]},
- {id:'poe',n:'Path of Exile',ed:'Grinding Gear Games',g:['rpg'],games:[{id:'poe-2',n:'Path of Exile 2',y:2024,st:'acces',pf:['PS5','Xbox','PC'],hot:1}]},
- {id:'wow',n:'World of Warcraft',ed:'Blizzard',g:['mmo'],games:[{id:'wow',n:'World of Warcraft',y:2004,pf:['PC']}]},
- {id:'ff',n:'Final Fantasy',ed:'Square Enix',g:['mmo','rpg'],games:[{id:'ff-14',n:'Final Fantasy XIV',y:2013,pf:['PS5','Xbox','PC'],g:['mmo']},{id:'ff-7-rebirth',n:'Final Fantasy VII Rebirth',y:2024,pf:['PS5','PC'],g:['rpg']}]},
- {id:'lostark',n:'Lost Ark',ed:'Smilegate',g:['mmo'],games:[{id:'lost-ark',n:'Lost Ark',y:2022,pf:['PC']}]},
- {id:'lol',n:'League of Legends',ed:'Riot Games',g:['moba'],games:[{id:'lol',n:'League of Legends',y:2009,pf:['PC'],hot:1}]},
- {id:'dota',n:'Dota',ed:'Valve',g:['moba'],games:[{id:'dota-2',n:'Dota 2',y:2013,pf:['PC']}]},
- {id:'fc',n:'EA SPORTS FC',ed:'EA',g:['sport'],games:[{id:'fc-26',n:'EA SPORTS FC 26',y:2025,pf:['PS5','Xbox','PC','Switch 2'],hot:1}]},
- {id:'nba2k',n:'NBA 2K',ed:'2K',g:['sport'],games:[{id:'nba-2k26',n:'NBA 2K26',y:2025,pf:['PS5','Xbox','PC']}]},
- {id:'rl',n:'Rocket League',ed:'Psyonix',g:['sport','course'],games:[{id:'rocket-league',n:'Rocket League',y:2015,pf:['PS5','Xbox','PC','Switch']}]},
- {id:'mk',n:'Mario Kart',ed:'Nintendo',g:['course'],games:[{id:'mk-world',n:'Mario Kart World',y:2025,pf:['Switch 2'],hot:1}]},
- {id:'forza',n:'Forza Horizon',ed:'Playground Games',g:['course'],games:[{id:'fh-5',n:'Forza Horizon 5',y:2021,pf:['PS5','Xbox','PC']}]},
- {id:'gt',n:'Gran Turismo',ed:'Polyphony Digital',g:['course'],games:[{id:'gt-7',n:'Gran Turismo 7',y:2022,pf:['PS5']}]},
- {id:'f1',n:'F1',ed:'EA / Codemasters',g:['course'],games:[{id:'f1-25',n:'F1 25',y:2025,pf:['PS5','Xbox','PC']}]},
- {id:'sf',n:'Street Fighter',ed:'Capcom',g:['combat'],games:[{id:'sf-6',n:'Street Fighter 6',y:2023,pf:['PS5','Xbox','PC','Switch 2']}]},
- {id:'tekken',n:'Tekken',ed:'Bandai Namco',g:['combat'],games:[{id:'tekken-8',n:'Tekken 8',y:2024,pf:['PS5','Xbox','PC']}]},
- {id:'mkombat',n:'Mortal Kombat',ed:'NetherRealm',g:['combat'],games:[{id:'mk-1',n:'Mortal Kombat 1',y:2023,pf:['PS5','Xbox','PC','Switch']}]},
- {id:'smash',n:'Super Smash Bros.',ed:'Nintendo',g:['combat'],games:[{id:'smash-ultimate',n:'Super Smash Bros. Ultimate',y:2018,pf:['Switch']}]},
- {id:'re',n:'Resident Evil',ed:'Capcom',g:['horreur'],games:[{id:'re-requiem',n:'Resident Evil Requiem',y:2026,pf:['PS5','Xbox','PC','Switch 2'],hot:1},{id:'re-4',n:'Resident Evil 4 (remake)',y:2023,pf:['PS5','Xbox','PC']}]},
- {id:'sh',n:'Silent Hill',ed:'Konami',g:['horreur'],games:[{id:'sh-f',n:'Silent Hill f',y:2025,pf:['PS5','Xbox','PC']}]},
- {id:'dbd',n:'Dead by Daylight',ed:'Behaviour',g:['horreur'],games:[{id:'dbd',n:'Dead by Daylight',y:2016,pf:['PS5','Xbox','PC','Switch','Mobile']}]},
- {id:'minecraft',n:'Minecraft',ed:'Mojang',g:['sandbox'],games:[{id:'minecraft',n:'Minecraft',y:2011,pf:['PS5','Xbox','PC','Switch','Mobile'],hot:1}]},
- {id:'roblox',n:'Roblox',ed:'Roblox Corporation',g:['sandbox'],games:[{id:'roblox',n:'Roblox',y:2006,pf:['PC','Xbox','PS5','Mobile'],hot:1}]},
- {id:'sims',n:'Les Sims',ed:'EA',g:['sandbox'],games:[{id:'sims-4',n:'Les Sims 4',y:2014,pf:['PS5','Xbox','PC']}]},
- {id:'zelda',n:'The Legend of Zelda',ed:'Nintendo',g:['aventure','ouvert'],games:[{id:'zelda-totk',n:'Tears of the Kingdom',y:2023,pf:['Switch','Switch 2']}]},
- {id:'mario',n:'Super Mario',ed:'Nintendo',g:['aventure'],games:[{id:'mario-wonder',n:'Super Mario Bros. Wonder',y:2023,pf:['Switch']}]},
- {id:'dk',n:'Donkey Kong',ed:'Nintendo',g:['aventure'],games:[{id:'dk-bananza',n:'Donkey Kong Bananza',y:2025,pf:['Switch 2']}]},
- {id:'pokemon',n:'Pokémon',ed:'Game Freak / Nintendo',g:['aventure','rpg'],games:[{id:'pokemon-za',n:'Légendes Pokémon : Z-A',y:2025,pf:['Switch','Switch 2'],hot:1},{id:'pokemon-sv',n:'Pokémon Écarlate et Violet',y:2022,pf:['Switch']},{id:'pokemon-go',n:'Pokémon GO',y:2016,pf:['Mobile'],g:['mobile']}]},
- {id:'acnh',n:'Animal Crossing',ed:'Nintendo',g:['sandbox'],games:[{id:'acnh',n:'Animal Crossing: New Horizons',y:2020,pf:['Switch']}]},
- {id:'hoyo',n:'HoYoverse',ed:'HoYoverse',g:['mobile','rpg'],games:[{id:'genshin',n:'Genshin Impact',y:2020,pf:['PS5','PC','Mobile']},{id:'hsr',n:'Honkai: Star Rail',y:2023,pf:['PS5','PC','Mobile']}]},
- {id:'supercell',n:'Supercell',ed:'Supercell',g:['mobile'],games:[{id:'clash-royale',n:'Clash Royale',y:2016,pf:['Mobile']},{id:'brawl-stars',n:'Brawl Stars',y:2018,pf:['Mobile']}]},
- {id:'hk',n:'Hollow Knight',ed:'Team Cherry',g:['inde'],games:[{id:'silksong',n:'Hollow Knight: Silksong',y:2025,pf:['PS5','Xbox','PC','Switch','Switch 2']}]},
- {id:'hades',n:'Hades',ed:'Supergiant Games',g:['inde'],games:[{id:'hades-2',n:'Hades II',y:2025,pf:['PC','Switch','Switch 2']}]},
- {id:'stardew',n:'Stardew Valley',ed:'ConcernedApe',g:['inde','sandbox'],games:[{id:'stardew',n:'Stardew Valley',y:2016,pf:['PS5','Xbox','PC','Switch','Mobile']}]}
+ {id:'gta',n:'Grand Theft Auto',ed:'Rockstar Games',g:['ouvert'],games:[{id:'gta-6',n:'GTA VI',y:2026,pf:['PS5','Xbox'],hot:1,full:1}]}
 ];
 const GBYID={},FBYID={},GAMES=[];
 const ACTIVE=['gta-6']; /* jeux suivis par GameCheck : ajouter un id ici pour réactiver un jeu */
@@ -1646,7 +1582,7 @@ function renderExplore(){const el=document.getElementById('explore');if(!el)retu
   if(XP.genre)crumb.push(`<button data-ex="genre:${XP.genre}">${GENBY[XP.genre].n}</button>`);
   if(XP.fr&&!XP.genre&&XP.game)crumb.push(`<button data-ex="fr:${XP.fr}">${esc(FBYID[XP.fr].n)}</button>`);else if(XP.fr)crumb.push(`<button data-ex="fr:${XP.fr}">${esc(FBYID[XP.fr].n)}</button>`);
   if(XP.game)crumb.push(`<span>${esc(GBYID[XP.game].n)}</span>`);
-  const crumbs=crumb.length>1?`<nav class="crumb">${crumb.join('<i>›</i>')}</nav>`:'';
+  const crumbs='';
   if(XP.game){const x=GBYID[XP.game],f=FBYID[x.fr],g=GENBY[x.genres[0]];
     h=`${crumbs}<div class="ghero" style="background:${gGrad(x.genres[0])}">${gameImg(x.id)?`<img src="${gameImg(x.id)}" alt="" referrerpolicy="no-referrer">`:`<span class="ghero-e">${g.e}</span>`}<div class="ghero-in"><div class="ghero-tags">${x.genres.map(id=>`<span>${GENBY[id].e} ${GENBY[id].n}</span>`).join('')}${x.hot?'<span>🔥 Du moment</span>':''}</div><h1>${esc(x.n)}</h1><p>${esc(f.ed)} · ${stLbl(x)}</p><div class="pfs">${pfChips(x)}</div></div></div>
     <button class="btn follow ${isF(x.id)?'on':''}" data-follow="${x.id}">${isF(x.id)?'⭐ Dans Mes jeux':'☆ Suivre ce jeu'}</button>`;
@@ -1680,25 +1616,7 @@ function renderMine(){const el=document.getElementById('mine');if(!el)return;con
 
 /* barre du bas : prend le style du jeu ou du genre consulté (le thème plage reste le thème de base) */
 const NAVT={
- gta:{bg:'linear-gradient(90deg,#ff2d95,#ff6a3d 55%,#ffb347)',fg:'#fff',act:'#1b0b2e',e:'🌴'},
- rdr:{bg:'linear-gradient(90deg,#5a1a12,#8b2a1c 55%,#c2753a)',fg:'#f6e6cf',act:'#ffd59a',e:'🤠'},
- eldenring:{bg:'linear-gradient(180deg,#2b2417,#100d08)',fg:'#e8d9a8',act:'#f5c84c',e:'🌳'},
- darksouls:{bg:'linear-gradient(180deg,#2a2622,#0d0c0b)',fg:'#d9d2c3',act:'#ff9b3d',e:'🔥'},
- sekiro:{bg:'linear-gradient(180deg,#3a0d0d,#120606)',fg:'#f1e3d3',act:'#ff4d4d',e:'🗡️'},
- cod:{bg:'linear-gradient(90deg,#2f3322,#4a4f33)',fg:'#e5e7d4',act:'#e0c66b',e:'🎖️'},
- bf:{bg:'linear-gradient(90deg,#0f1f2e,#2a4a63)',fg:'#e2eef7',act:'#ff7a1a',e:'💥'},
- fortnite:{bg:'linear-gradient(90deg,#3d5afe,#9c27b0)',fg:'#fff',act:'#ffe14d',e:'🪂'},
- minecraft:{bg:'linear-gradient(180deg,#5d9e3a 0 22%,#7b5536 22% 100%)',fg:'#fff',act:'#b6f26c',e:'⛏️'},
- roblox:{bg:'linear-gradient(90deg,#1f2937,#374151)',fg:'#fff',act:'#ef4444',e:'🧱'},
- pokemon:{bg:'linear-gradient(90deg,#e3350d,#b71c1c)',fg:'#fff',act:'#ffcb05',e:'⚡'},
- mk:{bg:'linear-gradient(90deg,#e60012,#ff8a00 50%,#0050aa)',fg:'#fff',act:'#ffe14d',e:'🏁'},
- fc:{bg:'repeating-linear-gradient(90deg,#1f8f3a 0 40px,#23a043 40px 80px)',fg:'#fff',act:'#f5ff6b',e:'⚽'},
- lol:{bg:'linear-gradient(90deg,#091428,#0a323c)',fg:'#cdbe91',act:'#c8aa6e',e:'🛡️'},
- valorant:{bg:'linear-gradient(90deg,#0f1923,#3a0f17)',fg:'#ece8e1',act:'#ff4655',e:'🎯'},
- re:{bg:'linear-gradient(180deg,#2a0a0a,#0a0303)',fg:'#e9d6d6',act:'#e11d48',e:'☣️'},
- zelda:{bg:'linear-gradient(90deg,#1e4d3a,#2f6b4f)',fg:'#f2ecd0',act:'#e6c75a',e:'🗡️'},
- poe:{bg:'linear-gradient(180deg,#2a0f0a,#0d0605)',fg:'#e9d2b0',act:'#d4a24c',e:'🩸'},
- wow:{bg:'linear-gradient(90deg,#1a1308,#3a2a10)',fg:'#f0dca2',act:'#ffb400',e:'🐉'}
+ gta:{bg:'linear-gradient(90deg,#ff2d95,#ff6a3d 55%,#ffb347)',fg:'#fff',act:'#1b0b2e',e:'🌴'}
 };
 let CURV='feed';
 function navCtx(){if(CURV==='explore'&&(XP.game||XP.fr||XP.genre)){}else if(typeof UNIV!=='undefined'&&UNIV!=='gta-6'&&GBYID[UNIV]){const x=GBYID[UNIV];return{fr:x.fr,game:x.id,genre:x.genres[0]}}
@@ -1725,7 +1643,7 @@ async function loadOfficial(){try{const r=await fetch('data/official.json',{cach
   if(off.length)el.insertAdjacentHTML('beforeend',`<div class="sec">${tile('article','vice',28)}ANNONCES DE MES JEUX</div><div class="glist">${off.map(offCard).join('')}</div>`)}}/* choix des jeux affichés sur le fil d'actu (gardé sur l'appareil) */
 let FEEDG=[];try{FEEDG=JSON.parse(localStorage.getItem('gc_feedg')||'[]').filter(id=>typeof id==='string')}catch(e){}
 function setFeedG(a){FEEDG=a.filter(id=>GBYID[id]);try{localStorage.setItem('gc_feedg',JSON.stringify(FEEDG))}catch(e){}renderGFilt();renderUne();renderFeed();renderOffHome()}
-function renderGFilt(){const el=document.getElementById('gfilt');if(!el)return;
+function renderGFilt(){const el=document.getElementById('gfilt');if(!el)return;el.hidden=true;return;
   const chip=id=>{const x=GBYID[id];return `<button class="gchip on" data-rm="${id}" title="Retirer">${GENBY[x.genres[0]].e} ${esc(x.n)} <i>✕</i></button>`};
   el.innerHTML=`<span class="gfilt-l">Jeux du fil :</span>${FEEDG.length?FEEDG.map(chip).join(''):'<button class="gchip all on">🎮 Tous les jeux</button>'}${FOLLOW.length?`<button class="gchip" data-mine="1">⭐ Mes jeux</button>`:''}<button class="gchip pick" data-pick="1">＋ Choisir</button>${FEEDG.length?'<button class="gchip" data-all="1">Tout afficher</button>':''}`;
   el.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>setFeedG(FEEDG.filter(x=>x!==b.dataset.rm)));
@@ -1751,12 +1669,11 @@ function setUniv(id,silent){UNIV=id;try{localStorage.setItem('gc_univ',id)}catch
   if(!silent)toast(GBYID[id].n+' activé')}/* vitrine de l'accueil : les jeux les plus joués du moment (sans classement) */
 const TOPG=['gta-6'];
 function renderTop(){const el=document.getElementById('topg');if(!el)return;
-  el.innerHTML=`<div class="topg-h"><b>🔥 GTA VI</b><button class="topg-all">Tous les jeux ›</button></div><div class="topg-row">${TOPG.map((id,k)=>{const x=GBYID[id],g=GENBY[x.genres[0]];
+  el.innerHTML=`<div class="topg-h"><b>🔥 GTA VI</b></div><div class="topg-row">${TOPG.map((id,k)=>{const x=GBYID[id],g=GENBY[x.genres[0]];
     return `<button class="tg" data-game="${id}" style="--d:${k*.6}s;background:${gGrad(x.genres[0])}">${gameImg(x.id)?`<img src="${gameImg(x.id)}" alt="" referrerpolicy="no-referrer">`:''}<span class="tg-e">${g.e}</span><span class="tg-tx"><b>${esc(x.n)}</b><small>${g.n}</small></span><span class="tg-go">Voir ›</span></button>`}).join('')}</div>`;
-  el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));
-  el.querySelector('.topg-all').onclick=()=>{XP={genre:null,fr:null,game:null,q:''};showView('explore');renderExplore()};}
+  el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));}
 /* ===== TABS ===== */
-const TABS=[['feed','home','Accueil'],['explore','layers','Explorer'],['forum','chat','Forum'],['check','search','Vérifier'],['mine','star','Mes jeux']];
+const TABS=[['feed','home','Accueil'],['forum','chat','Forum'],['check','search','Vérifier'],['mine','star','Mes jeux']];
 $('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
 function showView(v){CURV=v;setTimeout(applyNavTheme,0);
   document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));
