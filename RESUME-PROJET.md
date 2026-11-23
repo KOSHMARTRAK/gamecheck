@@ -10,7 +10,7 @@
 - Appli perso Path of Exile 2 (privée, à part) : https://claude.ai/artifact/EynRGW5pzBQuFK1b4QwZo6
 
 ## Ce que fait l'appli (100 % GTA VI)
-- Menu du bas : Accueil, Forum, Vérifier, Mes jeux ; Infos en cliquant sur le logo (onglet Explorer retiré le 23 nov.).
+- Menu du bas : Accueil, Forum, Vérifier ; Infos en cliquant sur le logo (onglets Explorer et Mes jeux + bouton « Suivre ce jeu » retirés le 23 nov.).
 - Accueil : vitrine GTA VI, annonces officielles, infos vérifiées (vrai, rumeur, faux, arnaque) avec J'aime et commentaires.
 - Vérifier : recherche dans le fil, « Demander une vérif » (issue GitHub [VERIF]), test anti-intox en 5 questions.
 - Le jeu (bouton « Voir › » de la vitrine GTA VI de l'Accueil) : fiche, carte de Leonida, Easter eggs, forum.

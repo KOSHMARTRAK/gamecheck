@@ -1584,8 +1584,7 @@ function renderExplore(){const el=document.getElementById('explore');if(!el)retu
   if(XP.game)crumb.push(`<span>${esc(GBYID[XP.game].n)}</span>`);
   const crumbs='';
   if(XP.game){const x=GBYID[XP.game],f=FBYID[x.fr],g=GENBY[x.genres[0]];
-    h=`${crumbs}<div class="ghero" style="background:${gGrad(x.genres[0])}">${gameImg(x.id)?`<img src="${gameImg(x.id)}" alt="" referrerpolicy="no-referrer">`:`<span class="ghero-e">${g.e}</span>`}<div class="ghero-in"><div class="ghero-tags">${x.genres.map(id=>`<span>${GENBY[id].e} ${GENBY[id].n}</span>`).join('')}${x.hot?'<span>🔥 Du moment</span>':''}</div><h1>${esc(x.n)}</h1><p>${esc(f.ed)} · ${stLbl(x)}</p><div class="pfs">${pfChips(x)}</div></div></div>
-    <button class="btn follow ${isF(x.id)?'on':''}" data-follow="${x.id}">${isF(x.id)?'⭐ Dans Mes jeux':'☆ Suivre ce jeu'}</button>`;
+    h=`${crumbs}<div class="ghero" style="background:${gGrad(x.genres[0])}">${gameImg(x.id)?`<img src="${gameImg(x.id)}" alt="" referrerpolicy="no-referrer">`:`<span class="ghero-e">${g.e}</span>`}<div class="ghero-in"><div class="ghero-tags">${x.genres.map(id=>`<span>${GENBY[id].e} ${GENBY[id].n}</span>`).join('')}${x.hot?'<span>🔥 Du moment</span>':''}</div><h1>${esc(x.n)}</h1><p>${esc(f.ed)} · ${stLbl(x)}</p><div class="pfs">${pfChips(x)}</div></div></div>`;
     if(x.full){h+=`<div class="gmenu"><button data-go="feed">📰<b>Les infos</b><small>Vrai, faux, rumeurs, arnaques</small></button><button data-go="eggs">🥚<b>Easter eggs</b><small>Les secrets cachés</small></button><button data-go="game">🗺️<b>Fiche & carte</b><small>Tout sur le jeu</small></button><button data-go="forum">💬<b>Forum</b><small>Discuter avec la commu</small></button></div>`}
     else{h+=`<div class="card gsoon"><b>Les infos vérifiées sur ${esc(x.n)} arrivent bientôt.</b><p>Tu as vu une rumeur sur ce jeu ? Envoie-la, on la vérifie et le verdict apparaîtra ici.</p><div class="gsoon-b"><button class="btn" data-go="check">🔍 Demander une vérif</button><button class="btn ghost" data-go="forum">💬 En parler sur le forum</button></div></div>`}
     const sib=f.games.filter(y=>y.id!==x.id);if(sib.length)h+=`<div class="sec">${tile('layers','vice',28)}DANS LA MÊME LICENCE</div><div class="glist">${sib.map(y=>gameTile(y)).join('')}</div>`;
@@ -1673,7 +1672,7 @@ function renderTop(){const el=document.getElementById('topg');if(!el)return;
     return `<button class="tg" data-game="${id}" style="--d:${k*.6}s;background:${gGrad(x.genres[0])}">${gameImg(x.id)?`<img src="${gameImg(x.id)}" alt="" referrerpolicy="no-referrer">`:''}<span class="tg-e">${g.e}</span><span class="tg-tx"><b>${esc(x.n)}</b><small>${g.n}</small></span><span class="tg-go">Voir ›</span></button>`}).join('')}</div>`;
   el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));}
 /* ===== TABS ===== */
-const TABS=[['feed','home','Accueil'],['forum','chat','Forum'],['check','search','Vérifier'],['mine','star','Mes jeux']];
+const TABS=[['feed','home','Accueil'],['forum','chat','Forum'],['check','search','Vérifier']];
 $('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
 function showView(v){CURV=v;setTimeout(applyNavTheme,0);
   document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));
