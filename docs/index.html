@@ -1225,7 +1225,7 @@ const md=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>');
 const okUrl=u=>/^https:\/\//i.test(String(u||''))?String(u):'#';
 function sortKey(p){return p.ts||dayOf(p.date)}
 /* Image toujours présente : photo envoyée, image de l'article, capture dédiée, sinon une capture officielle choisie automatiquement (sans doublon dans les 5 cartes) */
-const POOL=Array.from({length:23},(_,k)=>RSF(k));
+const POOL=Array.from({length:67},(_,k)=>RSF(k)); /* rs00-rs22 : 1re galerie ; rs23-rs66 : site officiel rockstargames.com/VI (23 nov. 2026) */
 const hsh=s=>{let h=7;for(const c of String(s))h=(h*31+c.charCodeAt(0))>>>0;return h};
 function picOf(p,used){if(p.game==='poe-2'&&typeof POE_SS!=='undefined'&&!p.img){let k=hsh(p.title)%POE_SS.length,n=0;while(used&&used.has(POE_SS[k])&&n++<POE_SS.length)k=(k+1)%POE_SS.length;return POE_SS[k]}const own=PHOTOS[p.i]||p.img||OFFICIAL[p.i];if(own&&!(used&&used.has(own)))return own;let k=hsh(p.title)%POOL.length,n=0;while(used&&used.has(POOL[k])&&n++<POOL.length)k=(k+1)%POOL.length;return POOL[k]}
 const IMGFB="this.onerror=null;this.src='img/rs22.jpg'"
@@ -1271,7 +1271,7 @@ function renderUne(){
 function inFeedG(g){return !FEEDG.length||FEEDG.includes(g||'gta-6')}
 function curList(){return ALL.filter(p=>(filter==='all'||p.cat===filter)&&inFeedG(p.game))}
 function renderFeed(){
-  const list=curList();
+  const list=curList();const FU=new Set();
   if(!list.length){const gn=(typeof FEEDG!=='undefined'&&FEEDG.length===1&&GBYID[FEEDG[0]])?GBYID[FEEDG[0]].n:'';$('#feed').innerHTML=`<div class="empty card" style="padding:18px;margin:14px 10px;text-align:center"><b>Pas encore d’info vérifiée${gn?' sur '+esc(gn):''} ici.</b></div>`;return}
   $('#feed').innerHTML=list.map((p,j)=>{
     const c=CATS[p.cat],t=TONES[c.tone],liked=likes[p.i];
@@ -1282,7 +1282,7 @@ function renderFeed(){
         ${badge(p.cat)}
       </div>
       ${(()=>{const gid=p.game||'gta-6',x=typeof GBYID!=='undefined'&&GBYID[gid];return x?`<button class="pgame" onclick="goGame('${gid}')">${GENBY[x.genres[0]].e} ${esc(x.n)} ›</button>`:''})()}<h2 class="ptitle" style="border-color:${t.n1}">${p.title}</h2>
-      ${true?`<div class="frame"><div class="in"><img src="${picOf(p)}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${IMGFB}>
+      ${true?`<div class="frame"><div class="in"><img src="${(()=>{if(FU.size>=POOL.length)FU.clear();const im=picOf(p,FU);FU.add(im);return im})()}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${IMGFB}>
         <div class="ftop"><span class="tag">${PHOTOS[p.i]?ic('camera')+'Ta capture':ic('verified')+'Capture officielle Rockstar'}</span></div>
       </div></div>`:''}
       <div class="actions">

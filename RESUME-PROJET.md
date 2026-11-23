@@ -31,6 +31,7 @@
 - Clé de signature APK : `apk/` (jamais en ligne) + secrets GitHub.
 
 ## Idées en attente
+- **À faire après le reset du forfait (mer. 25 nov.)** : un « Guide » / soluce de GTA VI (bien débuter, argent, astuces, armes, véhicules, collectibles, secrets, puis missions), fait à partir de recherches web, rédigé avec nos mots (pas de copie de guides).
 - Remplir avec des alertes arnaques toujours valables.
 - Cartes à partager (images « VRAI / FAUX ») et rubrique « Vrai ou Faux » pour les lives.
 - Formulaire sans compte GitHub pour les demandes de vérif.
