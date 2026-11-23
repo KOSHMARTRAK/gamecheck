@@ -11,7 +11,7 @@
 
 ## Ce que fait l'appli (100 % GTA VI)
 - Menu du bas : **Accueil** et **Forum** seulement ; Infos en cliquant sur le logo.
-- Retirés le 23 nov. à la demande de l'utilisateur : onglets Explorer, Mes jeux, Vérifier ; bouton « Suivre ce jeu » ; barre « Jeux du fil » ; les 82 autres jeux (`LIB` ne contient plus que GTA VI). Le code de la vue Vérifier et de la page du jeu reste dans index.html mais n'est plus accessible depuis le menu (la page du jeu reste ouverte par l'étiquette « GTA VI › » sur chaque info).
+- Retirés le 23 nov. : onglets Explorer, Mes jeux, Vérifier, page du jeu, easter eggs, carte, choix des jeux, interrupteur Path of Exile, vérificateur et test anti-intox. Le code a été **supprimé** (ménage du 23 nov. soir, index.html 206 → 165 Ko). La bibliothèque LIB/GBYID (GTA VI seul) reste car le fil et les annonces officielles s'en servent.
 - Accueil : vitrine GTA VI premium (bordure néon animée qui tourne, titre « GTA VI » en dégradé brillant, image qui zoome, badges « ● Disponible / Rockstar Games / PS5 · Xbox Series », « Bienvenue à Leonida »), non cliquable ; puis annonces officielles et infos vérifiées (vrai, rumeur, faux, arnaque) avec J'aime et commentaires.
 - Infos : 29 au 23 nov. (dans `docs/data/posts.json`).
 - Photos : 67 captures officielles stockées dans l'appli, `docs/img/rs00.jpg` à `rs66.jpg` (copie dans `rs-img/`). rs23-rs66 viennent du site officiel rockstargames.com/VI. Le fil n'affiche jamais deux fois la même photo (tant qu'il y a moins de 67 infos).
@@ -32,7 +32,7 @@
 - Mises à jour : UNIQUEMENT à la demande (« mets à jour » = `gh workflow run official.yml` + RemoteTrigger run `trig_01X9kjw4TPoqaFtEfkyjXFLq`).
 - Routine IA (Sonnet) : depuis le 23 nov. (soir), elle écrit des **actus** (plus de verdict vrai/faux) : cat « alerte » seulement pour les arnaques, « rumeur » si non confirmé, « vrai » pour le reste ; le champ verdict = cadre « À savoir ». Avant : consigne élargie le 23 nov. = actu GTA VI des **7 derniers jours**, 10 à 15 recherches, tous sujets (rumeurs, arnaques, bugs, patchs, ventes, Online, secrets…), vise 4 à 8 infos. Un passage spécial « rattrapage » (toute l'histoire de GTA VI) a été fait une fois puis la consigne normale remise. Attention : modifier la consigne puis lancer tout de suite = le lancement peut partir avec l'ancienne consigne.
 - Le robot des annonces officielles ne trouve rien en ce moment (`official.json` vide).
-- Chaque mise en ligne : augmenter la version du cache dans `docs/sw.js` (actuellement **v41**), puis commit + push sur main.
+- Chaque mise en ligne : augmenter la version du cache dans `docs/sw.js` (actuellement **v42**), puis commit + push sur main.
 - PC : pas de Python ; utiliser **Node** pour les scripts. Git : `C:\Program Files\Git\cmd`, gh : `C:\Program Files\GitHub CLI`. index.html a des fins de ligne Windows (CRLF).
 - Test local : `.claude/launch.json` « gamecheck » (serve.ps1, port 8765), navigateur intégré en mode mobile.
 - Clé de signature APK : `apk/` (jamais en ligne) + secrets GitHub.

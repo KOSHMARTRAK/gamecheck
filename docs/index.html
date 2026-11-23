@@ -799,37 +799,13 @@ body{background:#fff1f7}
   <section class="view on" id="v-feed">
     <div class="topg" id="topg"></div>
     <div class="offh" id="offHome"></div>
-    <div class="une-wrap"><div class="une-h"><b>Dernières infos vérifiées</b><span id="majUne">MAJ du 21 nov. 2026</span></div><div class="une" id="une"></div></div>
-    <div class="gfilt" id="gfilt"></div>
+    <div class="une-wrap"><div class="une-h"><b>Dernières infos</b><span id="majUne">MAJ du 21 nov. 2026</span></div><div class="une" id="une"></div></div>
+    <div class="gfilt" id="gfilt" hidden></div>
     <div class="filters" id="filters" style="padding-top:6px"></div>
     <div id="feed"></div>
   </section>
 
-  <section class="view" id="v-eggs"><div class="panel" id="eggs"></div></section>
   <section class="view" id="v-forum"><div class="panel" id="forum"></div></section>
-  <section class="view" id="v-explore"><div class="panel" id="explore"></div></section>
-  <section class="view" id="v-mine"><div class="panel" id="mine"></div></section>
-  <section class="view" id="v-game"><div class="panel" id="game"></div></section>
-
-  <section class="view" id="v-check">
-    <div class="panel">
-      <div class="h1">Vérifier une rumeur</div>
-      <p class="lead">Colle une info vue sur TikTok, X, YouTube ou Insta. L'app la compare aux infos vérifiées et te dit si elle tient la route.</p>
-      <textarea id="claim" placeholder="Ex : « GTA 6 sort sur PC le mois prochain »"></textarea>
-      <div class="ex" id="examples"></div>
-      <button class="btn" id="checkBtn"></button>
-      <div class="result card" id="result"></div>
-      <p class="note" id="checkNote"></p>
-      <div class="card ask" id="askBox" hidden>
-        <div class="h2" id="askTitle"></div>
-        <p class="lead" style="margin:6px 0 10px">Tu as vu une info qui n'est pas dans le fil ? Envoie-la : elle sera vérifiée sur le web à la prochaine mise à jour, et le verdict apparaîtra dans le fil.</p>
-        <input id="askLink" type="url" placeholder="Lien où tu l'as vue (facultatif)">
-        <button class="btn" id="askBtn"></button>
-        <p class="note" id="askNote"></p>
-      </div>
-      <div class="card qz" id="quiz"></div>
-    </div>
-  </section>
 
   <section class="view" id="v-src">
     <div class="panel">
@@ -1170,52 +1146,9 @@ const RSF=n=>'img/rs'+String(n).padStart(2,'0')+'.jpg';
 const B=id=>id;
 const OFFICIAL_IDS=['dee27b5f35a4a109f548772c9aa3e479','133da51df5e25ad1eff421b28ba21da6','45ba466d88291f8fac4e9bc40c153c44','c3824911dc9129a8fab8932e85c8dcbd','b4c623fd8644dec107df277015453407','3bc8325ac0b74bc368e82e5bf94d49e4','6aa7d07b0b527b3efc01f2c32838eca9','5a15b8b6b2df0d7964a662419cad996f','5ee3193adedb7377871dcf15c50fd55d','751ee82503ad22123a2f1eb68523c6e4','82ebc5dcd534af897d37b311991f488e','b27548d56aba0b39ca554fce9ed992d0','a856b17b7fecbb0bfb11c6638bd31da0','3a5e97d2f936d21c7bcbc296dbb58d1c','59ff1a56cc950a6b46384e606f9b3de9','744b77c45c5eebe8f834d26c887be4f7'];
 const OFFICIAL=OFFICIAL_IDS.map((_,k)=>RSF(k));
-const DISC_IMG=[16,17,18,19,20,21].map(RSF);
 const HERO_IMG=RSF(22);
 const MOTIF=[['gamepad','sparkles'],['trophy','star'],['chart','bag'],['laptop','gavel'],['wifiOff',''],['monitor','xs'],['folder','alert'],['calendar','alert'],['calendar','clock'],['flashlight','box'],['download','bug'],['phone','bug'],['bag','xs'],['tv','xs'],['bridge','xs'],['save','xs']];
 POSTS.forEach((p,i)=>{p.m=MOTIF[i]||['info','']; p.art=(p.sources.find(s=>s[1]!=='leaker')||p.sources[0])[2]});
-
-/* ===== LE JEU ===== */
-const STATUS={
-  confirme:{label:'Confirmé',icon:'check',tone:'vrai'},
-  teste:{label:'Testé par la presse',icon:'verified',tone:'info'},
-  theorie:{label:'Théorie de fans',icon:'sparkles',tone:'rumeur'},
-  signale:{label:'Signalé par des joueurs',icon:'alert',tone:'faux'}
-};
-const chip=k=>{const s=STATUS[k],t=TONES[s.tone];return `<span class="badge" style="background:${t.g};font-size:13px;box-shadow:0 6px 14px -6px ${t.n2}">${ic(s.icon)}<span>${s.label.toUpperCase()}</span></span>`};
-const FACTS=[
- {icon:'users',tone:'vice',k:'Héros',v:'Jason & Lucia',s:"Un duo de criminels. L'histoire démarre sur un braquage raté."},
- {icon:'map',tone:'vrai',k:'Lieu',v:'Leonida · Vice City',s:'Un État inspiré de la Floride. Vice City est calquée sur Miami.'},
- {icon:'clock',tone:'rumeur',k:'Histoire',v:'≈ 80 heures',s:"Le temps mis par Rob Nelson (Rockstar North) pour la finir."},
- {icon:'tag',tone:'alerte',k:'Prix',v:'79,99 € · 99,99 €',s:'Standard / Ultimate (Ultimate en numérique uniquement).'},
- {icon:'box',tone:'faux',k:'Boîte',v:'Pas de disque',s:'La boîte contient seulement un code de téléchargement.'},
- {icon:'cloud',tone:'info',k:'Météo',v:'Ouragans & orages',s:'Météo saisonnière, avec des pluies localisées.'},
- {icon:'wifiOff',tone:'rumeur',k:'Online',v:'Pas au lancement',s:'Le jeu est solo. Aucune date pour le multi.'},
- {icon:'monitor',tone:'faux',k:'PC',v:'Non annoncé',s:"Seulement PS5 et Xbox Series X|S pour l'instant."}
-];
-const MECH=[
- {icon:'star',tone:'rumeur',h:'6 étoiles de recherche',p:"Le niveau 6 est de retour (GTA 5 s'arrêtait à 5). La police te repère à ton visage, tes vêtements, ta voiture et grâce aux caméras de surveillance. Des icônes t'indiquent ce qu'elle sait sur toi.",src:['Beebom','https://beebom.com/gta-6-confirms-six-star-wanted-level/']},
- {icon:'eye',tone:'info',h:'Pas de vraie vue à la 1re personne',p:"Rockstar l'a confirmé : il n'y a pas de mode 1re personne complet au lancement. Tu peux seulement passer en vue subjective en visant avec certaines armes.",src:['Beebom','https://beebom.com/no-first-person-mode-in-gta-6-rockstar-confirms/']},
- {icon:'users',tone:'vrai',h:'Un monde ultra peuplé',p:"Le nombre de personnages non joueurs a demandé une équipe d'auteurs dédiée. Selon PC Gamer, c'est en partie pour ça que le jeu a été retardé.",src:['PC Gamer','https://www.pcgamer.com/grand-theft-auto-6/']}
-];
-const EGGS=[
- {st:'teste',h:'Un vrai nid d’œufs de Pâques',p:"Tout en haut de la plus haute antenne radio du comté de Vice-Dale, un nid rempli d’œufs t’attend. Il faut environ 6 à 7 minutes d’escalade. Lance un œuf dans le vide : une cinématique secrète se déclenche.",o:'Comté de Vice-Dale, plus haute antenne radio',src:[['GamingBible','https://www.gamingbible.com/news/gta-6-secret-cutscene-seven-minute-tower-easter-egg-795530-20261119'],['Wiki GTA 6','https://gta6info.com/wiki/Easter_Eggs']]},
- {st:'teste',h:'L’immeuble de Dexter',p:"L’immeuble où vit Dexter Morgan dans la série « Dexter » a été recréé à Vice City. On ne peut pas entrer dedans, et Rockstar n’a pas confirmé que c’est voulu.",o:'Washington Island (Vice Beach), près de la boutique Top Fun Drones',src:[['Dexerto','https://www.dexerto.com/gta/gta-6-fans-convinced-they-already-found-a-dexter-easter-egg-in-vice-city-3403612/'],['Wiki GTA 6','https://gta6info.com/wiki/Easter_Eggs']]},
- {st:'signale',h:'L’enlèvement par un OVNI',p:"Attends dehors après 2 h du matin près de Port Gellhorn : des joueurs disent avoir été enlevés par un OVNI, avec à la clé le trophée caché « The Truth Is Out There ».",o:'Port Gellhorn, après 2 h du matin',src:[['Wiki GTA 6','https://gta6info.com/wiki/Easter_Eggs']]},
- {st:'signale',h:'Le Skunk Ape, le Bigfoot de Floride',p:"Le Bigfoot des anciens GTA reviendrait sous la forme du Skunk Ape, une créature des légendes de Floride qui vit dans les marais et sent très mauvais.",o:'Les marais de Leonida',src:[['Wiki GTA 6','https://gta6info.com/wiki/Easter_Eggs']]},
- {st:'signale',h:'Le chien en jet-ski',p:"Nage très loin de la côte : tu entendrais des aboiements, puis un chien avec des lunettes arrive… sur un jet-ski.",o:'En pleine mer, loin du rivage',src:[['Wiki GTA 6','https://gta6info.com/wiki/Easter_Eggs']]},
- {st:'signale',h:'Le repaire du complotiste « Cool Dog »',p:"La maison de Belville que Rockstar montre depuis 2021 cache l’antre d’un adepte des théories du complot. Les joueurs l’ont surnommé « Cool Dog ».",o:'Belville',src:[['Wiki GTA 6','https://gta6info.com/wiki/Easter_Eggs']]},
- {st:'signale',h:'La plaque « ASS MAN »',p:"Une plaque d’immatriculation de Leonida où les fans voient un clin d’œil à un épisode culte de la série « Seinfeld ».",o:'Sur certaines voitures de Leonida',src:[['Wiki GTA 6','https://gta6info.com/wiki/Easter_Eggs']]},
- {st:'theorie',h:'Le code 2314',p:"Un digicode avec le code 2314 ouvrirait un centre de recherche secret, mais personne n’a encore trouvé où il se trouve. À prendre avec des pincettes.",o:'Lieu encore inconnu',src:[['Wiki GTA 6','https://gta6info.com/wiki/Easter_Eggs']]}
-];
-const DISC=[
- {st:'teste',icon:'star',sec:'siren',tone:'rumeur',h:'Comment avoir les 6 étoiles',p:"Il faut semer un vrai chaos. PC Gamer n'a réussi qu'en volant un tank sur une base militaire et en faisant exploser d'autres véhicules.",src:['PC Gamer','https://www.pcgamer.com/games/grand-theft-auto/gta-6-six-stars/']},
- {st:'confirme',icon:'eye',sec:'gamepad',tone:'info',h:"L'astuce de la vue subjective",p:"À l'arrêt, maintiens L2 puis clique L3 + R3 : tu passes en vue à la 1re personne pour observer les détails. Si tu bouges, ça s'arrête. Sans L2, ça active le mode Focus.",src:['VGC','https://www.videogameschronicle.com/guide/gta-6-first-person-mode-explained-does-gta-6-have-a-first-person-mode/']},
- {st:'theorie',icon:'anchor',sec:'map',tone:'info',h:'Le bateau de Michael (GTA 5) ?',p:"Des joueurs ont repéré un bateau Marquis garé près de la planque de Jason. C'est le même modèle que celui de Michael De Santa dans GTA 5, et son GPS pointerait vers Los Santos.",src:['VGTimes','https://vgtimes.com/games/gta-6/news/']},
- {st:'theorie',icon:'user',sec:'star',tone:'alerte',h:'« Little Sam », un caméo du patron de Rockstar ?',p:"Au chapitre 3, un vieil homme en t-shirt Rockstar Games s'appelle « Little Sam ». Les fans pensent à un clin d'œil à Sam Houser, cofondateur du studio. Rien d'officiel.",src:['VGTimes','https://vgtimes.com/games/gta-6/news/']},
- {st:'theorie',icon:'tv',sec:'film',tone:'vrai',h:'Un paysage de Red Dead 2 caché',p:"Dans une pub à la télé du jeu, un décor de montagnes semble tout droit sorti de Red Dead Redemption 2.",src:['Notebookcheck','https://www.notebookcheck.net/GTA-6-This-tiny-Easter-egg-may-only-have-been-spotted-by-true-RDR2-fans.1381499.0.html']},
- {st:'signale',icon:'gamepad',sec:'bug',tone:'faux',h:'Plantages sur PS5 (erreur CE-108255-1)',p:"Des joueurs disent que le jeu plante au bout de quelques minutes, même après réinstallation. Certains soupçonnent une surchauffe, mais la cause n'est pas confirmée.",src:['VGTimes','https://vgtimes.com/games/gta-6/news/']}
-];
 
 /* ===== STATE ===== */
 const $=s=>document.querySelector(s);
@@ -1277,7 +1210,7 @@ function dayOf(s){const m=String(s).toLowerCase().match(/^(\d{1,2})\s+([a-zéû]
 function renderUne(){
   const top=ALL.filter(p=>sortKey(p)&&inFeedG(p.game)).sort((a,b)=>sortKey(b)-sortKey(a)).slice(0,5);const USED=new Set();
   $('#une').innerHTML=top.map(p=>{const t=TONES[CATS[p.cat].tone];const im=picOf(p,USED);USED.add(im);
-    return `<button class="uc" data-i="${p.i}"><img src="${im}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${IMGFB}>${srcBadge(p).replace('class="sb" style="','class="sb" style="--ring:'+t.n1+';')}<span class="ut">${p.title}<small>${CATS[p.cat].label} · ${p.date}</small></span></button>`}).join('');
+    return `<button class="uc" data-i="${p.i}"><img src="${im}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${IMGFB}>${srcBadge(p).replace('class="sb" style="','class="sb" style="--ring:'+t.n1+';')}<span class="ut">${p.title}<small>${p.cat==='alerte'?'⚠️ Alerte arnaque · ':''}${p.date}</small></span></button>`}).join('');
   document.querySelectorAll('.uc').forEach(b=>b.onclick=()=>{filter='all';renderFilters();renderFeed();const el=$('#post'+b.dataset.i);el&&el.scrollIntoView({behavior:'smooth',block:'start'})});
 }
 function inFeedG(g){return !FEEDG.length||FEEDG.includes(g||'gta-6')}
@@ -1453,41 +1386,6 @@ function initSocial(){
   renderMe();renderForum();
 }
 
-/* ===== CARTE INTERACTIVE DE LEONIDA (schéma original, non officiel) ===== */
-const REGIONS=[
- {k:'gellhorn',n:'Port Gellhorn',c:'#f59e0b',d:'M22,70 L168,52 L176,118 L122,134 L62,128 L22,112 Z',lx:92,ly:96,img:5,
-  t:"Une ville portuaire au nord-ouest de Leonida, sur la côte du golfe. Ambiance de station balnéaire qui a connu des jours meilleurs."},
- {k:'kalaga',n:'Mont Kalaga',c:'#22c55e',d:'M168,52 L330,40 L352,92 L322,142 L232,152 L176,118 Z',lx:262,ly:96,img:null,
-  t:"Une région de nature au nord de l'État : forêts et reliefs, loin des néons de la ville."},
- {k:'ambrosia',n:'Ambrosia',c:'#a855f7',d:'M176,118 L232,152 L322,142 L306,240 L252,262 L202,222 Z',lx:252,ly:196,img:null,
-  t:"Une région de l'intérieur des terres de Leonida, loin des plages, à explorer dans le jeu."},
- {k:'grassrivers',n:'Grassrivers',c:'#14b8a6',d:'M202,222 L252,262 L272,362 L232,388 L196,332 L186,262 Z',lx:224,ly:306,img:20,
-  t:"Des marais immenses au sud, inspirés des Everglades de Floride : hautes herbes, bateaux à hélice… et alligators."},
- {k:'vice',n:'Vice City',c:'#ff2d95',d:'M252,262 L306,240 L322,300 L302,372 L272,362 Z',lx:288,ly:308,img:1,
-  t:"La grande ville de Leonida, inspirée de Miami : plages, néons, gratte-ciel, fêtes et vie nocturne. C'est le centre de l'histoire."},
- {k:'keys',n:'Leonida Keys',c:'#38bdf8',d:'M262,398 m-14,0 a14,7 0 1,0 28,0 a14,7 0 1,0 -28,0 M226,414 m-13,0 a13,6 0 1,0 26,0 a13,6 0 1,0 -26,0 M190,428 m-12,0 a12,6 0 1,0 24,0 a12,6 0 1,0 -24,0 M154,440 m-11,0 a11,5 0 1,0 22,0 a11,5 0 1,0 -22,0 M120,450 m-10,0 a10,5 0 1,0 20,0 a10,5 0 1,0 -20,0',lx:190,ly:466,img:18,
-  t:"Un chapelet d'îles au sud, inspiré des Florida Keys. D'après Rockstar, c'est là que Jason vit et travaille."}
-];
-function mapSvg(){
-  return `<svg class="leonida" viewBox="0 0 380 490" role="img" aria-label="Carte schématique de Leonida">
-   <defs><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3a0f55"/><stop offset="1" stop-color="#0c0420"/></linearGradient>
-   <pattern id="waves" width="24" height="12" patternUnits="userSpaceOnUse"><path d="M0 8 Q6 4 12 8 T24 8" fill="none" stroke="#ffffff" stroke-opacity=".06"/></pattern></defs>
-   <rect width="380" height="490" rx="18" fill="url(#sea)"/><rect width="380" height="490" rx="18" fill="url(#waves)"/>
-   <text x="350" y="40" class="mlab" text-anchor="end" style="font-size:11px;opacity:.6">N ↑</text>
-   <text x="70" y="250" class="mlab" style="font-size:11px;opacity:.5">Golfe</text>
-   ${REGIONS.map(r=>`<g class="reg" data-k="${r.k}" tabindex="0" role="button" aria-label="${r.n}"><path d="${r.d}" fill="${r.c}" fill-opacity=".55" stroke="#fff" stroke-width="2" stroke-linejoin="round"/><text x="${r.lx}" y="${r.ly}" text-anchor="middle" class="mlab">${r.n.toUpperCase()}</text></g>`).join('')}
-  </svg>`;
-}
-function selectRegion(k){
-  const r=REGIONS.find(x=>x.k===k); if(!r)return;
-  document.querySelectorAll('.leonida .reg').forEach(g=>g.classList.toggle('on',g.dataset.k===k));
-  $('#mapInfo').innerHTML=`${r.img!=null?`<img src="${RSF(r.img)}" alt="${r.n}" loading="lazy">`:''}<div class="mi"><b style="color:${r.c}">${r.n}</b><p>${r.t}</p></div>`;
-}
-function initMap(){
-  document.querySelectorAll('.leonida .reg').forEach(g=>{g.onclick=()=>selectRegion(g.dataset.k);g.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectRegion(g.dataset.k)}}});
-  selectRegion('vice');
-}
-
 /* ===== SIGNALEMENT (obligation européenne DSA) ===== */
 const REPORT_REPO='https://github.com/KOSHMARTRAK/gamecheck/issues/new';
 const REASONS=['Information fausse ou trompeuse','Arnaque ou lien dangereux','Contenu illégal','Harcèlement, insulte ou haine','Atteinte à mes droits (image, droit d’auteur, vie privée)','Autre'];
@@ -1508,28 +1406,6 @@ function openReport(kind,p,extra){
     window.open(REPORT_REPO+'?title='+encodeURIComponent('[Signalement] '+reason+' – '+(p?strip(p.title):'')).slice(0,1800)+'&body='+encodeURIComponent(body).slice(0,6000),'_blank','noopener');
     close();toast('Merci, ton signalement va être examiné.');
   };
-}
-
-/* ===== GAME ===== */
-function renderGame(){
-  $('#game').innerHTML=`
-  <div class="hero"><div class="in"><img src="${HERO_IMG}" alt="" referrerpolicy="no-referrer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.remove()">
-    <div class="ov" style="background:linear-gradient(180deg,rgba(16,5,30,.15),rgba(16,5,30,.85))!important;padding-top:180px!important"><span class="badge">${ic('sparkles')}<span>DISPONIBLE DEPUIS LE 19 NOV.</span></span>
-    <h1>GRAND THEFT<br>AUTO VI</h1>
-    <p>Jason et Lucia se retrouvent mêlés à un complot criminel à travers l'État de Leonida. Sur PS5 et Xbox Series X|S.</p></div></div></div>
-  <div class="score"><div><b>99</b><span>Metacritic</span></div><div><b>98-99</b><span>OpenCritic</span></div><div><b>N°1</b><span>Précommandes</span></div></div>
-  <div class="sec">${tile('info','vice',28)}FICHE DU JEU</div>
-  <div class="grid">${FACTS.map(f=>`<div class="fact">${tile(f.icon,f.tone,38)}<div class="k">${f.k}</div><div class="v">${f.v}</div><div class="s">${f.s}</div></div>`).join('')}</div>
-  <div class="sec">${tile('map','vice',28)}CARTE DE LEONIDA</div>
-  <div class="card mapcard">${mapSvg()}<div class="mapinfo" id="mapInfo"></div></div>
-  <p class="note">${ic('info')}<span>Carte schématique faite par GameCheck pour situer les régions : ce n'est pas la carte officielle du jeu. Les noms des régions viennent du site de Rockstar Games.</span></p>
-  <div class="sec">${tile('gamepad','vice',28)}CE QUI CHANGE</div>
-  <div class="card">${MECH.map(m=>`<div class="mech">${tile(m.icon,m.tone,40)}<div><h3>${m.h}</h3><p>${m.p}</p><a href="${m.src[1]}" target="_blank" rel="noopener">${ic('link')}${m.src[0]}</a></div></div>`).join('')}</div>
-  <div class="sec">${tile('sparkles','vice',28)}DÉCOUVERTES DES JOUEURS</div>
-  <div class="legend">${Object.keys(STATUS).map(chip).join('')}</div>
-  <div class="discs">${DISC.map((d,k)=>`<div class="disc"><div class="img"><img src="${DISC_IMG[k]}" alt="" loading="lazy" referrerpolicy="no-referrer" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror="this.parentNode.remove()"></div><div class="pad"><div style="margin-bottom:10px">${chip(d.st)}</div><h3>${d.h}</h3><p>${d.p}</p><div class="foot"><a href="${d.src[1]}" target="_blank" rel="noopener">${ic('article')}Lire sur ${d.src[0]}${ic('ext')}</a></div></div></div>`).join('')}</div>
-  <p class="note">${ic('info')}<span>Les théories de fans sont des pistes, pas des certitudes : seul Rockstar peut les confirmer.</span></p>
-`;
 }
 
 /* ===== PHOTOS (user's own screenshots) ===== */
@@ -1568,12 +1444,6 @@ async function removePhoto(i){
   }catch(e){toast('Impossible de retirer la capture.')}
 }
 
-function renderEggs(){
-  $('#eggs').innerHTML=`  <div class="h1">Easter eggs</div><p class="lead">Les secrets et clins d'œil cachés dans GTA 6, trouvés par les joueurs. Chacun indique où le trouver et à quel point c'est fiable.</p><div class="legend">${Object.keys(STATUS).map(chip).join('')}</div>
-  <div class="discs">${EGGS.map((d,k)=>`<div class="disc"><div class="img"><img src="${POOL[(k*3+5)%POOL.length]}" alt="" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover" onerror=${IMGFB}></div><div class="pad"><div style="margin-bottom:10px">${chip(d.st)}</div><h3>${d.h}</h3><p>${d.p}</p>${d.o?`<p style="margin-top:6px"><b>Où :</b> ${d.o}</p>`:''}<div class="foot">${d.src.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${ic('article')}${s[0]}${ic('ext')}</a>`).join(' ')}</div></div></div>`).join('')}</div>
-  <p class="note">${ic('info')}<span>Easter eggs repérés par les joueurs depuis la sortie et relayés par la presse jeu vidéo. « Testé par la presse » = repris par plusieurs sites ; « Signalé par des joueurs » = une seule source pour l'instant. Aucun n'est confirmé officiellement par Rockstar.</span></p>`;
-}
-renderEggs();
 /* ===== BIBLIOTHÈQUE DE JEUX : genres > licences > jeux (seulement les jeux à gros public) ===== */
 const GENRES=[
  {id:'ouvert',n:'Monde ouvert',e:'🌆',c1:'#ff2d95',c2:'#ffb347',d:'Action-aventure en liberté totale'},
@@ -1603,106 +1473,18 @@ LIB.forEach(f=>{f.games=f.games.filter(x=>ACTIVE.includes(x.id))});for(let i=LIB
 LIB.forEach(f=>{FBYID[f.id]=f;f.games.forEach(x=>{x.fr=f.id;x.genres=x.g||f.g;x.st=x.st||'sorti';GBYID[x.id]=x;GAMES.push(x)})});
 const GENBY={};GENRES.forEach(g=>GENBY[g.id]=g);
 const gGrad=gid=>{const g=GENBY[gid]||GENRES[0];return `linear-gradient(135deg,${g.c1},${g.c2})`};
-const stLbl=x=>x.st==='annonce'?'Annoncé':x.st==='acces'?(x.id==='poe-2'?'Accès anticipé · version complète le 11 déc.':'Accès anticipé'):(x.y?'Sorti en '+x.y:'Sorti');
-let FOLLOW=[];try{FOLLOW=JSON.parse(localStorage.getItem('gc_follow')||'[]')}catch(e){}
-const isF=id=>FOLLOW.includes(id);
-function toggleFollow(id){FOLLOW=isF(id)?FOLLOW.filter(x=>x!==id):[...FOLLOW,id];try{localStorage.setItem('gc_follow',JSON.stringify(FOLLOW))}catch(e){}toast(isF(id)?'Ajouté à Mes jeux ⭐':'Retiré de Mes jeux');renderExplore();renderMine()}
-let XP={genre:null,fr:null,game:null,q:''};
-function goGame(id){const x=GBYID[id];if(!x)return;XP={genre:null,fr:x.fr,game:id,q:''};showView('explore');renderExplore()}
-const gameTile=(x,big)=>{const g=GENBY[x.genres[0]];return `<button class="gt${big?' big':''}" data-game="${x.id}"><span class="gt-ic" style="background:${gGrad(x.genres[0])}">${g?g.e:'🎮'}</span><span class="gt-tx"><b>${esc(x.n)}</b><small>${esc(FBYID[x.fr].ed)} · ${stLbl(x)}</small></span>${x.hot?'<span class="gt-hot" title="Jeu du moment">🔥</span>':''}${isF(x.id)?'<span class="gt-fav">⭐</span>':''}</button>`};
-const pfChips=x=>x.pf.map(p=>`<span class="pfc">${p}</span>`).join('');
-function renderExplore(){const el=document.getElementById('explore');if(!el)return;let h='';
-  const crumb=[`<button data-ex="root">Explorer</button>`];
-  if(XP.genre)crumb.push(`<button data-ex="genre:${XP.genre}">${GENBY[XP.genre].n}</button>`);
-  if(XP.fr&&!XP.genre&&XP.game)crumb.push(`<button data-ex="fr:${XP.fr}">${esc(FBYID[XP.fr].n)}</button>`);else if(XP.fr)crumb.push(`<button data-ex="fr:${XP.fr}">${esc(FBYID[XP.fr].n)}</button>`);
-  if(XP.game)crumb.push(`<span>${esc(GBYID[XP.game].n)}</span>`);
-  const crumbs='';
-  if(XP.game){const x=GBYID[XP.game],f=FBYID[x.fr],g=GENBY[x.genres[0]];
-    h=`${crumbs}<div class="ghero" style="background:${gGrad(x.genres[0])}">${gameImg(x.id)?`<img src="${gameImg(x.id)}" alt="" referrerpolicy="no-referrer">`:`<span class="ghero-e">${g.e}</span>`}<div class="ghero-in"><div class="ghero-tags">${x.genres.map(id=>`<span>${GENBY[id].e} ${GENBY[id].n}</span>`).join('')}${x.hot?'<span>🔥 Du moment</span>':''}</div><h1>${esc(x.n)}</h1><p>${esc(f.ed)} · ${stLbl(x)}</p><div class="pfs">${pfChips(x)}</div></div></div>`;
-    if(x.full){h+=`<div class="gmenu"><button data-go="feed">📰<b>Les infos</b><small>Vrai, faux, rumeurs, arnaques</small></button><button data-go="eggs">🥚<b>Easter eggs</b><small>Les secrets cachés</small></button><button data-go="game">🗺️<b>Fiche & carte</b><small>Tout sur le jeu</small></button><button data-go="forum">💬<b>Forum</b><small>Discuter avec la commu</small></button></div>`}
-    else{h+=`<div class="card gsoon"><b>Les infos vérifiées sur ${esc(x.n)} arrivent bientôt.</b><p>Tu as vu une rumeur sur ce jeu ? Envoie-la, on la vérifie et le verdict apparaîtra ici.</p><div class="gsoon-b"><button class="btn" data-go="check">🔍 Demander une vérif</button><button class="btn ghost" data-go="forum">💬 En parler sur le forum</button></div></div>`}
-    const sib=f.games.filter(y=>y.id!==x.id);if(sib.length)h+=`<div class="sec">${tile('layers','vice',28)}DANS LA MÊME LICENCE</div><div class="glist">${sib.map(y=>gameTile(y)).join('')}</div>`;
-  }else if(XP.fr){const f=FBYID[XP.fr];
-    h=`${crumbs}<div class="frhero" style="background:${gGrad(f.g[0])}"><span>${GENBY[f.g[0]].e}</span><div><h1>${esc(f.n)}</h1><p>${esc(f.ed)} · ${f.games.length} jeu${f.games.length>1?'x':''}</p></div></div><div class="glist">${f.games.map(y=>gameTile(y,true)).join('')}</div>`;
-  }else if(XP.genre){const g=GENBY[XP.genre],frs=LIB.filter(f=>f.games.some(x=>x.genres.includes(g.id)));
-    h=`${crumbs}<div class="frhero" style="background:${gGrad(g.id)}"><span>${g.e}</span><div><h1>${g.n}</h1><p>${g.d}</p></div></div>
-    ${frs.map(f=>{const gs=f.games.filter(x=>x.genres.includes(g.id));return `<div class="frblock"><button class="frname" data-ex="fr:${f.id}">${esc(f.n)} <small>${esc(f.ed)}</small><i>›</i></button><div class="glist">${gs.map(x=>gameTile(x)).join('')}</div></div>`}).join('')}`;
-  }else{const q=XP.q.trim().toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-    const found=q?GAMES.filter(x=>(x.n+' '+FBYID[x.fr].n+' '+FBYID[x.fr].ed).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').includes(q)):[];
-    h=`<div class="h1">Explorer</div><p class="lead">${GAMES.length} jeux parmi les plus joués, rangés par genre et par licence. Trouve ton jeu et suis-le.</p>
-    <input id="exQ" class="pin exq" placeholder="🔍 Chercher un jeu (ex : Fortnite, Elden Ring…)" value="${esc(XP.q)}">
-    ${q?`<div class="glist">${found.length?found.map(x=>gameTile(x)).join(''):'<div class="cnone card">Aucun jeu trouvé. Il n’est peut-être pas encore dans la bibliothèque.</div>'}</div>`:`
-    <div class="sec">${tile('sparkles','vice',28)}LES JEUX DU MOMENT</div><div class="hotrow">${GAMES.filter(x=>x.hot).map(x=>gameTile(x)).join('')}</div>
-    <div class="sec">${tile('layers','vice',28)}PAR GENRE</div><div class="ggrid">${GENRES.filter(g=>GAMES.some(x=>x.genres.includes(g.id))).map(g=>{const n=GAMES.filter(x=>x.genres.includes(g.id)).length;return `<button class="gtile" data-ex="genre:${g.id}" style="background:${gGrad(g.id)}"><span class="gtile-e">${g.e}</span><b>${g.n}</b><small>${n} jeu${n>1?'x':''}</small></button>`}).join('')}</div>`}`;}
-  el.innerHTML=h;
-  el.querySelectorAll('[data-ex]').forEach(b=>b.onclick=()=>{const [k,v]=b.dataset.ex.split(':');XP={genre:null,fr:null,game:null,q:''};if(k==='genre')XP.genre=v;if(k==='fr')XP.fr=v;renderExplore();window.scrollTo({top:0})});
-  el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>{const keep=XP.genre;XP={genre:keep,fr:GBYID[b.dataset.game].fr,game:b.dataset.game,q:''};renderExplore();window.scrollTo({top:0})});
-  el.querySelectorAll('[data-follow]').forEach(b=>b.onclick=()=>toggleFollow(b.dataset.follow));
-  el.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>showView(b.dataset.go));
-  const q=el.querySelector('#exQ');if(q){q.oninput=()=>{XP.q=q.value;const pos=q.selectionStart;renderExplore();const n=document.getElementById('exQ');n.focus();n.setSelectionRange(pos,pos)}}
-}
-function renderMine(){const el=document.getElementById('mine');if(!el)return;const mine=FOLLOW.map(id=>GBYID[id]).filter(Boolean);
-  el.innerHTML=`<div class="h1">Mes jeux</div><p class="lead">Les jeux que tu suis. Appuie sur ☆ « Suivre ce jeu » sur la page d’un jeu pour l’ajouter ici.</p>
-  ${mine.length?`<div class="glist">${mine.map(x=>gameTile(x,true)).join('')}</div>`:`<div class="card gsoon"><b>Tu ne suis encore aucun jeu.</b><p>Commence par un des jeux du moment :</p></div><div class="hotrow">${GAMES.filter(x=>x.hot).map(x=>gameTile(x)).join('')}</div>`}
-  <p class="note">${ic('info')}<span>Ta liste est gardée sur cet appareil. Bientôt : un fil d’infos rien que pour tes jeux et des alertes.</span></p>`;
-  el.querySelectorAll('[data-game]').forEach(b=>b.onclick=()=>goGame(b.dataset.game));}
-
-/* barre du bas : prend le style du jeu ou du genre consulté (le thème plage reste le thème de base) */
-const NAVT={
- gta:{bg:'linear-gradient(90deg,#ff2d95,#ff6a3d 55%,#ffb347)',fg:'#fff',act:'#1b0b2e',e:'🌴'}
-};
-let CURV='feed';
-function navCtx(){if(CURV==='explore'&&(XP.game||XP.fr||XP.genre)){}else if(typeof UNIV!=='undefined'&&UNIV!=='gta-6'&&GBYID[UNIV]){const x=GBYID[UNIV];return{fr:x.fr,game:x.id,genre:x.genres[0]}}
-  if(CURV==='eggs'||CURV==='game')return null;if(CURV==='explore'){if(XP.game){const x=GBYID[XP.game];return{fr:x.fr,game:x.id,genre:x.genres[0]}}if(XP.fr)return{fr:XP.fr,genre:FBYID[XP.fr].g[0]};if(XP.genre)return{genre:XP.genre}}return null}
-function applyNavTheme(){const nav=document.querySelector('nav.tabs'),tag=document.getElementById('navTag');if(!nav)return;const c=navCtx();
-  if(!c){nav.classList.remove('themed');if(tag)tag.hidden=true;return}
-  const g=GENBY[c.genre],t=(c.fr&&NAVT[c.fr])||{bg:`linear-gradient(rgba(0,0,0,.28),rgba(0,0,0,.28)),linear-gradient(90deg,${g.c1},${g.c2})`,fg:'#fff',act:'#fff6a8',e:g.e};
-  nav.style.setProperty('--nbgc',t.bg);nav.style.setProperty('--nfg',t.fg);nav.style.setProperty('--nact',t.act);nav.classList.add('themed');
-  if(tag){const name=c.game?GBYID[c.game].n:c.fr?FBYID[c.fr].n:'';tag.innerHTML=`<span>${t.e}</span> ${esc(name?name+' · ':'')}${g.e} ${g.n}`;tag.hidden=false}}
-{const _rx=renderExplore;renderExplore=function(){_rx();applyNavTheme()}}
+let CURV='feed';function applyNavTheme(){}
 /* annonces officielles (robot gratuit, toutes les heures) */
 let OFFN=[];
 const offCard=n=>{const x=GBYID[n.g];if(!x)return'';const g=GENBY[x.genres[0]];return `<a class="offc" href="${esc(n.u)}" target="_blank" rel="noopener"><span class="offc-g" style="background:${gGrad(x.genres[0])}">${g.e}</span><span class="offc-tx"><small><b>${esc(x.n)}</b> · ${esc(n.s)} · ${fmtTs(n.ts)}</small><b>${esc(n.t)}</b>${n.x?`<span>${esc(n.x)}</span>`:''}</span></a>`};
 function renderOffHome(){const el=document.getElementById('offHome');if(!el)return;const l=OFFN.filter(n=>inFeedG(n.g)).slice(0,10);
   el.innerHTML=l.length?`<div class="topg-h"><b>📢 Annonces officielles</b><small class="offh-s">mises à jour toutes les heures</small></div><div class="offrow">${l.map(offCard).join('')}</div>`:''}
 async function loadOfficial(){try{const r=await fetch('data/official.json',{cache:'no-store'});if(r.ok){const a=await r.json();if(Array.isArray(a))OFFN=a.filter(n=>n&&n.g&&GBYID[n.g]&&/^https:\/\//.test(n.u||'')).sort((a,b)=>b.ts-a.ts)}}catch(e){}
-  renderOffHome();renderExplore();renderMine()}
-{const _r2=renderExplore;renderExplore=function(){_r2();if(!XP.game)return;const el=document.getElementById('explore');if(!el)return;const id=XP.game,x=GBYID[id];
-  const posts=(typeof ALL!=='undefined'?ALL:[]).filter(p=>(p.game||'gta-6')===id).slice(0,6),off=OFFN.filter(n=>n.g===id).slice(0,6);let h='';
-  if(!x.full&&posts.length)h+=`<div class="sec">${tile('check','vice',28)}INFOS VÉRIFIÉES</div><div class="glist">${posts.map(p=>{const c=CATS[p.cat];return `<div class="card vpost"><span class="badge" style="background:${TONES[c.tone].g}">${ic(c.icon)}<span>${c.label.toUpperCase()}</span></span><b>${p.title}</b><p>${p.verdict}</p></div>`}).join('')}</div>`;
-  h+=`<div class="sec">${tile('article','vice',28)}ANNONCES OFFICIELLES</div>${off.length?`<div class="glist">${off.map(offCard).join('')}</div>`:'<div class="cnone card">Pas d’annonce officielle ces dernières semaines.</div>'}`;
-  const sib=el.querySelector('.sec:last-of-type');el.insertAdjacentHTML('beforeend',h)}}
-{const _rm=renderMine;renderMine=function(){_rm();const el=document.getElementById('mine');if(!el||!FOLLOW.length)return;const off=OFFN.filter(n=>FOLLOW.includes(n.g)).slice(0,12);
-  if(off.length)el.insertAdjacentHTML('beforeend',`<div class="sec">${tile('article','vice',28)}ANNONCES DE MES JEUX</div><div class="glist">${off.map(offCard).join('')}</div>`)}}/* choix des jeux affichés sur le fil d'actu (gardé sur l'appareil) */
-let FEEDG=[];try{FEEDG=JSON.parse(localStorage.getItem('gc_feedg')||'[]').filter(id=>typeof id==='string')}catch(e){}
-function setFeedG(a){FEEDG=a.filter(id=>GBYID[id]);try{localStorage.setItem('gc_feedg',JSON.stringify(FEEDG))}catch(e){}renderGFilt();renderUne();renderFeed();renderOffHome()}
-function renderGFilt(){const el=document.getElementById('gfilt');if(!el)return;el.hidden=true;return;
-  const chip=id=>{const x=GBYID[id];return `<button class="gchip on" data-rm="${id}" title="Retirer">${GENBY[x.genres[0]].e} ${esc(x.n)} <i>✕</i></button>`};
-  el.innerHTML=`<span class="gfilt-l">Jeux du fil :</span>${FEEDG.length?FEEDG.map(chip).join(''):'<button class="gchip all on">🎮 Tous les jeux</button>'}${FOLLOW.length?`<button class="gchip" data-mine="1">⭐ Mes jeux</button>`:''}<button class="gchip pick" data-pick="1">＋ Choisir</button>${FEEDG.length?'<button class="gchip" data-all="1">Tout afficher</button>':''}`;
-  el.querySelectorAll('[data-rm]').forEach(b=>b.onclick=()=>setFeedG(FEEDG.filter(x=>x!==b.dataset.rm)));
-  const m=el.querySelector('[data-mine]');if(m)m.onclick=()=>setFeedG([...FOLLOW]);
-  const a=el.querySelector('[data-all]');if(a)a.onclick=()=>setFeedG([]);
-  el.querySelector('[data-pick]').onclick=pickFeedG;}
-function pickFeedG(){let sel=new Set(FEEDG);const withNews=new Set([...ALL.map(p=>p.game||'gta-6'),...OFFN.map(n=>n.g)]);
-  const body=()=>GENRES.map(g=>{const gs=GAMES.filter(x=>x.genres[0]===g.id);if(!gs.length)return'';return `<div class="pk-g"><b>${g.e} ${g.n}</b><div class="pk-l">${gs.map(x=>`<button class="pk ${sel.has(x.id)?'on':''}" data-id="${x.id}">${esc(x.n)}${withNews.has(x.id)?' <i title="A des infos">●</i>':''}</button>`).join('')}</div></div>`}).join('');
-  const m=modal(`<h3>🎮 Choisis les jeux de ton fil</h3><p class="rsub">Seules les infos de ces jeux s'afficheront sur l'Accueil. Rien de coché = tous les jeux. <i class="dot">●</i> = a déjà des infos.</p><div class="pk-wrap">${body()}</div><div class="rbtns"><button class="rcancel" data-clear="1">Tout décocher</button><button class="rsend ok">Valider</button></div>`);
-  const wire=()=>m.querySelectorAll('.pk').forEach(b=>b.onclick=()=>{const id=b.dataset.id;sel.has(id)?sel.delete(id):sel.add(id);b.classList.toggle('on')});wire();
-  m.querySelector('[data-clear]').onclick=e=>{e.stopPropagation();sel.clear();m.querySelectorAll('.pk.on').forEach(b=>b.classList.remove('on'))};
-  m.querySelector('.ok').onclick=()=>{m.remove();setFeedG([...sel]);toast(sel.size?sel.size+' jeu'+(sel.size>1?'x':'')+' sur ton fil':'Tous les jeux sur ton fil')};}/* captures officielles Path of Exile 2 (galerie Steam de Grinding Gear Games) */
-const POE_SS=['29a8f70e50291aa9fab22a51ec8334f3eedeb267','31cafb888d499f04022bf47c6bb6ae879ed139ae','e91a68cabd08ce676bb1a554a0205ac8b0ca6221','f4676d0b868f78aef63d15833a1d96afc76dc8d2','07c21f3e884059d85bc2ed0213d71cd99a5499b5','e8d9749bf7885a38c2db8c4ba64e55fd376b4715','88c9dccd5619feb31707ed5f5e549e5aba6de0ec','e5d757b94801daf70836c1686208ed6d39785b36','e2d559c229fc8e66cefae1f19370fa4ccd2fc712','2430433b358a16fe2c9dd4b883eb955d8a252c3c','69140f666c152c1af0cefb077fbc0b770f87e569','033b9250c0e77bf1767bd26fd104bc2680378ffe'].map(h=>`https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/${h}/ss_${h}.1920x1080.jpg`);
-const POE_BG='https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/2694490/93edc6a1815c760dfbb6d93b6a0d8d0e19372180/page_bg_raw.jpg';
-const gameImg=id=>id==='poe-2'?POE_SS[0]:id==='gta-6'?HERO_IMG:'';/* interrupteur d'univers en haut : GTA VI <-> Path of Exile 2 (tout l'Accueil bascule sur le jeu choisi) */
-const UNIVS=[{id:'gta-6',t:'VI',n:'GTA VI'},{id:'poe-2',t:'II',n:'Path of Exile 2'}];
-let UNIV='gta-6';try{localStorage.removeItem('gc_univ')}catch(e){}
-function renderUnivSw(){const el=document.getElementById('univSw');if(!el)return;el.dataset.on=UNIV;
-  el.innerHTML='<span class="knob"></span>'+UNIVS.map(u=>`<button class="u-${u.id} ${u.id===UNIV?'on':''}" data-u="${u.id}" aria-pressed="${u.id===UNIV}" title="${u.n}">${u.t}</button>`).join('');
-  el.querySelectorAll('button').forEach(b=>b.onclick=()=>setUniv(b.dataset.u===UNIV?UNIVS.find(x=>x.id!==UNIV).id:b.dataset.u));}
-function setUniv(id,silent){UNIV=id;try{localStorage.setItem('gc_univ',id)}catch(e){}document.body.dataset.univ=id;renderUnivSw();setFeedG([id]);applyNavTheme();
-  const v=document.getElementById('v-feed');if(v&&!silent){v.classList.remove('flip');void v.offsetWidth;v.classList.add('flip')}
-  if(!silent)toast(GBYID[id].n+' activé')}/* vitrine de l'accueil : les jeux les plus joués du moment (sans classement) */
+  renderOffHome()}
+const FEEDG=[];
 const TOPG=['gta-6'];
 function renderTop(){const el=document.getElementById('topg');if(!el)return;
-  el.innerHTML=`<div class="h6"><div class="h6-in">${HERO_IMG?`<img src="${HERO_IMG}" alt="" referrerpolicy="no-referrer">`:''}<div class="h6-tags"><span class="live"><i></i>Disponible</span><span>Rockstar Games</span><span>PS5 · Xbox Series</span></div><div class="h6-tx"><h2>GTA VI</h2><p>Bienvenue à Leonida<small>Le vrai du faux sur le jeu le plus attendu</small></p></div></div></div>`;}
+  el.innerHTML=`<div class="h6"><div class="h6-in">${HERO_IMG?`<img src="${HERO_IMG}" alt="" referrerpolicy="no-referrer">`:''}<div class="h6-tags"><span class="live"><i></i>Disponible</span><span>Rockstar Games</span><span>PS5 · Xbox Series</span></div><div class="h6-tx"><h2>GTA VI</h2><p>Bienvenue à Leonida<small>Toute l’actu du jeu le plus attendu</small></p></div></div></div>`;}
 /* ===== TABS ===== */
 const TABS=[['feed','home','Accueil'],['forum','chat','Forum']];
 $('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
@@ -1716,112 +1498,11 @@ document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>showView(b
 {const lg=document.querySelector('header .logo');lg.setAttribute('role','button');lg.setAttribute('tabindex','0');lg.setAttribute('aria-label','Infos, sources et mentions légales');lg.title='Infos';lg.onclick=()=>showView('src');lg.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showView('src')}}}
 
 /* ===== CHECKER ===== */
-const EX=['GTA 6 sort sur PC le mois prochain','Une démo gratuite de GTA 6 est dispo','GTA 6 Online sort en décembre','On peut jouer tout le jeu en vue FPS'];
-$('#examples').innerHTML=EX.map(e=>`<button>${e}</button>`).join('');
-document.querySelectorAll('#examples button').forEach(b=>b.onclick=()=>{$('#claim').value=b.textContent});
-$('#checkNote').innerHTML=`${ic('info')}<span>L'analyse ne va pas sur Internet en direct : elle s'appuie sur les infos vérifiées de l'app et sur des connaissances générales. Pour une info toute fraîche, vérifie toujours auprès d'une source officielle.</span>`;
 $('#rulesTitle').innerHTML=`${tile('shield','vice',28)}LES 5 RÉFLEXES ANTI-FAKE`;
 $('#majTitle').innerHTML=`${tile('clock','vice',28)}MISES À JOUR`;
 $('#dlTitle').innerHTML=`${tile('download','vice',28)}INSTALLER GAMECHECK`;
 $('#legalTitle').innerHTML=`${tile('info','vice',28)}À PROPOS ET INFOS LÉGALES`;
 $('#appVersion').innerHTML=`${ic('info')}<span>GameCheck · version 1.5 du 21 nov. 2026 (profils et forum)</span>`;
-const btnHTML=()=>`${ic('search')}Analyser`;
-$('#checkBtn').innerHTML=btnHTML();
-let sampleFn=null;
-/* Test anti-intox : marche pour n'importe quelle rumeur, sans base de données */
-const QZ=[
- {q:'La source est un compte officiel (Rockstar, Take-Two, PlayStation, Xbox) ou un grand média connu ?',risk:'non',w:2},
- {q:'D’autres médias sérieux disent la même chose ?',risk:'non',w:2},
- {q:'On te demande de télécharger un fichier, de payer ou de te connecter à un compte ?',risk:'oui',w:4},
- {q:'Ça promet un truc gratuit ou en avance (démo, clé, version PC, bêta, argent du jeu) ?',risk:'oui',w:3},
- {q:'Il n’y a qu’une capture ou une vidéo, sans lien vers la vraie source ?',risk:'oui',w:1}];
-const QA={};
-function renderQuiz(){
-  const el=$('#quiz');
-  el.innerHTML=`<div class="h2">${tile('shield','vice',28)}LE TEST ANTI-INTOX</div><p class="lead" style="margin:6px 0 0">5 questions sur la rumeur que tu as vue. Ça marche même si elle n'est pas dans le fil.</p>`+
-   QZ.map((x,i)=>`<div class="q"><p>${i+1}. ${x.q}</p><div class="yn"><button data-q="${i}" data-a="oui" class="${QA[i]==='oui'?'on':''}">Oui</button><button data-q="${i}" data-a="non" class="${QA[i]==='non'?'on':''}">Non</button></div></div>`).join('')+
-   `<div class="qr" id="qres"></div>`;
-  el.querySelectorAll('.yn button').forEach(b=>b.onclick=()=>{QA[b.dataset.q]=b.dataset.a;renderQuiz()});
-  const n=Object.keys(QA).length; if(n<QZ.length)return;
-  let s=0; QZ.forEach((x,i)=>{if(QA[i]===x.risk)s+=x.w});
-  const r=s>=5?{tone:'faux',icon:'x',t:'PROBABLEMENT FAUX',p:'Trop de signaux d’alerte. Ne télécharge rien, ne paie rien, ne donne aucun identifiant. Demande une vérif si tu veux en avoir le cœur net.'}
-   :s>=2?{tone:'rumeur',icon:'alert',t:'MÉFIANCE',p:'Ce n’est pas confirmé. Attends qu’un compte officiel ou plusieurs médias sérieux en parlent avant d’y croire ou de partager.'}
-   :{tone:'vrai',icon:'check',t:'PLUTÔT CRÉDIBLE',p:'Les signaux sont bons. Vérifie quand même la source d’origine avant de partager.'};
-  const q=$('#qres'); q.className='qr on'; q.style.background=TONES[r.tone].bg;
-  q.innerHTML=`<div class="rv">${tile(r.icon,r.tone,36)}<b style="color:${TONES[r.tone].c}">${r.t}</b></div><p style="margin-top:8px;font-size:14px;line-height:1.5">${r.p}</p><button class="btn" id="qzReset" style="background:var(--txt);box-shadow:none">Refaire le test</button>`;
-  $('#qzReset').onclick=()=>{for(const k in QA)delete QA[k];renderQuiz()};
-}
-/* Vérification sans IA : recherche dans les infos déjà vérifiées */
-function localCheck(){
-  const norm=s=>strip(String(s)).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-  const STOP=new Set('le la les un une des de du et ou a au aux en sur pour par dans est sont que qui gta 6 vi va the of'.split(' '));
-  document.querySelector('#v-check .h1').textContent='Vérifier une rumeur';
-  document.querySelector('#v-check .lead').textContent="Colle une info vue sur TikTok, X, YouTube ou Insta. On regarde d'abord si elle est déjà dans le fil. Sinon, demande une vérif ou fais le test anti-intox juste en dessous.";
-  $('#checkBtn').innerHTML=`${ic('search')}Chercher dans le fil`;
-  $('#checkNote').innerHTML=`${ic('info')}<span>La recherche compare ta phrase aux infos déjà vérifiées du fil. Si rien ne correspond, ça ne veut pas dire que c'est faux : l'info n'a juste pas encore été vérifiée.</span>`;
-  $('#askTitle').innerHTML=`${tile('search','vice',28)}DEMANDER UNE VÉRIF`;
-  $('#askBtn').innerHTML=`${ic('check')}Envoyer ma demande`;
-  $('#askNote').innerHTML=`${ic('info')}<span>L'envoi ouvre une page GitHub déjà remplie : clique sur « Submit new issue » (il faut un compte GitHub gratuit). Ta demande est publique : n'y mets aucune info personnelle.</span>`;
-  $('#askBtn').onclick=()=>{
-    const claim=$('#claim').value.trim(), link=$('#askLink').value.trim();
-    if(claim.length<8){toast('Écris d’abord l’info à vérifier dans la case du haut.');$('#claim').focus();return}
-    const title='[VERIF] '+claim.replace(/\s+/g,' ').slice(0,90);
-    const body=`**Info à vérifier :**\n${claim}\n\n**Vue ici :** ${link||'(pas de lien)'}\n\n_Envoyé depuis l'onglet Vérifier de GameCheck._`;
-    window.open('https://github.com/KOSHMARTRAK/gamecheck/issues/new?title='+encodeURIComponent(title)+'&body='+encodeURIComponent(body),'_blank','noopener');
-  };
-  renderQuiz();
-  $('#checkBtn').onclick=()=>{
-    const words=norm($('#claim').value).split(/[^a-z0-9]+/).filter(w=>w.length>2&&!STOP.has(w));
-    const box=$('#result'); box.className='result card on'; $('#askBox').hidden=false;
-    if(!words.length){box.innerHTML='<p>Écris l’info que tu veux vérifier.</p>';return}
-    const need=Math.max(1,Math.ceil(words.length/2));const scored=ALL.map(p=>{const t=norm(p.title+' '+p.body+' '+p.verdict);let s=0,h=0;words.forEach(w=>{if(t.includes(w)){h++;s+=norm(p.title).includes(w)?2:1}});return[p,h>=need?s:0]}).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,3);
-    if(!scored.length){box.innerHTML=`<div class="rv">${tile('info','info',36)}<b style="color:${TONES.info.c}">PAS ENCORE VÉRIFIÉ</b></div><p>Aucune info vérifiée de l’appli ne correspond. Tant qu’aucune source officielle ne la confirme, considère-la comme une rumeur.</p><div class="tip">${ic('info')}<span>Démo, version PC, APK ou clé gratuite : c’est presque toujours une arnaque.</span></div>`;return}
-    box.innerHTML=scored.map(([p])=>{const c=CATS[p.cat];return `<div class="rv">${tile(c.icon,c.tone,36)}<b style="color:${TONES[c.tone].c}">${c.label.toUpperCase()}</b></div><p><b>${p.title}</b></p><p>${p.verdict}</p><div class="tip"><a href="#post${p.i}" style="color:inherit">${ic('eye')} Voir l’info dans le fil</a></div>`}).join('<hr style="border:0;border-top:1px solid var(--line);margin:12px 0">');
-    box.querySelectorAll('a[href^="#post"]').forEach(a=>a.onclick=e=>{e.preventDefault();document.querySelector('nav.tabs button[data-v="feed"]').click();filter='all';renderFilters();renderFeed();setTimeout(()=>{const el=document.querySelector(a.getAttribute('href'));el&&el.scrollIntoView({behavior:'smooth'})},60)});
-  };
-}
-(async()=>{
-  try{ if(window.claude&&window.claude.use){ sampleFn=await window.claude.use('sample'); } }catch(e){sampleFn=null}
-  if(!sampleFn){ localCheck(); }
-})();
-const VERD={vrai:{t:'Confirmé',i:'check',tone:'vrai'},probable:{t:'Probable',i:'check',tone:'vrai'},rumeur:{t:'Rumeur',i:'alert',tone:'rumeur'},faux:{t:'Faux',i:'x',tone:'faux'},arnaque:{t:'Arnaque probable',i:'siren',tone:'alerte'},inconnu:{t:'Impossible à vérifier',i:'info',tone:'info'}};
-$('#checkBtn').onclick=async()=>{
-  const claim=$('#claim').value.trim();
-  if(!claim||!sampleFn)return;
-  const btn=$('#checkBtn');btn.disabled=true;btn.innerHTML='<span class="spin"></span>Analyse…';
-  const ctx=ALL.map(p=>`[${p.cat.toUpperCase()}] ${p.date} – ${p.title} : ${strip(p.body)} Verdict : ${strip(p.verdict)} Sources : ${p.sources.map(s=>s[0]+' ('+s[1]+')').join(', ')}`).join('\n')
-   +'\nFICHE DU JEU :\n'+FACTS.map(f=>`- ${f.k} : ${f.v}. ${f.s}`).join('\n')
-   +'\nMÉCANIQUES :\n'+MECH.map(m=>`- ${m.h} : ${m.p}`).join('\n')
-   +'\nDÉCOUVERTES DE JOUEURS (statut entre crochets) :\n'+DISC.map(d=>`- [${STATUS[d.st].label}] ${d.h} : ${d.p}`).join('\n');
-  const prompt=`Tu es le vérificateur de faits de l'app « GameCheck ». Le fil actuel est consacré à GTA 6. Nous sommes le 21 novembre 2026. GTA 6 est sorti le 19 novembre 2026.
-Tu n'as PAS accès à Internet. Appuie-toi d'abord sur ces DONNÉES VÉRIFIÉES (mises à jour le 21/11/2026) :
-${ctx}
-
-Règles :
-- Si l'info est couverte par les données, base ton verdict dessus.
-- Si elle n'est pas couverte et que tu ne peux pas la vérifier, réponds « inconnu » ou « rumeur ». N'invente jamais de faits ni de sources.
-- Tes connaissances générales peuvent dater d'avant la sortie du jeu : sois prudent sur tout ce qui concerne le contenu du jeu.
-- Toute offre de démo, de version PC, d'APK, de clé gratuite ou d'accès anticipé = « arnaque ».
-- Réponds en français simple, adapté à un joueur.
-
-Info à vérifier : """${claim}"""
-
-Réponds UNIQUEMENT en JSON :
-{"verdict":"vrai|probable|rumeur|faux|arnaque|inconnu","resume":"1 à 2 phrases","raisons":["2 à 4 raisons courtes"],"conseil":"où vérifier ou quoi faire, 1 phrase"}`;
-  let r=null;
-  try{
-    if(typeof sampleFn.json==='function'){ r=await sampleFn.json(prompt,{modelTier:'default'}); }
-    else{ const out=await sampleFn(prompt,{modelTier:'default'}); const m=out.text.match(/\{[\s\S]*\}/); r=JSON.parse(m[0]); }
-  }catch(e){
-    const msg=e&&e.code==='rate_limited'?"Trop de demandes d'un coup. Réessaie dans un moment.":e&&e.code==='not_granted'?"L'analyse n'a pas été autorisée.":"L'analyse a échoué. Réessaie.";
-    $('#result').className='result card on';$('#result').innerHTML=`<p>${msg}</p>`;
-    btn.disabled=false;btn.innerHTML=btnHTML();return;
-  }
-  const v=VERD[r&&r.verdict]||VERD.inconnu;
-  $('#result').className='result card on';
-  $('#result').innerHTML=`<div class="rv">${tile(v.i,v.tone,36)}<b style="color:${TONES[v.tone].c}">${v.t.toUpperCase()}</b></div><p>${esc(r.resume)}</p>${Array.isArray(r.raisons)&&r.raisons.length?'<ul>'+r.raisons.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul>':''}${r.conseil?'<div class="tip">'+ic('info')+'<span>'+esc(r.conseil)+'</span></div>':''}`;
-  btn.disabled=false;btn.innerHTML=btnHTML();
-};
 
 /* ===== INIT ===== */
 $('#logoMk').innerHTML=dogLogo();
@@ -1842,8 +1523,7 @@ let installEvt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;$('#installBtn').hidden=false});
 $('#installBtn').onclick=async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('#installBtn').hidden=true};
 window.addEventListener('appinstalled',()=>{$('#installBtn').hidden=true;toast('GameCheck est installé !')});
-withIdx();renderUne();renderFilters();renderFeed();renderGame();initMap();initPhotos();renderTop();renderExplore();renderMine();renderGFilt();document.body.dataset.univ='gta-6';setFeedG([]);loadOfficial();
-['eggs','game'].forEach(v=>{const p=document.getElementById(v);if(p)p.insertAdjacentHTML('afterbegin','<button class="gback" onclick="goGame(\'gta-6\')">‹ GTA VI</button>')});
+withIdx();renderUne();renderFilters();renderFeed();initPhotos();renderTop();document.body.dataset.univ='gta-6';loadOfficial();
 </script>
 <script type="module">
 // Firebase (gratuit) : connexion Google + base de données pour les profils, J'aime, commentaires et forum.
