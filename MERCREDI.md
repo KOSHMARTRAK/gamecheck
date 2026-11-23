@@ -37,6 +37,24 @@ Faire grandir la communauté de l'appli :
 - Comptes de l'appli sur les réseaux (TikTok, X), indépendants du stream.
 - Plus tard : reprendre la formule pour d'autres gros jeux, pour toucher plus de monde.
 
+## Autres idées à ajouter à l'appli (toutes retenues le 23 nov.)
+Contenu :
+- **FAQ GTA VI** (« sur PC ? », « combien de Go ? », « cross-play ? ») : questions tapées sur Google, donc ça ramène du monde.
+- **Patchs expliqués simplement** : chaque mise à jour du jeu en 5 lignes.
+- **PS5 ou Xbox ?** : comparatif clair (graphismes, fluidité, prix).
+
+Fonctions :
+- **Défis de la semaine** : un défi en jeu, les joueurs postent leur preuve.
+- **Records GameCheck** (idée phare de l'utilisateur) : des records qui n'existent QUE sur l'appli (ex. « plus long saut en moto », « plus haute prime en 1 vie »), avec classement et nom du détenteur. **Chaque record doit être validé par l'appli** : le joueur envoie une preuve (vidéo ou capture), puis validation par l'admin, éventuellement aidée par une IA qui pré-vérifie. Statut « En attente / Validé / Refusé », badge or pour le détenteur, historique des records battus. Attention : l'appli ne peut pas lire le jeu directement, donc la validation se fait toujours sur preuve.
+- **Galerie photo de la commu** avec votes et « photo de la semaine » sur l'accueil.
+- **Favoris** : garder une info ou une page du Guide.
+- Quiz GTA VI avec classement : **pas prioritaire**, l'utilisateur doute qu'un quiz fait par IA soit assez bon.
+
+Pour grandir :
+- **Version anglaise** : public 10 fois plus grand.
+- **Newsletter gratuite** : un mail par semaine avec l'actu GTA VI.
+- Play Store : 25 $ une seule fois (payant, donc plus tard, l'APK gratuit suffit pour l'instant).
+
 ⚠️ GTA VI appartient à Rockstar / Take-Two : gagner de l'argent avec leur nom et leurs images est risqué. Avant de mettre de la pub ou du Premium, il faudra vérifier leurs règles sur les contenus de fans.
 
 ## Rappels
