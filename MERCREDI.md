@@ -18,6 +18,10 @@ Pour démarrer : ouvre une nouvelle session dans le dossier GameCheck et écris
 - Dans `docs/index.html` (tableau `POSTS`) et dans `docs/data/posts.json` : les verdicts qui commencent par « **FAUX.** » ou « **Non vérifié.** » passent en ton « À savoir » (contexte, conseil), comme la nouvelle consigne de la routine.
 - Ne pas toucher au badge « Alerte arnaque ».
 
+## 4. Stats de visites (validé pour mercredi)
+- Installer un compteur de visites gratuit et respectueux de la vie privée (GoatCounter, ou Firebase Analytics déjà dans le projet), avant tout le reste si possible : chaque jour compté = des chiffres à montrer plus tard aux annonceurs.
+- Vérifier d'où vient l'outil et ce qu'il fait, et le dire à l'utilisateur avant de l'installer.
+
 ## Idées pour rentabiliser l'appli (à trier ensemble)
 **L'appli est un projet indépendant : aucun lien avec le stream de l'utilisateur** (ni Twitch ni Discord KOKO COMU).
 
