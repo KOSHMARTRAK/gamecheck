@@ -17,6 +17,8 @@
 - Photos : 67 captures officielles stockées dans l'appli, `docs/img/rs00.jpg` à `rs66.jpg` (copie dans `rs-img/`). rs23-rs66 viennent du site officiel rockstargames.com/VI. Le fil n'affiche jamais deux fois la même photo (tant qu'il y a moins de 67 infos).
 - Profils : connexion Google (Firebase gratuit), pseudo et avatar, modération (admin = KOSHMAR, uid tsjGm2MccNNdcxB9SkDsWm6Qgq43).
 
+- 23 nov. (soir) : plus de badges vrai / rumeur / faux ; seul le badge **« Alerte arnaque »** reste (filtres : Tout / Alerte arnaque). Les autres infos ont un cadre neutre « À savoir ». Étiquette « GTA VI › » retirée. 3 alertes arnaques permanentes ajoutées (argent gratuit, faux support Rockstar, concours / clés pas chères).
+
 ## Style
 - Haut : plage animée (soleil, cocotier, mouettes, vagues). Bas : sable, coquillages, crabes, chien KOSHMAR qui se promène.
 - Fond : « dégradé vivant » animé (rose, turquoise, orange, violet), cartes en verre dépoli, bordures ondulées animées.
@@ -30,13 +32,11 @@
 - Mises à jour : UNIQUEMENT à la demande (« mets à jour » = `gh workflow run official.yml` + RemoteTrigger run `trig_01X9kjw4TPoqaFtEfkyjXFLq`).
 - Routine IA (Sonnet) : consigne élargie le 23 nov. = actu GTA VI des **7 derniers jours**, 10 à 15 recherches, tous sujets (rumeurs, arnaques, bugs, patchs, ventes, Online, secrets…), vise 4 à 8 infos. Un passage spécial « rattrapage » (toute l'histoire de GTA VI) a été fait une fois puis la consigne normale remise. Attention : modifier la consigne puis lancer tout de suite = le lancement peut partir avec l'ancienne consigne.
 - Le robot des annonces officielles ne trouve rien en ce moment (`official.json` vide).
-- Chaque mise en ligne : augmenter la version du cache dans `docs/sw.js` (actuellement **v39**), puis commit + push sur main.
+- Chaque mise en ligne : augmenter la version du cache dans `docs/sw.js` (actuellement **v41**), puis commit + push sur main.
 - PC : pas de Python ; utiliser **Node** pour les scripts. Git : `C:\Program Files\Git\cmd`, gh : `C:\Program Files\GitHub CLI`. index.html a des fins de ligne Windows (CRLF).
 - Test local : `.claude/launch.json` « gamecheck » (serve.ps1, port 8765), navigateur intégré en mode mobile.
 - Clé de signature APK : `apk/` (jamais en ligne) + secrets GitHub.
 
 ## Idées en attente
 - **À faire après le reset du forfait (mer. 25 nov. vers 16 h)** : un « Guide » / soluce de GTA VI (bien débuter, argent, astuces, armes, véhicules, collectibles, secrets, puis missions), fait à partir de recherches web, rédigé avec nos mots (pas de copie de guides). L'utilisateur a choisi d'attendre mercredi.
-- Question laissée sans réponse : retirer aussi l'étiquette « GTA VI › » sur chaque info ?
-- Remplir avec des alertes arnaques toujours valables.
-- Cartes à partager (images « VRAI / FAUX ») et rubrique « Vrai ou Faux » pour les lives.
+- But à terme : une appli GTA VI indépendante (actu, guide), on la fait évoluer ensemble. Rubrique « Vrai ou Faux » refusée.

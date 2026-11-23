@@ -1018,7 +1018,7 @@ const CATS={
   vrai:{label:'Confirmé',icon:'check',tone:'vrai'},
   rumeur:{label:'Rumeur',icon:'alert',tone:'rumeur'},
   faux:{label:'Faux',icon:'x',tone:'faux'},
-  alerte:{label:'Arnaque',icon:'siren',tone:'alerte'}
+  alerte:{label:'Alerte arnaque',icon:'siren',tone:'alerte'}
 };
 const TIER={officiel:'OFFICIEL',fiable:'FIABLE',moyen:'MOYEN',leaker:'LEAKER'};
 const tile=(icon,tone,sz=38)=>`<span class="tile" style="width:${sz}px;height:${sz}px;background:${TONES[tone].g};box-shadow:0 6px 14px -6px ${TONES[tone].n2}">${ic(icon,`width:${Math.round(sz*.5)}px;height:${Math.round(sz*.5)}px`)}</span>`;
@@ -1151,6 +1151,18 @@ const POSTS=[
  body:"Le site de ragots britannique Popbitch affirmait que Rockstar avait licencié le responsable des sauvegardes, ce qui aurait causé un retard.",
  verdict:"<b>FAUX.</b> L'histoire a été démentie par des sources crédibles, et le jeu est bien sorti à la date prévue.",
  sources:[['Gameranx (citant Kotaku)','moyen','https://gameranx.com/updates/id/562124/article/obviously-fake-gta-6-rumor-debunked-saving-the-release-date/']]}
+,{cat:'alerte',date:'Toujours valable',title:'« Argent gratuit » et générateurs de dollars GTA',
+ body:"Des vidéos, des sites et des bots Discord promettent des <b>millions de dollars du jeu</b> ou des objets rares gratuits. Il suffit de « se connecter avec ton compte Rockstar » ou de télécharger un petit programme.",
+ verdict:"<b>Arnaque.</b> Ces générateurs n'existent pas. Le but est de <b>voler ton compte</b> ou d'installer un virus. Le seul argent du jeu se gagne en jouant ou s'achète sur le store officiel de ta console.",
+ sources:[['Support Rockstar','fiable','https://support.rockstargames.com/'],['Cybermalveillance.gouv.fr','fiable','https://www.cybermalveillance.gouv.fr/']]},
+{cat:'alerte',date:'Toujours valable',title:'Faux « support Rockstar » qui te demande ton mot de passe',
+ body:"Un mail, un SMS ou un message privé « Rockstar Support » dit que ton compte va être <b>banni</b> ou qu'un cadeau t'attend, et te demande ton mot de passe ou le code reçu par SMS.",
+ verdict:"<b>Arnaque.</b> Rockstar ne te demandera <b>jamais</b> ton mot de passe ni un code de sécurité. Ne clique pas : va toi-même sur le site officiel. Si tu as répondu, change ton mot de passe et active la double authentification.",
+ sources:[['Support Rockstar','fiable','https://support.rockstargames.com/'],['Cybermalveillance.gouv.fr','fiable','https://www.cybermalveillance.gouv.fr/']]},
+{cat:'alerte',date:'Toujours valable',title:'Concours et clés GTA VI « à prix cassé »',
+ body:"Sur TikTok, Instagram ou Discord, des comptes font gagner GTA VI ou vendent des <b>clés à moitié prix</b>. Pour recevoir ton lot, il faut payer des « frais de livraison » ou te connecter sur leur site.",
+ verdict:"<b>Arnaque.</b> Un vrai concours ne te fait jamais payer. Les clés trop pas chères sont souvent volées ou fausses, et le compte peut être bloqué. Achète uniquement sur le store de ta console ou chez un vrai magasin.",
+ sources:[['Cybermalveillance.gouv.fr','fiable','https://www.cybermalveillance.gouv.fr/']]}
 ];
 
 /* Captures officielles Rockstar (galerie de lancement), stockées dans l'appli */
@@ -1257,7 +1269,7 @@ function renderStories(){
   document.querySelectorAll('.story').forEach(b=>b.onclick=()=>{const k=b.dataset.f;const list=k==='all'?POSTS:POSTS.filter(p=>p.cat===k);let st=list.findIndex(p=>!seen[p.i]);openStory(list,st<0?0:st)});
 }
 function renderFilters(){
-  $('#filters').innerHTML=Object.entries(CATS).map(([k,c])=>`<button class="${filter===k?'on':''}" data-f="${k}">${c.label}</button>`).join('');
+  $('#filters').innerHTML=Object.entries(CATS).filter(([k])=>k==='all'||k==='alerte').map(([k,c])=>`<button class="${filter===k?'on':''}" data-f="${k}">${c.label}</button>`).join('');
   document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;renderFilters();renderFeed()});
 }
 const MOIS={janv:0,jan:0,'févr':1,fev:1,'fév':1,mars:2,avr:3,avril:3,mai:4,juin:5,juil:6,'août':7,aout:7,sept:8,oct:9,nov:10,'déc':11,dec:11};
@@ -1274,12 +1286,12 @@ function renderFeed(){
   const list=curList();const FU=new Set();
   if(!list.length){const gn=(typeof FEEDG!=='undefined'&&FEEDG.length===1&&GBYID[FEEDG[0]])?GBYID[FEEDG[0]].n:'';$('#feed').innerHTML=`<div class="empty card" style="padding:18px;margin:14px 10px;text-align:center"><b>Pas encore d’info vérifiée${gn?' sur '+esc(gn):''} ici.</b></div>`;return}
   $('#feed').innerHTML=list.map((p,j)=>{
-    const c=CATS[p.cat],t=TONES[c.tone],liked=likes[p.i];
+    const c=CATS[p.cat],al=p.cat==='alerte',t=TONES[al?c.tone:'vice'],liked=likes[p.i];
     return `<article class="post" id="post${p.i}">
       <div class="phead">
         <div class="av">${logoSvg()}</div>
         <div class="pmeta"><div class="pname">gamecheck ${ic('verified')}</div><div class="pdate">${p.ts?`Publié le <span class="hr">${fmtTs(p.ts)}</span>`:p.date}</div></div>
-        ${badge(p.cat)}
+        ${al?badge(p.cat):''}
       </div>
       <h2 class="ptitle" style="border-color:${t.n1}">${p.title}</h2>
       ${true?`<div class="frame"><div class="in"><img src="${(()=>{if(FU.size>=POOL.length)FU.clear();const im=picOf(p,FU);FU.add(im);return im})()}" alt="" loading="lazy" referrerpolicy="no-referrer" onerror=${IMGFB}>
@@ -1294,7 +1306,7 @@ function renderFeed(){
       ${OPEN.has('p'+p.i)?renderComs('p'+p.i):''}
       ${assetsApi?`<div class="photo">${PHOTOS[p.i]?`<button class="rmph" data-i="${p.i}">${ic('trash')}Retirer ma capture</button>`:`<label>${ic('camera')}Ajouter ma capture du jeu<input type="file" accept="image/*" data-i="${p.i}"></label>`}</div>`:''}
       <div class="body">${p.body}</div>
-      <div class="verdict" style="background:${t.bg}">${tile(c.icon,c.tone,26)}<span>${p.verdict}</span></div>
+      <div class="verdict" style="background:${t.bg}">${al?tile(c.icon,c.tone,26):tile('eye','vice',26)}<span>${al?'':'<b>À savoir :</b> '}${p.verdict}</span></div>
       <details class="srcs"><summary>${ic('link')}${p.sources.length} source${p.sources.length>1?'s':''}</summary>
         <div class="srcbox">${p.sources.map(s=>`<a class="src" href="${s[2]}" target="_blank" rel="noopener"><span class="nm">${s[0]} ${ic('ext')}</span><span class="tier t-${s[1]}">${TIER[s[1]]}</span></a>`).join('')}</div>
       </details>
@@ -1306,7 +1318,7 @@ function renderFeed(){
   document.querySelectorAll('.cdel').forEach(b=>b.onclick=()=>delCom(b.dataset.id));
   fillNames();
   document.querySelectorAll('.share').forEach(b=>b.onclick=async()=>{
-    const p=BYI[b.dataset.i];const txt=`${CATS[p.cat].label.toUpperCase()} : ${p.title}\n${strip(p.verdict)}\nSource : ${p.art}`;
+    const p=BYI[b.dataset.i];const txt=`${p.cat==='alerte'?'ALERTE ARNAQUE : ':''}${p.title}\n${strip(p.verdict)}\nSource : ${p.art}`;
     const url=location.href.split('#')[0]+'#post'+p.i;
     if(navigator.share){try{await navigator.share({title:'GameCheck : '+strip(p.title),text:txt,url});return}catch(e){if(e&&e.name==='AbortError')return}}
     const lab=b.querySelector('span');
