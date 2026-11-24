@@ -19,7 +19,7 @@
 
 - 23 nov. (soir) : plus de badges vrai / rumeur / faux ; seul le badge **« Alerte arnaque »** reste (filtres : Tout / Alerte arnaque). Les autres infos ont un cadre neutre « À savoir ». Étiquette « GTA VI › » retirée. 3 alertes arnaques permanentes ajoutées (argent gratuit, faux support Rockstar, concours / clés pas chères).
 
-- 24 nov. : onglet **Guide** créé (8 rubriques, 38 astuces, sources : données  +  dans index.html) ; page Infos refaite (« À propos de GameCheck », « Protège ton compte ») ; anciens verdicts « FAUX. / Non vérifié. » réécrits (alertes = « Arnaque. »).
+- 24 nov. : onglet **Guide** créé (8 rubriques, 38 astuces, sources ; code : tableau `GUIDE` + fonction `renderGuide()` dans index.html) ; page Infos refaite (« À propos de GameCheck », « Protège ton compte ») ; anciens verdicts « FAUX. / Non vérifié. » réécrits (alertes = « Arnaque. »).
 
 ## Style
 - Haut : plage animée (soleil, cocotier, mouettes, vagues). Bas : sable, coquillages, crabes, chien KOSHMAR qui se promène.
