@@ -24,6 +24,11 @@ Pour démarrer : ouvre une nouvelle session dans le dossier GameCheck et écris
 - Installer un compteur de visites gratuit et respectueux de la vie privée (GoatCounter, ou Firebase Analytics déjà dans le projet), avant tout le reste si possible : chaque jour compté = des chiffres à montrer plus tard aux annonceurs.
 - Vérifier d'où vient l'outil et ce qu'il fait, et le dire à l'utilisateur avant de l'installer.
 
+## REFONTE DU DESIGN (priorité n°1 après le reset du 25 nov.)
+- Aperçu local seulement : ouvrir http://localhost:8765/?apercu (sélecteur Casino / Ville / Jet-set en bas). Code : CSS « 3 THÈMES COHÉRENTS » + script « Aperçu des ambiances » dans docs/index.html (non mis en ligne, ne s'active qu'avec ?apercu). Maquettes refusées : docs/maquettes.html (à supprimer).
+- Avis de l'utilisateur : il garde **la forme de l'appli** (mêmes écrans, les 5 cartes photo de « Dernières infos »). Il veut un **vrai thème cohérent** où chaque élément de la plage (ciel, soleil, palmiers, vagues, sable, crabes) est remplacé par un équivalent du thème. L'idée lui plaît mais c'est **« trop bas de gamme »**, les animations font cheap.
+- À faire : version PREMIUM. Plus aucun emoji dans le décor : de vraies illustrations SVG détaillées (dégradés, ombres, lumières), des mouvements fluides (parallaxe au défilement, profondeur, reflets, lumière qui balaie), moins d'éléments mais beaucoup plus beaux, des transitions soignées. Faire UN thème à fond (le plus prometteur : Casino rétro ou Vice City de nuit), le montrer, puis décliner.
+
 ## Et ensuite
 Toutes les autres idées (rentabilité, records, défis, carte des spots…) sont dans **IDEES.md**. À la fin de mercredi, on choisit les 2 ou 3 prochaines priorités.
 
