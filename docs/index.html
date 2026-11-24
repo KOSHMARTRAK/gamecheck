@@ -833,6 +833,14 @@ body{background:#fff1f7}
 .pf-cols button{width:36px;height:36px;border-radius:50%;border:3px solid transparent}
 .pf-cols button.on{border-color:#fff;box-shadow:0 0 0 2px #1b0b2e}
 .wlink{cursor:pointer}
+.rc-week{display:block;width:100%;text-align:left;margin-top:12px;padding:14px;border-radius:20px;color:#fff;box-shadow:0 14px 30px -14px rgba(255,45,149,.7);position:relative;overflow:hidden}
+.rc-week::after{content:"";position:absolute;top:-40%;left:-60%;width:50%;height:180%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:rotate(20deg);animation:gdsweep 4s ease-in-out infinite}
+.rc-wk-tag{display:inline-block;font-size:11px;font-weight:900;letter-spacing:.5px;padding:4px 9px;border-radius:999px;background:rgba(0,0,0,.25)}
+.rc-wk-t{display:block;font-family:var(--disp);font-size:28px;letter-spacing:.6px;line-height:1;margin-top:8px}
+.rc-wk-h{display:block;font-size:12.5px;font-weight:700;margin-top:6px;opacity:.95}
+.rc-left{text-align:center;font-size:12.5px;font-weight:800;color:var(--mute);margin:8px 0 0}
+.favb{font-size:19px;line-height:1;padding:6px 8px;border-radius:999px;color:#b7791f}
+.favb.on{color:#f5a300;text-shadow:0 0 8px rgba(255,190,0,.7)}
 </style>
 </head>
 <body>
@@ -1250,6 +1258,8 @@ POSTS.forEach((p,i)=>{p.m=MOTIF[i]||['info','']; p.art=(p.sources.find(s=>s[1]!=
 const $=s=>document.querySelector(s);
 let filter='all';
 let likes={},seen={};
+let FAV=new Set();try{FAV=new Set(JSON.parse(localStorage.getItem('gc_fav')||'[]'))}catch(e){}
+function toggleFav(i){i=+i;FAV.has(i)?FAV.delete(i):FAV.add(i);try{localStorage.setItem('gc_fav',JSON.stringify([...FAV]))}catch(e){}toast(FAV.has(i)?'Ajouté à tes favoris ⭐':'Retiré des favoris');renderFeed()}
 try{likes=JSON.parse(localStorage.getItem('vf_likes')||'{}')}catch(e){}
 try{seen=JSON.parse(localStorage.getItem('vf_seen')||'{}')}catch(e){}
 const store=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}};
@@ -1298,7 +1308,7 @@ function renderStories(){
   document.querySelectorAll('.story').forEach(b=>b.onclick=()=>{const k=b.dataset.f;const list=k==='all'?POSTS:POSTS.filter(p=>p.cat===k);let st=list.findIndex(p=>!seen[p.i]);openStory(list,st<0?0:st)});
 }
 function renderFilters(){
-  $('#filters').innerHTML=Object.entries(CATS).filter(([k])=>k==='all'||k==='alerte').map(([k,c])=>`<button class="${filter===k?'on':''}" data-f="${k}">${c.label}</button>`).join('');
+  $('#filters').innerHTML=Object.entries(CATS).filter(([k])=>k==='all'||k==='alerte').map(([k,c])=>`<button class="${filter===k?'on':''}" data-f="${k}">${c.label}</button>`).join('')+`<button class="${filter==='fav'?'on':''}" data-f="fav">⭐ Favoris</button>`;
   document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{filter=b.dataset.f;renderFilters();renderFeed()});
 }
 const MOIS={janv:0,jan:0,'févr':1,fev:1,'fév':1,mars:2,avr:3,avril:3,mai:4,juin:5,juil:6,'août':7,aout:7,sept:8,oct:9,nov:10,'déc':11,dec:11};
@@ -1310,7 +1320,7 @@ function renderUne(){
   document.querySelectorAll('.uc').forEach(b=>b.onclick=()=>{filter='all';renderFilters();renderFeed();const el=$('#post'+b.dataset.i);el&&el.scrollIntoView({behavior:'smooth',block:'start'})});
 }
 function inFeedG(g){return !FEEDG.length||FEEDG.includes(g||'gta-6')}
-function curList(){return ALL.filter(p=>(filter==='all'||p.cat===filter)&&inFeedG(p.game))}
+function curList(){return ALL.filter(p=>(filter==='all'||(filter==='fav'?FAV.has(p.i):p.cat===filter))&&inFeedG(p.game))}
 function renderFeed(){
   const list=curList();const FU=new Set();
   if(!list.length){const gn=(typeof FEEDG!=='undefined'&&FEEDG.length===1&&GBYID[FEEDG[0]])?GBYID[FEEDG[0]].n:'';$('#feed').innerHTML=`<div class="empty card" style="padding:18px;margin:14px 10px;text-align:center"><b>Pas encore d’info vérifiée${gn?' sur '+esc(gn):''} ici.</b></div>`;return}
@@ -1329,6 +1339,7 @@ function renderFeed(){
       <div class="actions">
         ${(()=>{const k='p'+p.i,s=voteStats(k),cs=comsFor(k);return `<button class="vote up ${s.mine===1?'on':''}" data-k="${k}" data-v="1" aria-label="J'aime">${ic('up')}${s.up}</button><button class="vote down ${s.mine===-1?'on':''}" data-k="${k}" data-v="-1" aria-label="J'aime pas">${ic('down')}${s.down}</button><button class="vote cm ${OPEN.has(k)?'on':''}" data-k="${k}" aria-label="Commentaires">${ic('chat')}${cs.length}</button>`})()}
         <button class="share" data-i="${p.i}" aria-label="Partager cette info">${ic('send')}<span>Partager</span></button>
+        <button class="favb${FAV.has(p.i)?' on':''}" data-fav="${p.i}" aria-label="Favori">${FAV.has(p.i)?'★':'☆'}</button>
         <button class="report" data-i="${p.i}" aria-label="Signaler cette info">${ic('flag')}<span>Signaler</span></button>
         ${p.art?`<a class="art" href="${p.art}" target="_blank" rel="noopener">${ic('article')}Voir l'article</a>`:''}
       </div>
@@ -1419,7 +1430,7 @@ function profileCard(uid){const u=USERS[uid]||(uid===(ME&&ME.uid)?MYPROF:null);i
   ${b.length?`<div class="pf-bd">${b.map(x=>`<span title="${x[1]}">${x[0]} ${x[1]}</span>`).join('')}</div>`:''}
   ${u.ts?`<p class="pf-since">Membre depuis le ${fmtTs(u.ts).replace(/ à .*/,'')}</p>`:''}</div>`}
 function openUser(uid){if(ME&&uid===ME.uid){openAccount();return}const m=modal(profileCard(uid)+'<div class="rbtns"><button class="rcancel">Fermer</button></div>');m.querySelector('.rbox').classList.add('pfbox')}
-document.addEventListener('click',e=>{const t=e.target.closest&&e.target.closest('[data-prof]');if(t){e.preventDefault();e.stopPropagation();openUser(t.dataset.prof)}},true);
+document.addEventListener('click',e=>{const fv=e.target.closest&&e.target.closest('[data-fav]');if(fv){e.preventDefault();toggleFav(fv.dataset.fav);return}const t=e.target.closest&&e.target.closest('[data-prof]');if(t){e.preventDefault();e.stopPropagation();openUser(t.dataset.prof)}},true);
 function renderMe(){const b=document.getElementById('meBtn');if(!b)return;b.innerHTML=MYPROF?`<span class="ava big">${esc(MYPROF.avatar||'🐶')}</span>`:`${ic('user')}<span>Connexion</span>`;b.classList.toggle('in',!!MYPROF);b.title=MYPROF?'Mon profil : '+MYPROF.pseudo:'Se connecter'}
 function openAccount(msg){
   if(!window.FB){toast('La connexion se charge, réessaie dans un instant.');return}
@@ -1509,6 +1520,7 @@ function initSocial(){
 /* ===== RECORDS GAMECHECK : des records qui n'existent que sur l'appli, validés à la main par l'admin sur preuve vidéo ===== */
 /* Pour ajouter un record : ajouter une ligne ici (id unique, jamais changé ensuite). unit 's' = durée en secondes. */
 const RECORDS=[
+ {id:'defi-s48',week:'2026-11-30T23:59:59+01:00',e:'🌊',t:'Envol en jet-ski',d:'Défi de la semaine : le plus long temps en l’air avec un jet-ski, d’un seul saut. Le meilleur au dimanche soir remporte le défi.',unit:'s',c1:'#00b4d8',c2:'#ff2d95'},
  {id:'survie5',e:'🚨',t:'Survie 5 étoiles',d:'Tiens le plus longtemps possible avec le niveau de recherche maximal, sans mourir ni être arrêté.',unit:'s',c1:'#2b59ff',c2:'#ff2d55'},
  {id:'wheeling',e:'🏍️',t:'Roi du wheeling',d:'Le plus long wheeling à moto, roue avant en l’air, sans retomber.',unit:'s',c1:'#ff6a3d',c2:'#ffd23f'},
  {id:'envol',e:'🚗',t:'Envol en voiture',d:'Le plus long temps en l’air avec une voiture, d’un seul saut.',unit:'s',c1:'#7b2ff7',c2:'#00e0ff'},
@@ -1516,6 +1528,8 @@ const RECORDS=[
 ];
 const REC_RULES=['Une vidéo sans coupure, du début à la fin du record.','Aucun mod, aucune triche, aucun code.','Le chrono se compte sur la vidéo.','Chaque record est vérifié à la main par GameCheck avant d’entrer au classement.'];
 let ATT=[],RSEL=null;
+const recOpen=r=>!r.week||Date.now()<Date.parse(r.week);
+function leftTxt(iso){const ms=Date.parse(iso)-Date.now();if(ms<=0)return'terminé';const d=Math.floor(ms/864e5),hh=Math.floor(ms%864e5/36e5);return d?`${d} j ${hh} h`:`${hh} h ${Math.floor(ms%36e5/6e4)} min`}
 const fmtVal=(v,u)=>u==='s'?(v>=60?`${Math.floor(v/60)} min ${String(Math.round(v%60)).padStart(2,'0')} s`:`${Math.round(v*10)/10} s`):`${v} ${u}`;
 const recOk=id=>ATT.filter(a=>a.rec===id&&a.status==='ok').sort((a,b)=>b.value-a.value||a.ts-b.ts);
 function recBoard(id){const seen=new Set();return recOk(id).filter(a=>{if(seen.has(a.uid))return false;seen.add(a.uid);return true})}
@@ -1527,7 +1541,8 @@ function renderRecords(){const el=document.getElementById('records');if(!el)retu
   if(!RSEL){
     el.innerHTML=`<div class="rc-hero"><div class="rc-tro">🏆</div><h1>RECORDS<br>GAMECHECK</h1><p>Des records qui n’existent que sur GameCheck. Bats-les, envoie ta vidéo, et entre dans la légende de Leonida.</p><span class="gd-pill">CHAQUE RECORD EST VÉRIFIÉ</span></div>
     ${pend.length?`<button class="rc-admin" id="rcPend">🛡️ ${pend.length} tentative${pend.length>1?'s':''} à valider</button>`:''}
-    <div class="rc-list">${RECORDS.map(r=>{const b=recBoard(r.id)[0];return `<button class="card rc-card" data-r="${r.id}"><span class="rc-ic" style="background:linear-gradient(135deg,${r.c1},${r.c2})">${r.e}</span><span class="rc-tx"><b>${esc(r.t)}</b><small>${esc(r.d)}</small><span class="rc-hold">${b?`🥇 ${esc((USERS[b.uid]||{}).pseudo||'?')} · <b>${fmtVal(b.value,r.unit)}</b>`:'Personne pour l’instant : sois le premier !'}</span></span><i>›</i></button>`}).join('')}</div>
+    ${RECORDS.filter(r=>r.week&&recOpen(r)).map(r=>{const b=recBoard(r.id)[0];return `<button class="rc-week" data-r="${r.id}" style="background:linear-gradient(135deg,${r.c1},${r.c2})"><span class="rc-wk-tag">🔥 DÉFI DE LA SEMAINE · fin dans ${leftTxt(r.week)}</span><span class="rc-wk-t">${r.e} ${esc(r.t)}</span><span class="rc-wk-h">${b?`En tête : ${esc((USERS[b.uid]||{}).pseudo||'?')} · ${fmtVal(b.value,r.unit)}`:'Personne encore : fonce !'}</span></button>`}).join('')}
+    <div class="rc-list">${RECORDS.filter(r=>!r.week).map(r=>{const b=recBoard(r.id)[0];return `<button class="card rc-card" data-r="${r.id}"><span class="rc-ic" style="background:linear-gradient(135deg,${r.c1},${r.c2})">${r.e}</span><span class="rc-tx"><b>${esc(r.t)}</b><small>${esc(r.d)}</small><span class="rc-hold">${b?`🥇 ${esc((USERS[b.uid]||{}).pseudo||'?')} · <b>${fmtVal(b.value,r.unit)}</b>`:'Personne pour l’instant : sois le premier !'}</span></span><i>›</i></button>`}).join('')}</div>
     <div class="sec">${tile('shield','vice',28)}LES RÈGLES</div><div class="card">${REC_RULES.map((t,i)=>`<div class="rule"><span class="n">${i+1}</span><span>${esc(t)}</span></div>`).join('')}</div>
     <p class="note">${ic('info')}<span>Le détenteur de chaque record gagne le badge 🥇, affiché à côté de son pseudo partout dans l’appli. Une idée de record ? Propose-la sur le forum.</span></p>`;
     el.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{RSEL=b.dataset.r;renderRecords();window.scrollTo({top:0})});
@@ -1542,13 +1557,13 @@ function renderRecords(){const el=document.getElementById('records');if(!el)retu
   const board=recBoard(r.id).slice(0,10),hist=recHistory(r.id).slice(0,8),mine=ME?ATT.filter(a=>a.rec===r.id&&a.uid===ME.uid).sort((a,b)=>b.ts-a.ts):[];
   el.innerHTML=`<button class="gback" id="rcBack">‹ Tous les records</button>
   <div class="gd-head" style="background:linear-gradient(135deg,${r.c1},${r.c2})"><span class="e">${r.e}</span><div><h2>${esc(r.t)}</h2><p>${esc(r.d)}</p></div></div>
-  <button class="btn rc-go" id="rcTry">🏁 Tenter ce record</button>
+  ${recOpen(r)?`<button class="btn rc-go" id="rcTry">🏁 Tenter ${r.week?'ce défi':'ce record'}</button>${r.week?`<p class="rc-left">⏱️ Fin du défi dans ${leftTxt(r.week)}</p>`:''}`:'<p class="rc-left">🏁 Ce défi est terminé.</p>'}
   <div class="sec">${tile('trophy','vice',28)}CLASSEMENT</div>
   ${board.length?`<div class="card rc-board">${board.map((a,i)=>`<div class="rc-row${i<3?' top'+(i+1):''}"><span class="rc-pos">${['🥇','🥈','🥉'][i]||i+1}</span><span class="rc-who">${who(a.uid)}</span><b>${fmtVal(a.value,r.unit)}</b></div>`).join('')}</div>`:'<div class="card cnone" style="padding:14px">Aucun record validé pour l’instant. La première place est libre !</div>'}
   ${mine.length?`<div class="sec">${tile('user','vice',28)}MES TENTATIVES</div><div class="card rc-board">${mine.map(a=>{const s=ST[a.status]||ST.pending;return `<div class="rc-row"><span class="rc-pos">${s[0]}</span><span class="rc-who"><b style="color:${s[2]}">${s[1]}</b>${a.reason?`<small> · ${esc(a.reason)}</small>`:''}<small> · ${fmtTs(a.ts)}</small></span><b>${fmtVal(a.value,r.unit)}</b>${a.status==='pending'?`<button class="rc-del" data-del="${a.id}" title="Retirer">✕</button>`:''}</div>`}).join('')}</div>`:''}
   ${hist.length>1?`<div class="sec">${tile('clock','vice',28)}HISTORIQUE DU RECORD</div><div class="card rc-board">${hist.map(a=>`<div class="rc-row"><span class="rc-pos">📈</span><span class="rc-who">${who(a.uid)}<small> · ${fmtTs(a.ts)}</small></span><b>${fmtVal(a.value,r.unit)}</b></div>`).join('')}</div>`:''}`;
   document.getElementById('rcBack').onclick=()=>{RSEL=null;renderRecords();window.scrollTo({top:0})};
-  document.getElementById('rcTry').onclick=()=>tryRecord(r);
+  const tb=document.getElementById('rcTry');if(tb)tb.onclick=()=>tryRecord(r);
   el.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{try{await FB.deleteDoc(FB.doc(FB.db,'attempts',b.dataset.del));toast('Tentative retirée.')}catch(e){toast('Impossible.')}});}
 function tryRecord(r){if(!ME){openAccount('Connecte-toi pour envoyer un record.');return}if(needProfile('Crée ton profil pour envoyer un record.'))return;
   const m=modal(`<h3>${r.e} ${esc(r.t)}</h3><p class="rsub">${esc(r.d)}</p><div class="rc-time"><input id="rcMin" class="pin" type="number" min="0" max="999" inputmode="numeric" placeholder="min"><span>min</span><input id="rcSec" class="pin" type="number" min="0" max="59.9" step="0.1" inputmode="decimal" placeholder="s"><span>s</span></div><input id="rcProof" class="pin" type="url" maxlength="300" placeholder="Lien de ta vidéo (YouTube, TikTok, Twitch, Medal…)"><input id="rcNote" class="pin" maxlength="200" placeholder="Un petit mot (facultatif)"><p class="rsub">La vidéo doit être publique et sans coupure. GameCheck la regarde avant de valider.</p><div class="rbtns"><button class="rcancel">Annuler</button><button class="rsend ok">Envoyer</button></div>`);

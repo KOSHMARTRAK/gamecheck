@@ -7,6 +7,9 @@ Toutes les idées validées par l'utilisateur le 23 nov. 2026. On choisit 2 ou 3
 - **Phase 2 (plus tard)** : publication et promo (Google, réseaux, Play Store, version anglaise), puis rentabilité (pub, Premium, sponsors), seulement quand on est sûrs que l'appli peut être rentable.
 Fait = le déplacer dans RESUME-PROJET.md.
 
+## Déjà fait (24 nov.)
+- Guide GTA VI, stats de visites, Records GameCheck, profils améliorés, Défi de la semaine, Favoris.
+
 ## Rentabiliser l'appli
 **L'appli est un projet indépendant : aucun lien avec le stream de l'utilisateur** (ni Twitch ni Discord KOKO COMU).
 
