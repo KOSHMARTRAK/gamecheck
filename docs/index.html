@@ -748,7 +748,7 @@ body{background:#fff1f7}
 .gd-hero h1{font-family:var(--disp);font-size:44px;letter-spacing:1px;line-height:.95;margin:0;background:linear-gradient(90deg,#fff,#ffd1ec,#9ff3ff,#fff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gdshine 5s linear infinite}
 @keyframes gdshine{to{background-position:-200% 0}}
 .gd-hero p{margin:8px 0 0;font-size:13.5px;line-height:1.5;opacity:.92}
-.gd-hero .gd-pill{display:inline-block;margin-top:12px;font-size:11px;font-weight:800;letter-spacing:.6px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3)}
+.gd-pill{display:inline-block;margin-top:12px;font-size:11px;font-weight:800;letter-spacing:.6px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3)}
 .gd-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
 .gd-t{position:relative;text-align:left;border-radius:20px;padding:14px 12px 12px;min-height:112px;color:#fff;overflow:hidden;box-shadow:0 12px 26px -16px rgba(40,10,60,.7);transition:transform .15s}
 .gd-t:active{transform:scale(.97)}
@@ -775,6 +775,38 @@ body{background:#fff1f7}
 .st-grid span{font-size:10.5px;color:var(--mute);font-weight:700}
 .st-bars{display:flex;align-items:flex-end;gap:4px;height:90px;margin-top:14px;padding:8px;border-radius:14px;background:rgba(255,255,255,.7)}
 .st-bars i{flex:1;min-height:3px;border-radius:6px 6px 2px 2px;background:var(--vice-g)}
+/* ===== RECORDS ===== */
+.rc-hero{position:relative;text-align:center;border-radius:24px;padding:22px 18px 20px;overflow:hidden;color:#fff;background:radial-gradient(circle at 50% 0%,#ffd86b 0%,#ff8a00 35%,#7a1fa2 75%,#1b0b2e 100%);box-shadow:0 18px 40px -18px rgba(255,170,0,.7)}
+.rc-hero::before{content:"";position:absolute;inset:-2px;background:conic-gradient(from var(--gda,0deg),#ffd700,#fff6b0,#ff8a00,#ffd700);opacity:.3;filter:blur(18px);animation:gdspin 7s linear infinite}
+.rc-hero>*{position:relative}
+.rc-tro{font-size:52px;line-height:1;filter:drop-shadow(0 6px 14px rgba(255,200,0,.8));animation:rcfloat 3s ease-in-out infinite}
+@keyframes rcfloat{50%{transform:translateY(-6px) rotate(-4deg)}}
+.rc-hero h1{font-family:var(--disp);font-size:42px;letter-spacing:1px;line-height:.95;margin:8px 0 0;background:linear-gradient(90deg,#fff6b0,#ffd700,#fff,#ffd700,#fff6b0);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gdshine 4s linear infinite}
+.rc-hero p{margin:8px 0 0;font-size:13.5px;line-height:1.5;opacity:.95}
+.rc-admin{display:block;width:100%;margin-top:12px;padding:12px;border-radius:16px;font-weight:800;color:#fff;background:linear-gradient(90deg,#d0342c,#ff6a3d);box-shadow:0 10px 22px -12px rgba(208,52,44,.8);animation:rcpulse 1.8s ease-in-out infinite}
+@keyframes rcpulse{50%{transform:scale(1.02)}}
+.rc-list{display:flex;flex-direction:column;gap:10px;margin-top:14px}
+.rc-card{display:flex;align-items:center;gap:12px;padding:12px;text-align:left;width:100%}
+.rc-ic{flex:0 0 54px;height:54px;border-radius:16px;display:grid;place-items:center;font-size:28px;box-shadow:0 8px 18px -10px rgba(0,0,0,.5)}
+.rc-tx{flex:1;min-width:0}.rc-tx b{display:block;font-family:var(--disp);font-size:21px;letter-spacing:.5px;line-height:1}
+.rc-tx small{display:block;font-size:12px;color:var(--mute);line-height:1.4;margin-top:3px}
+.rc-hold{display:inline-block;margin-top:6px;font-size:12px;font-weight:700;padding:4px 9px;border-radius:999px;background:linear-gradient(90deg,#fff6d6,#ffe9a8);color:#6b4a12}
+.rc-hold b{display:inline;font-family:inherit;font-size:inherit}
+.rc-card>i{font-style:normal;font-size:22px;color:var(--mute)}
+.rc-go{width:100%;margin-top:2px;background:linear-gradient(90deg,#ffb300,#ff6a3d)!important}
+.rc-board{padding:4px 12px}
+.rc-row{display:flex;align-items:center;gap:10px;padding:10px 0;border-bottom:1px solid var(--line)}
+.rc-row:last-child{border-bottom:0}
+.rc-pos{flex:0 0 28px;text-align:center;font-weight:900;font-size:18px}
+.rc-who{flex:1;min-width:0;font-size:13.5px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.rc-who small{color:var(--mute);font-size:11.5px}
+.rc-row>b{font-family:var(--disp);font-size:20px;letter-spacing:.4px}
+.rc-row.top1{background:linear-gradient(90deg,rgba(255,215,0,.18),transparent);border-radius:12px;padding-left:6px}
+.rc-del{width:26px;height:26px;border-radius:50%;background:rgba(0,0,0,.06);font-weight:800}
+.rc-att{padding:12px;margin-bottom:10px}.rc-att p{font-size:13px;margin:6px 0}
+.rc-proof{display:inline-block;margin:8px 0;font-weight:800;color:#fff;background:var(--vice-g);padding:7px 14px;border-radius:999px;text-decoration:none}
+.rc-time{display:flex;align-items:center;gap:6px}.rc-time .pin{flex:1;margin:0}.rc-time span{font-weight:700;color:var(--mute)}
+.gold{display:inline-block;margin-left:3px;filter:drop-shadow(0 0 4px rgba(255,200,0,.8))}
 </style>
 </head>
 <body>
@@ -842,6 +874,7 @@ body{background:#fff1f7}
   </section>
 
   <section class="view" id="v-guide"><div class="panel" id="guide"></div></section>
+  <section class="view" id="v-records"><div class="panel" id="records"></div></section>
   <section class="view" id="v-forum"><div class="panel" id="forum"></div></section>
 
   <section class="view" id="v-src">
@@ -1310,7 +1343,8 @@ const OPEN=new Set(), DRAFT={};
 const AVATARS=['🐶','🦊','🐸','🐼','🦁','🐯','🐵','🤖','👽','💀','🔥','🎮','🚗','🌴','💎','👑'];
 const tsOf=x=>x&&typeof x.toMillis==='function'?x.toMillis():(typeof x==='number'?x:Date.now());
 const GSVG='<svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true"><path fill="#FFC107" d="M43.6 20.5H42V20H24v8h11.3C33.7 32.7 29.2 36 24 36c-6.6 0-12-5.4-12-12s5.4-12 12-12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 12.9 4 4 12.9 4 24s8.9 20 20 20 20-8.9 20-20c0-1.3-.1-2.4-.4-3.5z"/><path fill="#FF3D00" d="m6.3 14.7 6.6 4.8C14.7 15.1 19 12 24 12c3.1 0 5.8 1.2 7.9 3.1l5.7-5.7C34 6.1 29.3 4 24 4 16.3 4 9.7 8.3 6.3 14.7z"/><path fill="#4CAF50" d="M24 44c5.2 0 9.9-2 13.4-5.2l-6.2-5.2C29.2 35.1 26.7 36 24 36c-5.2 0-9.6-3.3-11.3-8l-6.5 5C9.5 39.6 16.2 44 24 44z"/><path fill="#1976D2" d="M43.6 20.5H42V20H24v8h11.3c-.8 2.2-2.2 4.2-4.1 5.6l6.2 5.2C37 39.2 44 34 44 24c0-1.3-.1-2.4-.4-3.5z"/></svg>';
-function who(uid){const u=USERS[uid];return u?`<span class="ava">${esc(u.avatar||'🐶')}</span><b>${esc(u.pseudo)}</b>${u.banned?' <i class="banned">bloqué</i>':''}`:'<span class="ava">👤</span><b>Compte supprimé</b>'}
+let HOLD=new Set();
+function who(uid){const u=USERS[uid];return u?`<span class="ava">${esc(u.avatar||'🐶')}</span><b>${esc(u.pseudo)}</b>${HOLD.has(uid)?'<span class="gold" title="Détenteur d’un record GameCheck">🥇</span>':''}${u.banned?' <i class="banned">bloqué</i>':''}`:'<span class="ava">👤</span><b>Compte supprimé</b>'}
 function voteStats(k){let up=0,down=0,mine=0;VOTEDOCS.forEach(v=>{if(v.post!==k)return;if(v.v===1)up++;else if(v.v===-1)down++;if(ME&&v.uid===ME.uid)mine=v.v});return{up,down,mine}}
 function comsFor(k){return COMS.filter(c=>c.post===k).sort((a,b)=>a.ts-b.ts)}
 function needProfile(msg){if(MYPROF)return false;openAccount(msg);return true}
@@ -1412,16 +1446,68 @@ function initSocial(){
     FB.onSnapshot(FB.query(col('comments'),FB.orderBy('ts','desc'),FB.limit(2000)),s=>{COMS=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts)}});renderFeed()},err);
     FB.onSnapshot(FB.query(col('topics'),FB.orderBy('ts','desc'),FB.limit(300)),s=>{TOPICS=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts)}});renderForum()},err);
     FB.onSnapshot(FB.query(col('replies'),FB.orderBy('ts','asc'),FB.limit(5000)),s=>{REPLIES=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts)}});renderForum()},err);
+    FB.onSnapshot(FB.query(col('attempts'),FB.orderBy('ts','desc'),FB.limit(3000)),s=>{ATT=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts),value:+v.value||0}});HOLD=holders();renderRecords();renderFeed();renderForum()},err);
     FB.getRedirectResult(FB.auth).catch(()=>{});
     FB.onAuthStateChanged(FB.auth,async u=>{ME=u?{uid:u.uid}:null;MYPROF=u?USERS[u.uid]||null:null;IS_ADMIN=false;if(repUnsub){repUnsub();repUnsub=null}
       if(u){try{IS_ADMIN=(await FB.getDoc(FB.doc(db,'admins',u.uid))).exists()}catch(e){}
         if(IS_ADMIN)repUnsub=FB.onSnapshot(FB.query(col('reports'),FB.orderBy('ts','desc'),FB.limit(200)),s=>{REPORTS=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts)}})},err);
         if(!MYPROF){try{const p=await FB.getDoc(FB.doc(db,'users',u.uid));MYPROF=p.exists()?p.data():null}catch(e){}}
         if(!MYPROF)openProfile(true)}
-      renderMe();renderFeed();renderForum()});};
+      renderMe();renderFeed();renderForum();renderRecords()});};
   if(window.FB)go();else window.addEventListener('fb-ready',go,{once:true});
   renderMe();renderForum();
 }
+
+/* ===== RECORDS GAMECHECK : des records qui n'existent que sur l'appli, validés à la main par l'admin sur preuve vidéo ===== */
+/* Pour ajouter un record : ajouter une ligne ici (id unique, jamais changé ensuite). unit 's' = durée en secondes. */
+const RECORDS=[
+ {id:'survie5',e:'🚨',t:'Survie 5 étoiles',d:'Tiens le plus longtemps possible avec le niveau de recherche maximal, sans mourir ni être arrêté.',unit:'s',c1:'#2b59ff',c2:'#ff2d55'},
+ {id:'wheeling',e:'🏍️',t:'Roi du wheeling',d:'Le plus long wheeling à moto, roue avant en l’air, sans retomber.',unit:'s',c1:'#ff6a3d',c2:'#ffd23f'},
+ {id:'envol',e:'🚗',t:'Envol en voiture',d:'Le plus long temps en l’air avec une voiture, d’un seul saut.',unit:'s',c1:'#7b2ff7',c2:'#00e0ff'},
+ {id:'apnee',e:'🌊',t:'Apnée à Leonida',d:'Le plus long temps sous l’eau en une seule plongée, sans remonter respirer.',unit:'s',c1:'#00b4d8',c2:'#00e0a4'}
+];
+const REC_RULES=['Une vidéo sans coupure, du début à la fin du record.','Aucun mod, aucune triche, aucun code.','Le chrono se compte sur la vidéo.','Chaque record est vérifié à la main par GameCheck avant d’entrer au classement.'];
+let ATT=[],RSEL=null;
+const fmtVal=(v,u)=>u==='s'?(v>=60?`${Math.floor(v/60)} min ${String(Math.round(v%60)).padStart(2,'0')} s`:`${Math.round(v*10)/10} s`):`${v} ${u}`;
+const recOk=id=>ATT.filter(a=>a.rec===id&&a.status==='ok').sort((a,b)=>b.value-a.value||a.ts-b.ts);
+function recBoard(id){const seen=new Set();return recOk(id).filter(a=>{if(seen.has(a.uid))return false;seen.add(a.uid);return true})}
+function holders(){const s=new Set();RECORDS.forEach(r=>{const b=recBoard(r.id)[0];if(b)s.add(b.uid)});return s}
+function recHistory(id){const l=ATT.filter(a=>a.rec===id&&a.status==='ok').sort((a,b)=>a.ts-b.ts);let best=-1;return l.filter(a=>{if(a.value>best){best=a.value;return true}return false}).reverse()}
+const ST={pending:['⏳','En attente','#b7791f'],ok:['✅','Validé','#0e9f6e'],no:['❌','Refusé','#d0342c']};
+function renderRecords(){const el=document.getElementById('records');if(!el)return;
+  const pend=IS_ADMIN?ATT.filter(a=>a.status==='pending').sort((a,b)=>a.ts-b.ts):[];
+  if(!RSEL){
+    el.innerHTML=`<div class="rc-hero"><div class="rc-tro">🏆</div><h1>RECORDS<br>GAMECHECK</h1><p>Des records qui n’existent que sur GameCheck. Bats-les, envoie ta vidéo, et entre dans la légende de Leonida.</p><span class="gd-pill">CHAQUE RECORD EST VÉRIFIÉ</span></div>
+    ${pend.length?`<button class="rc-admin" id="rcPend">🛡️ ${pend.length} tentative${pend.length>1?'s':''} à valider</button>`:''}
+    <div class="rc-list">${RECORDS.map(r=>{const b=recBoard(r.id)[0];return `<button class="card rc-card" data-r="${r.id}"><span class="rc-ic" style="background:linear-gradient(135deg,${r.c1},${r.c2})">${r.e}</span><span class="rc-tx"><b>${esc(r.t)}</b><small>${esc(r.d)}</small><span class="rc-hold">${b?`🥇 ${esc((USERS[b.uid]||{}).pseudo||'?')} · <b>${fmtVal(b.value,r.unit)}</b>`:'Personne pour l’instant : sois le premier !'}</span></span><i>›</i></button>`}).join('')}</div>
+    <div class="sec">${tile('shield','vice',28)}LES RÈGLES</div><div class="card">${REC_RULES.map((t,i)=>`<div class="rule"><span class="n">${i+1}</span><span>${esc(t)}</span></div>`).join('')}</div>
+    <p class="note">${ic('info')}<span>Le détenteur de chaque record gagne le badge 🥇, affiché à côté de son pseudo partout dans l’appli. Une idée de record ? Propose-la sur le forum.</span></p>`;
+    el.querySelectorAll('[data-r]').forEach(b=>b.onclick=()=>{RSEL=b.dataset.r;renderRecords();window.scrollTo({top:0})});
+    const p=document.getElementById('rcPend');if(p)p.onclick=()=>{RSEL='__admin';renderRecords();window.scrollTo({top:0})};return}
+  if(RSEL==='__admin'){
+    el.innerHTML=`<button class="gback" id="rcBack">‹ Tous les records</button><div class="h1">À valider</div><p class="lead">Regarde chaque vidéo en entier avant de valider. Les plus anciennes sont en haut.</p>
+    ${pend.length?pend.map(a=>{const r=RECORDS.find(x=>x.id===a.rec)||{t:a.rec,unit:'s'};return `<div class="card rc-att"><div class="fmeta">${who(a.uid)}<span>${fmtTs(a.ts)}</span></div><b>${esc(r.t)} : ${fmtVal(a.value,r.unit)}</b>${a.note?`<p>${esc(a.note)}</p>`:''}<a class="rc-proof" href="${esc(a.proof)}" target="_blank" rel="noopener">▶ Voir la preuve</a><div class="rbtns"><button class="rcancel" data-no="${a.id}">Refuser</button><button class="rsend" data-ok="${a.id}">Valider</button></div></div>`}).join(''):'<div class="card cnone" style="padding:14px">Rien à valider. 👌</div>'}`;
+    document.getElementById('rcBack').onclick=()=>{RSEL=null;renderRecords()};
+    el.querySelectorAll('[data-ok]').forEach(b=>b.onclick=()=>judge(b.dataset.ok,'ok',''));
+    el.querySelectorAll('[data-no]').forEach(b=>b.onclick=()=>{const m=modal(`<h3>Refuser la tentative</h3><p class="rsub">La raison sera visible par le joueur.</p><select id="rsn" class="pin"><option>Vidéo coupée ou incomplète</option><option>Le chrono ne correspond pas</option><option>Triche, mod ou code visible</option><option>Lien de preuve cassé ou privé</option><option>Ce n’est pas GTA VI</option></select><div class="rbtns"><button class="rcancel">Annuler</button><button class="rsend ok">Refuser</button></div>`);m.querySelector('.ok').onclick=()=>{judge(b.dataset.no,'no',m.querySelector('#rsn').value);m.remove()}});return}
+  const r=RECORDS.find(x=>x.id===RSEL);if(!r){RSEL=null;return renderRecords()}
+  const board=recBoard(r.id).slice(0,10),hist=recHistory(r.id).slice(0,8),mine=ME?ATT.filter(a=>a.rec===r.id&&a.uid===ME.uid).sort((a,b)=>b.ts-a.ts):[];
+  el.innerHTML=`<button class="gback" id="rcBack">‹ Tous les records</button>
+  <div class="gd-head" style="background:linear-gradient(135deg,${r.c1},${r.c2})"><span class="e">${r.e}</span><div><h2>${esc(r.t)}</h2><p>${esc(r.d)}</p></div></div>
+  <button class="btn rc-go" id="rcTry">🏁 Tenter ce record</button>
+  <div class="sec">${tile('trophy','vice',28)}CLASSEMENT</div>
+  ${board.length?`<div class="card rc-board">${board.map((a,i)=>`<div class="rc-row${i<3?' top'+(i+1):''}"><span class="rc-pos">${['🥇','🥈','🥉'][i]||i+1}</span><span class="rc-who">${who(a.uid)}</span><b>${fmtVal(a.value,r.unit)}</b></div>`).join('')}</div>`:'<div class="card cnone" style="padding:14px">Aucun record validé pour l’instant. La première place est libre !</div>'}
+  ${mine.length?`<div class="sec">${tile('user','vice',28)}MES TENTATIVES</div><div class="card rc-board">${mine.map(a=>{const s=ST[a.status]||ST.pending;return `<div class="rc-row"><span class="rc-pos">${s[0]}</span><span class="rc-who"><b style="color:${s[2]}">${s[1]}</b>${a.reason?`<small> · ${esc(a.reason)}</small>`:''}<small> · ${fmtTs(a.ts)}</small></span><b>${fmtVal(a.value,r.unit)}</b>${a.status==='pending'?`<button class="rc-del" data-del="${a.id}" title="Retirer">✕</button>`:''}</div>`}).join('')}</div>`:''}
+  ${hist.length>1?`<div class="sec">${tile('clock','vice',28)}HISTORIQUE DU RECORD</div><div class="card rc-board">${hist.map(a=>`<div class="rc-row"><span class="rc-pos">📈</span><span class="rc-who">${who(a.uid)}<small> · ${fmtTs(a.ts)}</small></span><b>${fmtVal(a.value,r.unit)}</b></div>`).join('')}</div>`:''}`;
+  document.getElementById('rcBack').onclick=()=>{RSEL=null;renderRecords();window.scrollTo({top:0})};
+  document.getElementById('rcTry').onclick=()=>tryRecord(r);
+  el.querySelectorAll('[data-del]').forEach(b=>b.onclick=async()=>{try{await FB.deleteDoc(FB.doc(FB.db,'attempts',b.dataset.del));toast('Tentative retirée.')}catch(e){toast('Impossible.')}});}
+function tryRecord(r){if(!ME){openAccount('Connecte-toi pour envoyer un record.');return}if(needProfile('Crée ton profil pour envoyer un record.'))return;
+  const m=modal(`<h3>${r.e} ${esc(r.t)}</h3><p class="rsub">${esc(r.d)}</p><div class="rc-time"><input id="rcMin" class="pin" type="number" min="0" max="999" inputmode="numeric" placeholder="min"><span>min</span><input id="rcSec" class="pin" type="number" min="0" max="59.9" step="0.1" inputmode="decimal" placeholder="s"><span>s</span></div><input id="rcProof" class="pin" type="url" maxlength="300" placeholder="Lien de ta vidéo (YouTube, TikTok, Twitch, Medal…)"><input id="rcNote" class="pin" maxlength="200" placeholder="Un petit mot (facultatif)"><p class="rsub">La vidéo doit être publique et sans coupure. GameCheck la regarde avant de valider.</p><div class="rbtns"><button class="rcancel">Annuler</button><button class="rsend ok">Envoyer</button></div>`);
+  m.querySelector('.ok').onclick=async()=>{const mn=+m.querySelector('#rcMin').value||0,sc=+m.querySelector('#rcSec').value||0,value=Math.round((mn*60+sc)*10)/10,proof=m.querySelector('#rcProof').value.trim(),note=m.querySelector('#rcNote').value.trim();
+    if(!(value>0)||value>60000){toast('Indique ton temps.');return}if(!/^https:\/\/\S{6,}$/.test(proof)){toast('Colle le lien https de ta vidéo.');return}
+    try{await FB.addDoc(FB.collection(FB.db,'attempts'),{rec:r.id,uid:ME.uid,value,proof:proof.slice(0,300),note:note.slice(0,200),status:'pending',ts:FB.serverTimestamp()});m.remove();toast('Envoyé ! Tu verras le résultat dans « Mes tentatives ».')}catch(e){toast('Envoi impossible, réessaie.')}};}
+async function judge(id,status,reason){try{await FB.setDoc(FB.doc(FB.db,'attempts',id),{status,reason:reason||''},{merge:true});toast(status==='ok'?'Record validé ✅':'Tentative refusée')}catch(e){toast('Impossible.')}}
 
 /* ===== STATS DE VISITES (compteur maison, anonyme, sans cookie) ===== */
 /* 1 visite = 1 appareil par jour. Rien de personnel n'est envoyé : seulement +1 sur le compteur du jour (Firestore, collection stats). */
@@ -1613,7 +1699,7 @@ function renderGuide(){const el=document.getElementById('guide');if(!el)return;
   document.getElementById('gdBack').onclick=()=>{GSEL=null;renderGuide();window.scrollTo({top:0})};}
 
 /* ===== TABS ===== */
-const TABS=[['feed','home','Accueil'],['guide','book','Guide'],['forum','chat','Forum']];
+const TABS=[['feed','home','Accueil'],['guide','book','Guide'],['records','trophy','Records'],['forum','chat','Forum']];
 $('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
 function showView(v){CURV=v;setTimeout(applyNavTheme,0);
   document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));
@@ -1650,7 +1736,7 @@ let installEvt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;$('#installBtn').hidden=false});
 $('#installBtn').onclick=async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('#installBtn').hidden=true};
 window.addEventListener('appinstalled',()=>{$('#installBtn').hidden=true;toast('GameCheck est installé !')});
-withIdx();renderUne();renderFilters();renderFeed();initPhotos();renderTop();renderGuide();countVisit();document.body.dataset.univ='gta-6';loadOfficial();
+withIdx();renderUne();renderFilters();renderFeed();initPhotos();renderTop();renderGuide();renderRecords();countVisit();document.body.dataset.univ='gta-6';loadOfficial();
 </script>
 <script type="module">
 // Firebase (gratuit) : connexion Google + base de données pour les profils, J'aime, commentaires et forum.

@@ -73,6 +73,24 @@ service cloud.firestore {
       allow read, delete: if isAdmin();
     }
 
+    // Records GameCheck : un joueur envoie une tentative (en attente) avec un lien de preuve ; seul l'admin valide ou refuse.
+    match /attempts/{id} {
+      allow read: if true;
+      allow create: if canPost() && mine()
+        && request.resource.data.keys().hasOnly(['rec', 'uid', 'value', 'proof', 'note', 'status', 'ts'])
+        && str(request.resource.data.rec, 1, 40)
+        && request.resource.data.value is number && request.resource.data.value > 0 && request.resource.data.value <= 60000
+        && str(request.resource.data.proof, 10, 300) && request.resource.data.proof.matches('^https://.*')
+        && request.resource.data.note is string && request.resource.data.note.size() <= 200
+        && request.resource.data.status == 'pending'
+        && request.resource.data.ts == request.time;
+      allow update: if isAdmin()
+        && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['status', 'reason'])
+        && request.resource.data.status in ['pending', 'ok', 'no']
+        && request.resource.data.get('reason', '') is string && request.resource.data.get('reason', '').size() <= 120;
+      allow delete: if isAdmin() || (signed() && resource.data.uid == request.auth.uid && resource.data.status == 'pending');
+    }
+
     // Compteur de visites anonyme : 1 document par jour ("2026-11-24"), champs v (visites) et nv (nouveaux visiteurs).
     // N'importe qui peut seulement ajouter +1 ; seul l'admin peut lire.
     match /stats/{day} {
