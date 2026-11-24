@@ -8,7 +8,10 @@ Toutes les idées validées par l'utilisateur le 23 nov. 2026. On choisit 2 ou 3
 Fait = le déplacer dans RESUME-PROJET.md.
 
 ## Déjà fait (24 nov.)
-- Guide GTA VI, stats de visites, Records GameCheck, profils améliorés, Défi de la semaine, Favoris.
+- Guide GTA VI, stats de visites, Records GameCheck, profils améliorés, Défi de la semaine, Favoris, Sondages.
+
+## Vision : l'appli centrale de GTA VI Online
+Quand GTA VI Online sortira, GameCheck deviendra l'appli de référence du mode en ligne : bonus de la semaine, guides Online (argent, business, braquages), records et défis Online, recherche d'équipe / crews, événements. Rien n'est connu pour l'instant : on prépare les fondations (profils, records, défis, forum, sondages) pour basculer dessus dès l'annonce.
 
 ## Rentabiliser l'appli
 **L'appli est un projet indépendant : aucun lien avec le stream de l'utilisateur** (ni Twitch ni Discord KOKO COMU).

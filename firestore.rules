@@ -100,6 +100,17 @@ service cloud.firestore {
       allow delete: if isAdmin() || (signed() && resource.data.uid == request.auth.uid && resource.data.status == 'pending');
     }
 
+    // Sondages : 1 document par membre et par sondage (id = sondage_uid), réponse = numéro du choix.
+    match /pollvotes/{id} {
+      allow read: if true;
+      allow create, update: if canPost() && mine()
+        && id == request.resource.data.poll + '_' + request.auth.uid
+        && request.resource.data.keys().hasOnly(['poll', 'uid', 'c'])
+        && str(request.resource.data.poll, 1, 30)
+        && request.resource.data.c is int && request.resource.data.c >= 0 && request.resource.data.c < 12;
+      allow delete: if signed() && (resource.data.uid == request.auth.uid || isAdmin());
+    }
+
     // Compteur de visites anonyme : 1 document par jour ("2026-11-24"), champs v (visites) et nv (nouveaux visiteurs).
     // N'importe qui peut seulement ajouter +1 ; seul l'admin peut lire.
     match /stats/{day} {

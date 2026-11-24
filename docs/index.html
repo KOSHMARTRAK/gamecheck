@@ -841,6 +841,15 @@ body{background:#fff1f7}
 .rc-left{text-align:center;font-size:12.5px;font-weight:800;color:var(--mute);margin:8px 0 0}
 .favb{font-size:19px;line-height:1;padding:6px 8px;border-radius:999px;color:#b7791f}
 .favb.on{color:#f5a300;text-shadow:0 0 8px rgba(255,190,0,.7)}
+.pl-list{display:flex;flex-direction:column;gap:10px}
+.pl{padding:14px}
+.pl-q{display:block;font-size:15px;margin-bottom:10px}
+.pl-o{position:relative;display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;padding:10px 12px;margin-bottom:6px;border-radius:12px;background:rgba(0,0,0,.05);overflow:hidden;font-weight:700;font-size:13.5px}
+.pl-o i{position:absolute;left:0;top:0;bottom:0;background:linear-gradient(90deg,rgba(255,45,149,.28),rgba(255,179,71,.28));transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.pl-o.on i{background:linear-gradient(90deg,rgba(255,45,149,.55),rgba(255,179,71,.55))}
+.pl-o span,.pl-o em{position:relative}.pl-o em{font-style:normal;font-weight:900}
+.pl-o.on{box-shadow:inset 0 0 0 2px #ff2d95}
+.pl-n{font-size:11.5px;color:var(--mute);font-weight:700}
 </style>
 </head>
 <body>
@@ -1462,7 +1471,7 @@ function openProfile(first){const cur=MYPROF||{pseudo:'',avatar:AVATARS[0]};let 
     try{await FB.setDoc(FB.doc(FB.db,'users',ME.uid),data,{merge:true});MYPROF={...(MYPROF||{}),...data};m.remove();renderMe();renderFeed();renderForum();toast(first?'Bienvenue '+pseudo+' !':'Profil mis à jour.')}
     catch(e){toast('Enregistrement impossible, réessaie.')}};}
 async function deleteAccount(){if(!confirm('Supprimer définitivement ton compte, ton profil, tes commentaires, tes messages du forum et tes votes ? C’est irréversible.'))return;const uid=ME.uid,D=(c,id)=>FB.deleteDoc(FB.doc(FB.db,c,id));
-  try{await Promise.all([...COMS.filter(x=>x.uid===uid).map(x=>D('comments',x.id)),...REPLIES.filter(x=>x.uid===uid).map(x=>D('replies',x.id)),...TOPICS.filter(x=>x.uid===uid).map(x=>D('topics',x.id)),...VOTEDOCS.filter(x=>x.uid===uid).map(x=>D('votes',uid+'_'+x.post)),...ATT.filter(x=>x.uid===uid&&x.status==='pending').map(x=>D('attempts',x.id))]);
+  try{await Promise.all([...COMS.filter(x=>x.uid===uid).map(x=>D('comments',x.id)),...REPLIES.filter(x=>x.uid===uid).map(x=>D('replies',x.id)),...TOPICS.filter(x=>x.uid===uid).map(x=>D('topics',x.id)),...VOTEDOCS.filter(x=>x.uid===uid).map(x=>D('votes',uid+'_'+x.post)),...ATT.filter(x=>x.uid===uid&&x.status==='pending').map(x=>D('attempts',x.id)),...PV.filter(x=>x.uid===uid).map(x=>D('pollvotes',x.poll+'_'+uid))]);
     await D('users',uid);try{await FB.deleteUser(FB.auth.currentUser)}catch(e){await FB.signOut(FB.auth)}MYPROF=null;toast('Ton compte a été supprimé.')}catch(e){toast('Suppression impossible, réessaie.')}}
 let REPORTS=[],repUnsub=null;
 function openReports(){const m=modal(`<h3>${ic('flag')} Signalements reçus</h3><div id="repList">${REPORTS.length?REPORTS.map(r=>`<div class="com"><div class="cw"><b>${esc(r.reason)}</b><span>${fmtTs(r.ts)}</span></div><div class="ctx">${esc(r.target)} — ${esc(r.text||'')}</div><div class="cacts"><button class="sbtn" data-go="${esc(r.target)}">Voir</button><button class="sbtn" data-del="${esc(r.target)}">Supprimer le contenu</button><button class="sbtn" data-ok="${esc(r.id)}">Classer</button></div></div>`).join(''):'<div class="cnone">Aucun signalement. 👍</div>'}</div><div class="rbtns"><button class="rcancel">Fermer</button></div>`);
@@ -1506,6 +1515,7 @@ function initSocial(){
     FB.onSnapshot(FB.query(col('topics'),FB.orderBy('ts','desc'),FB.limit(300)),s=>{TOPICS=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts)}});renderForum()},err);
     FB.onSnapshot(FB.query(col('replies'),FB.orderBy('ts','asc'),FB.limit(5000)),s=>{REPLIES=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts)}});renderForum()},err);
     FB.onSnapshot(FB.query(col('attempts'),FB.orderBy('ts','desc'),FB.limit(3000)),s=>{ATT=s.docs.map(d=>{const v=d.data();return{...v,id:d.id,ts:tsOf(v.ts),value:+v.value||0}});HOLD=holders();renderRecords();renderFeed();renderForum()},err);
+    FB.onSnapshot(col('pollvotes'),s=>{PV=s.docs.map(d=>d.data());renderForum()},err);
     FB.getRedirectResult(FB.auth).catch(()=>{});
     FB.onAuthStateChanged(FB.auth,async u=>{ME=u?{uid:u.uid}:null;MYPROF=u?USERS[u.uid]||null:null;IS_ADMIN=false;if(repUnsub){repUnsub();repUnsub=null}
       if(u){try{IS_ADMIN=(await FB.getDoc(FB.doc(db,'admins',u.uid))).exists()}catch(e){}
@@ -1571,6 +1581,23 @@ function tryRecord(r){if(!ME){openAccount('Connecte-toi pour envoyer un record.'
     if(!(value>0)||value>60000){toast('Indique ton temps.');return}if(!/^https:\/\/\S{6,}$/.test(proof)){toast('Colle le lien https de ta vidéo.');return}
     try{await FB.addDoc(FB.collection(FB.db,'attempts'),{rec:r.id,uid:ME.uid,value,proof:proof.slice(0,300),note:note.slice(0,200),status:'pending',ts:FB.serverTimestamp()});m.remove();toast('Envoyé ! Tu verras le résultat dans « Mes tentatives ».')}catch(e){toast('Envoi impossible, réessaie.')}};}
 async function judge(id,status,reason){try{await FB.setDoc(FB.doc(FB.db,'attempts',id),{status,reason:reason||''},{merge:true});toast(status==='ok'?'Record validé ✅':'Tentative refusée')}catch(e){toast('Impossible.')}}
+
+/* ===== SONDAGES DE LA COMMU (1 vote par membre et par sondage, modifiable) ===== */
+/* Pour ajouter un sondage : une ligne ici (id unique, jamais changé ensuite). */
+const POLLS=[
+ {id:'region',q:'Ta région préférée de Leonida ?',o:['Vice City','Leonida Keys','Grassrivers','Port Gellhorn','Ambrosia','Mount Kalaga']},
+ {id:'heros',q:'Tu préfères jouer avec…',o:['Jason','Lucia','Les deux pareil']},
+ {id:'activite',q:'Ton activité préférée hors missions ?',o:['Braquages','Courses','Jet-ski et bateaux','Chasse et pêche','Explorer la carte','Faire n’importe quoi avec la police']},
+ {id:'note',q:'Ta note pour GTA VI ?',o:['10/10, chef-d’œuvre','8 ou 9/10','6 ou 7/10','Déçu']}
+];
+let PV=[];
+function pollsHTML(){return `<div class="sec">${tile('chart','vice',28)}SONDAGES DE LA COMMU</div><div class="pl-list">${POLLS.map(p=>{const vs=PV.filter(v=>v.poll===p.id),tot=vs.length,mine=ME&&vs.find(v=>v.uid===ME.uid);
+  return `<div class="card pl"><b class="pl-q">${esc(p.q)}</b>${p.o.map((o,i)=>{const n=vs.filter(v=>v.c===i).length,pc=tot?Math.round(n/tot*100):0,on=mine&&mine.c===i;
+    return `<button class="pl-o${on?' on':''}" data-poll="${p.id}" data-c="${i}"><i style="width:${mine?pc:0}%"></i><span>${esc(o)}${on?' ✓':''}</span>${mine?`<em>${pc} %</em>`:''}</button>`}).join('')}
+  <small class="pl-n">${tot} vote${tot>1?'s':''}${mine?' · touche une autre réponse pour changer':' · vote pour voir les résultats'}</small></div>`}).join('')}</div>`}
+async function votePoll(id,c){if(!ME){openAccount('Connecte-toi pour voter.');return}if(needProfile('Crée ton profil pour voter.'))return;
+  try{await FB.setDoc(FB.doc(FB.db,'pollvotes',id+'_'+ME.uid),{poll:id,uid:ME.uid,c:+c});}catch(e){toast('Vote impossible, réessaie.')}}
+{const _rf=renderForum;renderForum=function(){_rf();if(FV.topic)return;const el=document.getElementById('forum');if(!el)return;el.insertAdjacentHTML('beforeend',pollsHTML());el.querySelectorAll('[data-poll]').forEach(b=>b.onclick=()=>votePoll(b.dataset.poll,b.dataset.c))}}
 
 /* ===== STATS DE VISITES (compteur maison, anonyme, sans cookie) ===== */
 /* 1 visite = 1 appareil par jour. Rien de personnel n'est envoyé : seulement +1 sur le compteur du jour (Firestore, collection stats). */
