@@ -16,15 +16,24 @@ service cloud.firestore {
       allow write: if false;
     }
 
+    // Champs facultatifs du profil : bio (120 car. max), couleur de bannière, console.
+    function extrasOk(d) {
+      return d.get('bio', '') is string && d.get('bio', '').size() <= 120
+        && d.get('color', 'vice') in ['vice', 'ocean', 'neon', 'sunset', 'night', 'gold']
+        && d.get('plat', 'none') in ['none', 'ps5', 'xbox', 'both'];
+    }
+
     match /users/{uid} {
       allow read: if true;
       allow create: if signed() && request.auth.uid == uid
-        && request.resource.data.keys().hasOnly(['pseudo', 'avatar', 'ts'])
-        && str(request.resource.data.pseudo, 3, 20) && str(request.resource.data.avatar, 1, 8);
+        && request.resource.data.keys().hasOnly(['pseudo', 'avatar', 'ts', 'bio', 'color', 'plat'])
+        && str(request.resource.data.pseudo, 3, 20) && str(request.resource.data.avatar, 1, 8)
+        && extrasOk(request.resource.data);
       allow update: if isAdmin() || (signed() && request.auth.uid == uid
-        && request.resource.data.keys().hasOnly(['pseudo', 'avatar', 'ts', 'banned'])
+        && request.resource.data.keys().hasOnly(['pseudo', 'avatar', 'ts', 'banned', 'bio', 'color', 'plat'])
         && request.resource.data.get('banned', false) == resource.data.get('banned', false)
-        && str(request.resource.data.pseudo, 3, 20) && str(request.resource.data.avatar, 1, 8));
+        && str(request.resource.data.pseudo, 3, 20) && str(request.resource.data.avatar, 1, 8)
+        && extrasOk(request.resource.data));
       allow delete: if isAdmin() || (signed() && request.auth.uid == uid);
     }
 

@@ -25,6 +25,8 @@
 
 - 24 nov. : **Records GameCheck** (onglet Records) : 4 records (tableau RECORDS dans index.html, unité secondes), tentatives dans Firestore collection attempts (en attente / validé / refusé avec raison), validation par l'admin dans l'onglet (bouton rouge « à valider »), classement top 10, historique, badge 🥇 à côté du pseudo du détenteur partout. Preuve = lien vidéo https (pas de stockage de fichiers : Firebase Storage serait payant).
 
+- 24 nov. : **profils joueurs améliorés** : bannière colorée animée (6 couleurs), niveaux avec barre d'XP (Touriste → Légende ; XP = commentaires×5 + sujets×10 + réponses×3 + votes + records validés×50), badges (🥇 record, 🏁, 💬, 📝, ❤️, 🌴 membre fondateur avant le 1er déc. 2026, 🛡️ équipe), stats, bio (120 car.), console. Toucher un pseudo n'importe où ouvre son profil.
+
 ## Style
 - Haut : plage animée (soleil, cocotier, mouettes, vagues). Bas : sable, coquillages, crabes, chien KOSHMAR qui se promène.
 - Fond : « dégradé vivant » animé (rose, turquoise, orange, violet), cartes en verre dépoli, bordures ondulées animées.
@@ -38,7 +40,7 @@
 - Mises à jour : UNIQUEMENT à la demande (« mets à jour » = `gh workflow run official.yml` + RemoteTrigger run `trig_01X9kjw4TPoqaFtEfkyjXFLq`).
 - Routine IA (Sonnet) : depuis le 23 nov. (soir), elle écrit des **actus** (plus de verdict vrai/faux) : cat « alerte » seulement pour les arnaques, « rumeur » si non confirmé, « vrai » pour le reste ; le champ verdict = cadre « À savoir ». Avant : consigne élargie le 23 nov. = actu GTA VI des **7 derniers jours**, 10 à 15 recherches, tous sujets (rumeurs, arnaques, bugs, patchs, ventes, Online, secrets…), vise 4 à 8 infos. Un passage spécial « rattrapage » (toute l'histoire de GTA VI) a été fait une fois puis la consigne normale remise. Attention : modifier la consigne puis lancer tout de suite = le lancement peut partir avec l'ancienne consigne.
 - Le robot des annonces officielles ne trouve rien en ce moment (`official.json` vide).
-- Chaque mise en ligne : augmenter la version du cache dans `docs/sw.js` (actuellement **v45**), puis commit + push sur main.
+- Chaque mise en ligne : augmenter la version du cache dans `docs/sw.js` (actuellement **v46**), puis commit + push sur main.
 - PC : pas de Python ; utiliser **Node** pour les scripts. Git : `C:\Program Files\Git\cmd`, gh : `C:\Program Files\GitHub CLI`. index.html a des fins de ligne Windows (CRLF).
 - Test local : `.claude/launch.json` « gamecheck » (serve.ps1, port 8765), navigateur intégré en mode mobile.
 - Clé de signature APK : `apk/` (jamais en ligne) + secrets GitHub.
