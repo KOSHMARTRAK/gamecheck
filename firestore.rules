@@ -72,5 +72,18 @@ service cloud.firestore {
         && request.resource.data.ts == request.time;
       allow read, delete: if isAdmin();
     }
+
+    // Compteur de visites anonyme : 1 document par jour ("2026-11-24"), champs v (visites) et nv (nouveaux visiteurs).
+    // N'importe qui peut seulement ajouter +1 ; seul l'admin peut lire.
+    match /stats/{day} {
+      allow read: if isAdmin();
+      allow create: if day.matches('^20[0-9]{2}-[0-9]{2}-[0-9]{2}$')
+        && request.resource.data.keys().hasOnly(['v', 'nv'])
+        && request.resource.data.v == 1 && request.resource.data.nv in [0, 1];
+      allow update: if request.resource.data.keys().hasOnly(['v', 'nv'])
+        && request.resource.data.v == resource.data.v + 1
+        && request.resource.data.nv in [resource.data.get('nv', 0), resource.data.get('nv', 0) + 1];
+      allow delete: if false;
+    }
   }
 }

@@ -769,6 +769,12 @@ body{background:#fff1f7}
 .gd-warn{font-size:12.5px;line-height:1.5;padding:11px 13px;border-radius:14px;background:#fff6e0;color:#6b4a12;margin:4px 0 10px}
 .gd-src{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
 .gd-src a{font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.85);border:1px solid var(--line);color:var(--txt);text-decoration:none}
+.st-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-top:6px}
+.st-grid div{background:linear-gradient(135deg,#fff0f7,#e8fbff);border-radius:14px;padding:10px 6px;text-align:center}
+.st-grid b{display:block;font-family:var(--disp);font-size:28px;line-height:1;background:var(--vice-g);-webkit-background-clip:text;background-clip:text;color:transparent}
+.st-grid span{font-size:10.5px;color:var(--mute);font-weight:700}
+.st-bars{display:flex;align-items:flex-end;gap:4px;height:90px;margin-top:14px;padding:8px;border-radius:14px;background:rgba(255,255,255,.7)}
+.st-bars i{flex:1;min-height:3px;border-radius:6px 6px 2px 2px;background:var(--vice-g)}
 </style>
 </head>
 <body>
@@ -881,7 +887,7 @@ body{background:#fff1f7}
         <details open><summary>Site indépendant</summary><p>GameCheck est un site de fans indépendant. Il n'est ni affilié, ni approuvé, ni sponsorisé par Rockstar Games, Take-Two Interactive, Sony Interactive Entertainment ou Microsoft. « Grand Theft Auto », « GTA » et les logos associés sont des marques de Take-Two Interactive. Les captures d'écran officielles restent la propriété de Rockstar Games et sont montrées uniquement pour illustrer l'actualité. Les noms et logos des médias cités appartiennent à leurs propriétaires.</p></details>
         <details><summary>Comment les infos sont choisies</summary><p>Les infos sont recherchées et résumées par une intelligence artificielle (Claude, d'Anthropic) à partir de médias publics, puis publiées à chaque mise à jour. Chaque info indique ses sources et leur niveau de fiabilité. Une IA peut se tromper : vérifie toujours auprès de la source officielle avant de partager. Une info erronée est corrigée dès qu'elle est signalée en commentaire.</p></details>
         <details><summary>Tes données personnelles</summary><p>Pour voter, commenter ou écrire sur le forum, il faut un profil. La connexion se fait avec ton compte Google, via le service Firebase de Google (données hébergées dans l'Union européenne). GameCheck enregistre : un identifiant technique, le pseudo et l'avatar que tu choisis (visibles par tous), tes votes, tes commentaires, tes messages du forum et leur heure. Ton adresse e-mail n'est jamais affichée ni utilisée par GameCheck. Ces données servent uniquement à faire fonctionner les votes, les commentaires et le forum. Tu peux modifier ton profil, supprimer tes messages, ou supprimer tout ton compte et tout ce que tu as écrit (bouton profil en haut à droite, « Supprimer mon compte »). Pour toute autre demande (RGPD), utilise le bouton Signaler. Aucune donnée n'est vendue ni utilisée pour de la publicité.</p></details>
-        <details><summary>Cookies</summary><p>L'application ne dépose aucun cookie publicitaire ni de mesure d'audience. Elle garde seulement, dans ton navigateur, quelques préférences d'affichage et, si tu te connectes, ta session de connexion (indispensable pour rester connecté).</p></details>
+        <details><summary>Cookies</summary><p>L'application ne dépose aucun cookie publicitaire ni de mesure d'audience. Elle compte seulement les visites de façon anonyme : une fois par jour, ton appareil ajoute +1 au compteur du jour, sans aucune donnée sur toi. Elle garde seulement, dans ton navigateur, quelques préférences d'affichage et, si tu te connectes, ta session de connexion (indispensable pour rester connecté).</p></details>
         <details><summary>Signaler un contenu</summary><p>Chaque info et chaque commentaire a un bouton « Signaler » (fausse info, arnaque, contenu illégal, harcèlement, atteinte à tes droits). Les signalements sont examinés dans les meilleurs délais ; si un contenu est retiré ou corrigé, la raison est indiquée. Tu peux contester une décision en répondant au signalement. En cas de contenu manifestement illégal, tu peux aussi le signaler aux autorités sur internet-signalement.gouv.fr (PHAROS).</p></details>
         <details><summary>Conditions d'utilisation</summary><p>GameCheck est gratuit et fourni tel quel, sans garantie. Les infos sont données à titre informatif : vérifie toujours auprès des sources officielles. En créant un profil et en publiant un commentaire ou un message sur le forum, tu t'engages à respecter les règles ci-dessous et la loi, et tu restes responsable de ce que tu écris. L'éditeur peut retirer un contenu ou bloquer un utilisateur qui ne les respecte pas. Les profils, les commentaires et le forum sont réservés aux personnes de 15 ans et plus ; GTA 6 est un jeu classé PEGI 18.</p></details>
         <details><summary>Règles des commentaires</summary><p>Pas d'insultes, de harcèlement, de liens de téléchargement, de spoilers non signalés ni de pub. Les mêmes règles valent pour le forum, et on n'y publie aucune info personnelle (la sienne ou celle des autres). Les messages qui ne les respectent pas peuvent être supprimés et leur auteur bloqué.</p></details>
@@ -1338,8 +1344,8 @@ function renderMe(){const b=document.getElementById('meBtn');if(!b)return;b.inne
 function openAccount(msg){
   if(!window.FB){toast('La connexion se charge, réessaie dans un instant.');return}
   if(ME&&MYPROF){const nRep=IS_ADMIN?' ('+REPORTS.length+')':'';
-    const m=modal(`<h3><span class="ava big">${esc(MYPROF.avatar)}</span> ${esc(MYPROF.pseudo)}</h3><p class="rsub">Ton profil GameCheck${IS_ADMIN?' · administrateur':''}</p><div class="acc">${IS_ADMIN?`<button class="btn" data-a="rep">${ic('flag')}Signalements reçus${nRep}</button>`:''}<button class="btn" data-a="edit">${ic('user')}Modifier mon profil</button><button class="btn ghost" data-a="out">Se déconnecter</button><button class="btn danger" data-a="del">${ic('trash')}Supprimer mon compte</button></div><p class="rnote">Supprimer ton compte efface ton profil, tes commentaires, tes sujets et réponses du forum, et tes votes.</p><div class="rbtns"><button class="rcancel">Fermer</button></div>`);
-    if(IS_ADMIN)m.querySelector('[data-a=rep]').onclick=()=>{m.remove();openReports()};
+    const m=modal(`<h3><span class="ava big">${esc(MYPROF.avatar)}</span> ${esc(MYPROF.pseudo)}</h3><p class="rsub">Ton profil GameCheck${IS_ADMIN?' · administrateur':''}</p><div class="acc">${IS_ADMIN?`<button class="btn" data-a="rep">${ic('flag')}Signalements reçus${nRep}</button><button class="btn" data-a="st">${ic('chart')}Statistiques de visites</button>`:''}<button class="btn" data-a="edit">${ic('user')}Modifier mon profil</button><button class="btn ghost" data-a="out">Se déconnecter</button><button class="btn danger" data-a="del">${ic('trash')}Supprimer mon compte</button></div><p class="rnote">Supprimer ton compte efface ton profil, tes commentaires, tes sujets et réponses du forum, et tes votes.</p><div class="rbtns"><button class="rcancel">Fermer</button></div>`);
+    if(IS_ADMIN){m.querySelector('[data-a=rep]').onclick=()=>{m.remove();openReports()};m.querySelector('[data-a=st]').onclick=()=>{m.remove();openStats()}}
     m.querySelector('[data-a=edit]').onclick=()=>{m.remove();openProfile(false)};
     m.querySelector('[data-a=out]').onclick=async()=>{m.remove();await FB.signOut(FB.auth);toast('Tu es déconnecté.')};
     m.querySelector('[data-a=del]').onclick=()=>{m.remove();deleteAccount()};return}
@@ -1416,6 +1422,24 @@ function initSocial(){
   if(window.FB)go();else window.addEventListener('fb-ready',go,{once:true});
   renderMe();renderForum();
 }
+
+/* ===== STATS DE VISITES (compteur maison, anonyme, sans cookie) ===== */
+/* 1 visite = 1 appareil par jour. Rien de personnel n'est envoyé : seulement +1 sur le compteur du jour (Firestore, collection stats). */
+const dayKey=(d=new Date())=>new Intl.DateTimeFormat('fr-CA',{timeZone:'Europe/Paris'}).format(d);
+function countVisit(){const go=async()=>{if(!window.FB||!FB.increment)return;const k=dayKey();let last='',first=false;
+  try{last=localStorage.getItem('gc_vday')||'';first=!localStorage.getItem('gc_vfirst')}catch(e){}
+  if(last===k||/^(localhost|127\.0\.0\.1)$/.test(location.hostname))return;
+  try{await FB.setDoc(FB.doc(FB.db,'stats',k),{v:FB.increment(1),nv:FB.increment(first?1:0)},{merge:true});localStorage.setItem('gc_vday',k);localStorage.setItem('gc_vfirst','1')}catch(e){}};
+  if(window.FB)go();else window.addEventListener('fb-ready',go,{once:true})}
+async function openStats(){const m=modal(`<h3>${ic('chart')} Statistiques de visites</h3><div id="stBox"><p class="rsub">Chargement…</p></div>`);const box=m.querySelector('#stBox');
+  let rows=[];try{const s=await FB.getDocs(FB.query(FB.collection(FB.db,'stats'),FB.orderBy(FB.documentId(),'desc'),FB.limit(400)));rows=s.docs.map(d=>({d:d.id,v:+d.data().v||0,nv:+d.data().nv||0}))}
+  catch(e){box.innerHTML='<p class="rsub">Impossible de lire les stats pour le moment.</p>';return}
+  const sum=n=>rows.slice(0,n).reduce((a,r)=>a+r.v,0),tot=f=>rows.reduce((a,r)=>a+r[f],0),today=rows.find(r=>r.d===dayKey())||{v:0};
+  const last14=[];for(let i=13;i>=0;i--){const kk=dayKey(new Date(Date.now()-i*864e5)),r=rows.find(x=>x.d===kk);last14.push({d:kk,v:r?r.v:0})}
+  const mx=Math.max(1,...last14.map(x=>x.v));
+  box.innerHTML=`<div class="st-grid"><div><b>${today.v}</b><span>aujourd'hui</span></div><div><b>${sum(7)}</b><span>7 derniers jours</span></div><div><b>${sum(30)}</b><span>30 derniers jours</span></div><div><b>${tot('v')}</b><span>depuis le début</span></div><div><b>${tot('nv')}</b><span>nouveaux visiteurs</span></div><div><b>${Object.keys(USERS).length}</b><span>membres inscrits</span></div></div>
+  <div class="st-bars">${last14.map(x=>`<i style="height:${Math.round(x.v/mx*100)}%" title="${x.d} : ${x.v}"></i>`).join('')}</div>
+  <p class="rsub" style="margin-top:6px">Visites des 14 derniers jours. 1 visite = 1 appareil par jour. Compteur anonyme, sans cookie.</p>`}
 
 /* ===== SIGNALEMENT (obligation européenne DSA) ===== */
 const REPORT_REPO='https://github.com/KOSHMARTRAK/gamecheck/issues/new';
@@ -1626,16 +1650,16 @@ let installEvt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;$('#installBtn').hidden=false});
 $('#installBtn').onclick=async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('#installBtn').hidden=true};
 window.addEventListener('appinstalled',()=>{$('#installBtn').hidden=true;toast('GameCheck est installé !')});
-withIdx();renderUne();renderFilters();renderFeed();initPhotos();renderTop();renderGuide();document.body.dataset.univ='gta-6';loadOfficial();
+withIdx();renderUne();renderFilters();renderFeed();initPhotos();renderTop();renderGuide();countVisit();document.body.dataset.univ='gta-6';loadOfficial();
 </script>
 <script type="module">
 // Firebase (gratuit) : connexion Google + base de données pour les profils, J'aime, commentaires et forum.
 // Ces clés sont publiques par nature : la sécurité est assurée par les règles Firestore (fichier firestore.rules).
 import {initializeApp} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js';
 import {getAuth,GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut,deleteUser} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js';
-import {getFirestore,collection,doc,onSnapshot,setDoc,addDoc,deleteDoc,getDoc,serverTimestamp,query,orderBy,limit} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
+import {getFirestore,collection,doc,onSnapshot,setDoc,addDoc,deleteDoc,getDoc,serverTimestamp,query,orderBy,limit,increment,getDocs,documentId} from 'https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js';
 const app=initializeApp({apiKey:"AIzaSyBZ72tLBT5lrhqRPWcmmdNxC8nlSgB-q6g",authDomain:(location.hostname==='koshmartrak.github.io'&&(matchMedia('(pointer:coarse)').matches||matchMedia('(display-mode: standalone)').matches))?'koshmartrak.github.io':'gamecheck-48594.firebaseapp.com',projectId:"gamecheck-48594",storageBucket:"gamecheck-48594.firebasestorage.app",messagingSenderId:"171841910675",appId:"1:171841910675:web:55a976d6202a2b0485da66"});
-window.FB={auth:getAuth(app),db:getFirestore(app),GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut,deleteUser,collection,doc,onSnapshot,setDoc,addDoc,deleteDoc,getDoc,serverTimestamp,query,orderBy,limit};
+window.FB={auth:getAuth(app),db:getFirestore(app),GoogleAuthProvider,signInWithPopup,signInWithRedirect,getRedirectResult,onAuthStateChanged,signOut,deleteUser,collection,doc,onSnapshot,setDoc,addDoc,deleteDoc,getDoc,serverTimestamp,query,orderBy,limit,increment,getDocs,documentId};
 window.dispatchEvent(new Event('fb-ready'));
 </script>
 </body>
