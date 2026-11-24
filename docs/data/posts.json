@@ -1,5 +1,55 @@
 [
   {
+    "id": "arnaque-jeu-gratuit-connexion-google-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "alerte",
+      "title": "GTA 6 : de faux sites « jeu gratuit » volent votre mot de passe Google",
+      "body": "Malwarebytes signale des sites qui offrent GTA 6 gratuitement, avec de faux compteurs de « codes restants » et un bouton **« Continuer avec Google »** qui copie la page de connexion Google.",
+      "verdict": "**Arnaque.** Rockstar ne donne pas le jeu via un concours ou un site tiers : n'entrez jamais votre mot de passe ailleurs que sur google.com, et si c'est déjà fait, changez-le.",
+      "sources": [
+        {
+          "nom": "Malwarebytes",
+          "niveau": "fiable",
+          "url": "https://www.malwarebytes.com/fr/blog/scams/2026/11/gta-6-scams-could-cost-you-your-account-money-or-crypto"
+        },
+        {
+          "nom": "PC Gamer",
+          "niveau": "fiable",
+          "url": "https://www.pcgamer.com/games/grand-theft-auto/grand-theft-auto-6-vip-early-access-scam-sites-are-already-popping-up-malwarebytes-warns/"
+        }
+      ],
+      "date": "24 nov. 2026",
+      "ts": 1795537151227,
+      "n": 39
+    }
+  },
+  {
+    "id": "appartement-dexter-vice-city-gta6",
+    "data": {
+      "game": "gta-6",
+      "cat": "vrai",
+      "title": "GTA 6 : des joueurs trouvent l'appartement de Dexter Morgan à Vice City",
+      "body": "Des joueurs ont repéré un appartement en bord de mer qui évoque **Dexter Morgan**, avec un bateau ressemblant à celui de la série. Les médias divergent sur l'emplacement exact.",
+      "verdict": "Rockstar n'a pas confirmé qu'il s'agit d'un clin d'œil voulu. Selon certains guides, la porte reste verrouillée : mieux vaut vérifier avant de perdre du temps.",
+      "sources": [
+        {
+          "nom": "Dexerto",
+          "niveau": "fiable",
+          "url": "https://www.dexerto.com/gta/gta-6-players-find-dexters-apartment-serial-killer-kit-and-can-even-steal-his-boat-3429888/"
+        },
+        {
+          "nom": "Insider Gaming",
+          "niveau": "fiable",
+          "url": "https://insider-gaming.com/dexter-morgans-apartment-gta-6/"
+        }
+      ],
+      "date": "24 nov. 2026",
+      "ts": 1795537152227,
+      "n": 38
+    }
+  },
+  {
     "id": "faux-demos-extended-look-infostealer-gta6",
     "data": {
       "game": "gta-6",
