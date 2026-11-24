@@ -21,6 +21,8 @@
 
 - 24 nov. : onglet **Guide** créé (8 rubriques, 38 astuces, sources ; code : tableau `GUIDE` + fonction `renderGuide()` dans index.html) ; page Infos refaite (« À propos de GameCheck », « Protège ton compte ») ; anciens verdicts « FAUX. / Non vérifié. » réécrits (alertes = « Arnaque. »).
 
+- 24 nov. : **compteur de visites maison** (Firestore, collection `stats`, 1 doc par jour, champs v et nv ; 1 visite = 1 appareil par jour, anonyme, sans cookie, pas compté en localhost). Écran « Statistiques de visites » dans le menu profil de l'admin. Règles Firestore publiées depuis ce PC (`firebase.json` + `.firebaserc` ; Firebase CLI/MCP connecté au compte de l'utilisateur le 24 nov.).
+
 ## Style
 - Haut : plage animée (soleil, cocotier, mouettes, vagues). Bas : sable, coquillages, crabes, chien KOSHMAR qui se promène.
 - Fond : « dégradé vivant » animé (rose, turquoise, orange, violet), cartes en verre dépoli, bordures ondulées animées.
@@ -34,7 +36,7 @@
 - Mises à jour : UNIQUEMENT à la demande (« mets à jour » = `gh workflow run official.yml` + RemoteTrigger run `trig_01X9kjw4TPoqaFtEfkyjXFLq`).
 - Routine IA (Sonnet) : depuis le 23 nov. (soir), elle écrit des **actus** (plus de verdict vrai/faux) : cat « alerte » seulement pour les arnaques, « rumeur » si non confirmé, « vrai » pour le reste ; le champ verdict = cadre « À savoir ». Avant : consigne élargie le 23 nov. = actu GTA VI des **7 derniers jours**, 10 à 15 recherches, tous sujets (rumeurs, arnaques, bugs, patchs, ventes, Online, secrets…), vise 4 à 8 infos. Un passage spécial « rattrapage » (toute l'histoire de GTA VI) a été fait une fois puis la consigne normale remise. Attention : modifier la consigne puis lancer tout de suite = le lancement peut partir avec l'ancienne consigne.
 - Le robot des annonces officielles ne trouve rien en ce moment (`official.json` vide).
-- Chaque mise en ligne : augmenter la version du cache dans `docs/sw.js` (actuellement **v43**), puis commit + push sur main.
+- Chaque mise en ligne : augmenter la version du cache dans `docs/sw.js` (actuellement **v44**), puis commit + push sur main.
 - PC : pas de Python ; utiliser **Node** pour les scripts. Git : `C:\Program Files\Git\cmd`, gh : `C:\Program Files\GitHub CLI`. index.html a des fins de ligne Windows (CRLF).
 - Test local : `.claude/launch.json` « gamecheck » (serve.ps1, port 8765), navigateur intégré en mode mobile.
 - Clé de signature APK : `apk/` (jamais en ligne) + secrets GitHub.

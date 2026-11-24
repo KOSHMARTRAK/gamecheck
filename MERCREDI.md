@@ -1,6 +1,6 @@
 # GameCheck : programme du mercredi 25 nov. 2026
 
-**Avancé au 24 nov. : points 1, 2 et 3 FAITS.** Reste le point 4 (stats) et compléter le Guide (Missions par chapitre, collectibles, secrets).
+**TOUT FAIT le 24 nov.** (Guide, page Infos, anciennes infos, stats de visites). Reste à compléter le Guide au fil du temps (missions par chapitre, collectibles, secrets). Prochaines idées : IDEES.md.
 
 Pour démarrer : ouvre une nouvelle session dans le dossier GameCheck et écris
 « Lis MERCREDI.md et RESUME-PROJET.md, puis on attaque le programme de mercredi ».
