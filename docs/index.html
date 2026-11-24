@@ -739,6 +739,36 @@ body{background:#fff1f7}
 .kq-shell{position:absolute;right:20px;bottom:10px;width:13px;height:13px;transform:rotate(-12deg)}
 @media (prefers-reduced-motion:reduce){.kq *,.kq-box{animation:none!important}}
 @media (prefers-reduced-motion:reduce){.post::before,.post::after,.card::before,.card::after,.disc::before,.disc::after,.fact::before,.fact::after,.nbg *,nav.tabs>.walker,nav.tabs>.walker img{animation:none!important}}
+/* ===== GUIDE ===== */
+.gd-hero{position:relative;border-radius:24px;padding:22px 18px 20px;overflow:hidden;color:#fff;background:linear-gradient(135deg,#1b0b2e,#4a1470 55%,#ff2d95);box-shadow:0 18px 40px -18px rgba(255,45,149,.65)}
+.gd-hero::before{content:"";position:absolute;inset:-2px;background:conic-gradient(from var(--gda,0deg),#ff2d95,#00e0ff,#ffb347,#ff2d95);opacity:.35;filter:blur(18px);animation:gdspin 8s linear infinite}
+@property --gda{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes gdspin{to{--gda:360deg}}
+.gd-hero>*{position:relative}
+.gd-hero h1{font-family:var(--disp);font-size:44px;letter-spacing:1px;line-height:.95;margin:0;background:linear-gradient(90deg,#fff,#ffd1ec,#9ff3ff,#fff);background-size:200% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:gdshine 5s linear infinite}
+@keyframes gdshine{to{background-position:-200% 0}}
+.gd-hero p{margin:8px 0 0;font-size:13.5px;line-height:1.5;opacity:.92}
+.gd-hero .gd-pill{display:inline-block;margin-top:12px;font-size:11px;font-weight:800;letter-spacing:.6px;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3)}
+.gd-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.gd-t{position:relative;text-align:left;border-radius:20px;padding:14px 12px 12px;min-height:112px;color:#fff;overflow:hidden;box-shadow:0 12px 26px -16px rgba(40,10,60,.7);transition:transform .15s}
+.gd-t:active{transform:scale(.97)}
+.gd-t .e{font-size:28px;line-height:1;display:block;filter:drop-shadow(0 3px 6px rgba(0,0,0,.3))}
+.gd-t b{display:block;font-family:var(--disp);font-size:21px;letter-spacing:.6px;line-height:1;margin-top:10px}
+.gd-t small{display:block;font-size:11px;font-weight:700;opacity:.9;margin-top:4px}
+.gd-t::after{content:"";position:absolute;top:-40%;left:-60%;width:50%;height:180%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.35),transparent);transform:rotate(20deg);animation:gdsweep 4.5s ease-in-out infinite}
+.gd-t:nth-child(2n)::after{animation-delay:1.2s}.gd-t:nth-child(3n)::after{animation-delay:2.4s}
+@keyframes gdsweep{0%,60%{left:-60%}100%{left:130%}}
+.gd-head{display:flex;align-items:center;gap:12px;border-radius:22px;padding:16px;color:#fff;margin-bottom:12px}
+.gd-head .e{font-size:38px}
+.gd-head h2{font-family:var(--disp);font-size:32px;letter-spacing:.8px;line-height:1;margin:0}
+.gd-head p{margin:4px 0 0;font-size:13px;opacity:.92;line-height:1.45}
+.gd-tip{display:flex;gap:12px;padding:14px;margin-bottom:10px}
+.gd-tip .n{flex:0 0 30px;height:30px;border-radius:10px;display:grid;place-items:center;font-family:var(--disp);font-size:19px;color:#fff}
+.gd-tip h3{font-size:15px;margin:2px 0 4px}
+.gd-tip p{font-size:13.5px;line-height:1.55;color:var(--txt);margin:0}
+.gd-warn{font-size:12.5px;line-height:1.5;padding:11px 13px;border-radius:14px;background:#fff6e0;color:#6b4a12;margin:4px 0 10px}
+.gd-src{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}
+.gd-src a{font-size:11.5px;font-weight:700;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.85);border:1px solid var(--line);color:var(--txt);text-decoration:none}
 </style>
 </head>
 <body>
@@ -805,12 +835,13 @@ body{background:#fff1f7}
     <div id="feed"></div>
   </section>
 
+  <section class="view" id="v-guide"><div class="panel" id="guide"></div></section>
   <section class="view" id="v-forum"><div class="panel" id="forum"></div></section>
 
   <section class="view" id="v-src">
     <div class="panel">
-      <div class="h1">Fiabilité des sources</div>
-      <p class="lead">Chaque source du fil a un niveau. Plus il est haut, plus tu peux lui faire confiance.</p>
+      <div class="h1">À propos de GameCheck</div>
+      <p class="lead">Toute l’actu de GTA VI au même endroit : les news, les alertes arnaques, un guide pour bien jouer et le forum de la commu. Chaque info cite ses sources, avec leur niveau :</p>
       <div class="card">
         <div class="tierrow"><span class="tier t-officiel">OFFICIEL</span><div><h3>Rockstar, Take-Two, Sony, Microsoft</h3><p>Ce qu'ils annoncent eux-mêmes. C'est la référence absolue.</p></div></div>
         <div class="tierrow"><span class="tier t-fiable">FIABLE</span><div><h3>Grands médias jeux vidéo et tech</h3><p>PC Gamer, TechRadar, Dexerto, GamesRadar+, Bloomberg, Malwarebytes… Ils vérifient avant de publier.</p></div></div>
@@ -819,11 +850,10 @@ body{background:#fff1f7}
       </div>
       <div class="sec" id="rulesTitle"></div>
       <div class="card">
-        <div class="rule"><span class="n">1</span><span><b>Pas de source officielle ?</b> Alors c'est au mieux une rumeur.</span></div>
-        <div class="rule"><span class="n">2</span><span><b>« Démo », « version PC », « APK » à télécharger :</b> c'est presque toujours un virus.</span></div>
-        <div class="rule"><span class="n">3</span><span><b>Capture d'écran sans lien :</b> facile à truquer. Cherche l'original.</span></div>
-        <div class="rule"><span class="n">4</span><span><b>Un seul compte qui l'affirme :</b> attends que des médias fiables confirment.</span></div>
-        <div class="rule"><span class="n">5</span><span><b>Titre en MAJUSCULES et sirènes :</b> ça cherche les clics, pas la vérité.</span></div>
+        <div class="rule"><span class="n">1</span><span><b>Rockstar ne te demandera jamais ton mot de passe</b> ni un code reçu par SMS.</span></div>
+        <div class="rule"><span class="n">2</span><span><b>Pas de démo, d’APK ou de « version PC » à télécharger :</b> ce sont des virus.</span></div>
+        <div class="rule"><span class="n">3</span><span><b>Argent du jeu ou clés gratuites :</b> ça n’existe pas. Achète seulement sur les stores officiels.</span></div>
+        <div class="rule"><span class="n">4</span><span><b>Active la double authentification</b> sur ton compte Rockstar et ton compte console.</span></div>
       </div>
 
       <div class="sec" id="dlTitle"></div>
@@ -839,7 +869,7 @@ body{background:#fff1f7}
 
       <div class="sec" id="majTitle"></div>
       <div class="card majcard">
-        <div class="majrow"><span>Fréquence</span><b>Toutes les 3 heures, 24 h/24</b></div>
+        <div class="majrow"><span>Fréquence</span><b>Plusieurs fois par semaine</b></div>
         <div class="majrow"><span>Dernière mise à jour</span><b id="majLast">—</b></div>
         <div class="majrow"><span>Prochaine mise à jour</span><b id="majNext">—</b></div>
         <div class="majrow"><span>Infos ajoutées automatiquement</span><b id="majCount">—</b></div>
@@ -849,7 +879,7 @@ body{background:#fff1f7}
       <div class="sec" id="legalTitle"></div>
       <div class="card legal">
         <details open><summary>Site indépendant</summary><p>GameCheck est un site de fans indépendant. Il n'est ni affilié, ni approuvé, ni sponsorisé par Rockstar Games, Take-Two Interactive, Sony Interactive Entertainment ou Microsoft. « Grand Theft Auto », « GTA » et les logos associés sont des marques de Take-Two Interactive. Les captures d'écran officielles restent la propriété de Rockstar Games et sont montrées uniquement pour illustrer l'actualité. Les noms et logos des médias cités appartiennent à leurs propriétaires.</p></details>
-        <details><summary>Comment les infos sont vérifiées</summary><p>Les infos sont recherchées et classées automatiquement par une intelligence artificielle (Claude, d'Anthropic) toutes les 3 heures, à partir de médias publics. Chaque info indique ses sources et leur niveau de fiabilité. Une IA peut se tromper : vérifie toujours auprès de la source officielle avant de partager. Une info classée par erreur est corrigée dès qu'elle est signalée en commentaire.</p></details>
+        <details><summary>Comment les infos sont choisies</summary><p>Les infos sont recherchées et résumées par une intelligence artificielle (Claude, d'Anthropic) à partir de médias publics, puis publiées à chaque mise à jour. Chaque info indique ses sources et leur niveau de fiabilité. Une IA peut se tromper : vérifie toujours auprès de la source officielle avant de partager. Une info erronée est corrigée dès qu'elle est signalée en commentaire.</p></details>
         <details><summary>Tes données personnelles</summary><p>Pour voter, commenter ou écrire sur le forum, il faut un profil. La connexion se fait avec ton compte Google, via le service Firebase de Google (données hébergées dans l'Union européenne). GameCheck enregistre : un identifiant technique, le pseudo et l'avatar que tu choisis (visibles par tous), tes votes, tes commentaires, tes messages du forum et leur heure. Ton adresse e-mail n'est jamais affichée ni utilisée par GameCheck. Ces données servent uniquement à faire fonctionner les votes, les commentaires et le forum. Tu peux modifier ton profil, supprimer tes messages, ou supprimer tout ton compte et tout ce que tu as écrit (bouton profil en haut à droite, « Supprimer mon compte »). Pour toute autre demande (RGPD), utilise le bouton Signaler. Aucune donnée n'est vendue ni utilisée pour de la publicité.</p></details>
         <details><summary>Cookies</summary><p>L'application ne dépose aucun cookie publicitaire ni de mesure d'audience. Elle garde seulement, dans ton navigateur, quelques préférences d'affichage et, si tu te connectes, ta session de connexion (indispensable pour rester connecté).</p></details>
         <details><summary>Signaler un contenu</summary><p>Chaque info et chaque commentaire a un bouton « Signaler » (fausse info, arnaque, contenu illégal, harcèlement, atteinte à tes droits). Les signalements sont examinés dans les meilleurs délais ; si un contenu est retiré ou corrigé, la raison est indiquée. Tu peux contester une décision en répondant au signalement. En cas de contenu manifestement illégal, tu peux aussi le signaler aux autorités sur internet-signalement.gouv.fr (PHAROS).</p></details>
@@ -940,6 +970,7 @@ const P={
  link:'<path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7l1.7-1.7"/>',
  sparkles:'<path d="M12 3.5 13.9 9 19.5 11l-5.6 2-1.9 5.5-1.9-5.5L4.5 11 10.1 9z"/><path d="M19 3v3.5M17.3 4.8h3.5M5 17.5V21M3.3 19.3h3.5"/>',
  info:'<circle cx="12" cy="12" r="9.5"/><path d="M12 11v5.5M12 7.8h.01"/>',
+ book:'<path d="M2 4h6a4 4 0 0 1 4 4v12a3 3 0 0 0-3-3H2z"/><path d="M22 4h-6a4 4 0 0 0-4 4v12a3 3 0 0 1 3-3h7z"/>',
  map:'<path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/>',
  clock:'<circle cx="12" cy="12" r="9.5"/><path d="M12 7v5l3.2 2"/>',
  users:'<circle cx="9" cy="8" r="3.8"/><path d="M2.5 20.5a6.5 6.5 0 0 1 13 0"/><path d="M16 4.3a3.8 3.8 0 0 1 0 7.4M21.5 20.5a6.5 6.5 0 0 0-4-6"/>',
@@ -1089,15 +1120,15 @@ const POSTS=[
  sources:[['PC Gamer : page GTA 6','fiable','https://www.pcgamer.com/grand-theft-auto-6/']]},
 {cat:'rumeur',date:'19 nov. 2026',title:'« Cyberleek » aurait fait fuiter une version Xbox complète',
  body:"Le leaker anonyme <b>Cyberleek</b> affirme avoir publié une version <b>presque complète</b> de GTA 6 sur Xbox (environ 200 Go).",
- verdict:"<b>Non vérifié.</b> Cela ne repose que sur les dires du leaker et sur des commentaires Reddit. Ne télécharge jamais ce genre de fichier : c'est illégal et souvent piégé.",
+ verdict:"Cela ne repose que sur les dires du leaker et sur des commentaires Reddit. Ne télécharge jamais ce genre de fichier : c'est illégal et souvent piégé.",
  sources:[['PC Gamer','fiable','https://www.pcgamer.com/games/grand-theft-auto/cyberleek-drops-what-they-claim-is-a-near-complete-gta-6-xbox-build-online/'],['Cyberleek (compte anonyme)','leaker','https://www.pcgamer.com/games/grand-theft-auto/cyberleek-drops-what-they-claim-is-a-near-complete-gta-6-xbox-build-online/']]},
 {cat:'rumeur',date:'Sept. 2026',title:'GTA 6 Online en 2027 ?',
  body:"Le PDG de Twitch, Dan Clancy, a laissé entendre à Bloomberg que le prochain GTA Online arriverait <b>en 2027</b>.",
- verdict:"<b>Plausible mais non confirmé.</b> Rockstar n'a rien annoncé. Pour comparer : le Online de GTA 5 était arrivé deux semaines après le jeu, celui de Red Dead 2 un mois après.",
+ verdict:"Plausible, mais Rockstar n'a rien annoncé. Pour comparer : le Online de GTA 5 était arrivé deux semaines après le jeu, celui de Red Dead 2 un mois après.",
  sources:[['GTABase : déclaration de Dan Clancy','moyen','https://www.gtabase.com/articles/gta-6/when-is-gta-6-online-coming-out'],['dlcompare : ce qui est confirmé','moyen','https://www.dlcompare.com/gaming-news/gta-6-online-is-there-multiplayer-at-launch-everything-confirmed-so-far']]},
 {cat:'rumeur',date:'Avril 2026',title:'« Le Online sortira un mois après le jeu »',
  body:"Le compte X <b>TheGhostOfHope</b> affirmait que GTA 6 Online sortirait environ un mois après le jeu, soit vers la mi-décembre 2026.",
- verdict:"<b>Rumeur de leaker</b>, sans aucune confirmation officielle à ce jour.",
+ verdict:"Ça vient d'un leaker, sans aucune confirmation officielle à ce jour.",
  sources:[['God is a Geek','moyen','https://godisageek.com/2026/04/gta-6-online-december-launch-leak-2026/'],['TheGhostOfHope (X)','leaker','https://godisageek.com/2026/04/gta-6-online-december-launch-leak-2026/']]},
 {cat:'rumeur',date:'14 nov. 2026',title:'Codes volés « à la lampe torche » dans les boîtes',
  body:"Les boîtes « physiques » de GTA 6 ne contiennent <b>pas de disque</b>, seulement un code (ça, c'est confirmé). Des acheteurs disent avoir trouvé un code <b>absent ou déjà utilisé</b>. Une théorie dit qu'on pourrait lire le code à travers la boîte avec une lampe.",
@@ -1105,27 +1136,27 @@ const POSTS=[
  sources:[['Dexerto','fiable','https://www.dexerto.com/gaming/gta-6-players-furious-as-physical-copies-reportedly-arrive-with-missing-or-already-used-codes-3428334/'],['Gameranx','moyen','https://gameranx.com/?p=564517'],['NoobFeed : « inquiétudes non vérifiées »','moyen','https://www.noobfeed.com/news/gta-6-code-in-box-theft-concerns']]},
 {cat:'alerte',date:'Août 2026 → aujourd\'hui',title:'Démo ou version PC « gratuite » : c\'est un virus',
  body:"De faux sites copient le style de Rockstar et proposent une <b>démo</b> ou une <b>version PC</b> de GTA 6. Le fichier installe un <b>voleur de mots de passe</b>.",
- verdict:"<b>FAUX et dangereux.</b> Il n'existe aucune démo et aucune version PC officielle. Si tu as cliqué : change tes mots de passe et active la double authentification.",
+ verdict:"<b>Arnaque.</b> Il n'existe aucune démo et aucune version PC officielle. Si tu as cliqué : change tes mots de passe et active la double authentification.",
  sources:[['Malwarebytes','fiable','https://www.malwarebytes.com/?p=456116'],['Hypebeast','moyen','https://hypebeast.com/2026/8/grand-theft-auto-vi-fake-demo-malware-targets-fans']]},
 {cat:'alerte',date:'2026',title:'« GTA 6 Mobile » / APK Android',
  body:"Des applis « GTA 6 Beta » ou « GTA 6 Mobile » circulent sur Android.",
- verdict:"<b>FAUX.</b> Ce sont des applis pleines de pubs ou des malwares qui peuvent lire tes SMS (et donc tes codes de sécurité). GTA 6 n'existe pas sur mobile.",
+ verdict:"<b>Arnaque.</b> Ce sont des applis pleines de pubs ou des malwares qui peuvent lire tes SMS (et donc tes codes de sécurité). GTA 6 n'existe pas sur mobile.",
  sources:[['GadgetReview','moyen','https://www.gadgetreview.com/?p=388042'],['GTA BOOM','moyen','https://gtaboom.com/psa-hackers-are-using-gta-6-hype-to-steal-your-data-c5bc']]},
 {cat:'faux',date:'Nov. 2026',title:'Une page Steam de GTA 6 apparue au lancement',
  body:"Une page Steam « GTA 6 » suspecte a circulé autour de la sortie.",
- verdict:"<b>FAUX.</b> Aucune version PC n'est annoncée, donc aucune page Steam officielle n'existe. Méfie-toi des précommandes de « clés Steam ».",
+ verdict:"Aucune version PC n'est annoncée, donc aucune page Steam officielle n'existe. Méfie-toi des précommandes de « clés Steam ».",
  sources:[['VGTimes : page Steam suspecte','moyen','https://vgtimes.com/games/gta-6/news/'],['games.gg : pas de PC au lancement','moyen','https://games.gg/news/phantom-vice-auto-gta-6-pc/']]},
 {cat:'faux',date:'14 août 2026',title:'Capture Netflix « 3 épisodes » de l\'Extended Look',
  body:"Une capture montrait la présentation <i>GTA 6 : An Extended Look</i> sur Netflix découpée en 3 épisodes.",
- verdict:"<b>FAUX.</b> Des dataminers ont montré que la mise en page ne correspondait pas à la vraie interface de Netflix.",
+ verdict:"Des dataminers ont montré que la mise en page ne correspondait pas à la vraie interface de Netflix.",
  sources:[['Gameranx','moyen','https://gameranx.com/updates/id/563704/article/gta-6-rumor-debunked-netflix-screenshot-showing-three-episodes-was-faked/']]},
 {cat:'faux',date:'2026',title:'La vidéo « fuite du pont de Vice City »',
  body:"Une vidéo virale présentée comme une fuite de gameplay montrait un pont de Vice City.",
- verdict:"<b>FAUX.</b> Son créateur a avoué l'avoir fabriquée lui-même pendant plusieurs mois et a publié les coulisses.",
+ verdict:"Son créateur a avoué l'avoir fabriquée lui-même pendant plusieurs mois et a publié les coulisses.",
  sources:[['Notebookcheck','moyen','https://www.notebookcheck.net/GTA-6-Vice-City-bridge-leak-confirmed-fake-as-creator-reveals-how-it-was-made.1252353.0.html']]},
 {cat:'faux',date:'Avril 2026',title:'« Le jeu a été retardé à cause du dev des sauvegardes viré »',
  body:"Le site de ragots britannique Popbitch affirmait que Rockstar avait licencié le responsable des sauvegardes, ce qui aurait causé un retard.",
- verdict:"<b>FAUX.</b> L'histoire a été démentie par des sources crédibles, et le jeu est bien sorti à la date prévue.",
+ verdict:"L'histoire a été démentie par des sources crédibles, et le jeu est bien sorti à la date prévue.",
  sources:[['Gameranx (citant Kotaku)','moyen','https://gameranx.com/updates/id/562124/article/obviously-fake-gta-6-rumor-debunked-saving-the-release-date/']]}
 ,{cat:'alerte',date:'Toujours valable',title:'« Argent gratuit » et générateurs de dollars GTA',
  body:"Des vidéos, des sites et des bots Discord promettent des <b>millions de dollars du jeu</b> ou des objets rares gratuits. Il suffit de « se connecter avec ton compte Rockstar » ou de télécharger un petit programme.",
@@ -1485,8 +1516,80 @@ const FEEDG=[];
 const TOPG=['gta-6'];
 function renderTop(){const el=document.getElementById('topg');if(!el)return;
   el.innerHTML=`<div class="h6"><div class="h6-in">${HERO_IMG?`<img src="${HERO_IMG}" alt="" referrerpolicy="no-referrer">`:''}<div class="h6-tags"><span class="live"><i></i>Disponible</span><span>Rockstar Games</span><span>PS5 · Xbox Series</span></div><div class="h6-tx"><h2>GTA VI</h2><p>Bienvenue à Leonida<small>Toute l’actu du jeu le plus attendu</small></p></div></div></div>`;}
+/* ===== GUIDE GTA VI (rédigé par GameCheck à partir de guides publics ; mis à jour au fil des découvertes) ===== */
+const GUIDE=[
+{id:'debut',t:'Bien débuter',e:'🌴',c1:'#ff2d95',c2:'#ffb347',intro:'Les bons réflexes pour tes premières heures à Leonida.',tips:[
+ ['Fais d’abord les premières missions','Le début de l’histoire sert de tutoriel : chaque mission débloque un nouveau système, dont le passage de Jason à Lucia. Le monde s’ouvre vraiment après.'],
+ ['Joue avec les deux héros','Jason et Lucia n’ont pas les mêmes points forts. Alterne entre les deux au lieu de rester toujours sur le même : tu découvriras plus d’activités.'],
+ ['Mets ton argent à l’abri','Au début, tout ton cash est sur toi : si tu tombes, tu en perds. Le compte en banque arrive après une à deux heures d’histoire. Avant ça, Jason peut cacher son argent sous une latte du plancher de sa chambre.'],
+ ['Ne farme pas au chapitre 1','L’argent est rare au début, quoi que tu fasses. Dépense-le dans des armes et des améliorations utiles, puis avance dans l’histoire : les gros gains arrivent plus tard.'],
+ ['Fais le plein de soins','Les supérettes vendent un médicament qui te soigne en plein combat. Il n’est pas en rayon : il faut le demander au vendeur.']],
+ warn:'',src:[['Red Bull','https://www.redbull.com/gb-en/gta-6-beginners-guide'],['games.gg','https://games.gg/grand-theft-auto-vi/guides/grand-theft-auto-6-beginner-tips-what-to-do-first/'],['Kotaku','https://kotaku.com/32-spoiler-free-tips-as-you-hop-into-grand-theft-auto-6-2000758016']]},
+{id:'argent',t:'Gagner de l’argent',e:'💵',c1:'#00a86b',c2:'#00e0a4',intro:'Du petit braquage à la grosse banque : comment remplir ton compte.',tips:[
+ ['Commence petit','Supérettes, prêteurs sur gages et bijouteries rapportent vite au début. Les banques paient le plus, mais elles sont bien plus dures : garde-les pour plus tard.'],
+ ['Vole, fuis, revends, dépose','Un butin ne vaut rien tant que tu ne l’as pas revendu. Et l’argent liquide n’est vraiment en sécurité qu’une fois déposé à la banque.'],
+ ['Revends des voitures','Plus la voiture est chère, plus elle rapporte. Certains acheteurs qui paient mieux se débloquent plus tard dans l’histoire.'],
+ ['Les activités paient aussi','Courses gagnées, chasse et plongée aux trésors permettent de gagner de l’argent sans faire l’histoire.'],
+ ['Méfie-toi des « codes argent »','Les guides ne sont pas d’accord sur l’existence d’un code de triche pour l’argent. Et aucun site ne peut t’en donner : ce sont des arnaques.']],
+ warn:'',src:[['PC Gamer','https://www.pcgamer.com/games/grand-theft-auto/gta-6-how-to-make-money/'],['VGC','https://www.videogameschronicle.com/guide/how-to-make-money-in-gta-6/'],['GTABase','https://www.gtabase.com/articles/gta-6/how-to-make-money-in-gta-6-full-money-making-guide']]},
+{id:'police',t:'Semer la police',e:'🚨',c1:'#2b59ff',c2:'#ff2d55',intro:'Le système de recherche est plus malin qu’avant. Voici comment t’en sortir.',tips:[
+ ['Pas de témoin, pas d’étoile','La police ne sait pas tout automatiquement : il faut qu’un témoin appelle ou qu’une alarme sonne. La nuit, il y a moins de monde dans les rues.'],
+ ['Prépare ta fuite avant','Repère une sortie avant un braquage. Savoir où aller peut t’éviter une très longue poursuite.'],
+ ['Casse la ligne de vue','Prends des ruelles et des petites rues : si les policiers ne te voient plus, ils te perdent.'],
+ ['Change de voiture','Les policiers retiennent le véhicule que tu conduis. En changer aide à ne pas être repéré à nouveau.'],
+ ['Sépare Jason et Lucia','Deux fuyards séparés sont plus durs à suivre, et ça peut faire baisser ton niveau de recherche.'],
+ ['Ne retourne pas sur les lieux','La zone du crime reste surveillée un moment : y revenir trop tôt peut relancer la poursuite. Et tirer sur les policiers fait toujours monter les étoiles.']],
+ warn:'',src:[['Dexerto','https://www.dexerto.com/wikis/gta-6/how-to-lose-the-police/'],['GTABase','https://www.gtabase.com/articles/gta-6/gta-6-wanted-level-explained-police-system-guide'],['KeenGamer','https://www.keengamer.com/articles/guides/gta-6-how-to-lose-the-cops-and-clear-your-wanted-level/']]},
+{id:'astuces',t:'Astuces & téléphone',e:'📱',c1:'#7b2ff7',c2:'#00e0ff',intro:'Les petites fonctions qui changent la vie, souvent ratées au début.',tips:[
+ ['Scanne avant de voler','L’appli WAiNK du téléphone montre si une voiture a une alarme ou un traceur. Un coup d’œil avant de forcer la portière évite bien des ennuis.'],
+ ['Utilise le mode Focus','Il fait ressortir des choses faciles à rater sur la mini-carte : activités, objets, occasions.'],
+ ['Laisse la voiture conduire','Pose un point sur la carte, puis en roulant maintiens Bas sur la croix directionnelle et choisis la conduite automatique.'],
+ ['Fouille ton téléphone','Il fait bien plus que téléphoner : photos, réseaux, scans… Beaucoup de fonctions du jeu passent par lui.'],
+ ['Prends le temps d’explorer','Leonida compte plus de 170 espèces d’animaux, sur terre, dans l’air et dans l’eau. Les détails sont partout, jusqu’aux clignotants des voitures.']],
+ warn:'',src:[['games.gg','https://games.gg/grand-theft-auto-vi/guides/grand-theft-auto-6-car-scanner-how-to-use/'],['Beebom','https://beebom.com/all-gta-6-phone-apps/'],['TweakTown','https://www.tweaktown.com/news/113817/rockstar-confirm-10-plus-new-details-about-grand-theft-auto-6-gameplay/index.html']]},
+{id:'collect',t:'Collectibles',e:'💎',c1:'#00b4d8',c2:'#90f1ef',intro:'Tout ce qui se collectionne à Leonida, et comment suivre ta progression.',tips:[
+ ['Tout est dans le menu Progression','La page Collections du menu Progression suit ce que tu as trouvé. C’est la référence la plus fiable, avant n’importe quel guide.'],
+ ['Les scans WAiNK','Monuments, curiosités et sculptures se scannent avec le téléphone. Il en faut 100 pour le 100 % et pour le trophée lié. Les graffitis et fresques sont comptés à part.'],
+ ['Les autres séries','Les guides citent des cartes à collectionner, des vinyles, des tableaux mystérieux, des trésors sous-marins et des lectures à trouver.'],
+ ['Pas de chiffre officiel','Les totaux varient beaucoup d’un guide à l’autre. GameCheck complétera cette page avec la carte des spots de la commu.']],
+ warn:'Les listes de collectibles sont encore en cours de recensement par les joueurs.',src:[['PowerPyx','https://www.powerpyx.com/gta-6-collectible-guide/'],['Allthings.how','https://allthings.how/gta-6-phone-explained-snapmatic-waink-and-wanted-levels/']]},
+{id:'armes',t:'Armes & véhicules',e:'🏎️',c1:'#ff6a3d',c2:'#ffd23f',intro:'Ce qui marche le mieux selon les premiers joueurs.',tips:[
+ ['Au début','Un bon pistolet et une carabine sont les choix les plus cités pour les premières heures.'],
+ ['Le meilleur choix polyvalent','Les fusils d’assaut couvrent presque toutes les distances : c’est l’arme à avoir sur toi la plupart du temps.'],
+ ['Pour les gros combats','Lance-grenades et lance-roquettes font le plus de dégâts. Les fusils à pompe et les revolvers frappent fort à chaque tir.'],
+ ['Les voitures les plus rapides','Pas de classement officiel : les supercars sont en tête, mais les vitesses exactes ne sont pas encore mesurées.'],
+ ['Améliore plutôt que d’acheter','Au début, mieux vaut améliorer une bonne voiture que de dépenser tout ton argent dans une neuve.']],
+ warn:'Aucune statistique officielle n’a été publiée : ces choix sont des avis de joueurs et de guides.',src:[['Pro Game Guides','https://progameguides.com/gta/best-weapons-in-gta-6/'],['Overgear','https://overgear.com/guides/gta-6/best-weapons-by-role/'],['eGamers','https://egamers.io/fastest-cars-in-gta-6-supercar-contenders-and-where-guides-say-to-find-them/']]},
+{id:'secrets',t:'Secrets & easter eggs',e:'🥚',c1:'#c13cff',c2:'#ff7bd5',intro:'Les clins d’œil et mystères repérés par les joueurs.',tips:[
+ ['Une image cachée depuis 2021','Une capture mystérieuse trouvée dans GTA San Andreas Definitive Edition correspondait en fait à une maison de GTA VI.'],
+ ['Des clins d’œil à Rockstar','Des livres et objets du jeu font référence à Red Dead Redemption et à GTA IV, entre autres.'],
+ ['L’œuf du haut de la tour','Selon des joueurs, lancer un œuf depuis une tour déclencherait une scène secrète. Rockstar n’a rien confirmé.'],
+ ['Des dizaines déjà trouvés','Les joueurs ont repéré des dizaines de secrets dans les premières heures après la sortie. GameCheck les ajoutera ici au fur et à mesure.']],
+ warn:'',src:[['Dexerto','https://www.dexerto.com/gta/gta-6-screenshot-hidden-in-san-andreas-back-in-2021-was-real-and-the-house-has-a-dark-secret-3429837/'],['Analytics Insight','https://www.analyticsinsight.net/news/gta-6s-hidden-secrets-connect-rockstars-biggest-games-in-unexpected-ways'],['IBTimes','https://www.ibtimes.co.uk/gta-6-player-discovers-literal-easter-egg-leonida-1833342']]},
+{id:'missions',t:'Missions',e:'🎬',c1:'#1b0b2e',c2:'#ff2d95',intro:'Comment est construite l’histoire, sans rien te gâcher.',tips:[
+ ['Un prologue et cinq chapitres','L’histoire est découpée en un prologue puis cinq chapitres. Les guides comptent entre 90 et 100 missions principales ; Rockstar n’a pas donné de chiffre officiel.'],
+ ['Respire entre les chapitres','Les fins de chapitre sont le bon moment pour faire les activités, gagner de l’argent et t’équiper avant la suite.'],
+ ['Prépare les braquages','Les grosses missions se passent mieux avec de bonnes armes, des soins et une voiture améliorée.'],
+ ['Bientôt ici','Une fiche par chapitre, sans spoiler, avec les conseils pour chaque mission difficile.']],
+ warn:'',src:[['Dexerto','https://www.dexerto.com/wikis/gta-6/mission-list/'],['TechNerdiness','https://www.technerdiness.com/gta/gta-6-chapters-missions-list/']]}
+];
+let GSEL=null;
+function renderGuide(){const el=document.getElementById('guide');if(!el)return;
+  if(!GSEL){
+    el.innerHTML=`<div class="gd-hero"><h1>GUIDE<br>GTA VI</h1><p>Astuces, argent, police, secrets… tout pour bien jouer à Leonida, expliqué simplement.</p><span class="gd-pill">${GUIDE.reduce((n,g)=>n+g.tips.length,0)} ASTUCES · MIS À JOUR RÉGULIÈREMENT</span></div>
+    <div class="gd-grid">${GUIDE.map(g=>`<button class="gd-t" data-g="${g.id}" style="background:linear-gradient(135deg,${g.c1},${g.c2})"><span class="e">${g.e}</span><b>${esc(g.t)}</b><small>${g.tips.length} astuces</small></button>`).join('')}</div>
+    <p class="note">${ic('info')}<span>Guide rédigé par GameCheck à partir des découvertes des joueurs et de guides publics, sources à l’appui. Rien d’officiel : Rockstar ne publie pas de guide.</span></p>`;
+    el.querySelectorAll('[data-g]').forEach(b=>b.onclick=()=>{GSEL=b.dataset.g;renderGuide();window.scrollTo({top:0})});return}
+  const g=GUIDE.find(x=>x.id===GSEL);
+  el.innerHTML=`<button class="gback" id="gdBack">‹ Tout le guide</button>
+  <div class="gd-head" style="background:linear-gradient(135deg,${g.c1},${g.c2})"><span class="e">${g.e}</span><div><h2>${esc(g.t)}</h2><p>${esc(g.intro)}</p></div></div>
+  ${g.warn?`<div class="gd-warn">⚠️ ${esc(g.warn)}</div>`:''}
+  ${g.tips.map((t,i)=>`<div class="card gd-tip"><span class="n" style="background:linear-gradient(135deg,${g.c1},${g.c2})">${i+1}</span><div><h3>${esc(t[0])}</h3><p>${esc(t[1])}</p></div></div>`).join('')}
+  <div class="sec">${tile('link','vice',28)}SOURCES</div><div class="gd-src">${g.src.map(s=>`<a href="${s[1]}" target="_blank" rel="noopener">${esc(s[0])} ↗</a>`).join('')}</div>`;
+  document.getElementById('gdBack').onclick=()=>{GSEL=null;renderGuide();window.scrollTo({top:0})};}
+
 /* ===== TABS ===== */
-const TABS=[['feed','home','Accueil'],['forum','chat','Forum']];
+const TABS=[['feed','home','Accueil'],['guide','book','Guide'],['forum','chat','Forum']];
 $('#tabs').innerHTML=TABS.map(([v,i,l],k)=>`<button class="${k?'':'on'}" data-v="${v}">${ic(i)}${l}</button>`).join('');
 function showView(v){CURV=v;setTimeout(applyNavTheme,0);
   document.querySelectorAll('nav.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.v===v));
@@ -1498,11 +1601,11 @@ document.querySelectorAll('nav.tabs button').forEach(b=>b.onclick=()=>showView(b
 {const lg=document.querySelector('header .logo');lg.setAttribute('role','button');lg.setAttribute('tabindex','0');lg.setAttribute('aria-label','Infos, sources et mentions légales');lg.title='Infos';lg.onclick=()=>showView('src');lg.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();showView('src')}}}
 
 /* ===== CHECKER ===== */
-$('#rulesTitle').innerHTML=`${tile('shield','vice',28)}LES 5 RÉFLEXES ANTI-FAKE`;
+$('#rulesTitle').innerHTML=`${tile('shield','vice',28)}PROTÈGE TON COMPTE`;
 $('#majTitle').innerHTML=`${tile('clock','vice',28)}MISES À JOUR`;
 $('#dlTitle').innerHTML=`${tile('download','vice',28)}INSTALLER GAMECHECK`;
 $('#legalTitle').innerHTML=`${tile('info','vice',28)}À PROPOS ET INFOS LÉGALES`;
-$('#appVersion').innerHTML=`${ic('info')}<span>GameCheck · version 1.5 du 21 nov. 2026 (profils et forum)</span>`;
+$('#appVersion').innerHTML=`${ic('info')}<span>GameCheck · version 2.0 du 24 nov. 2026 (l’appli d’actu GTA VI)</span>`;
 
 /* ===== INIT ===== */
 $('#logoMk').innerHTML=dogLogo();
@@ -1523,7 +1626,7 @@ let installEvt=null;
 window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();installEvt=e;$('#installBtn').hidden=false});
 $('#installBtn').onclick=async()=>{if(!installEvt)return;installEvt.prompt();try{await installEvt.userChoice}catch(e){}installEvt=null;$('#installBtn').hidden=true};
 window.addEventListener('appinstalled',()=>{$('#installBtn').hidden=true;toast('GameCheck est installé !')});
-withIdx();renderUne();renderFilters();renderFeed();initPhotos();renderTop();document.body.dataset.univ='gta-6';loadOfficial();
+withIdx();renderUne();renderFilters();renderFeed();initPhotos();renderTop();renderGuide();document.body.dataset.univ='gta-6';loadOfficial();
 </script>
 <script type="module">
 // Firebase (gratuit) : connexion Google + base de données pour les profils, J'aime, commentaires et forum.

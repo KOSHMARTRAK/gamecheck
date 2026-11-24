@@ -6,7 +6,7 @@
       "cat": "alerte",
       "title": "GTA 6 : fausses démos « Rockstar » qui installent un voleur de mots de passe",
       "body": "Des sites imitant Rockstar proposent un bouton « Play Now » ou un faux téléchargement de GTA 6, qui installe un **logiciel voleur de mots de passe**. Il n'existe aucune démo officielle.",
-      "verdict": "**FAUX et dangereux.** Aucune démo ni version PC n'est proposée par Rockstar : ne téléchargez rien hors des boutiques officielles.",
+      "verdict": "**Arnaque.** Aucune démo ni version PC n'est proposée par Rockstar : ne téléchargez rien hors des boutiques officielles.",
       "sources": [
         {
           "nom": "Malwarebytes",
@@ -96,7 +96,7 @@
       "cat": "alerte",
       "title": "GTA 6 : de faux « accès anticipés » payables en crypto vident des portefeuilles",
       "body": "Des sites vendent un « accès anticipé » à GTA 6 en cryptomonnaie, puis installent des logiciels malveillants ou vident les portefeuilles.",
-      "verdict": "**FAUX et dangereux.** Rockstar ne vend aucun accès anticipé : ne payez jamais en crypto pour un jeu.",
+      "verdict": "**Arnaque.** Rockstar ne vend aucun accès anticipé : ne payez jamais en crypto pour un jeu.",
       "sources": [
         {
           "nom": "Privacy Guides",
@@ -271,7 +271,7 @@
       "cat": "rumeur",
       "title": "GTA 6 : un accord marketing avec PlayStation, mais sans exclusivité prouvée",
       "body": "Des propos de Zelnick montrent un accord marketing avec Sony. Certains médias parlent d'**exclusivité**, d'autres disent qu'il ne porte que sur la promotion.",
-      "verdict": "**Non vérifié.** Ni Rockstar ni Sony n'ont détaillé l'accord, et le jeu sort aussi sur Xbox Series.",
+      "verdict": "Ni Rockstar ni Sony n'ont détaillé l'accord, et le jeu sort aussi sur Xbox Series.",
       "sources": [
         {
           "nom": "Push Square",
@@ -301,7 +301,7 @@
       "cat": "faux",
       "title": "GTA 6 : la « fuite du pont de Vice City » était un canular",
       "body": "Une vidéo floue de 40 secondes, présentée comme un build de 2020, a fait le tour du web. Son auteur, « tenshi », a avoué l'avoir fabriquée.",
-      "verdict": "**FAUX.** Le créateur a reconnu le canular et expliqué comment il l'a réalisé.",
+      "verdict": "Le créateur a reconnu le canular et expliqué comment il l'a réalisé.",
       "sources": [
         {
           "nom": "Notebookcheck",
@@ -536,7 +536,7 @@
       "cat": "rumeur",
       "title": "GTA 6 : le mode en ligne arriverait en 2027, sans annonce de Rockstar",
       "body": "Le patron de Twitch a évoqué un multijoueur « l'année prochaine », et plusieurs médias parlent de **2027**. Take-Two confirme seulement que GTA Online restera supporté.",
-      "verdict": "**Non vérifié.** Aucune date ni aucun détail officiel de Rockstar : l'information vient de propos de tiers.",
+      "verdict": "Aucune date ni aucun détail officiel de Rockstar : l'information vient de propos de tiers.",
       "sources": [
         {
           "nom": "Beebom",
@@ -566,7 +566,7 @@
       "cat": "rumeur",
       "title": "GTA 6 : la maison de Belville serait celle d'une image cachée dans San Andreas en 2021",
       "body": "Un joueur de la communauté de cartographie a retrouvé à **Belville** une maison qui ressemble à une image ajoutée à GTA San Andreas Definitive Edition en 2021.",
-      "verdict": "**Non vérifié.** La ressemblance est frappante, mais Rockstar n'a rien confirmé : le studio a pu réutiliser le décor.",
+      "verdict": "La ressemblance est frappante, mais Rockstar n'a rien confirmé : le studio a pu réutiliser le décor.",
       "sources": [
         {
           "nom": "Dexerto",
@@ -626,7 +626,7 @@
       "cat": "rumeur",
       "title": "GTA 6 : lancer un œuf depuis une tour déclencherait une cinématique secrète",
       "body": "Des joueurs affirment qu'un **œuf** caché au sommet d'une tour radio, lancé du haut, déclenche une scène secrète. Le tout repose sur une vidéo de joueur.",
-      "verdict": "**Non vérifié.** Aucune confirmation de Rockstar, et l'emplacement exact n'est pas établi de façon indépendante.",
+      "verdict": "Aucune confirmation de Rockstar, et l'emplacement exact n'est pas établi de façon indépendante.",
       "sources": [
         {
           "nom": "IBTimes",
@@ -676,7 +676,7 @@
       "cat": "rumeur",
       "title": "GTA 6 : une version PC au premier trimestre 2027 ? Rien d'officiel",
       "body": "Un rapport de **GamesBeat**, appuyé sur quatre sources anonymes, évoque une sortie PC début 2027. Un autre leaker parle de février 2027.",
-      "verdict": "**Non vérifié.** Rockstar et Take-Two n'ont rien annoncé sur le PC. Reprise par plusieurs médias, mais toujours sans confirmation officielle.",
+      "verdict": "Rockstar et Take-Two n'ont rien annoncé sur le PC. Reprise par plusieurs médias, mais toujours sans confirmation officielle.",
       "sources": [
         {
           "nom": "TechSpot",
@@ -706,7 +706,7 @@
       "cat": "alerte",
       "title": "GTA 6 : vague de fausses clés « bêta », faux sites PC et pré-commandes",
       "body": "Des chercheurs en sécurité signalent une hausse d'arnaques : fausses **clés bêta**, faux installateurs « version PC », faux sites d'accès anticipé et vols de comptes.",
-      "verdict": "**FAUX et dangereux.** Il n'existe ni version PC annoncée ni bêta publique. N'achetez que sur le site de Rockstar ou la boutique officielle de votre console.",
+      "verdict": "**Arnaque.** Il n'existe ni version PC annoncée ni bêta publique. N'achetez que sur le site de Rockstar ou la boutique officielle de votre console.",
       "sources": [
         {
           "nom": "Malwarebytes",
@@ -868,7 +868,7 @@
       ],
       "title": "Cyberleek promet le jeu complet piraté le 23 nov. : piège crypto probable",
       "ts": 1795273901846,
-      "verdict": "**Non vérifié.** Ne téléchargez rien : les faux installeurs « GTA 6 » servent souvent à installer des voleurs de mots de passe, et ne misez pas sur la crypto liée au groupe."
+      "verdict": "**Arnaque.** Ne téléchargez rien : les faux installeurs « GTA 6 » servent souvent à installer des voleurs de mots de passe, et ne misez pas sur la crypto liée au groupe."
     }
   },
   {

@@ -1,4 +1,6 @@
-# GameCheck : programme du mercredi 25 nov. 2026 (après 16 h, reset du forfait)
+# GameCheck : programme du mercredi 25 nov. 2026
+
+**Avancé au 24 nov. : points 1, 2 et 3 FAITS.** Reste le point 4 (stats) et compléter le Guide (Missions par chapitre, collectibles, secrets).
 
 Pour démarrer : ouvre une nouvelle session dans le dossier GameCheck et écris
 « Lis MERCREDI.md et RESUME-PROJET.md, puis on attaque le programme de mercredi ».
