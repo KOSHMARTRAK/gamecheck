@@ -1,5 +1,7 @@
 # GameCheck : résumé du projet (23 nov. 2026)
 
+> **Projet arrêté le 27 nov. 2026** à la demande de l'utilisateur : on ne travaille plus dessus. Rien n'a été supprimé et l'appli reste en ligne telle quelle. La routine IA est désactivée et ne tourne pas toute seule. Le guide prévu n'est pas fait.
+
 ## Liens
 - Site / appli : https://koshmartrak.github.io/gamecheck/
 - APK Android (v1.0.2) : https://github.com/KOSHMARTRAK/gamecheck/releases/latest/download/GameCheck.apk
